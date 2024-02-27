@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup Dev Environment
 
-Things you may want to cover:
+Install Dependencies
 
-* Ruby version
+```
+bundle
+```
 
-* System dependencies
+Database
 
-* Configuration
+```
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
-* Database creation
+Run locally
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+./bin/dev
+```
