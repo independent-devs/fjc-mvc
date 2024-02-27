@@ -1,17 +1,20 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "users/shared/links"
+- title "Login"
+- description "Login Page"
+- keywords "User, Login, Register"
+
+.margin-max-screen.grid.place-items-center.h-full.py-20
+  .w-80.h-fit.flex.flex-col.gap-1
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "grid gap-2"}) do |f|
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .field
+        = f.label :password
+        = f.password_field :password, autocomplete: "current-password"
+      - if devise_mapping.rememberable?
+        .flex.items-center.gap-2
+          = f.check_box :remember_me, class: "text-primary rounded-sm focus:ring-0 mt-0.5"
+          = f.label :remember_me
+      .actions
+        = f.submit "Log in", class: "btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
+    = render "users/shared/links"
