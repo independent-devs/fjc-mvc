@@ -86,7 +86,7 @@ gem 'dotenv-rails', '~> 2.8'
 # Reusable components
 gem 'view_component', '~> 2.82'
 
-# haml support
+# Haml support
 gem 'haml-rails', '~> 2.1'
 gem 'html2haml', '~> 2.3'
 
@@ -95,3 +95,9 @@ gem 'meta-tags', '~> 2.20'
 
 # Restrictions
 gem 'cancancan', '~> 3.5'
+
+# Icons
+gem 'font-awesome-sass', '~> 6.4.0'
+
+# Oauth
+gem 'omniauth-google-oauth2', '~> 1.1'
