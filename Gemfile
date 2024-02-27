@@ -101,3 +101,6 @@ gem 'font-awesome-sass', '~> 6.4.0'
 
 # Oauth
 gem 'omniauth-google-oauth2', '~> 1.1'
+
+# Pagination
+gem 'pagy', '~> 6.4'
