@@ -1,0 +1,37 @@
+%h1 Listing products
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Available on
+      %th Deleted at
+      %th Slug
+      %th Meta description
+      %th Meta keywords
+      %th Promotionable
+      %th Meta title
+      %th
+      %th
+      %th
+
+  %tbody
+    - @products.each do |product|
+      %tr
+        %td= product.name
+        %td= product.description
+        %td= product.available_on
+        %td= product.deleted_at
+        %td= product.slug
+        %td= product.meta_description
+        %td= product.meta_keywords
+        %td= product.promotionable
+        %td= product.meta_title
+        %td= link_to 'Show', product
+        %td= link_to 'Edit', edit_product_path(product)
+        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Product', new_product_path

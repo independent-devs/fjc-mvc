@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  products:
+    created: "Product was successfully created."
+    updated: "Product was successfully updated."
+    destroyed: "Product was successfully destroyed."
