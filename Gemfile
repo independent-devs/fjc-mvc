@@ -92,3 +92,6 @@ gem 'html2haml', '~> 2.3'
 
 # SEO
 gem 'meta-tags', '~> 2.20'
+
+# Restrictions
+gem 'cancancan', '~> 3.5'
