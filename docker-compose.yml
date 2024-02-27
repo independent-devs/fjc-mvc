@@ -1,5 +1,5 @@
 version: "3"
-name: fjc
+name: fjc_mvc
 services:
   db:
     image: "postgres:15.3-bookworm"
