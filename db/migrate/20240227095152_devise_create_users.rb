@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       ## Extra
       t.string :phone_no
       t.string :name
+      t.boolean :admin, null: false, default: false
 
       ## OmniAuth
       t.string :provider, default: 'email'
