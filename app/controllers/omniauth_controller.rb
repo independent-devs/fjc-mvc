@@ -7,8 +7,7 @@ class OmniauthController < Devise::OmniauthCallbacksController
       sign_in_and_redirect(@user)
       set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
-      redirect_to(new_user_registration_path)
-      flash[:error] = `There was a problem signing with Google`
+      redirect_to(new_user_registration_path, error: 'There was a problem signing with Google')
     end
   end
 end
