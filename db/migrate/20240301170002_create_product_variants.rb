@@ -14,6 +14,7 @@ class CreateProductVariants < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
     add_index :product_variants, :position
     add_index :product_variants, :sku
   end
