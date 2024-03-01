@@ -34,8 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.datetime "available_on"
-    t.datetime "deleted_at"
+    t.datetime "available_on", precision: nil
+    t.datetime "discontinue_on", precision: nil
+    t.datetime "deleted_at", precision: nil
     t.string "slug", null: false
     t.text "meta_description"
     t.string "meta_keywords"
@@ -43,6 +44,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.string "meta_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["available_on"], name: "index_products_on_available_on"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
+    t.index ["discontinue_on"], name: "index_products_on_discontinue_on"
+    t.index ["name"], name: "index_products_on_name"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
