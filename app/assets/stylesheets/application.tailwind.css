@@ -19,11 +19,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary py-2.5 px-6 rounded-md text-white w-fit hover:shadow-md transition-all ease-in-out duration-100;
+    @apply bg-primary py-2.5 px-6 rounded text-white w-fit hover:shadow-md transition-all ease-in-out duration-100;
   }
 
   .btn-plain {
-    @apply border border-secondary/40 bg-white hover:border-secondary/70 py-2.5 px-6 rounded-md w-fit hover:shadow-md transition-all ease-in-out duration-100;
+    @apply border border-secondary/40 bg-white hover:border-secondary/70 py-2.5 px-6 rounded w-fit hover:shadow-md transition-all ease-in-out duration-100;
   }
 
   .input-primary {
