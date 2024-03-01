@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_27_113959) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "product_variants", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "sku"
+    t.integer "position", default: 0, null: false
+    t.datetime "deleted_at"
+    t.decimal "cost_price", precision: 10, scale: 2
+    t.decimal "sell_price", precision: 10, scale: 2
+    t.integer "count_on_hand", default: 0
+    t.boolean "is_master", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_product_variants_on_position"
+    t.index ["product_id"], name: "index_product_variants_on_product_id"
+    t.index ["sku"], name: "index_product_variants_on_sku"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
