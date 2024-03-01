@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
   enable_extension "plpgsql"
 
   create_table "product_variants", force: :cascade do |t|
-    t.bigint "product_id"
+    t.bigint "product_id", null: false
     t.string "sku"
     t.integer "position", default: 0, null: false
     t.datetime "deleted_at"
@@ -68,4 +68,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "product_variants", "products"
 end

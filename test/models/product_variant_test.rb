@@ -22,11 +22,15 @@ end
 #  sku           :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  product_id    :bigint
+#  product_id    :bigint           not null
 #
 # Indexes
 #
 #  index_product_variants_on_position    (position)
 #  index_product_variants_on_product_id  (product_id)
 #  index_product_variants_on_sku         (sku)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (product_id => products.id)
 #
