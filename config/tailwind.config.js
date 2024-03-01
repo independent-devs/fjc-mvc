@@ -6,6 +6,7 @@ module.exports = {
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
+    "./app/components/**/*.{erb,haml,html,slim}",
   ],
   theme: {
     extend: {
@@ -19,7 +20,6 @@ module.exports = {
       },
       maxWidth: {
         margin: "1280px",
-        "margin-2": "1024px",
       },
     },
   },
