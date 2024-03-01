@@ -19,19 +19,19 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary py-2.5 px-6 rounded text-white w-fit hover:shadow-md transition-all ease-in-out duration-100;
+    @apply bg-primary py-3 px-6 rounded text-white w-fit hover:shadow-md transition-all ease-in-out duration-100 text-sm;
   }
 
   .btn-plain {
-    @apply border border-secondary/40 bg-white hover:border-secondary/70 py-2.5 px-6 rounded w-fit hover:shadow-md transition-all ease-in-out duration-100;
+    @apply border border-secondary/40 bg-white hover:border-secondary/70 py-2.5 px-6 rounded w-fit hover:shadow-md transition-all ease-in-out duration-100 text-sm;
   }
 
   .input-primary {
-    @apply px-3 w-full rounded-md ring-1 ring-secondary/50 border-secondary border-0  focus:border-0 focus:ring-2 focus:ring-primary;
+    @apply px-3 w-full rounded ring-1 ring-secondary/50 border-secondary border-0  focus:border-0 focus:ring-2 focus:ring-primary;
   }
 
   .input-error {
-    @apply px-3 w-full rounded-md ring-1 ring-red-600 border-secondary border-0  focus:border-0 focus:ring-2 focus:ring-red-600;
+    @apply px-3 w-full rounded ring-1 ring-red-600 border-secondary border-0  focus:border-0 focus:ring-2 focus:ring-red-600;
   }
 
   /* form */

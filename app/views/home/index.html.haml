@@ -1,6 +1,10 @@
-.w-full.margin-max-screen
+.w-full.margin-max-screen.flex.flex-col.gap-10
   = render SectionComponent.new               |
       label: "Category",                      |
-      title: "Browse By Category",            |
-      action_partial: "category_action" do    |
+      title: "Browse By Category" do          |
+    sample
+  = render SectionComponent.new               |
+      label: "Our Products",                  |
+      title: "Explore Our Products",          |
+      action_partial: "product_action" do     |
     sample
