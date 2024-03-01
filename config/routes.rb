@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
 
-  root "home#index"
+  root 'home#index'
 
   ## draw routes
   draw :products
