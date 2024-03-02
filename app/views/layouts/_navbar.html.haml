@@ -5,8 +5,8 @@
       .ml-24
         %ul.flex.gap-8.font-medium
           %li.decoration-2.underline-offset-4.hover:underline
-            = link_to "Home", root_path
+            = link_to t("home.link"), root_path
           %li.decoration-2.underline-offset-4.hover:underline
-            = link_to "Products", products_path
+            = link_to t("products.link"), products_path
           %li.decoration-2.underline-offset-4.hover:underline
-            About
+            = t("about.link")
