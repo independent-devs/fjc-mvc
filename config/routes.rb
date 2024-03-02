@@ -34,11 +34,11 @@ end
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                          POST     /products(.:format)                                                                               products#create
 #                              new_product GET      /products/new(.:format)                                                                           products#new
-#                             edit_product GET      /products/:id/edit(.:format)                                                                      products#edit
-#                                  product GET      /products/:id(.:format)                                                                           products#show
-#                                          PATCH    /products/:id(.:format)                                                                           products#update
-#                                          PUT      /products/:id(.:format)                                                                           products#update
-#                                          DELETE   /products/:id(.:format)                                                                           products#destroy
+#                             edit_product GET      /products/:slug/edit(.:format)                                                                    products#edit
+#                                  product GET      /products/:slug(.:format)                                                                         products#show
+#                                          PATCH    /products/:slug(.:format)                                                                         products#update
+#                                          PUT      /products/:slug(.:format)                                                                         products#update
+#                                          DELETE   /products/:slug(.:format)                                                                         products#destroy
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
