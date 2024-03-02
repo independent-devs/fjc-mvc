@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.integer "position", default: 0, null: false
     t.datetime "deleted_at"
     t.decimal "cost_price", precision: 10, scale: 2
-    t.decimal "sell_price", precision: 10, scale: 2
+    t.decimal "sell_price", precision: 10, scale: 2, null: false
     t.integer "count_on_hand", default: 0
     t.boolean "is_master", default: false, null: false
     t.datetime "created_at", null: false

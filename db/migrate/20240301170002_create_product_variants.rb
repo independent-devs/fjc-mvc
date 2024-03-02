@@ -8,7 +8,7 @@ class CreateProductVariants < ActiveRecord::Migration[7.0]
       t.integer :position, null: false, default: 0
       t.datetime :deleted_at
       t.decimal :cost_price, precision: 10, scale: 2
-      t.decimal :sell_price, precision: 10, scale: 2
+      t.decimal :sell_price, precision: 10, scale: 2, null: false
       t.integer :count_on_hand, default: 0
       t.boolean :is_master, null: false, default: false
 
