@@ -3,5 +3,7 @@
   %head
     = render "layouts/head"
   %body.flex.flex-col
+    = render "layouts/navbar"
     %main.flex-1
       = yield
+    = render "layouts/footer"
