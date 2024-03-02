@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+class Product < ApplicationRecord
+  has_many :variants, dependent: :destroy
+end
+
 # == Schema Information
 #
 # Table name: products
@@ -26,5 +30,3 @@
 #  index_products_on_name            (name)
 #  index_products_on_slug            (slug) UNIQUE
 #
-class Product < ApplicationRecord
-end
