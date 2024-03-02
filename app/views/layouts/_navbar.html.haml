@@ -1,0 +1,12 @@
+.h-20.w-full.border-b.flex.items-center
+  .margin-max-screen.w-full.flex.justify-between.items-center
+    .flex.gap-3.items-center
+      = link_to "FJC Shop", root_path, class: "text-2xl font-extrabold"
+      .ml-24
+        %ul.flex.gap-8.font-medium
+          %li.decoration-2.underline-offset-4.hover:underline
+            = link_to "Home", root_path
+          %li.decoration-2.underline-offset-4.hover:underline
+            = link_to "Products", products_path
+          %li.decoration-2.underline-offset-4.hover:underline
+            About
