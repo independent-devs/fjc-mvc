@@ -1,1 +1,1 @@
-resources :products
+resources :products, param: :slug
