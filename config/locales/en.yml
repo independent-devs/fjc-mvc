@@ -30,8 +30,18 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home:
+    link: "Home"
+  about:
+    link: "About"
   products:
+    all: "All products"
+    link: "Products"
     created: "Product was successfully created."
     updated: "Product was successfully updated."
     destroyed: "Product was successfully destroyed."
+    section_label: "Our Products"
+    section_title: "Explore Our Products"
+  categories:
+    section_label: "Categories"
+    section_title: "Browse By Category"
