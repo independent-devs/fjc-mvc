@@ -19,6 +19,8 @@ en:
       phone_no:
         invalid: "invalid"
         required: "required"
+      provider:
+        not_allowed: "not allowed"
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
