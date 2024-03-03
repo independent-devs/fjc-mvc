@@ -1,10 +1,10 @@
 %h2 Sign up
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render "users/shared/error_messages", resource: resource
-  .field
-    = f.label :phone_no
-    %br/
-    = f.text_field :phone_no, autofocus: true, required: true, autocomplete: "phone_no"
+  .field{"data-controller": "phone"}
+    = f.label "Phone No."
+    = f.phone_field  :phone_no, required: true, autocomplete: "phone_no", "data-phone-target": "field"
+    = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "input-tel"
   .field
     = f.label :password
     - if @minimum_password_length

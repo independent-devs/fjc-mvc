@@ -8,9 +8,10 @@
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "h-fit"}) do |f|
       .grid{class: "gap-2.5"}
         %h2.font-semibold.text-2xl.mb-2 Login
-        .field
+        .field{"data-controller": "phone"}
           = f.label "Phone No."
-          = f.text_field :phone_no, autofocus: true, required: true, autocomplete: "phone_no"
+          = f.phone_field  :phone_no, required: true, autocomplete: "phone_no", "data-phone-target": "field"
+          = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "input-tel"
         .field
           = f.label :password
           = f.password_field :password, required: true, autocomplete: "current-password"
