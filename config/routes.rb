@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   ## draw routes
+  draw :profile
   draw :products
   draw :admin
 end
@@ -16,6 +17,8 @@ end
 #                         new_user_session GET      /users/sign_in(.:format)                                                                          devise/sessions#new
 #                             user_session POST     /users/sign_in(.:format)                                                                          devise/sessions#create
 #                     destroy_user_session DELETE   /users/sign_out(.:format)                                                                         devise/sessions#destroy
+#         user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)                                                                    omniauth#passthru
+#          user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)                                                           omniauth#facebook
 #    user_google_oauth2_omniauth_authorize GET|POST /users/auth/google_oauth2(.:format)                                                               omniauth#passthru
 #     user_google_oauth2_omniauth_callback GET|POST /users/auth/google_oauth2/callback(.:format)                                                      omniauth#google_oauth2
 #                        new_user_password GET      /users/password/new(.:format)                                                                     devise/passwords#new
@@ -31,6 +34,7 @@ end
 #                                          DELETE   /users(.:format)                                                                                  devise/registrations#destroy
 #                                          POST     /users(.:format)                                                                                  devise/registrations#create
 #                                     root GET      /                                                                                                 home#index
+#                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                          POST     /products(.:format)                                                                               products#create
 #                              new_product GET      /products/new(.:format)                                                                           products#new

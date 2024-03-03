@@ -2,6 +2,13 @@
 
 class Product < ApplicationRecord
   has_many :variants, dependent: :destroy
+
+  ## scopes
+  scope :sort_by_latest, -> { order(id: :desc) }
+  scope :base_on_date, lambda { |now = DateTime.now|
+    where('products.available_on >= ?', now)
+      .where('products.discontinue_on IS NULL OR products.discontinue_on <= ?', now)
+  }
 end
 
 # == Schema Information
@@ -10,6 +17,7 @@ end
 #
 #  id               :bigint           not null, primary key
 #  available_on     :datetime
+#  captured_price   :text
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime

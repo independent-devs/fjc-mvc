@@ -2,6 +2,8 @@
 
 class ProductVariant < ApplicationRecord
   belongs_to :product
+
+  scope :sort_by_position, -> { order(position: :asc) }
 end
 
 # == Schema Information
