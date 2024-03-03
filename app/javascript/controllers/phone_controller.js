@@ -16,8 +16,8 @@ export default class extends Controller {
       initialCountry: "PH",
       allowDropdown: false,
       preferredCountries: ["ph"],
-      customPlaceholder: function (selectedCountryPlaceholder) {
-        return "e.g. " + selectedCountryPlaceholder;
+      customPlaceholder: (placeholder) => {
+        return "e.g. " + placeholder;
       },
       // geoIpLookup: (callback) => {
       //   fetch("https://ipapi.co/json")
