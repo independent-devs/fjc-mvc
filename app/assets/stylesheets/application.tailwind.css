@@ -1346,7 +1346,3 @@
 .iti__flag.iti__np {
   background-color: transparent;
 }
-
-::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
