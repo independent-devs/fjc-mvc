@@ -84,7 +84,6 @@
   top: 0;
   bottom: 0;
   right: 0;
-  padding: 1px;
 }
 .iti__selected-flag {
   z-index: 1;
@@ -168,7 +167,7 @@
 .iti--separate-dial-code input[type="text"],
 .iti--separate-dial-code input[type="tel"] {
   padding-right: 6px;
-  padding-left: 52px;
+  padding-left: 87px !important;
   margin-left: 0;
 }
 [dir="rtl"] .iti--allow-dropdown input,
