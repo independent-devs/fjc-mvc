@@ -23,27 +23,19 @@ class Admin::ProductsController < Admin::BaseController
   def create
     @product = Product.new(product_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: I18n.t('products.created') }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to product_url(@product), notice: I18n.t('products.created')
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: I18n.t('products.updated') }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update(product_params)
+      redirect_to product_url(@product), notice: I18n.t('products.updated')
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -51,10 +43,7 @@ class Admin::ProductsController < Admin::BaseController
   def destroy
     @product.destroy
 
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: I18n.t('products.destroyed') }
-      format.json { head :no_content }
-    end
+    redirect_to products_url, notice: I18n.t('products.destroyed')
   end
 
   private
