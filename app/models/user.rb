@@ -1,16 +1,40 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  attr_accessor :phone_no
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :trackable, :omniauthable,
-         omniauth_providers: %i[facebook google_oauth2]
+         omniauth_providers: %i[facebook google_oauth2],
+         authentication_keys: %i[phone_no]
 
-  enum :provider, { email: 'email', phone_no: 'phone_no', google_oauth2: 'google_oauth2', facebook: 'facebook' }
+  ALLOWED_PROVIDER = %w[phone_no google_oauth2 facebook].freeze
+
+  validates :provider, inclusion: { in: ALLOWED_PROVIDER }
+  validates :phone_no, uniqueness: { allow_nil: true }
+  validates :email, uniqueness: { allow_nil: true }
+  validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') },
+                       presence: { message: I18n.t('devise.failure.phone_no.required') },
+                       if: -> { phone_no.present? }
 
   def remember_me
     super.nil? ? true : super
+  end
+
+  def email_required?
+    provider != 'phone_no'
+  end
+
+  def email_changed?
+    true
+  end
+
+  def self.find_for_authentication(conditions = {})
+    return nil if conditions[:phone_no].blank?
+
+    find_by(phone_no: conditions[:phone_no])
   end
 
   def self.create_from_provider_data(provider_data)
@@ -30,13 +54,13 @@ end
 #  admin                  :boolean          default(FALSE), not null
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
-#  email                  :string           default(""), not null
+#  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  name                   :string
 #  phone_no               :string
-#  provider               :string           default("email")
+#  provider               :string           default("phone_no")
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string

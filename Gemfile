@@ -107,3 +107,6 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 # Pagination
 gem 'pagy', '~> 6.4'
+
+# phone number validator
+gem 'phonelib', '~> 0.8.4'
