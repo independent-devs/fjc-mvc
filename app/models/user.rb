@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  attr_accessor :phone_no
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -12,11 +10,11 @@ class User < ApplicationRecord
 
   ALLOWED_PROVIDER = %w[phone_no google_oauth2 facebook].freeze
 
-  validates :provider, inclusion: { in: ALLOWED_PROVIDER }
-  validates :phone_no, uniqueness: { allow_nil: true }
+  validates :provider, inclusion: { in: ALLOWED_PROVIDER, message: I18n.t('devise.failure.provider.not_allowed') }
   validates :email, uniqueness: { allow_nil: true }
+  validates :phone_no, uniqueness: { allow_nil: true }
+  validates :phone_no, presence: true, if: -> { provider == 'phone_no' }
   validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') },
-                       presence: { message: I18n.t('devise.failure.phone_no.required') },
                        if: -> { phone_no.present? }
 
   def remember_me
