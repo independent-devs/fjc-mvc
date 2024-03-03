@@ -5,9 +5,7 @@ import intlTelInput from "intl-tel-input";
 export default class extends Controller {
   static targets = ["field", "hidden"];
   connect() {
-    ["change"].forEach((eventName) => {
-      this.fieldTarget.addEventListener(eventName, this.inputListener);
-    });
+    this.fieldTarget.addEventListener("change", this.inputListener);
 
     this.iti = intlTelInput(this.fieldTarget, {
       utilsScript:
@@ -16,8 +14,8 @@ export default class extends Controller {
       initialCountry: "PH",
       allowDropdown: false,
       preferredCountries: ["ph"],
-      customPlaceholder: function (selectedCountryPlaceholder) {
-        return "e.g. " + selectedCountryPlaceholder;
+      customPlaceholder: (placeholder) => {
+        return "e.g. " + placeholder;
       },
       // geoIpLookup: (callback) => {
       //   fetch("https://ipapi.co/json")
@@ -31,4 +29,8 @@ export default class extends Controller {
     if (!this.iti) return;
     this.hiddenTarget.value = this.iti.getNumber();
   };
+
+  disconnect() {
+    this.fieldTarget.removeEventListener("change", this.inputListener);
+  }
 }
