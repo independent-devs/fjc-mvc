@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.string "meta_keywords"
     t.boolean "promotionable", default: false, null: false
     t.string "meta_title"
+    t.text "captured_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"

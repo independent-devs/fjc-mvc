@@ -13,6 +13,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :meta_keywords
       t.boolean :promotionable, null: false, default: false
       t.string :meta_title
+      t.text :captured_price
 
       t.timestamps
     end

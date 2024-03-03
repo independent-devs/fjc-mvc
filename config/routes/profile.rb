@@ -1,0 +1,1 @@
+resources :profile, only: :index

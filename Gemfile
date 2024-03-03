@@ -101,6 +101,7 @@ gem 'cancancan', '~> 3.5'
 gem 'font-awesome-sass', '~> 6.4.0'
 
 # Oauth
+gem 'omniauth-facebook', '~> 9.0'
 gem 'omniauth-google-oauth2', '~> 1.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 

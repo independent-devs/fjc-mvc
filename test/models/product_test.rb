@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  available_on     :datetime
+#  captured_price   :text
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime

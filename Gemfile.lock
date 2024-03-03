@@ -184,6 +184,8 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
+    omniauth-facebook (9.0.0)
+      omniauth-oauth2 (~> 1.2)
     omniauth-google-oauth2 (1.1.1)
       jwt (>= 2.0)
       oauth2 (~> 2.0.6)
@@ -346,6 +348,7 @@ DEPENDENCIES
   html2haml (~> 2.3)
   importmap-rails
   meta-tags (~> 2.20)
+  omniauth-facebook (~> 9.0)
   omniauth-google-oauth2 (~> 1.1)
   omniauth-rails_csrf_protection (~> 1.0)
   pagy (~> 6.4)
