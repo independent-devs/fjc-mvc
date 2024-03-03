@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ''
+      t.string :email
       t.string :encrypted_password, null: false, default: ''
 
       ## Extra
@@ -13,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.boolean :admin, null: false, default: false
 
       ## OmniAuth
-      t.string :provider, default: 'email'
+      t.string :provider, default: 'phone_no'
       t.string :uid
 
       ## Recoverable

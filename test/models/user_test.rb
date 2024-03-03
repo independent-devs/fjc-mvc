@@ -8,13 +8,13 @@
 #  admin                  :boolean          default(FALSE), not null
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
-#  email                  :string           default(""), not null
+#  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
 #  name                   :string
 #  phone_no               :string
-#  provider               :string           default("email")
+#  provider               :string           default("phone_no")
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
