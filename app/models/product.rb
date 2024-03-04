@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 
   ## scopes
   scope :sort_by_latest, -> { order(id: :desc) }
-  scope :not_deleted, -> { where('') }
+  scope :not_deleted, -> { where(deleted_at: nil) }
   scope :has_captured_price, -> { where('lowest_price IS NOT NULL AND highest_price IS NOT NULL') }
   scope :base_on_date, lambda { |now = DateTime.now|
     where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
