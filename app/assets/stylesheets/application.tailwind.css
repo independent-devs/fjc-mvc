@@ -35,7 +35,6 @@
   }
 
   /* form */
-
   .field {
     @apply flex flex-col gap-1 w-full
   }
@@ -44,7 +43,7 @@
     @apply text-red-600;
   }
 
-  .field input {
+  .field input, textarea {
     @apply input-primary;
   }
 

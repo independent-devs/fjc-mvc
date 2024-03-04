@@ -17,7 +17,7 @@
     = f.datetime_local_field :discontinue_on
   = f.fields_for :product_variants, ProductVariant.new do |variant|
     .field
-      = variant.label :sell_price
+      = variant.label "Master price"
       = variant.number_field :sell_price, required: true
     .field
       = variant.label :cost_price
