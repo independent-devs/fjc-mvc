@@ -8,6 +8,7 @@ class ProductVariant < ApplicationRecord
 
   validates :sell_price, presence: true
   scope :sort_by_position, -> { order(position: :asc) }
+  scope :get_master, -> { where(is_master: true).first }
 
   private
 

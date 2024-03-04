@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ProductsController < Admin::BaseController
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_product, only: %i[show update destroy]
 
   # GET /products or /products.json
   def index
@@ -16,15 +16,12 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new
   end
 
-  # GET /products/1/edit
-  def edit; end
-
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to product_url(@product), notice: I18n.t('products.created')
+      redirect_to admin_product_url(@product), notice: I18n.t('products.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +30,7 @@ class Admin::ProductsController < Admin::BaseController
   # PATCH/PUT /products/1 or /products/1.json
   def update
     if @product.update(product_params)
-      redirect_to product_url(@product), notice: I18n.t('products.updated')
+      redirect_to admin_product_url(@product), notice: I18n.t('products.updated')
     else
       render :edit, status: :unprocessable_entity
     end
