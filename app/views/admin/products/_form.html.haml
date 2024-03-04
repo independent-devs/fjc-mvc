@@ -18,10 +18,10 @@
   = f.fields_for :product_variants, action_name  == "new" ? ProductVariant.new : @product.product_variants.get_master do |master_variant|
     .field
       = master_variant.label "Master price"
-      = master_variant.number_field :sell_price, required: true, step: :any
+      = master_variant.number_field :sell_price, required: true, step: :any, placeholder: "0.00"
     .field
       = master_variant.label :cost_price
-      = master_variant.number_field :cost_price, step: :any
+      = master_variant.number_field :cost_price, step: :any, placeholder: "0.00"
     .field
       = master_variant.label :sku
       = master_variant.text_field :sku
