@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.base_on_date.has_captured_price
-                       .sort_by_latest.not_deleted
+                       .not_deleted.sort_by_latest
   end
 
   # GET /products/1 or /products/1.json
