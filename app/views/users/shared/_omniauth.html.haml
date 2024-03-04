@@ -2,7 +2,9 @@
   .flex.flex-col.gap-3
     = button_to omniauth_authorize_path(resource_name, "facebook"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-14 border py-2.5 border-gray-300 justify-center rounded" do
       = image_tag(asset_path("facebook.svg"), height: '25', width: '25')
-      Sign in with Facebook
+      = name
+      with Google
     = button_to omniauth_authorize_path(resource_name, "google_oauth2"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-14 py-2.5 border border-gray-300 justify-center rounded" do
       = image_tag(asset_path("google_oauth2.svg"), height: '25', width: '25')
-      Sign in with Google
+      = name
+      with Google

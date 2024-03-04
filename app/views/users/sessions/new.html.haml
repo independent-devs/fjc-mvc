@@ -19,9 +19,9 @@
           .flex.items-center.gap-2
             = f.check_box :remember_me, class: "text-primary rounded-sm focus:ring-0 mt-0.5"
             = f.label :remember_me
-        .flex.flex-col.gap-2
+        .action
           = f.submit "Log in", class: "btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
-          = render "users/shared/sign_up"
+        = render "users/shared/sign_up"
     %fieldset.border-t.border-gray-400
       %legend.mx-auto.px-3.text-sm.uppercase.text-gray-600 or
-    = render "users/shared/omniauth"
+    = render "users/shared/omniauth", name: "Sign in"

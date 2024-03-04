@@ -1,0 +1,4 @@
+- if controller_name != 'sessions'
+  %span
+    Already have an account?
+    = link_to "Sign in", new_session_path(resource_name), class: "text-primary"
