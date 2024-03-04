@@ -55,7 +55,9 @@ class Admin::ProductsController < Admin::BaseController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:name, :description, :available_on, :deleted_at, :slug, :meta_description,
-                                    :meta_keywords, :promotionable, :meta_title)
+    params.require(:product)
+          .permit(:name, :description, :available_on, :discontinue_on, :slug,
+                  :meta_description, :meta_keywords, :promotionable, :meta_title,
+                  product_variants_attributes: %i[id sell_price cost_price sku is_master])
   end
 end

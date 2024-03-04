@@ -6,10 +6,11 @@
 #
 #  id               :bigint           not null, primary key
 #  available_on     :datetime
-#  captured_price   :text
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime
+#  highest_price    :decimal(10, 2)
+#  lowest_price     :decimal(10, 2)
 #  meta_description :text
 #  meta_keywords    :string
 #  meta_title       :string
@@ -24,6 +25,8 @@
 #  index_products_on_available_on    (available_on)
 #  index_products_on_deleted_at      (deleted_at)
 #  index_products_on_discontinue_on  (discontinue_on)
+#  index_products_on_highest_price   (highest_price)
+#  index_products_on_lowest_price    (lowest_price)
 #  index_products_on_name            (name)
 #  index_products_on_slug            (slug) UNIQUE
 #
