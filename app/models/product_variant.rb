@@ -13,8 +13,7 @@ class ProductVariant < ApplicationRecord
 
   def capture_price
     captured = product.product_variants.select('MIN(sell_price), MAX(sell_price)')
-                      .group(:id)
-                      .first
+                      .group(:id).first
 
     return if captured.blank?
 

@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
+  validates :rating, numericality: { in: 0..5 }
 
   ## scopes
   scope :sort_by_latest, -> { order(id: :desc) }
@@ -32,6 +33,7 @@ end
 #  meta_title       :string
 #  name             :string           not null
 #  promotionable    :boolean          default(FALSE), not null
+#  rating           :decimal(1, 1)    default(0.0)
 #  slug             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

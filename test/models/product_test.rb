@@ -16,6 +16,7 @@
 #  meta_title       :string
 #  name             :string           not null
 #  promotionable    :boolean          default(FALSE), not null
+#  rating           :decimal(1, 1)    default(0.0)
 #  slug             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

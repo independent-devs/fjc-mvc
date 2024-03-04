@@ -15,6 +15,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.string :meta_title
       t.decimal :lowest_price, precision: 10, scale: 2
       t.decimal :highest_price, precision: 10, scale: 2
+      t.decimal :rating, precision: 1, scale: 1, default: 0
 
       t.timestamps
     end
