@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.string "meta_title"
     t.decimal "lowest_price", precision: 10, scale: 2
     t.decimal "highest_price", precision: 10, scale: 2
+    t.decimal "rating", precision: 1, scale: 1, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"

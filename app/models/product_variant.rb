@@ -8,13 +8,13 @@ class ProductVariant < ApplicationRecord
 
   validates :sell_price, presence: true
   scope :sort_by_position, -> { order(position: :asc) }
+  scope :get_master, -> { where(is_master: true).first }
 
   private
 
   def capture_price
     captured = product.product_variants.select('MIN(sell_price), MAX(sell_price)')
-                      .group(:id)
-                      .first
+                      .group(:id).first
 
     return if captured.blank?
 

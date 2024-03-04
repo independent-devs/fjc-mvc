@@ -6,10 +6,11 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :slug, presence: true, uniqueness: true
+  validates :rating, numericality: { in: 0..5 }
 
   ## scopes
   scope :sort_by_latest, -> { order(id: :desc) }
-  scope :not_deleted, -> { where('') }
+  scope :not_deleted, -> { where(deleted_at: nil) }
   scope :has_captured_price, -> { where('lowest_price IS NOT NULL AND highest_price IS NOT NULL') }
   scope :base_on_date, lambda { |now = DateTime.now|
     where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
@@ -32,6 +33,7 @@ end
 #  meta_title       :string
 #  name             :string           not null
 #  promotionable    :boolean          default(FALSE), not null
+#  rating           :decimal(1, 1)    default(0.0)
 #  slug             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
