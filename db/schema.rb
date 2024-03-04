@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
   create_table "product_variants", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "sku"
-    t.integer "position", default: 0, null: false
+    t.integer "position", default: 1, null: false
     t.datetime "deleted_at"
     t.decimal "cost_price", precision: 10, scale: 2
     t.decimal "sell_price", precision: 10, scale: 2, null: false
@@ -42,12 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.string "meta_keywords"
     t.boolean "promotionable", default: false, null: false
     t.string "meta_title"
-    t.text "captured_price"
+    t.decimal "lowest_price", precision: 10, scale: 2
+    t.decimal "highest_price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_products_on_discontinue_on"
+    t.index ["highest_price"], name: "index_products_on_highest_price"
+    t.index ["lowest_price"], name: "index_products_on_lowest_price"
     t.index ["name"], name: "index_products_on_name"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end

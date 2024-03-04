@@ -110,8 +110,11 @@
   border-bottom: 4px solid #555;
 }
 .iti__country-list {
-  @apply absolute bg-white border rounded-lg;
+  border-width: 1px;
+  background-color: white;
   z-index: 2;
+  border-radius: 8px;
+  position: absolute;
   list-style: none;
   padding: 0;
   margin: 8px 0 0 -1px;
@@ -135,7 +138,7 @@
   width: 20px;
 }
 .iti__divider {
-  @apply border;
+  border-width: 1px;
   padding-bottom: 5px;
   margin-bottom: 5px;
 }

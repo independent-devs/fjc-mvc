@@ -17,7 +17,7 @@ end
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
 #  is_master     :boolean          default(FALSE), not null
-#  position      :integer          default(0), not null
+#  position      :integer          default(1), not null
 #  sell_price    :decimal(10, 2)   not null
 #  sku           :string
 #  created_at    :datetime         not null
