@@ -33,6 +33,7 @@ end
 #  meta_title       :string
 #  name             :string           not null
 #  promotionable    :boolean          default(TRUE), not null
+#  raters           :integer          default(0)
 #  rating           :decimal(1, 1)    default(0.0)
 #  require_login    :boolean          default(FALSE), not null
 #  slug             :string           not null
