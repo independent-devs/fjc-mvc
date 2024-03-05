@@ -1,1 +1,21 @@
-admin products
+.margin-max-screen.h-full.py-7
+  %table
+    %thead.border-b
+      %tr
+        %th Name
+        %th Price
+        %th Year
+    %tbody
+      - @products.each do |product|
+        %tr
+          %td
+            = product.name
+          %td
+            - if product.lowest_price == product.highest_price
+              = product.highest_price
+            - else
+              = product.lowest_price
+              -
+              = product.highest_price
+          %td
+            1961

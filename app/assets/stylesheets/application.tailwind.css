@@ -50,4 +50,26 @@
   .field .field_with_errors input {
     @apply input-error
   }
+
+  /* table */
+
+  table {
+    @apply w-full rounded-lg bg-zinc-50;
+  }
+
+  table thead {
+    @apply border-b;
+  }
+
+  table tbody {
+    @apply divide-y;
+  }
+
+  table thead tr th {
+    @apply px-4 py-3 text-start;
+  }
+
+  table tbody tr td {
+    @apply px-4 py-3;
+  }
 }
