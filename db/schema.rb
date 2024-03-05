@@ -40,7 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.string "slug", null: false
     t.text "meta_description"
     t.string "meta_keywords"
-    t.boolean "promotionable", default: false, null: false
+    t.boolean "promotionable", default: true, null: false
+    t.boolean "require_login", default: false, null: false
     t.string "meta_title"
     t.decimal "lowest_price", precision: 10, scale: 2
     t.decimal "highest_price", precision: 10, scale: 2

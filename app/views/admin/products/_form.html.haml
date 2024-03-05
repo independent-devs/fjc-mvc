@@ -1,30 +1,41 @@
 
-= form_for(@product, url: path, html: {class: "w-full flex flex-col gap-2.5", method: method}) do |f|
-  .field
-    = f.label :name
-    = f.text_field :name, required: true
-  .field
-    = f.label :slug
-    = f.text_field :slug, required: true
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :available_on
-    = f.datetime_local_field :available_on
-  .field
-    = f.label :discontinue_on
-    = f.datetime_local_field :discontinue_on
-  = f.fields_for :product_variants, action_name  == "new" ? ProductVariant.new : @product.product_variants.get_master do |master_variant|
+= form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
+  .flex.flex-col.gap-2{class: "w-[80%]"}
     .field
-      = master_variant.label "Master price"
-      = master_variant.number_field :sell_price, required: true, step: :any, placeholder: "0.00"
+      = f.label :name
+      = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
     .field
-      = master_variant.label :cost_price
-      = master_variant.number_field :cost_price, step: :any, placeholder: "0.00"
+      = f.label :slug
+      = f.text_field :slug, required: true, placeholder: "e.g. nike_shoe"
     .field
-      = master_variant.label :sku
-      = master_variant.text_field :sku
-    - if action_name == "new"
-      = master_variant.hidden_field :is_master, value: true
-  = f.submit action_name == "new" ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
+      = f.label :description
+      = f.text_area :description, rows: 12
+    .field
+      = f.label :meta_title
+      = f.text_field :meta_title
+    .field
+      = f.label :meta_description
+      = f.text_field :meta_description
+    .field
+      = f.label :meta_keywords
+      = f.text_field :meta_keywords
+  .flex.flex-col.gap-2{class: "w-[20%]"}
+    .field
+      = f.label :available_on
+      = f.datetime_local_field :available_on
+    .field
+      = f.label :discontinue_on
+      = f.datetime_local_field :discontinue_on
+    = f.fields_for :product_variants, action_name  == "new" ? ProductVariant.new : @product.product_variants.get_master do |master_variant|
+      .field
+        = master_variant.label "Master price"
+        = master_variant.number_field :sell_price, required: true, step: :any, placeholder: "0.00"
+      .field
+        = master_variant.label :cost_price
+        = master_variant.number_field :cost_price, step: :any, placeholder: "0.00"
+      .field
+        = master_variant.label :sku
+        = master_variant.text_field :sku
+      - if action_name == "new"
+        = master_variant.hidden_field :is_master, value: true
+    = f.submit action_name == "new" ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"

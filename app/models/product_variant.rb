@@ -3,12 +3,12 @@
 class ProductVariant < ApplicationRecord
   belongs_to :product
 
-  after_create :capture_price
-  after_update :capture_price, if: :sell_price_changed?
-
   validates :sell_price, presence: true
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
+
+  after_update :capture_price, if: :sell_price_changed?
+  after_save :capture_price
 
   private
 

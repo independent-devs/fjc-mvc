@@ -5,7 +5,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.not_deleted.sort_by_latest
   end
 
   # GET /products/1 or /products/1.json
