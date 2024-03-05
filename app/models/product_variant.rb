@@ -13,9 +13,7 @@ class ProductVariant < ApplicationRecord
   private
 
   def capture_price
-    captured = product.product_variants.select('MIN(sell_price), MAX(sell_price)')
-                      .group(:id).first
-
+    captured = product.product_variants.select('MIN(sell_price), MAX(sell_price)').group(:id).first
     return if captured.blank?
 
     product.update(lowest_price: captured.min, highest_price: captured.max)
