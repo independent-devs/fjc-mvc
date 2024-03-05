@@ -15,6 +15,6 @@ class ProductsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.find_by!(slug: params[:slug])
+    @product = Product.single_public(params[:slug])
   end
 end

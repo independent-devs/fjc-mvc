@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   validates :rating, numericality: { in: 0..5 }
 
   ## scopes
+  scope :single_public, ->(slug) { find_by!(slug:, deleted_at: nil) }
   scope :sort_by_latest, -> { order(id: :desc) }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :has_captured_price, -> { where('lowest_price IS NOT NULL AND highest_price IS NOT NULL') }

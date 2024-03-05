@@ -38,9 +38,12 @@ class Admin::ProductsController < Admin::BaseController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    @product.destroy
+    if @product.update(deleted_at: DateTime.now)
+      redirect_to admin_products_url, notice: I18n.t('products.destroyed')
+      return
+    end
 
-    redirect_to products_url, notice: I18n.t('products.destroyed')
+    redirect_to admin_products_url, error: I18n.t('products.unexpected')
   end
 
   private
