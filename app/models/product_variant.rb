@@ -3,17 +3,23 @@
 class ProductVariant < ApplicationRecord
   belongs_to :product
 
-  validates :sell_price, presence: true
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
 
-  after_update :capture_price, if: :sell_price_changed?
+  validates :sell_price, presence: true
+
+  after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
 
   private
 
   def capture_price
-    captured = product.product_variants.select('MIN(sell_price), MAX(sell_price)').group(:id).first
+    pvariant = product.product_variants
+    more_than_one = pvariant.count > 1
+
+    captured = pvariant.select('MIN(sell_price), MAX(sell_price)')
+                       .where(is_master: !more_than_one).group(:id).first
+
     return if captured.blank?
 
     product.update(lowest_price: captured.min, highest_price: captured.max)
