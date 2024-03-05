@@ -8,7 +8,7 @@ class ProductVariant < ApplicationRecord
 
   validates :sell_price, presence: true
 
-  after_update :capture_price, if: proc { |obj| obj.sell_price_changed? || obj.deleted_at_changed? }
+  after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
 
   private
