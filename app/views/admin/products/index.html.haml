@@ -1,6 +1,6 @@
 .margin-max-screen.h-full.py-7
   .flex.flex-col.gap-4
-    = link_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center" do
+    = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
       New Product
       = icon("fa-solid", "plus")
     %table
