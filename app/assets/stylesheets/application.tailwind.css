@@ -52,7 +52,6 @@
   }
 
   /* table */
-
   table {
     @apply w-full rounded-lg bg-zinc-50 drop-shadow-sm;
   }

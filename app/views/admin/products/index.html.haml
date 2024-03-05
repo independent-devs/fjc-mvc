@@ -4,22 +4,17 @@
       New Product
       = icon("fa-solid", "plus")
     %table
-      %thead.border-b
+      %thead
         %tr
           %th Name
           %th Price
-          %th Year
+          %th Actions
       %tbody
         - @products.each do |product|
           %tr
             %td
               = product.name
             %td
-              - if product.lowest_price == product.highest_price
-                = product.highest_price
-              - else
-                = product.lowest_price
-                -
-                = product.highest_price
-            %td
-              1961
+              = render PriceRangeComponent.new  |
+                lowest: product.lowest_price,   |
+                highest: product.highest_price  |
