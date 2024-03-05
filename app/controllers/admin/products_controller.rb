@@ -3,12 +3,12 @@
 class Admin::ProductsController < Admin::BaseController
   before_action :set_product, only: %i[show update destroy]
 
-  # GET /products or /products.json
+  # GET /products
   def index
     @products = Product.not_deleted.sort_by_latest
   end
 
-  # GET /products/1 or /products/1.json
+  # GET /products/1
   def show; end
 
   # GET /products/new
@@ -16,7 +16,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new
   end
 
-  # POST /products or /products.json
+  # POST /products
   def create
     @product = Product.new(product_params)
 
@@ -27,7 +27,7 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
+  # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
       redirect_to admin_product_url(@product), notice: I18n.t('products.updated')
@@ -36,7 +36,7 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  # DELETE /products/1 or /products/1.json
+  # DELETE /products/1
   def destroy
     if @product.update(deleted_at: DateTime.now)
       redirect_to admin_products_url, notice: I18n.t('products.destroyed')
