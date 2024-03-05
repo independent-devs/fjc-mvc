@@ -36,13 +36,7 @@ end
 #                                     root GET      /                                                                                                 home#index
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
-#                                          POST     /products(.:format)                                                                               products#create
-#                              new_product GET      /products/new(.:format)                                                                           products#new
-#                             edit_product GET      /products/:slug/edit(.:format)                                                                    products#edit
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                                          PATCH    /products/:slug(.:format)                                                                         products#update
-#                                          PUT      /products/:slug(.:format)                                                                         products#update
-#                                          DELETE   /products/:slug(.:format)                                                                         products#destroy
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
