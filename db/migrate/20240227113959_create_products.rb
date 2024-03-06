@@ -19,6 +19,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.decimal :highest_price, precision: 10, scale: 2
       t.decimal :rating, precision: 1, scale: 1, default: 0
       t.integer :raters, default: 0
+      t.boolean :has_variant, null: false, default: false
 
       t.timestamps
     end

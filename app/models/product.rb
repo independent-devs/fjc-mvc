@@ -30,6 +30,7 @@ end
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime
+#  has_variant      :boolean          default(FALSE), not null
 #  highest_price    :decimal(10, 2)
 #  lowest_price     :decimal(10, 2)
 #  meta_description :text

@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_072255) do
     t.decimal "highest_price", precision: 10, scale: 2
     t.decimal "rating", precision: 1, scale: 1, default: "0.0"
     t.integer "raters", default: 0
+    t.boolean "has_variant", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"
