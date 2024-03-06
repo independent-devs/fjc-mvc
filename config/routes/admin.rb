@@ -5,5 +5,6 @@ authenticated :user, -> { _1.admin } do
   namespace :admin, path: '/admin' do
     root 'home#index'
     resources :products
+    resources :categories
   end
 end
