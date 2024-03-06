@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  has_many :product_variants, dependent: :destroy
-  accepts_nested_attributes_for :product_variants
+  has_many :variants, dependent: :destroy
+  accepts_nested_attributes_for :variants
 
   validates :name, presence: true
-  validates :slug, presence: true, uniqueness: true
+  validates :slug, presence: true
+  validates :uuid, uniqueness: true
   validates :rating, numericality: { in: 0..5 }
+  validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   ## scopes
-  scope :single_public, ->(slug) { find_by!(slug:, deleted_at: nil) }
+  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
   scope :sort_by_latest, -> { order(id: :desc) }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :has_captured_price, -> { where('lowest_price IS NOT NULL AND highest_price IS NOT NULL') }
@@ -27,6 +30,7 @@ end
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime
+#  has_variant      :boolean          default(FALSE), not null
 #  highest_price    :decimal(10, 2)
 #  lowest_price     :decimal(10, 2)
 #  meta_description :text
@@ -38,6 +42,7 @@ end
 #  rating           :decimal(1, 1)    default(0.0)
 #  require_login    :boolean          default(FALSE), not null
 #  slug             :string           not null
+#  uuid             :uuid             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -49,5 +54,6 @@ end
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)
 #  index_products_on_name            (name)
-#  index_products_on_slug            (slug) UNIQUE
+#  index_products_on_slug            (slug)
+#  index_products_on_uuid            (uuid) UNIQUE
 #

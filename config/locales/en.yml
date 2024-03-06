@@ -46,3 +46,6 @@ en:
   categories:
     section_label: "Categories"
     section_title: "Browse By Category"
+    created: "Category was successfully created."
+    updated: "Category was successfully updated."
+    destroyed: "Category was successfully destroyed."

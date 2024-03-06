@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   ## draw routes
   draw :profile
   draw :products
+  draw :categories
   draw :admin
 end
 
@@ -37,6 +38,14 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
+#                               categories GET      /categories(.:format)                                                                             categories#index
+#                                          POST     /categories(.:format)                                                                             categories#create
+#                             new_category GET      /categories/new(.:format)                                                                         categories#new
+#                            edit_category GET      /categories/:id/edit(.:format)                                                                    categories#edit
+#                                 category GET      /categories/:id(.:format)                                                                         categories#show
+#                                          PATCH    /categories/:id(.:format)                                                                         categories#update
+#                                          PUT      /categories/:id(.:format)                                                                         categories#update
+#                                          DELETE   /categories/:id(.:format)                                                                         categories#destroy
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
@@ -46,6 +55,14 @@ end
 #                                          PATCH    /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          PUT      /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          DELETE   /admin/products/:id(.:format)                                                                     admin/products#destroy
+#                         admin_categories GET      /admin/categories(.:format)                                                                       admin/categories#index
+#                                          POST     /admin/categories(.:format)                                                                       admin/categories#create
+#                       new_admin_category GET      /admin/categories/new(.:format)                                                                   admin/categories#new
+#                      edit_admin_category GET      /admin/categories/:id/edit(.:format)                                                              admin/categories#edit
+#                           admin_category GET      /admin/categories/:id(.:format)                                                                   admin/categories#show
+#                                          PATCH    /admin/categories/:id(.:format)                                                                   admin/categories#update
+#                                          PUT      /admin/categories/:id(.:format)                                                                   admin/categories#update
+#                                          DELETE   /admin/categories/:id(.:format)                                                                   admin/categories#destroy
 #         turbo_recede_historical_location GET      /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET      /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET      /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

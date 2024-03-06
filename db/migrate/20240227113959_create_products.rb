@@ -3,6 +3,7 @@
 class CreateProducts < ActiveRecord::Migration[7.0]
   def change
     create_table :products do |t|
+      t.uuid :uuid, null: false, default: 'gen_random_uuid()'
       t.string :name, null: false
       t.text :description
       t.datetime :available_on, precision: nil
@@ -18,11 +19,13 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.decimal :highest_price, precision: 10, scale: 2
       t.decimal :rating, precision: 1, scale: 1, default: 0
       t.integer :raters, default: 0
+      t.boolean :has_variant, null: false, default: false
 
       t.timestamps
     end
 
-    add_index :products, :slug, unique: true
+    add_index :products, :uuid, unique: true
+    add_index :products, :slug
     add_index :products, :name
     add_index :products, :available_on
     add_index :products, :discontinue_on

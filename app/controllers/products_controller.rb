@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.base_on_date.has_captured_price.not_deleted.sort_by_latest
+    @products = Product.base_on_date.not_deleted.sort_by_latest
   end
 
   # GET /products/1 or /products/1.json
@@ -15,6 +15,6 @@ class ProductsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.single_public(params[:slug])
+    @product = Product.single_public(params[:slug], params[:pid])
   end
 end

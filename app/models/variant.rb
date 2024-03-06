@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-class ProductVariant < ApplicationRecord
+class Variant < ApplicationRecord
   belongs_to :product
 
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
+  scope :not_deleted, -> { where(deleted_at: nil) }
 
-  validates :sell_price, presence: true
+  validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
+  validate :master_delete_attempt, if: :deleted_at_changed?
 
   after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
@@ -14,21 +16,28 @@ class ProductVariant < ApplicationRecord
   private
 
   def capture_price
-    pvariant = product.product_variants
+    pvariant = product.variants
     more_than_one = pvariant.count > 1
 
     captured = pvariant.select('MIN(sell_price), MAX(sell_price)')
-                       .where(is_master: !more_than_one).group(:id).first
+                       .where(is_master: !more_than_one).not_deleted
+                       .group(:id).first
 
     return if captured.blank?
 
-    product.update(lowest_price: captured.min, highest_price: captured.max)
+    product.update!(lowest_price: captured.min, highest_price: captured.max, has_variant: more_than_one)
+  end
+
+  def master_delete_attempt
+    return unless is_master && deleted_at.present?
+
+    errors.add(:is_master, 'cannot delete a master variant')
   end
 end
 
 # == Schema Information
 #
-# Table name: product_variants
+# Table name: variants
 #
 #  id            :bigint           not null, primary key
 #  cost_price    :decimal(10, 2)
@@ -44,9 +53,9 @@ end
 #
 # Indexes
 #
-#  index_product_variants_on_position    (position)
-#  index_product_variants_on_product_id  (product_id)
-#  index_product_variants_on_sku         (sku)
+#  index_variants_on_position    (position)
+#  index_variants_on_product_id  (product_id)
+#  index_variants_on_sku         (sku)
 #
 # Foreign Keys
 #
