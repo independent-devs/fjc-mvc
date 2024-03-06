@@ -22,22 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_072255) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_variants", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.string "sku"
-    t.integer "position", default: 1, null: false
-    t.datetime "deleted_at"
-    t.decimal "cost_price", precision: 10, scale: 2
-    t.decimal "sell_price", precision: 10, scale: 2, null: false
-    t.integer "count_on_hand", default: 0
-    t.boolean "is_master", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["position"], name: "index_product_variants_on_position"
-    t.index ["product_id"], name: "index_product_variants_on_product_id"
-    t.index ["sku"], name: "index_product_variants_on_sku"
-  end
-
   create_table "products", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "name", null: false
@@ -90,5 +74,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_072255) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "product_variants", "products"
+  create_table "variants", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "sku"
+    t.integer "position", default: 1, null: false
+    t.datetime "deleted_at"
+    t.decimal "cost_price", precision: 10, scale: 2
+    t.decimal "sell_price", precision: 10, scale: 2, null: false
+    t.integer "count_on_hand", default: 0
+    t.boolean "is_master", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_variants_on_position"
+    t.index ["product_id"], name: "index_variants_on_product_id"
+    t.index ["sku"], name: "index_variants_on_sku"
+  end
+
+  add_foreign_key "variants", "products"
 end

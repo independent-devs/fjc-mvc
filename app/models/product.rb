@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  has_many :product_variants, dependent: :destroy
-  accepts_nested_attributes_for :product_variants
+  has_many :variants, dependent: :destroy
+  accepts_nested_attributes_for :variants
 
   validates :name, presence: true
   validates :slug, presence: true

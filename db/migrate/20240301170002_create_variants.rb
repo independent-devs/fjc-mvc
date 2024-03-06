@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateProductVariants < ActiveRecord::Migration[7.0]
+class CreateVariants < ActiveRecord::Migration[7.0]
   def change
-    create_table :product_variants do |t|
+    create_table :variants do |t|
       t.references :product, null: false, foreign_key: true
       t.string :sku
       t.integer :position, null: false, default: 1
@@ -15,7 +15,7 @@ class CreateProductVariants < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :product_variants, :position
-    add_index :product_variants, :sku
+    add_index :variants, :position
+    add_index :variants, :sku
   end
 end

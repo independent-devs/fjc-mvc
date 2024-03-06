@@ -28,7 +28,7 @@
       = f.label :discontinue_on
       = f.datetime_local_field :discontinue_on
     - is_new = (action_name == "new")
-    = f.fields_for :product_variants, is_new ? ProductVariant.new : @product.product_variants.get_master do |master_variant|
+    = f.fields_for :variants, is_new ? Variant.new : @product.variants.get_master do |master_variant|
       .field
         = master_variant.label "Master price"
         = master_variant.number_field :sell_price, required: true, step: :any, placeholder: "0.00"

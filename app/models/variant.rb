@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductVariant < ApplicationRecord
+class Variant < ApplicationRecord
   belongs_to :product
 
   scope :sort_by_position, -> { order(position: :asc) }
@@ -13,7 +13,7 @@ class ProductVariant < ApplicationRecord
   private
 
   def capture_price
-    pvariant = product.product_variants
+    pvariant = product.variants
     more_than_one = pvariant.count > 1
 
     captured = pvariant.select('MIN(sell_price), MAX(sell_price)')
@@ -27,7 +27,7 @@ end
 
 # == Schema Information
 #
-# Table name: product_variants
+# Table name: variants
 #
 #  id            :bigint           not null, primary key
 #  cost_price    :decimal(10, 2)
@@ -43,9 +43,9 @@ end
 #
 # Indexes
 #
-#  index_product_variants_on_position    (position)
-#  index_product_variants_on_product_id  (product_id)
-#  index_product_variants_on_sku         (sku)
+#  index_variants_on_position    (position)
+#  index_variants_on_product_id  (product_id)
+#  index_variants_on_sku         (sku)
 #
 # Foreign Keys
 #
