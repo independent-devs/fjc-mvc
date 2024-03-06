@@ -1,8 +1,10 @@
-.margin-max-screen.h-full.py-7
-  .flex.flex-col.gap-4
-    = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
-      New Product
-      = icon("fa-solid", "plus")
+.margin-max-screen.h-full.py-9
+  .flex.flex-col.gap-6
+    .flex.gap-5.justify-between.items-start
+      %h2.font-medium.text-xl Product List
+      = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
+        New Product
+        = icon("fa-solid", "plus")
     %table
       %thead
         %tr
@@ -21,7 +23,7 @@
                   highest: product.highest_price  |
               %td
                 .flex.gap-2.text-gray-400
-                  = link_to admin_product_path(product), class: "hover:text-green-500" do
+                  = link_to admin_product_path(product), class: "hover:text-green-400" do
                     = icon("fa-solid", "eye")
                   = button_to admin_product_path(product), class: "hover:text-red-500", method: :delete, form: {data: {turbo_confirm: 'Are you sure to delete this product?'}} do
                     = icon("fa-solid", "trash")
