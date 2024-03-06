@@ -32,7 +32,7 @@ class Admin::ProductsController < Admin::BaseController
     if @product.update(product_params)
       redirect_to admin_product_url(@product), notice: I18n.t('products.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
   end
 

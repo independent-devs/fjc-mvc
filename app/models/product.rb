@@ -8,6 +8,8 @@ class Product < ApplicationRecord
   validates :slug, presence: true
   validates :uuid, uniqueness: true
   validates :rating, numericality: { in: 0..5 }
+  validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   ## scopes
   scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }

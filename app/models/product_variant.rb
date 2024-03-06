@@ -6,8 +6,7 @@ class ProductVariant < ApplicationRecord
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
 
-  validates :sell_price, presence: true
-
+  validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
   after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
 

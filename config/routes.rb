@@ -8,12 +8,21 @@ Rails.application.routes.draw do
   ## draw routes
   draw :profile
   draw :products
+  draw :categories
   draw :admin
 end
 
 # == Route Map
 #
 #                                   Prefix Verb     URI Pattern                                                                                       Controller#Action
+#                               categories GET      /categories(.:format)                                                                             categories#index
+#                                          POST     /categories(.:format)                                                                             categories#create
+#                             new_category GET      /categories/new(.:format)                                                                         categories#new
+#                            edit_category GET      /categories/:id/edit(.:format)                                                                    categories#edit
+#                                 category GET      /categories/:id(.:format)                                                                         categories#show
+#                                          PATCH    /categories/:id(.:format)                                                                         categories#update
+#                                          PUT      /categories/:id(.:format)                                                                         categories#update
+#                                          DELETE   /categories/:id(.:format)                                                                         categories#destroy
 #                         new_user_session GET      /users/sign_in(.:format)                                                                          devise/sessions#new
 #                             user_session POST     /users/sign_in(.:format)                                                                          devise/sessions#create
 #                     destroy_user_session DELETE   /users/sign_out(.:format)                                                                         devise/sessions#destroy
