@@ -20,6 +20,7 @@
 #  rating           :decimal(1, 1)    default(0.0)
 #  require_login    :boolean          default(FALSE), not null
 #  slug             :string           not null
+#  uuid             :uuid             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
@@ -31,7 +32,8 @@
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)
 #  index_products_on_name            (name)
-#  index_products_on_slug            (slug) UNIQUE
+#  index_products_on_slug            (slug)
+#  index_products_on_uuid            (uuid) UNIQUE
 #
 require 'test_helper'
 

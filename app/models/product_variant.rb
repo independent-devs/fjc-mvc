@@ -22,7 +22,7 @@ class ProductVariant < ApplicationRecord
 
     return if captured.blank?
 
-    product.update(lowest_price: captured.min, highest_price: captured.max)
+    product.update!(lowest_price: captured.min, highest_price: captured.max)
   end
 end
 

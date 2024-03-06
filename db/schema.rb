@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "name", null: false
     t.text "description"
     t.datetime "available_on", precision: nil
@@ -55,7 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_170002) do
     t.index ["highest_price"], name: "index_products_on_highest_price"
     t.index ["lowest_price"], name: "index_products_on_lowest_price"
     t.index ["name"], name: "index_products_on_name"
-    t.index ["slug"], name: "index_products_on_slug", unique: true
+    t.index ["slug"], name: "index_products_on_slug"
+    t.index ["uuid"], name: "index_products_on_uuid", unique: true
   end
 
   create_table "users", force: :cascade do |t|
