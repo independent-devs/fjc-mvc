@@ -1,5 +1,8 @@
 .flex.flex-col
-  = link_to label, path, class: "px-4 py-1.5 #{path.in?(request.path) ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'}"
+  = link_to path, class: "flex items-center gap-3.5 px-4 py-2 font-medium #{path.in?(request.path) ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'}" do
+    - if icon
+      = icon
+    = label
   - if sub_paths.present? && path.in?(request.path)
     .flex.flex-col
       = link_to label, path, class: "pl-8 pr-4 py-1.5 hover:bg-gray-100"
