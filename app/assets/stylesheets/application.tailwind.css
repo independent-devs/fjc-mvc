@@ -65,10 +65,10 @@
   }
 
   table thead tr th {
-    @apply px-4 py-3 text-start;
+    @apply px-4 py-3 text-start font-semibold text-[15px];
   }
 
   table tbody tr td {
-    @apply px-4 py-3 text-lg;
+    @apply px-4 py-3;
   }
 }
