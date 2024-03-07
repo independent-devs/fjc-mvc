@@ -78,7 +78,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-## Authentication
+# Authentication
 gem 'devise', '~> 4.9'
 
 # .env Variables
