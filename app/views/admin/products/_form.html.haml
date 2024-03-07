@@ -36,7 +36,7 @@
         = master_variant.label :cost_price
         = master_variant.number_field :cost_price, step: :any, placeholder: "0.00"
       .field
-        = master_variant.label :sku
+        = master_variant.label "Master SKU"
         = master_variant.text_field :sku
       - if is_new
         = master_variant.hidden_field :is_master, value: true
