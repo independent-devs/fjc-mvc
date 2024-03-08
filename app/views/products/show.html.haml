@@ -1,0 +1,5 @@
+- title @product.meta_title.present? ? @product.meta_title : @product.name
+- if @product.meta_description.present?
+  - description @product.meta_description
+- if @product.meta_keywords.present?
+  - keywords @product.meta_keywords
