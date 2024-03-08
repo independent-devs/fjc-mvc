@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Image < ApplicationRecord
+  has_one_attached :photo
+
   belongs_to :product
   belongs_to :variant
 
