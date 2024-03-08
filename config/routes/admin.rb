@@ -4,6 +4,7 @@
 authenticated :user, -> { _1.admin } do
   namespace :admin do
     root 'home#index'
+    resources :categories
     resources :products do
       collection do
         get '/:id/variants', to: 'products#variants', as: 'variants'
@@ -11,6 +12,5 @@ authenticated :user, -> { _1.admin } do
         get '/:id/stocks', to: 'products#stocks', as: 'stocks'
       end
     end
-    resources :categories
   end
 end
