@@ -13,3 +13,7 @@ end
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_categories_on_position  (position)
+#
