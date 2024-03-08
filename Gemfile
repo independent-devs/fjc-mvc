@@ -110,3 +110,6 @@ gem 'pagy', '~> 6.4'
 
 # Phone
 gem 'phonelib', '~> 0.8.4'
+
+# Country, state/province and city for selection
+gem 'city-state', '~> 1.1'
