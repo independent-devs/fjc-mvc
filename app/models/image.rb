@@ -3,6 +3,8 @@
 class Image < ApplicationRecord
   belongs_to :product
   belongs_to :variant
+
+  validates :position, uniqueness: { scope: :product }
 end
 
 # == Schema Information

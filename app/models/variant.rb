@@ -2,11 +2,13 @@
 
 class Variant < ApplicationRecord
   belongs_to :product
+  has_many :product_category, dependent: :destroy
 
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
 
+  validates :position, uniqueness: { scope: :product }
   validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
 
