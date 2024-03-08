@@ -3,6 +3,7 @@
 class Product < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
+  has_one :product_category, dependent: :destroy
 
   accepts_nested_attributes_for :variants
 

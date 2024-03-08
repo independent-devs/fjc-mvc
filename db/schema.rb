@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_08_121650) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_08_131700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_121650) do
     t.index ["product_id", "position"], name: "index_images_on_product_id_and_position", unique: true
     t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["variant_id"], name: "index_images_on_variant_id"
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_product_categories_on_category_id"
+    t.index ["product_id", "category_id"], name: "index_product_categories_on_product_id_and_category_id", unique: true
+    t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -105,5 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_121650) do
 
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
+  add_foreign_key "product_categories", "categories"
+  add_foreign_key "product_categories", "products"
   add_foreign_key "variants", "products"
 end
