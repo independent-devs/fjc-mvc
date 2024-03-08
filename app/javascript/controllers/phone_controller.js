@@ -4,6 +4,7 @@ import intlTelInput from "intl-tel-input";
 // Connects to data-controller="phone"
 export default class extends Controller {
   static targets = ["field", "hidden"];
+
   connect() {
     this.fieldTarget.addEventListener("change", this.inputListener);
 
@@ -13,13 +14,8 @@ export default class extends Controller {
       separateDialCode: true,
       initialCountry: "PH",
       allowDropdown: false,
-      preferredCountries: ["ph"],
+      preferredCountries: ["PH"],
       customPlaceholder: (placeholder) => "e.g. " + placeholder,
-      // geoIpLookup: (callback) => {
-      //   fetch("https://ipapi.co/json")
-      //     .then((res) => res.json())
-      //     .then((data) => callback(data.country_code));
-      // },
     });
   }
 
