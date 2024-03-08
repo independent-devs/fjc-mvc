@@ -2,7 +2,6 @@
 
 class Variant < ApplicationRecord
   belongs_to :product
-  has_many :product_category, dependent: :destroy
 
   scope :sort_by_position, -> { order(position: :asc) }
   scope :get_master, -> { where(is_master: true).first }
