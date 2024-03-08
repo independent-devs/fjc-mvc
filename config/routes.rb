@@ -47,6 +47,9 @@ end
 #                                          PUT      /categories/:id(.:format)                                                                         categories#update
 #                                          DELETE   /categories/:id(.:format)                                                                         categories#destroy
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
+#                  variants_admin_products GET      /admin/products/:id/variants(.:format)                                                            admin/products#variants
+#                    images_admin_products GET      /admin/products/:id/images(.:format)                                                              admin/products#images
+#                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new

@@ -4,7 +4,13 @@
 authenticated :user, -> { _1.admin } do
   namespace :admin do
     root 'home#index'
-    resources :products
     resources :categories
+    resources :products do
+      collection do
+        get '/:id/variants', to: 'products#variants', as: 'variants'
+        get '/:id/images', to: 'products#images', as: 'images'
+        get '/:id/stocks', to: 'products#stocks', as: 'stocks'
+      end
+    end
   end
 end
