@@ -3,8 +3,8 @@
     %li.me-2
       = link_to "Product Details", admin_product_path(@product), class: "inline-block px-4 pb-3 text-primary border-b-2 border-primary rounded-t-lg"
     %li.me-2
-      = link_to "Images", admin_product_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+      = link_to "Images", images_admin_products_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
     %li.me-2
-      = link_to "Variants", admin_product_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+      = link_to "Variants", variants_admin_products_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
     %li.me-2
-      = link_to "Stocks", admin_product_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+      = link_to "Stocks", stocks_admin_products_path(@product), class: "inline-block px-4 pb-3 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
