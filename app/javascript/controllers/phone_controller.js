@@ -14,7 +14,7 @@ export default class extends Controller {
       separateDialCode: true,
       initialCountry: "PH",
       allowDropdown: false,
-      preferredCountries: ["ph"],
+      preferredCountries: ["PH"],
       customPlaceholder: (placeholder) => "e.g. " + placeholder,
     });
   }
