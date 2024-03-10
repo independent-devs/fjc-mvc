@@ -53,6 +53,14 @@ end
 #                  variants_admin_products GET      /admin/products/:id/variants(.:format)                                                            admin/products#variants
 #                    images_admin_products GET      /admin/products/:id/images(.:format)                                                              admin/products#images
 #                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
+#                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
+#                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
+#                       new_admin_category GET      /admin/products/categories/new(.:format)                                                          admin/categories#new
+#                      edit_admin_category GET      /admin/products/categories/:id/edit(.:format)                                                     admin/categories#edit
+#                           admin_category GET      /admin/products/categories/:id(.:format)                                                          admin/categories#show
+#                                          PATCH    /admin/products/categories/:id(.:format)                                                          admin/categories#update
+#                                          PUT      /admin/products/categories/:id(.:format)                                                          admin/categories#update
+#                                          DELETE   /admin/products/categories/:id(.:format)                                                          admin/categories#destroy
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new
@@ -61,14 +69,8 @@ end
 #                                          PATCH    /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          PUT      /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          DELETE   /admin/products/:id(.:format)                                                                     admin/products#destroy
-#                         admin_categories GET      /admin/categories(.:format)                                                                       admin/categories#index
-#                                          POST     /admin/categories(.:format)                                                                       admin/categories#create
-#                       new_admin_category GET      /admin/categories/new(.:format)                                                                   admin/categories#new
-#                      edit_admin_category GET      /admin/categories/:id/edit(.:format)                                                              admin/categories#edit
-#                           admin_category GET      /admin/categories/:id(.:format)                                                                   admin/categories#show
-#                                          PATCH    /admin/categories/:id(.:format)                                                                   admin/categories#update
-#                                          PUT      /admin/categories/:id(.:format)                                                                   admin/categories#update
-#                                          DELETE   /admin/categories/:id(.:format)                                                                   admin/categories#destroy
+#                                                   /404(.:format)                                                                                    errors#not_found
+#                                                   /500(.:format)                                                                                    errors#internal_server_error
 #         turbo_recede_historical_location GET      /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET      /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET      /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
