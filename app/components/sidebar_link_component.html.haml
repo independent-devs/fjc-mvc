@@ -4,7 +4,7 @@
       = icon
     = label
   - if sub_paths.present? && path.in?(request.path)
-    .flex.flex-col
-      = link_to label, path, class: "pl-8 pr-4 py-1.5 hover:bg-gray-100"
-      = sub_paths.each do |sp|
-        = link_to sp["label"], sp["path"], class: "pl-8 pr-4 py-2 hover:bg-gray-100"
+    .flex.flex-col.font-medium{class: "mt-0.5"}
+      - sub_paths.each do |sp|
+        = link_to sp[:path], class: "pl-11 pr-4 py-1 hover:bg-gray-50 rounded-lg #{current_page?(sp[:path]) ? "text-primary/80" : "text-gray-800"}" do
+          = sp[:label]

@@ -8,7 +8,6 @@ class Variant < ApplicationRecord
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
 
-  validates :position, uniqueness: { scope: :product }
   validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
 
@@ -56,7 +55,7 @@ end
 # Indexes
 #
 #  index_variants_on_product_id               (product_id)
-#  index_variants_on_product_id_and_position  (product_id,position) UNIQUE
+#  index_variants_on_product_id_and_position  (product_id,position)
 #  index_variants_on_sku                      (sku)
 #
 # Foreign Keys

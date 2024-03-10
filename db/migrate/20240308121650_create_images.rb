@@ -10,6 +10,6 @@ class CreateImages < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :images, %i[product_id position], unique: true
+    add_index :images, %i[product_id position]
   end
 end
