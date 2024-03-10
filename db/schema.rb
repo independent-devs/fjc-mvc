@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_144650) do
     t.integer "position", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id", "position"], name: "index_images_on_product_id_and_position", unique: true
+    t.index ["product_id", "position"], name: "index_images_on_product_id_and_position"
     t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["variant_id"], name: "index_images_on_variant_id"
   end
@@ -136,7 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_144650) do
     t.boolean "is_master", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id", "position"], name: "index_variants_on_product_id_and_position", unique: true
+    t.index ["product_id", "position"], name: "index_variants_on_product_id_and_position"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
   end
