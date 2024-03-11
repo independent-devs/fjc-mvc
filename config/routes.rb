@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   resources :options
   resources :option_types
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
+  devise_for :users, path: '/auth', controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
 
   root 'home#index'
 

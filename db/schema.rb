@@ -71,9 +71,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.bigint "option_type_id", null: false
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["option_type_id"], name: "index_options_on_option_type_id"
+    t.index ["product_id"], name: "index_options_on_product_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -160,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
   add_foreign_key "options", "option_types"
+  add_foreign_key "options", "products"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "variants", "products"

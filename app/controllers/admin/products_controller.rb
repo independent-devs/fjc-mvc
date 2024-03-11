@@ -47,7 +47,9 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   # GET /products/1/variants
-  def variants; end
+  def variants
+    @variants = @product.variants.not_master
+  end
 
   # GET /products/1/images
   def images; end
