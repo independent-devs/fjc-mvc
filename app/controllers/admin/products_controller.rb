@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ProductsController < Admin::BaseController
-  before_action :set_product, only: %i[show update destroy variants images stocks]
+  before_action :set_product, only: %i[show update destroy stocks]
 
   # GET /products
   def index
@@ -50,9 +50,6 @@ class Admin::ProductsController < Admin::BaseController
   def variants
     @variants = @product.variants.not_master.not_deleted
   end
-
-  # GET /products/1/images
-  def images; end
 
   # GET /products/1/stocks
   def stocks; end
