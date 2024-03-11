@@ -48,7 +48,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /products/1/variants
   def variants
-    @variants = @product.variants.not_master
+    @variants = @product.variants.not_master.not_deleted
   end
 
   # GET /products/1/images
