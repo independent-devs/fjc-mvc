@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   ## draw routes
   draw :profile
   draw :products
-  draw :categories
   draw :admin
 
   ## error routes
@@ -42,14 +41,6 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                               categories GET      /categories(.:format)                                                                             categories#index
-#                                          POST     /categories(.:format)                                                                             categories#create
-#                             new_category GET      /categories/new(.:format)                                                                         categories#new
-#                            edit_category GET      /categories/:id/edit(.:format)                                                                    categories#edit
-#                                 category GET      /categories/:id(.:format)                                                                         categories#show
-#                                          PATCH    /categories/:id(.:format)                                                                         categories#update
-#                                          PUT      /categories/:id(.:format)                                                                         categories#update
-#                                          DELETE   /categories/:id(.:format)                                                                         categories#destroy
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                  variants_admin_products GET      /admin/products/:id/variants(.:format)                                                            admin/products#variants
 #                    images_admin_products GET      /admin/products/:id/images(.:format)                                                              admin/products#images
