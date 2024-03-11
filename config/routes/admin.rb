@@ -8,12 +8,12 @@ authenticated :user, -> { _1.admin } do
       collection do
         resources :variants, path: '/:id/variants', only: [] do
           collection do
-            get '/', to: 'variants#product', as: 'product'
+            get '/', to: 'variants#product_variants', as: 'product'
           end
         end
         resources :images, path: '/:id/images', only: [] do
           collection do
-            get '/', to: 'images#product', as: 'product'
+            get '/', to: 'images#product_images', as: 'product'
           end
         end
         get '/:id/stocks', to: 'products#stocks', as: 'stocks'

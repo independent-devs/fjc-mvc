@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::ImagesController < Admin::BaseController
-  before_action :set_product
+  before_action :set_product, only: %i[product_images]
 
-  # GET /images/1/variants
-  def index; end
+  # GET /imagesa/1/variants
+  def product_images; end
 
   private
 
