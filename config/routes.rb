@@ -20,6 +20,22 @@ end
 # == Route Map
 #
 #                                   Prefix Verb     URI Pattern                                                                                       Controller#Action
+#                                  options GET      /options(.:format)                                                                                options#index
+#                                          POST     /options(.:format)                                                                                options#create
+#                               new_option GET      /options/new(.:format)                                                                            options#new
+#                              edit_option GET      /options/:id/edit(.:format)                                                                       options#edit
+#                                   option GET      /options/:id(.:format)                                                                            options#show
+#                                          PATCH    /options/:id(.:format)                                                                            options#update
+#                                          PUT      /options/:id(.:format)                                                                            options#update
+#                                          DELETE   /options/:id(.:format)                                                                            options#destroy
+#                             option_types GET      /option_types(.:format)                                                                           option_types#index
+#                                          POST     /option_types(.:format)                                                                           option_types#create
+#                          new_option_type GET      /option_types/new(.:format)                                                                       option_types#new
+#                         edit_option_type GET      /option_types/:id/edit(.:format)                                                                  option_types#edit
+#                              option_type GET      /option_types/:id(.:format)                                                                       option_types#show
+#                                          PATCH    /option_types/:id(.:format)                                                                       option_types#update
+#                                          PUT      /option_types/:id(.:format)                                                                       option_types#update
+#                                          DELETE   /option_types/:id(.:format)                                                                       option_types#destroy
 #                         new_user_session GET      /users/sign_in(.:format)                                                                          devise/sessions#new
 #                             user_session POST     /users/sign_in(.:format)                                                                          devise/sessions#create
 #                     destroy_user_session DELETE   /users/sign_out(.:format)                                                                         devise/sessions#destroy

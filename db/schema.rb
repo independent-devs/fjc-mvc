@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_08_144650) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -60,6 +60,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_144650) do
     t.index ["product_id", "position"], name: "index_images_on_product_id_and_position"
     t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["variant_id"], name: "index_images_on_variant_id"
+  end
+
+  create_table "option_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.bigint "option_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_type_id"], name: "index_options_on_option_type_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -145,6 +159,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_144650) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
+  add_foreign_key "options", "option_types"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "variants", "products"
