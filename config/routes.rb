@@ -36,32 +36,32 @@ end
 #                                          PATCH    /option_types/:id(.:format)                                                                       option_types#update
 #                                          PUT      /option_types/:id(.:format)                                                                       option_types#update
 #                                          DELETE   /option_types/:id(.:format)                                                                       option_types#destroy
-#                         new_user_session GET      /users/sign_in(.:format)                                                                          devise/sessions#new
-#                             user_session POST     /users/sign_in(.:format)                                                                          devise/sessions#create
-#                     destroy_user_session DELETE   /users/sign_out(.:format)                                                                         devise/sessions#destroy
-#         user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)                                                                    omniauth#passthru
-#          user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)                                                           omniauth#facebook
-#    user_google_oauth2_omniauth_authorize GET|POST /users/auth/google_oauth2(.:format)                                                               omniauth#passthru
-#     user_google_oauth2_omniauth_callback GET|POST /users/auth/google_oauth2/callback(.:format)                                                      omniauth#google_oauth2
-#                        new_user_password GET      /users/password/new(.:format)                                                                     devise/passwords#new
-#                       edit_user_password GET      /users/password/edit(.:format)                                                                    devise/passwords#edit
-#                            user_password PATCH    /users/password(.:format)                                                                         devise/passwords#update
-#                                          PUT      /users/password(.:format)                                                                         devise/passwords#update
-#                                          POST     /users/password(.:format)                                                                         devise/passwords#create
-#                 cancel_user_registration GET      /users/cancel(.:format)                                                                           registrations#cancel
-#                    new_user_registration GET      /users/sign_up(.:format)                                                                          registrations#new
-#                   edit_user_registration GET      /users/edit(.:format)                                                                             registrations#edit
-#                        user_registration PATCH    /users(.:format)                                                                                  registrations#update
-#                                          PUT      /users(.:format)                                                                                  registrations#update
-#                                          DELETE   /users(.:format)                                                                                  registrations#destroy
-#                                          POST     /users(.:format)                                                                                  registrations#create
+#                         new_user_session GET      /auth/sign_in(.:format)                                                                           devise/sessions#new
+#                             user_session POST     /auth/sign_in(.:format)                                                                           devise/sessions#create
+#                     destroy_user_session DELETE   /auth/sign_out(.:format)                                                                          devise/sessions#destroy
+#         user_facebook_omniauth_authorize GET|POST /auth/auth/facebook(.:format)                                                                     omniauth#passthru
+#          user_facebook_omniauth_callback GET|POST /auth/auth/facebook/callback(.:format)                                                            omniauth#facebook
+#    user_google_oauth2_omniauth_authorize GET|POST /auth/auth/google_oauth2(.:format)                                                                omniauth#passthru
+#     user_google_oauth2_omniauth_callback GET|POST /auth/auth/google_oauth2/callback(.:format)                                                       omniauth#google_oauth2
+#                        new_user_password GET      /auth/password/new(.:format)                                                                      devise/passwords#new
+#                       edit_user_password GET      /auth/password/edit(.:format)                                                                     devise/passwords#edit
+#                            user_password PATCH    /auth/password(.:format)                                                                          devise/passwords#update
+#                                          PUT      /auth/password(.:format)                                                                          devise/passwords#update
+#                                          POST     /auth/password(.:format)                                                                          devise/passwords#create
+#                 cancel_user_registration GET      /auth/cancel(.:format)                                                                            registrations#cancel
+#                    new_user_registration GET      /auth/sign_up(.:format)                                                                           registrations#new
+#                   edit_user_registration GET      /auth/edit(.:format)                                                                              registrations#edit
+#                        user_registration PATCH    /auth(.:format)                                                                                   registrations#update
+#                                          PUT      /auth(.:format)                                                                                   registrations#update
+#                                          DELETE   /auth(.:format)                                                                                   registrations#destroy
+#                                          POST     /auth(.:format)                                                                                   registrations#create
 #                                     root GET      /                                                                                                 home#index
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
-#                  variants_admin_products GET      /admin/products/:id/variants(.:format)                                                            admin/products#variants
-#                    images_admin_products GET      /admin/products/:id/images(.:format)                                                              admin/products#images
+#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product
+#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product
 #                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
 #                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
