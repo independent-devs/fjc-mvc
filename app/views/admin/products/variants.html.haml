@@ -1,2 +1,27 @@
 .margin-max-screen.h-full.py-8.flex.flex-col.gap-5
   = render "tabs"
+  .flex.flex-col.gap-6
+    .flex.gap-5.justify-between.items-center
+      %div
+      = button_to new_admin_product_path, class: "btn-plain flex gap-2.5 items-center", method: :get do
+        New Variant
+        = icon("fa-solid", "plus")
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Price
+          %th Actions
+      %tbody
+        - if @variants.present?
+          - @variants.each do |variant|
+            %tr
+              %td
+              %td
+              %td
+        - else
+          %tr
+            %td
+              No variants found
+            %td
+            %td
