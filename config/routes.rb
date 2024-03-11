@@ -60,8 +60,8 @@ end
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
-#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product
-#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product
+#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
+#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
 #                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
 #                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
