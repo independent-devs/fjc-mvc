@@ -47,9 +47,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
     t.string "name"
     t.integer "position"
     t.datetime "deleted_at"
+    t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
     t.index ["position"], name: "index_categories_on_position"
   end
 
@@ -170,6 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
   add_foreign_key "options", "option_types"
