@@ -61,6 +61,7 @@ end
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
+#               product_new_admin_variants GET      /admin/products/:id/variants/new(.:format)                                                        admin/variants#product_variant_new
 #                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
 #                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
