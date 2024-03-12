@@ -2,6 +2,8 @@
 
 class OptionType < ApplicationRecord
   has_many :options, dependent: :destroy
+
+  scope :not_deleted, -> { where(deleted_at: nil) }
 end
 
 # == Schema Information

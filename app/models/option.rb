@@ -2,6 +2,8 @@
 
 class Option < ApplicationRecord
   belongs_to :option_type
+
+  scope :not_deleted, -> { where(deleted_at: nil) }
 end
 
 # == Schema Information
