@@ -5,7 +5,7 @@ class CreateImages < ActiveRecord::Migration[7.0]
     create_table :images do |t|
       t.references :product, null: false, foreign_key: true
       t.references :variant, foreign_key: true
-      t.integer :position, null: false, default: 1
+      t.integer :position
       t.datetime :deleted_at
 
       t.timestamps

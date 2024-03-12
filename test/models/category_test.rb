@@ -15,7 +15,7 @@ end
 #  id         :bigint           not null, primary key
 #  deleted_at :datetime
 #  name       :string
-#  position   :integer          default(1), not null
+#  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

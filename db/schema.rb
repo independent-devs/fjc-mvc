@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "images", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "variant_id"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -154,7 +154,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "variants", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "sku"
-    t.integer "position", default: 1, null: false
+    t.integer "position"
     t.datetime "deleted_at"
     t.decimal "cost_price", precision: 10, scale: 2
     t.decimal "sell_price", precision: 10, scale: 2, null: false

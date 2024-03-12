@@ -10,6 +10,7 @@ authenticated :user, -> { _1.admin } do
           collection do
             get '/', to: 'variants#product_variants', as: 'product'
             get '/new', to: 'variants#product_variant_new', as: 'product_new'
+            put '/:vid/update_position', to: 'variants#update_position', as: 'product_position'
           end
         end
         resources :images, path: '/:id/images', only: [] do
