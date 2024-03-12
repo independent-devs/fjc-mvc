@@ -113,3 +113,6 @@ gem 'phonelib', '~> 0.8.4'
 
 # Country, state/province and city for selection
 gem 'city-state', '~> 1.1'
+
+# Sortable
+gem 'acts_as_list', '~> 1.1'

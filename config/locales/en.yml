@@ -49,3 +49,7 @@ en:
     created: "Category was successfully created."
     updated: "Category was successfully updated."
     destroyed: "Category was successfully destroyed."
+  variants:
+    created: "Variant was successfully created."
+    updated: "Variant was successfully updated."
+    destroyed: "Variant was successfully destroyed."

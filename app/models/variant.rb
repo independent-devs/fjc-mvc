@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Variant < ApplicationRecord
+  acts_as_list
+
   belongs_to :product
   has_one :image, dependent: :destroy
 
-  scope :sort_by_position, -> { order(position: :asc) }
+  scope :sort_by_position, -> { order(:position) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
@@ -46,7 +48,7 @@ end
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
 #  is_master     :boolean          default(FALSE), not null
-#  position      :integer          default(1), not null
+#  position      :integer
 #  sell_price    :decimal(10, 2)   not null
 #  sku           :string
 #  created_at    :datetime         not null

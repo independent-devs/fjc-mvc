@@ -5,7 +5,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
     create_table :variants do |t|
       t.references :product, null: false, foreign_key: true
       t.string :sku
-      t.integer :position, null: false, default: 1
+      t.integer :position
       t.datetime :deleted_at
       t.decimal :cost_price, precision: 10, scale: 2
       t.decimal :sell_price, precision: 10, scale: 2, null: false
