@@ -46,8 +46,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "position", default: 1, null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["position"], name: "index_categories_on_position"
   end
 
@@ -55,25 +57,31 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
     t.bigint "product_id", null: false
     t.bigint "variant_id"
     t.integer "position", default: 1, null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id", "position"], name: "index_images_on_product_id_and_position"
+    t.index ["deleted_at"], name: "index_images_on_deleted_at"
+    t.index ["position"], name: "index_images_on_position"
     t.index ["product_id"], name: "index_images_on_product_id"
     t.index ["variant_id"], name: "index_images_on_variant_id"
   end
 
   create_table "option_types", force: :cascade do |t|
     t.string "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_option_types_on_deleted_at"
   end
 
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.bigint "option_type_id", null: false
     t.bigint "product_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_options_on_deleted_at"
     t.index ["option_type_id"], name: "index_options_on_option_type_id"
     t.index ["product_id"], name: "index_options_on_product_id"
   end
@@ -81,9 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "product_categories", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_product_categories_on_category_id"
+    t.index ["deleted_at"], name: "index_product_categories_on_deleted_at"
     t.index ["product_id", "category_id"], name: "index_product_categories_on_product_id_and_category_id", unique: true
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
@@ -152,7 +162,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
     t.boolean "is_master", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id", "position"], name: "index_variants_on_product_id_and_position"
+    t.index ["deleted_at"], name: "index_variants_on_deleted_at"
+    t.index ["position"], name: "index_variants_on_position"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
   end
