@@ -3,7 +3,7 @@
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-center
       %div
-      = button_to new_admin_product_path, class: "btn-plain flex gap-2.5 items-center", method: :get do
+      = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
         New Variant
         = icon("fa-solid", "plus")
     %table
