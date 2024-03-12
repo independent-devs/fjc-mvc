@@ -55,9 +55,10 @@ end
 #
 # Indexes
 #
-#  index_variants_on_product_id               (product_id)
-#  index_variants_on_product_id_and_position  (product_id,position)
-#  index_variants_on_sku                      (sku)
+#  index_variants_on_deleted_at  (deleted_at)
+#  index_variants_on_position    (position)
+#  index_variants_on_product_id  (product_id)
+#  index_variants_on_sku         (sku)
 #
 # Foreign Keys
 #

@@ -9,6 +9,7 @@ end
 # Table name: options
 #
 #  id             :bigint           not null, primary key
+#  deleted_at     :datetime
 #  name           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -17,6 +18,7 @@ end
 #
 # Indexes
 #
+#  index_options_on_deleted_at      (deleted_at)
 #  index_options_on_option_type_id  (option_type_id)
 #  index_options_on_product_id      (product_id)
 #
