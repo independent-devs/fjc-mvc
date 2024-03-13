@@ -40,10 +40,9 @@ class Admin::ProductsController < Admin::BaseController
   def destroy
     if @product.update(deleted_at: DateTime.now)
       redirect_to admin_products_url, notice: I18n.t('products.destroyed')
-      return
+    else
+      redirect_to admin_products_url, error: I18n.t('products.unexpected')
     end
-
-    redirect_to admin_products_url, error: I18n.t('products.unexpected')
   end
 
   # GET /products/1/variants
