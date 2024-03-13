@@ -1,6 +1,10 @@
 - is_new = (action_name == "product_variant_new")
 = form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
   .flex.flex-col.w-full.gap-5
+    %span
+      currency: (
+      = currency_symbol(@product.currency)
+      )
     .grid.grid-cols-4.gap-3.w-full
       .field
         = f.label :price

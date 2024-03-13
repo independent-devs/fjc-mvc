@@ -1,4 +1,4 @@
-.margin-max-screen.h-full.py-8.flex.flex-col.gap-5
+.margin-max-screen.py-8.flex.flex-col.gap-5.overflow-auto
   = render "admin/products/tabs"
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-center
@@ -8,21 +8,29 @@
       = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
         New Variant
         = icon("fa-solid", "plus")
-    %table
+    %table.table-fixed
       %thead
         %tr
           %th Option
           %th Price
           %th Cost
           %th Count on hand
+          %th Actions
       %tbody
         - if @variants.present?
           - @variants.each do |variant|
-            %tr
-              %td
-              %td=variant.price
-              %td=variant.cost
-              %td=variant.count_on_hand
+            = form_for(variant, as: "product_variant", url: product_create_admin_variants_path, html: { method: :put }) do |f|
+              %tr
+                %td.py-2.5
+                %td.py-2.5
+                  = currency_symbol(@product.currency)
+                  = f.number_field :price, class: "px-2 py-0 rounded-md w-32 bg-transparent"
+                %td.py-2.5
+                  = currency_symbol(@product.currency)
+                  = f.number_field :cost, class: "px-2 py-0 rounded-md w-32 bg-transparent"
+                %td.py-2.5
+                  = currency_symbol(@product.currency)
+                  = f.number_field :count_on_hand, class: "px-2 py-0 rounded-md w-32 bg-transparent"
         - else
           %tr
             %td

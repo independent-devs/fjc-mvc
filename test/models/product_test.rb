@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  available_on     :datetime
+#  currency         :string           not null
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime

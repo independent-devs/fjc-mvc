@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  accepts_nested_attributes_for :variants
-
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :product_category, dependent: :destroy
+
+  accepts_nested_attributes_for :variants
 
   validates :name, presence: true
   validates :slug, presence: true
@@ -28,6 +28,7 @@ end
 #
 #  id               :bigint           not null, primary key
 #  available_on     :datetime
+#  currency         :string           not null
 #  deleted_at       :datetime
 #  description      :text
 #  discontinue_on   :datetime

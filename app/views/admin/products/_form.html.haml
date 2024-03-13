@@ -1,4 +1,4 @@
-
+- is_new = (action_name == "new")
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
     .field
@@ -27,7 +27,12 @@
     .field
       = f.label :discontinue_on
       = f.datetime_local_field :discontinue_on
-    - is_new = (action_name == "new")
+    .field
+      = f.label :currency
+      = f.select :currency,                                                     |
+        currency_list,                                                          |
+        {selected: is_new ? MoneyRails.default_currency : @product.currency},   |
+        {required: true, disabled: true}                                        |
     = f.fields_for :variants, is_new ? Variant.new : @product.variants.get_master do |master_variant|
       .field
         = master_variant.label "Master price"

@@ -3,16 +3,9 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def auth_icon(auth)
-    case auth
-    when 'email'
-      icon('fa-regular', 'envelop')
-    when 'phone'
-      icon('fa-solid', 'phone')
-    when 'google_oauth2'
-      icon('fa-brands', 'google')
-    when 'facebook'
-      icon('fa-brands', 'facebook')
+  def currency_list
+    Money::Currency.table.map do |cu|
+      ["#{cu[1][:iso_code]} (#{cu[1][:symbol]})", cu[1][:iso_code]]
     end
   end
 end
