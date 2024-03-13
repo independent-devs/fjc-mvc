@@ -18,7 +18,7 @@ class Admin::VariantsController < Admin::BaseController
     @variant = @product.variants.new
   end
 
-  # POST /products/1/variants/new
+  # POST /products/1/variants
   def product_variant_create
     @variant = @product.variants.new(product_variant_params)
 

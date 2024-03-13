@@ -1,1 +1,22 @@
-form
+- is_new = (action_name == "product_variant_new")
+= form_for(@variant, url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
+  .flex.flex-col.w-full.gap-5
+    .flex.flex-col.gap-1
+      %h1.text-2xl.font-semibold Create Product Variant
+      %span.text-gray-500
+        product:
+        = @product.name
+    .grid.grid-cols-4.gap-3.w-full
+      .field
+        = f.label :sell_price
+        = f.text_field :sell_price, required: true, placeholder: "0.00"
+      .field
+        = f.label :cost_price
+        = f.text_field :cost_price, placeholder: "0.00"
+      .field
+        = f.label :sku
+        = f.text_field :sku
+      .field
+        = f.label :count_on_hand
+        = f.number_field :count_on_hand, placeholder: "0"
+  = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
