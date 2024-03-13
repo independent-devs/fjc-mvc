@@ -2,10 +2,10 @@
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2{class: "w-full"}
     .field
-      = f.label "Name*"
+      = f.label :name
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
     .field
-      = f.label "Slug*"
+      = f.label :slug
       = f.text_field :slug, required: true, placeholder: "e.g. nike_shoe"
     .field
       = f.label :description
@@ -30,7 +30,7 @@
     - is_new = (action_name == "new")
     = f.fields_for :variants, is_new ? Variant.new : @product.variants.get_master do |master_variant|
       .field
-        = master_variant.label "Master price*"
+        = master_variant.label "Master price"
         = master_variant.number_field :sell_price, required: true, step: :any, placeholder: "0.00"
       .field
         = master_variant.label :cost_price

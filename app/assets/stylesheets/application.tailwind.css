@@ -48,7 +48,11 @@
   }
 
   .field .field_with_errors input {
-    @apply input-error
+    @apply input-error;
+  }
+
+  .field:has(input[required]) label:after {
+    @apply content-['*'] text-red-600
   }
 
   /* table */
