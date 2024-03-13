@@ -18,6 +18,7 @@
               %td
                 = product.name
               %td
+                = currency_symbol(product.currency)
                 = render PriceRangeComponent.new  |
                   lowest: product.lowest_price,   |
                   highest: product.highest_price  |

@@ -116,3 +116,6 @@ gem 'city-state', '~> 1.1'
 
 # Sortable
 gem 'acts_as_list', '~> 1.1'
+
+# Currency
+gem 'money-rails', '~> 1.15'

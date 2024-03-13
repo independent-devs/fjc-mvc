@@ -23,7 +23,7 @@
   }
 
   .btn-plain {
-    @apply border border-secondary/40 bg-white hover:border-secondary/70 py-2.5 px-6 rounded w-fit hover:shadow-md transition-all ease-in-out duration-100 text-sm;
+    @apply border border-secondary bg-white py-2.5 px-6 rounded w-fit hover:shadow-md transition-all ease-in-out duration-100 text-sm;
   }
 
   .input-primary {
@@ -43,11 +43,19 @@
     @apply text-red-600;
   }
 
-  .field input, textarea {
+  .field input, textarea, select {
     @apply input-primary;
   }
 
   .field .field_with_errors input {
+    @apply input-error;
+  }
+
+  .field .field_with_errors textarea {
+    @apply input-error;
+  }
+
+  .field .field_with_errors select {
     @apply input-error;
   }
 
@@ -56,6 +64,10 @@
   }
 
   .field:has(textarea[required]) label:after {
+    @apply content-['*'] text-red-600
+  }
+
+  .field:has(select[required]) label:after {
     @apply content-['*'] text-red-600
   }
 
