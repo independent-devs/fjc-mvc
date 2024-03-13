@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  accepts_nested_attributes_for :variants
+
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :product_category, dependent: :destroy
-
-  accepts_nested_attributes_for :variants
 
   validates :name, presence: true
   validates :slug, presence: true
@@ -14,11 +14,9 @@ class Product < ApplicationRecord
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
-  ## scopes
   scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
   scope :sort_by_latest, -> { order(id: :desc) }
   scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :has_captured_price, -> { where('lowest_price IS NOT NULL AND highest_price IS NOT NULL') }
   scope :base_on_date, lambda { |now = DateTime.now|
     where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
   }
