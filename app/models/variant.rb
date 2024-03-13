@@ -11,26 +11,25 @@ class Variant < ApplicationRecord
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
 
-  validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
+  validates :price, presence: true, numericality: { grater_than_or_equal_to: 0 }
+  validates :cost, numericality: { grater_than_or_equal_to: 0 }, allow_nil: true
   validates :count_on_hand, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
 
-  after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }
+  after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
 
   private
 
   def capture_price
-    pvariant = product.variants
+    pvariant = product.variants.not_deleted
     more_than_one = pvariant.count > 1
 
-    captured = pvariant.select('MIN(sell_price), MAX(sell_price)')
-                       .where(is_master: !more_than_one).not_deleted
-                       .group(:id).first
+    captured = pvariant.where(is_master: !more_than_one)
 
-    return if captured.blank?
-
-    product.update!(lowest_price: captured.min, highest_price: captured.max, has_variant: more_than_one)
+    product.update!(lowest_price: captured.minimum(:price),
+                    highest_price: captured.maximum(:price),
+                    has_variant: more_than_one)
   end
 
   def master_delete_attempt
@@ -45,12 +44,12 @@ end
 # Table name: variants
 #
 #  id            :bigint           not null, primary key
-#  cost_price    :decimal(10, 2)
+#  cost          :decimal(10, 2)
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
 #  is_master     :boolean          default(FALSE), not null
 #  position      :integer
-#  sell_price    :decimal(10, 2)   not null
+#  price         :decimal(10, 2)   not null
 #  sku           :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

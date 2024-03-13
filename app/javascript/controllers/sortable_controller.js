@@ -1,5 +1,6 @@
 import Sortable from "stimulus-sortable";
 
+// Connects to data-controller="sortable"
 export default class extends Sortable {
   connect() {
     super.connect();

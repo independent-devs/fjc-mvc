@@ -16,6 +16,7 @@ class Admin::VariantsController < Admin::BaseController
   # GET /products/1/variants/new
   def product_variant_new
     @variant = @product.variants.new
+    @master_variant = @product.variants.find_by(is_master: true)
   end
 
   # POST /products/1/variants
@@ -42,7 +43,7 @@ class Admin::VariantsController < Admin::BaseController
   end
 
   def product_variant_params
-    params.require(:product_variant).permit(:cost_price, :sell_price, :sku, :count_on_hand)
+    params.require(:product_variant).permit(:cost, :price, :sku, :count_on_hand)
   end
 
   def update_position_params

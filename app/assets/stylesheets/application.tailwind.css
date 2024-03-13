@@ -55,6 +55,10 @@
     @apply content-['*'] text-red-600
   }
 
+  .field:has(textarea[required]) label:after {
+    @apply content-['*'] text-red-600
+  }
+
   /* table */
   table {
     @apply w-full rounded-lg bg-zinc-50 drop-shadow-sm;
