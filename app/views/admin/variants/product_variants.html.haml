@@ -2,7 +2,9 @@
   = render "admin/products/tabs"
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-center
-      %div
+      %span.text-gray-500
+        product:
+        = @product.name
       = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
         New Variant
         = icon("fa-solid", "plus")

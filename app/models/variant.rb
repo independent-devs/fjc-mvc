@@ -12,6 +12,7 @@ class Variant < ApplicationRecord
   scope :not_master, -> { where(is_master: false) }
 
   validates :sell_price, presence: true, numericality: { grater_than_or_equal_to: 0 }
+  validates :count_on_hand, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
 
   after_update :capture_price, if: proc { |pv| pv.sell_price_changed? || pv.deleted_at_changed? }

@@ -61,6 +61,7 @@ end
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
 #                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
+#            product_create_admin_variants POST     /admin/products/:id/variants(.:format)                                                            admin/variants#product_variant_create
 #               product_new_admin_variants GET      /admin/products/:id/variants/new(.:format)                                                        admin/variants#product_variant_new
 #          product_position_admin_variants PUT      /admin/products/:id/variants/:vid/update_position(.:format)                                       admin/variants#update_position
 #                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
