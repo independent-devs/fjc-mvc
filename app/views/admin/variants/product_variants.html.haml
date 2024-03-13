@@ -11,19 +11,22 @@
     %table
       %thead
         %tr
-          %th Name
+          %th Option
           %th Price
-          %th Actions
+          %th Cost
+          %th Count on hand
       %tbody
         - if @variants.present?
           - @variants.each do |variant|
             %tr
               %td
-              %td
-              %td
+              %td=variant.price
+              %td=variant.cost
+              %td=variant.count_on_hand
         - else
           %tr
             %td
               No variants found
+            %td
             %td
             %td

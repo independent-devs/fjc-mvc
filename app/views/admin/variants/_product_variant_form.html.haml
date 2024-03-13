@@ -1,13 +1,13 @@
 - is_new = (action_name == "product_variant_new")
-= form_for(@variant, url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
+= form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
   .flex.flex-col.w-full.gap-5
     .grid.grid-cols-4.gap-3.w-full
       .field
-        = f.label :sell_price
-        = f.text_field :sell_price, required: true, placeholder: "0.00"
+        = f.label :price
+        = f.text_field :price, value: @master_variant.price, required: true, placeholder: "0.00"
       .field
-        = f.label :cost_price
-        = f.text_field :cost_price, placeholder: "0.00"
+        = f.label :cost
+        = f.text_field :cost, value: @master_variant.cost, placeholder: "0.00"
       .field
         = f.label :sku
         = f.text_field :sku

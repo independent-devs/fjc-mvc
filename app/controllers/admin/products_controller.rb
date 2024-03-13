@@ -66,6 +66,6 @@ class Admin::ProductsController < Admin::BaseController
     params.require(:product)
           .permit(:name, :description, :available_on, :discontinue_on, :slug,
                   :meta_description, :meta_keywords, :promotionable, :meta_title,
-                  variants_attributes: %i[id sell_price cost_price sku is_master])
+                  variants_attributes: %i[id price cost sku is_master])
   end
 end
