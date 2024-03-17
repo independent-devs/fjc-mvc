@@ -24,13 +24,13 @@
                 %td.py-2.5
                 %td.py-2.5
                   = currency_symbol(@product.currency)
-                  = f.number_field :price, class: "px-2 py-0 rounded-md w-32 bg-transparent"
+                  = f.number_field :price, class: "input-table"
                 %td.py-2.5
                   = currency_symbol(@product.currency)
-                  = f.number_field :cost, class: "px-2 py-0 rounded-md w-32 bg-transparent"
+                  = f.number_field :cost, class: "input-table"
                 %td.py-2.5
                   = currency_symbol(@product.currency)
-                  = f.number_field :count_on_hand, class: "px-2 py-0 rounded-md w-32 bg-transparent"
+                  = f.number_field :count_on_hand, class: "input-table"
         - else
           %tr
             %td
