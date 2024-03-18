@@ -15,6 +15,10 @@
   select option[value=""], select option:not([value]) {
     @apply text-gray-500
   }
+
+  #notification-container {
+    @apply absolute z-[9999] top-6 right-7;
+  }
 }
 
 @layer components {

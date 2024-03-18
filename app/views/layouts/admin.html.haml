@@ -3,6 +3,7 @@
   %head
     = render "layouts/head"
   %body.flex
+    = render FlashComponent.new
     = render "layouts/sidebar"
     %main.flex-1.overflow-auto
       = yield
