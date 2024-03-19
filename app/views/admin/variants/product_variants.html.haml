@@ -11,7 +11,7 @@
     %table
       %thead
         %tr
-          %th
+          %th= icon("fa-solid", "up-down", class: "text-zinc-500 pl-[.15rem]")
           %th Option Name
           %th Price
           %th Cost
@@ -22,7 +22,7 @@
           - @variants.each do |variant|
             = form_for(variant, as: "product_variant", url: product_create_admin_variants_path, html: {method: :put}) do |f|
               %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, vid: variant.id)}}
-                %td.w-10= icon("fa-solid", "grip-vertical", class: "handle cursor-move px-3")
+                %td.w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
                 %td
                 %td.py-2.5
                   = currency_symbol(@product.currency)
