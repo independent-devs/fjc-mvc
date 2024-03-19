@@ -8,20 +8,22 @@
       = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
         New Variant
         = icon("fa-solid", "plus")
-    %table.table-fixed
+    %table
       %thead
         %tr
-          %th Option
+          %th
+          %th Option Name
           %th Price
           %th Cost
-          %th Count on hand
+          %th Count On Hand
           %th Actions
-      %tbody
+      %tbody{data: {controller: "sortable" , "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle"}}
         - if @variants.present?
           - @variants.each do |variant|
-            = form_for(variant, as: "product_variant", url: product_create_admin_variants_path, html: { method: :put }) do |f|
-              %tr
-                %td.py-2.5
+            = form_for(variant, as: "product_variant", url: product_create_admin_variants_path, html: {method: :put}) do |f|
+              %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, vid: variant.id)}}
+                %td.w-10= icon("fa-solid", "grip-vertical", class: "handle cursor-move px-3")
+                %td
                 %td.py-2.5
                   = currency_symbol(@product.currency)
                   = f.number_field :price, class: "input-table"
