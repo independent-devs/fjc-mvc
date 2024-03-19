@@ -11,7 +11,8 @@ authenticated :user, -> { _1.admin } do
             get '/', to: 'variants#product_variants', as: 'product'
             post '/', to: 'variants#product_variant_create', as: 'product_create'
             get '/new', to: 'variants#product_variant_new', as: 'product_new'
-            put '/:vid/update_position', to: 'variants#update_position', as: 'product_position'
+            put '/:vid/update', to: 'variants#product_variant_update', as: 'product_update'
+            patch '/:vid/update_position', to: 'variants#update_position', as: 'product_update_position'
           end
         end
         resources :images, path: '/:id/images', only: [] do
