@@ -6,6 +6,7 @@ class Admin::VariantsController < Admin::BaseController
     product_variant_new
     update_position
     product_variant_create
+    product_variant_update
   ]
 
   # GET /products/1/variants
@@ -24,6 +25,16 @@ class Admin::VariantsController < Admin::BaseController
     @variant = @product.variants.new(product_variant_params)
 
     if @variant.save
+      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.created')
+    else
+      render 'product_variant_new', status: :unprocessable_entity
+    end
+  end
+
+  def product_variant_update
+    @variant = @product.variants.find(params[:vid])
+
+    if @variant.update(product_variant_params)
       redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.created')
     else
       render 'product_variant_new', status: :unprocessable_entity

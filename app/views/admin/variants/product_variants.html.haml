@@ -20,8 +20,8 @@
       %tbody{data: {controller: "sortable" , "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle"}}
         - if @variants.present?
           - @variants.each do |variant|
-            = form_for(variant, as: "product_variant", url: product_create_admin_variants_path, html: {method: :put}) do |f|
-              %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, vid: variant.id)}}
+            = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}) do |f|
+              %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, variant)}}
                 %td.w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
                 %td
                 %td.py-2.5
