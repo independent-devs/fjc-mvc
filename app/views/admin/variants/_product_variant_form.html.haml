@@ -6,12 +6,15 @@
       = currency_symbol(@product.currency)
       )
     .grid.grid-cols-4.gap-3.w-full
+      .field  
+        = f.label :name
+        = f.text_field :name, required: true, placeholder: "e.g Black"       
       .field
         = f.label :price
-        = f.text_field :price, value: @master_variant.price, required: true, placeholder: "0.00"
+        = f.text_field :price, value: master.price, required: true, placeholder: "0.00"
       .field
         = f.label :cost
-        = f.text_field :cost, value: @master_variant.cost, placeholder: "0.00"
+        = f.text_field :cost, value: master.cost, placeholder: "0.00"
       .field
         = f.label :sku
         = f.text_field :sku
