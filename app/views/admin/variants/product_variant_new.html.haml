@@ -5,4 +5,4 @@
     %span.text-gray-500
       product:
       = @product.name
-  = render 'product_variant_form', path: product_create_admin_variants_path, method: :post
+  = render 'product_variant_form', path: product_create_admin_variants_path, method: :post, master: @product.variants.find_by(is_master: true)

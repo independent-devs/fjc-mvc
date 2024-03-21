@@ -29,10 +29,12 @@
       = f.datetime_local_field :discontinue_on
     .field
       = f.label :currency
-      = f.select :currency,                                                     |
-        currency_list,                                                          |
-        {selected: is_new ? MoneyRails.default_currency : @product.currency},   |
-        {required: true, disabled: true}                                        |
+      = f.select :currency,                                                       |
+        currency_list,                                                            |
+        {selected: is_new ? MoneyRails.default_currency : @product.currency},     |
+        {required: true, disabled: true}                                          |
+    - if is_new
+      = f.hidden_field :currency, value: MoneyRails.default_currency
     = f.fields_for :variants, is_new ? Variant.new : @product.variants.get_master do |master_variant|
       .field
         = master_variant.label "Master price"

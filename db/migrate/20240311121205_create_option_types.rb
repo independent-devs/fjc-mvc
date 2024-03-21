@@ -8,6 +8,7 @@ class CreateOptionTypes < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
     add_index :option_types, :deleted_at
   end
 end

@@ -15,6 +15,7 @@ class Variant < ApplicationRecord
   validates :cost, numericality: { grater_than_or_equal_to: 0 }, allow_nil: true
   validates :count_on_hand, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
+  validates :name, presence: true, if: -> { !is_master }
 
   after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
@@ -48,6 +49,7 @@ end
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
 #  is_master     :boolean          default(FALSE), not null
+#  name          :string
 #  position      :integer
 #  price         :decimal(10, 2)   not null
 #  sku           :string

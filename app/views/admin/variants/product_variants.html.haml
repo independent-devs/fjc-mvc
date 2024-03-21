@@ -23,7 +23,7 @@
             = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}) do |f|
               %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, variant)}}
                 %td.w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
-                %td
+                %td.max-w-52.truncate= variant.name
                 %td.py-2.5
                   = currency_symbol(@product.currency)
                   = f.number_field :price, class: "input-table"
