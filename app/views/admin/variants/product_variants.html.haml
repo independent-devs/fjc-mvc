@@ -1,44 +1,39 @@
 .margin-max-screen.py-8.flex.flex-col.gap-5.overflow-auto
   = render "admin/products/tabs"
-  .flex.flex-col.gap-6
-    .flex.gap-5.justify-between.items-center
-      %span.text-gray-500
-        product:
-        = @product.name
-      = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
-        New Variant
-        = icon("fa-solid", "plus")
-    %table
-      %thead
-        %tr
-          %th= icon("fa-solid", "up-down", class: "text-zinc-500 pl-[.15rem]")
-          %th Option Name
-          %th Price
-          %th Cost
-          %th Count On Hand
-          %th Actions
-      %tbody{data: {controller: "sortable" , "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle"}}
-        - if @variants.present?
-          - @variants.each do |variant|
-            %tr{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, variant)}}
-              = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}) do |f|
-                %td.w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
-                %td.max-w-52
-                  = f.text_field :name, class: "input-table w-full"
-                %td.py-2.5
+  .flex.gap-5.justify-between.items-center
+    %span.text-gray-500
+      product:
+      = @product.name
+    = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
+      New Variant
+      = icon("fa-solid", "plus")
+  .grid
+    .grid.grid-cols-5.border-b.text-sm.gap-8.font-semibold.text-secondary
+      .py-4
+        Name
+      .py-4
+        Price
+      .py-4
+        Cost
+      .py-4
+        Count on Hand
+      .py-4
+        Actions
+    - if @variants.present?
+      %ul.divide-y{data: {controller: 'sortable', "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle" }}
+        - @variants.each do |variant|
+          %li{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, variant)}}
+            = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}, data: {controller: 'autosave'}) do |f|
+              .grid.grid-cols-5.gap-8
+                .flex.py-4
+                  .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
+                  = f.text_field :name, id: "name_#{dom_id(variant)}", class: "input-table h-fit w-full", data: { "autosave-target": "input" }
+                .flex.gap-2.py-4
                   = currency_symbol(@product.currency)
-                  = f.number_field :price, class: "input-table"
-                %td.py-2.5
+                  = f.number_field :price, id: "price_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
+                .flex.gap-2.py-4
                   = currency_symbol(@product.currency)
-                  = f.number_field :cost, class: "input-table"
-                %td.py-2.5
+                  = f.number_field :cost, id: "cost_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
+                .flex.gap-2.py-4
                   = currency_symbol(@product.currency)
-                  = f.number_field :count_on_hand, class: "input-table"
-        - else
-          %tr
-            %td
-              No variants found
-            %td
-            %td
-            %td
-
+                  = f.number_field :count_on_hand, id: "count_on_hand_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }

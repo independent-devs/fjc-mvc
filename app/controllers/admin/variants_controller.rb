@@ -34,7 +34,7 @@ class Admin::VariantsController < Admin::BaseController
     @variant = @product.variants.find(params[:vid])
 
     if @variant.update(product_variant_params)
-      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.created')
+      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated')
     else
       render 'product_variant_new', status: :unprocessable_entity
     end
