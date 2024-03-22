@@ -12,10 +12,11 @@ class Variant < ApplicationRecord
   scope :not_master, -> { where(is_master: false) }
 
   validates :price, presence: true, numericality: { grater_than_or_equal_to: 0 }
-  validates :cost, numericality: { grater_than_or_equal_to: 0 }, allow_nil: true
-  validates :count_on_hand, numericality: { grater_than_or_equal_to: 0 }
   validate :master_delete_attempt, if: :deleted_at_changed?
   validates :name, presence: true, if: -> { !is_master }
+
+  validate :count_on_hand_validation
+  validate :cost_validation
 
   after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
@@ -37,6 +38,18 @@ class Variant < ApplicationRecord
     return unless is_master && deleted_at.present?
 
     errors.add(:is_master, 'cannot delete a master variant')
+  end
+
+  def count_on_hand_validation
+    return unless count_on_hand.negative?
+
+    errors.add(:count_on_hand, 'must be greater than or eqaul to zero')
+  end
+
+  def cost_validation
+    return unless cost.present? && cost.negative?
+
+    errors.add(:cost, 'must be greater than or eqaul to zero')
   end
 end
 
