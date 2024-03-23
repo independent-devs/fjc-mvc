@@ -66,8 +66,6 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    acts_as_list (1.1.0)
-      activerecord (>= 4.2)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     annotate (3.2.0)
@@ -263,6 +261,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.1.0)
+    ranked-model (0.4.9)
+      activerecord (>= 5.2)
     rdoc (6.6.2)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
@@ -356,7 +356,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  acts_as_list (~> 1.1)
   annotate
   bootsnap
   cancancan (~> 3.5)
@@ -380,6 +379,7 @@ DEPENDENCIES
   phonelib (~> 0.8.4)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
+  ranked-model (~> 0.4.9)
   rubocop
   rubocop-rails
   selenium-webdriver

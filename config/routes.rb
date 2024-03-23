@@ -21,6 +21,7 @@ end
 # == Route Map
 #
 #                                   Prefix Verb     URI Pattern                                                                                       Controller#Action
+#                             stocks_index GET      /stocks/index(.:format)                                                                           stocks#index
 #                                  options GET      /options(.:format)                                                                                options#index
 #                                          POST     /options(.:format)                                                                                options#create
 #                               new_option GET      /options/new(.:format)                                                                            options#new

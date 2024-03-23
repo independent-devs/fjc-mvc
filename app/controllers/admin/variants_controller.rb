@@ -71,7 +71,7 @@ class Admin::VariantsController < Admin::BaseController
   # PATCH /products/1/variants/1/position
   def product_variant_position
     @variant = @product.variants.find(params[:vid])
-    @variant.insert_at(product_variant_params[:position].to_i)
+    @variant.update(sort_order_position: product_variant_params[:position].to_i)
     head :ok
   end
 

@@ -6,7 +6,7 @@ export default class extends Autosave {
   static values = {
     delay: {
       type: Number,
-      default: 250,
+      default: 1000,
     },
   };
 
