@@ -45,11 +45,6 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  # GET /products/1/variants
-  def variants
-    @variants = @product.variants.not_master.not_deleted
-  end
-
   # GET /products/1/stocks
   def stocks; end
 
