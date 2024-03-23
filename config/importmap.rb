@@ -13,3 +13,4 @@ pin "sortablejs", preload: false # @1.15.2
 pin "stimulus-notification" # @2.2.0
 pin "hotkeys-js" # @3.13.7
 pin "stimulus-use" # @0.51.3
+pin "stimulus-rails-autosave", preload: false # @5.1.0,

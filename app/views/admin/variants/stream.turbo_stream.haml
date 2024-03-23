@@ -1,0 +1,7 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: notif_type, message: message
+
+- case type
+- when "input-table"
+  = turbo_stream.replace dom_id(variant) do
+    = render "variant_item", variant:
