@@ -4,10 +4,10 @@ class Admin::VariantsController < Admin::BaseController
   before_action :set_product, only: %i[
     product_variants
     product_variant_new
-    update_position
     product_variant_create
     product_variant_update
     product_variant_delete
+    product_variant_position
   ]
 
   # GET /admin/products/1/variants
@@ -73,7 +73,7 @@ class Admin::VariantsController < Admin::BaseController
   end
 
   # PATCH /products/1/variants/1/position
-  def update_position
+  def product_variant_position
     @variant = @product.variants.find(params[:vid])
     @variant.insert_at(product_variant_params[:position].to_i)
     head :ok
