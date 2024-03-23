@@ -12,3 +12,6 @@
         = f.number_field :cost, id: "cost_#{dom_id(variant)}", step: :any, class: "input-table", data: { "autosave-target": "input" }
       .py-4
         = f.number_field :count_on_hand, id: "count_on_hand_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
+      .py-4
+        %button{type: "button", data: { controller: "variant", action: "click->variant#delete", url: product_delete_admin_variants_path(@product, variant), method: "delete" }}
+          = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"

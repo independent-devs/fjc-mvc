@@ -5,3 +5,5 @@
 - when "input-table"
   = turbo_stream.replace dom_id(variant) do
     = render "variant_item", variant:
+- when "deleted"
+  = turbo_stream.remove dom_id(variant)
