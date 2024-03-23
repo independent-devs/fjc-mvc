@@ -9,37 +9,59 @@ class Admin::VariantsController < Admin::BaseController
     product_variant_update
   ]
 
-  # GET /products/1/variants
+  # GET /admin/products/1/variants
   def product_variants
     @variants = @product.variants.not_master.sort_by_position.not_deleted
   end
 
-  # GET /products/1/variants/new
+  # GET /admin/products/1/variants/new
   def product_variant_new
     @variant = @product.variants.new
   end
 
-  # POST /products/1/variants
+  # POST /admin/products/1/variants/create
   def product_variant_create
     @variant = @product.variants.new(product_variant_params)
 
     if @variant.save
       redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.created')
     else
-      render 'product_variant_new', status: :unprocessable_entity
+      render :product_variant_new, status: :unprocessable_entity
     end
   end
 
+  # PUT /admin/products/1/variants/1/update
   def product_variant_update
     @variant = @product.variants.find(params[:vid])
 
-    if @variant.update(product_variant_params)
-      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated')
-    else
-      render 'product_variant_new', status: :unprocessable_entity
+    respond_to do |format|
+      if @variant.update(product_variant_params)
+        format.html { redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated') }
+        format.turbo_stream do
+          render :stream, locals: { message: I18n.t('variants.updated'),
+                                    type: 'input-table', notif_type: 'success',
+                                    variant: @variant }
+        end
+      else
+        format.turbo_stream do
+          render :stream, locals: { message: @variant.errors.full_messages.first,
+                                    type: 'input-table', notif_type: 'error',
+                                    variant: @product.variants.find(params[:vid]) }
+        end
+      end
     end
   end
 
+  # DELETE /admin/products/1/variants/1/delete
+  def product_variant_delete
+    if @product.variants.update(deleted_at: DateTime.now)
+      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.deleted')
+    else
+      render :product_variants, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH /products/1/variants/1/position
   def update_position
     @variant = @product.variants.find(params[:vid])
     @variant.insert_at(update_position_params[:position].to_i)

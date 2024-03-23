@@ -7,9 +7,10 @@
     = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
       New Variant
       = icon("fa-solid", "plus")
-  .grid
+  %div
     .grid.grid-cols-5.border-b.text-sm.gap-8.font-semibold.text-secondary
-      .py-4
+      .py-4.flex.items-center
+        = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
         Name
       .py-4
         Price
@@ -20,21 +21,6 @@
       .py-4
         Actions
     - if @variants.present?
-      %ul.divide-y{data: {controller: 'sortable', "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle" }}
+      %ul.divide-y{data: {controller: "sortable", "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle" }}
         - @variants.each do |variant|
-          %li{data: {"sortable-update-url": product_update_position_admin_variants_path(@product, variant)}}
-            = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}, data: {controller: 'autosave'}) do |f|
-              .grid.grid-cols-5.gap-8
-                .flex.py-4
-                  .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
-                  = f.text_field :name, id: "name_#{dom_id(variant)}", class: "input-table h-fit w-full", data: { "autosave-target": "input" }
-                .flex.gap-2.py-4
-                  = currency_symbol(@product.currency)
-                  = f.number_field :price, id: "price_#{dom_id(variant)}", step: :any, class: "input-table", data: { "autosave-target": "input" }
-                .flex.gap-2.py-4
-                  = currency_symbol(@product.currency)
-                  = f.number_field :cost, id: "cost_#{dom_id(variant)}", step: :any, class: "input-table", data: { "autosave-target": "input" }
-                .py-4
-                  = f.number_field :count_on_hand, id: "count_on_hand_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
-                .py-4
-                  = icon "fa-solid", "trash", class: "text-zinc-300 hover:text-red-500 transition-colors duration-100"
+          = render "variant_item", variant:
