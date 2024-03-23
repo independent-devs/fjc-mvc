@@ -75,7 +75,7 @@ class Admin::VariantsController < Admin::BaseController
   # PATCH /products/1/variants/1/position
   def update_position
     @variant = @product.variants.find(params[:vid])
-    @variant.insert_at(update_position_params[:position].to_i)
+    @variant.insert_at(product_variant_params[:position].to_i)
     head :ok
   end
 
@@ -86,10 +86,6 @@ class Admin::VariantsController < Admin::BaseController
   end
 
   def product_variant_params
-    params.require(:product_variant).permit(:name, :cost, :price, :sku, :count_on_hand)
-  end
-
-  def update_position_params
-    params.require(:product_variant).permit(:position)
+    params.require(:product_variant).permit(:name, :cost, :price, :sku, :count_on_hand, :position)
   end
 end
