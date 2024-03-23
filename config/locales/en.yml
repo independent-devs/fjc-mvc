@@ -52,4 +52,4 @@ en:
   variants:
     created: "Variant was successfully created."
     updated: "Variant was successfully updated."
-    destroyed: "Variant was successfully destroyed."
+    destroyed: "Variant was successfully deleted."

@@ -7,6 +7,7 @@ class Admin::VariantsController < Admin::BaseController
     update_position
     product_variant_create
     product_variant_update
+    product_variant_delete
   ]
 
   # GET /admin/products/1/variants
@@ -54,10 +55,20 @@ class Admin::VariantsController < Admin::BaseController
 
   # DELETE /admin/products/1/variants/1/delete
   def product_variant_delete
-    if @product.variants.update(deleted_at: DateTime.now)
-      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.deleted')
-    else
-      render :product_variants, status: :unprocessable_entity
+    @variant = @product.variants.find(params[:vid])
+
+    respond_to do |format|
+      if @variant.update(deleted_at: DateTime.now)
+        format.turbo_stream do
+          render :stream, locals: { message: I18n.t('variants.destroyed'),
+                                    type: 'deleted', notif_type: 'success',
+                                    variant: @variant }
+        end
+      else
+        format.turbo_stream do
+          render :stream, locals: { message: @variant.errors.full_messages.first, type: nil, notif_type: 'error' }
+        end
+      end
     end
   end
 
