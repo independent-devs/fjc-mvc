@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class Variant < ApplicationRecord
-  acts_as_list
+  include RankedModel
 
   belongs_to :product
   has_one :image, dependent: :destroy
 
-  scope :sort_by_position, -> { order(:position) }
+  scope :sort_by_position, -> { rank(:sort_order) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
+
+  ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
   validates :price, presence: true
   validates :name, presence: true, if: -> { !is_master }

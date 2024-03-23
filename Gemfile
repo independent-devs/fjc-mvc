@@ -114,8 +114,8 @@ gem 'phonelib', '~> 0.8.4'
 # Country, state/province and city for selection
 gem 'city-state', '~> 1.1'
 
-# Sortable
-gem 'acts_as_list', '~> 1.1'
-
 # Currency
 gem 'money-rails', '~> 1.15'
+
+# Sortable
+gem 'ranked-model', '~> 0.4.9'
