@@ -14,7 +14,8 @@ Rails.application.configure do
   config.generators.template_engine = :haml
 
   # Show full error reports.
-  config.consider_all_requests_local = false
+  # config.exceptions_app = routes
+  config.consider_all_requests_local = true
 
   # Enable server timing
   config.server_timing = true
