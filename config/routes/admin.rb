@@ -13,7 +13,7 @@ authenticated :user, -> { _1.admin } do
             post '/create', to: 'variants#product_variant_create', as: 'product_create'
             put '/:vid/update', to: 'variants#product_variant_update', as: 'product_update'
             delete '/:vid/delete', to: 'variants#product_variant_delete', as: 'product_delete'
-            patch '/:vid/position', to: 'variants#update_position', as: 'product_position'
+            patch '/:vid/position', to: 'variants#product_variant_position', as: 'product_position'
           end
         end
         resources :images, path: '/:id/images', only: [] do
