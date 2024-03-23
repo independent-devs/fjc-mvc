@@ -11,6 +11,7 @@ class Variant < ApplicationRecord
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
 
+  scope :rank_scope, -> { not_master.not_deleted }
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
   validates :price, presence: true
