@@ -33,8 +33,6 @@ class Admin::VariantsController < Admin::BaseController
 
   # PUT /admin/products/1/variants/1/update
   def product_variant_update
-    @variant = @product.variants.find(params[:vid])
-
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.html { redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated') }
@@ -55,8 +53,6 @@ class Admin::VariantsController < Admin::BaseController
 
   # DELETE /admin/products/1/variants/1/delete
   def product_variant_delete
-    @variant = @product.variants.find(params[:vid])
-
     respond_to do |format|
       if @variant.update(deleted_at: DateTime.now)
         format.turbo_stream do
@@ -83,6 +79,10 @@ class Admin::VariantsController < Admin::BaseController
 
   def set_product
     @product = Product.find(params[:id])
+
+    return if params[:vid].blank?
+
+    @variant = @product.variants.find(params[:vid])
   end
 
   def product_variant_params

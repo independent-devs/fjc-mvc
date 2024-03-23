@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'stocks/index'
   resources :options
   resources :option_types
   devise_for :users, path: '/auth', controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
