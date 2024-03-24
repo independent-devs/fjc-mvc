@@ -11,16 +11,14 @@ class Variant < ApplicationRecord
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
 
-  scope :rank_scope, -> { not_master.not_deleted }
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
-  validates :price, presence: true
   validates :name, presence: true, if: -> { !is_master }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
+  validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
+  validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
 
   validate :master_delete_attempt, if: :deleted_at_changed?
-  validate :count_on_hand_validation
-  validate :cost_validation, if: -> { cost.present? }
-  validate :price_validation, if: -> { price.present? }
 
   after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
@@ -42,24 +40,6 @@ class Variant < ApplicationRecord
     return unless is_master && deleted_at.present?
 
     errors.add(:is_master, 'cannot delete a master variant')
-  end
-
-  def count_on_hand_validation
-    return unless count_on_hand.nil? || count_on_hand.blank? || count_on_hand.negative?
-
-    errors.add(:count_on_hand, 'must be greater than or equal to zero')
-  end
-
-  def cost_validation
-    return unless cost.negative?
-
-    errors.add(:cost, 'must be greater than or equal to zero')
-  end
-
-  def price_validation
-    return unless price.negative?
-
-    errors.add(:price, 'must be greater than or equal to zero')
   end
 end
 
