@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="variant"
 export default class extends Controller {
   delete() {
-    const isConfirmed = confirm("Are you sure you want to variant?");
+    const isConfirmed = confirm("Are you sure you want to delete variant?");
 
     if (!isConfirmed) return;
 
