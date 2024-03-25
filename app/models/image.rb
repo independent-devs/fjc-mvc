@@ -9,6 +9,7 @@ class Image < ApplicationRecord
   has_one_attached :photo
 
   # Scopes
+  scope :sort_by_position, -> { rank(:sort_order) }
   scope :not_deleted, -> { where(deleted_at: nil) }
 
   # Position
