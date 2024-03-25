@@ -10,3 +10,5 @@
 
 User.create(name: 'John Doe', phone_no: '+639079247641', password: 'password', password_confirmation: 'password',
             admin: true)
+User.create(name: 'Admin', phone_no: '+639012345678', password: 'password', password_confirmation: 'password',
+            admin: true)
