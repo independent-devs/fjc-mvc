@@ -5,9 +5,11 @@ class Product < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :product_category, dependent: :destroy
+  has_one :description, dependent: :destroy
 
   # Nested form
   accepts_nested_attributes_for :variants
+  accepts_nested_attributes_for :description
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
@@ -36,7 +38,6 @@ end
 #  available_on     :datetime
 #  currency         :string           not null
 #  deleted_at       :datetime
-#  description      :text
 #  discontinue_on   :datetime
 #  has_variant      :boolean          default(FALSE), not null
 #  highest_price    :decimal(10, 2)

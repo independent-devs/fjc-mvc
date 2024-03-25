@@ -8,7 +8,6 @@
 #  available_on     :datetime
 #  currency         :string           not null
 #  deleted_at       :datetime
-#  description      :text
 #  discontinue_on   :datetime
 #  has_variant      :boolean          default(FALSE), not null
 #  highest_price    :decimal(10, 2)

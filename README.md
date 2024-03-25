@@ -39,6 +39,6 @@ HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
 Test Account
 
 ```
-phone: +639012345678
+phone: 09012345678
 pass: password
 ```
