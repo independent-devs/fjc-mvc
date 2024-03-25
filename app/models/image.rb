@@ -1,10 +1,24 @@
 # frozen_string_literal: true
 
 class Image < ApplicationRecord
+  include RankedModel
+
   has_one_attached :photo
 
   belongs_to :product
   belongs_to :variant
+
+  scope :not_deleted, -> { where(deleted_at: nil) }
+
+  ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
+
+  validate :check_photo_presence
+
+  private
+
+  def check_photo_presence
+    errors.add(:photo, 'no photo attached') unless photo.attached?
+  end
 end
 
 # == Schema Information
