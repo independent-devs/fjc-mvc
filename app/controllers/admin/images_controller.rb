@@ -3,7 +3,7 @@
 class Admin::ImagesController < Admin::BaseController
   before_action :set_product, only: %i[product_images]
 
-  # GET /imagesa/1/variants
+  # GET /admin/images/1/variants
   def product_images; end
 
   private

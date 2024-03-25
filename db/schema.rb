@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["parent_id"], name: "index_categories_on_parent_id"
     t.index ["position"], name: "index_categories_on_position"
+  end
+
+  create_table "descriptions", force: :cascade do |t|
+    t.text "description"
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_descriptions_on_product_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -103,7 +111,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   create_table "products", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "name", null: false
-    t.text "description"
     t.datetime "available_on", precision: nil
     t.datetime "discontinue_on", precision: nil
     t.datetime "deleted_at", precision: nil
@@ -175,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_11_121325) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "descriptions", "products"
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
   add_foreign_key "options", "option_types"

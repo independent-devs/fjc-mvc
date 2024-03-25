@@ -7,9 +7,10 @@
     .field
       = f.label :slug
       = f.text_field :slug, required: true, placeholder: "e.g. nike_shoe"
-    .field
-      = f.label :description
-      = f.text_area :description, rows: 12
+    = f.fields_for :description, is_new ? Description.new : @product.description do |desc|
+      .field
+        = desc.label :description
+        = desc.text_area :description, rows: 12
     %h2.font-medium.text-lg.mt-3 SEO
     .field
       = f.label :meta_title

@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration[7.0]
     create_table :products do |t|
       t.uuid :uuid, null: false, default: 'gen_random_uuid()'
       t.string :name, null: false
-      t.text :description
       t.datetime :available_on, precision: nil
       t.datetime :discontinue_on, precision: nil
       t.datetime :deleted_at, precision: nil
