@@ -21,7 +21,9 @@ class Variant < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
+
   validate :master_delete_attempt, if: :deleted_at_changed?
+  validate :only_one_master, if: :is_master
 
   # Generators
   after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
@@ -43,7 +45,13 @@ class Variant < ApplicationRecord
   def master_delete_attempt
     return unless is_master && deleted_at.present?
 
-    errors.add(:is_master, 'cannot delete a master variant')
+    errors.add(:is_master, I18n.t('variants.validate.master_delete_attempt'))
+  end
+
+  def only_one_master
+    return unless product.variants.exist?(is_master: true)
+
+    errors.add(:is_master, I18n.t('variants.validate.only_one_master'))
   end
 end
 
