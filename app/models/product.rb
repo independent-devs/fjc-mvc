@@ -10,11 +10,12 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :variants
 
   # Scopes
-  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
   scope :sort_by_latest, -> { order(id: :desc) }
   scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
   scope :base_on_date, lambda { |now = DateTime.now|
-    where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
+    where('available_on >= ?', now)
+      .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
   }
 
   # Validations
