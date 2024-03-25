@@ -3,8 +3,8 @@
     %li.me-2
       = render TabComponent.new name: "Product Details", path: admin_product_path(@product)
     %li.me-2
-      = render TabComponent.new name: "Images", path: product_admin_images_path(@product)
-    %li.me-2
       = render TabComponent.new name: "Variants", path: product_admin_variants_path(@product)
+    %li.me-2
+      = render TabComponent.new name: "Images", path: product_admin_images_path(@product)
     %li.me-2
       = render TabComponent.new name: "Stocks", path: stocks_admin_products_path(@product)
