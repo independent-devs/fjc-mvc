@@ -3,23 +3,27 @@
 class Variant < ApplicationRecord
   include RankedModel
 
+  # Relations
   belongs_to :product
   has_one :image, dependent: :destroy
 
+  # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
 
+  # Position
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
+  # Validations
   validates :name, presence: true, if: -> { !is_master }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
-
   validate :master_delete_attempt, if: :deleted_at_changed?
 
+  # Generators
   after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
   after_save :capture_price
 

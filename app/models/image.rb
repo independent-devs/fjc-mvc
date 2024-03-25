@@ -3,15 +3,18 @@
 class Image < ApplicationRecord
   include RankedModel
 
-  has_one_attached :photo
-
+  # Relations
   belongs_to :product
   belongs_to :variant
+  has_one_attached :photo
 
+  # Scopes
   scope :not_deleted, -> { where(deleted_at: nil) }
 
+  # Position
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
+  # Validations
   validate :check_photo_presence
 
   private
