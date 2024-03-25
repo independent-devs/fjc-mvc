@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  # Relations
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :product_category, dependent: :destroy
 
+  # Nested form
   accepts_nested_attributes_for :variants
 
+  # Scopes
+  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
+  scope :sort_by_latest, -> { order(id: :desc) }
+  scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :base_on_date, lambda { |now = DateTime.now|
+    where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
+  }
+
+  # Validations
   validates :name, presence: true
   validates :slug, presence: true
   validates :uuid, uniqueness: true
@@ -14,13 +25,6 @@ class Product < ApplicationRecord
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :currency, presence: true
-
-  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
-  scope :sort_by_latest, -> { order(id: :desc) }
-  scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :base_on_date, lambda { |now = DateTime.now|
-    where('available_on >= ?', now).where('discontinue_on IS NULL OR discontinue_on <= ?', now)
-  }
 end
 
 # == Schema Information
