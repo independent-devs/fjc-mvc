@@ -28,6 +28,15 @@ class Product < ApplicationRecord
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :currency, presence: true
+
+  # Generators
+  before_save :sanitize_name, if: :name_changed?
+
+  private
+
+  def sanitize_name
+    self.name = name.gsub(/\?|\s+|=|%|(?-mix:\s)/, '-')
+  end
 end
 
 # == Schema Information
