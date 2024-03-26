@@ -23,13 +23,16 @@ class Variant < ApplicationRecord
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
 
   validate :master_delete_attempt, if: :deleted_at_changed?
-  validate :only_one_master, if: :is_master
+  validate :only_one_master, if: :only_one_master_condition
 
   # Generators
-  after_update :capture_price, if: proc { |pv| pv.price_changed? || pv.deleted_at_changed? }
-  after_save :capture_price
+  after_save :capture_price, if: :capture_price_condition
 
   private
+
+  def capture_price_condition
+    price_previously_changed? || deleted_at_previously_changed?
+  end
 
   def capture_price
     pvariant = product.variants.not_deleted
@@ -46,6 +49,10 @@ class Variant < ApplicationRecord
     return unless is_master && deleted_at.present?
 
     errors.add(:is_master, I18n.t('variants.validate.master_delete_attempt'))
+  end
+
+  def only_one_master_condition
+    (new_record? && is_master) || (!is_master && is_master_changed?)
   end
 
   def only_one_master
