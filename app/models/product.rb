@@ -3,7 +3,7 @@
 class Product < ApplicationRecord
   # avoid url query characters in slug
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => 'at',
-                 '&' => 'and', '=' => 'equal to', '+' => 'plus', ',' => ' ' }.freeze
+                 '&' => 'and', '=' => 'equal', '+' => 'plus', ',' => ' ' }.freeze
 
   # Relations
   has_many :variants, dependent: :destroy
@@ -40,12 +40,9 @@ class Product < ApplicationRecord
 
   def sanitize_slug
     keys = Regexp.union(SLUG_REGEX.keys)
+    to_sanitize = new_record? ? name : slug
 
-    return self.slug = name.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-') if new_record?
-
-    return unless slug_changed?
-
-    self.slug = slug.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
+    self.slug = to_sanitize.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
   end
 end
 
