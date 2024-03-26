@@ -49,7 +49,7 @@ class Variant < ApplicationRecord
   end
 
   def only_one_master
-    return unless product.variants.exist?(is_master: true)
+    return unless product.variants.exists?(is_master: true)
 
     errors.add(:is_master, I18n.t('variants.validate.only_one_master'))
   end

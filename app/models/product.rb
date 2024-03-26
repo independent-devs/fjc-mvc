@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  # avoid url query characters in slug
+  SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => 'at',
+                 '&' => 'and', '=' => 'equal to', '+' => 'plus', ',' => ' ' }.freeze
+
   # Relations
   has_many :variants, dependent: :destroy
   has_many :images, dependent: :destroy
@@ -22,12 +26,27 @@ class Product < ApplicationRecord
 
   # Validations
   validates :name, presence: true
-  validates :slug, presence: true
   validates :uuid, uniqueness: true
+  validates :currency, presence: true
   validates :rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :currency, presence: true
+  validates :slug, presence: true, format: { without: Regexp.union(SLUG_REGEX.keys) }
+
+  # Generators
+  before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
+
+  private
+
+  def sanitize_slug
+    keys = Regexp.union(SLUG_REGEX.keys)
+
+    return self.slug = name.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-') if new_record?
+
+    return unless slug_changed?
+
+    self.slug = slug.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
+  end
 end
 
 # == Schema Information
