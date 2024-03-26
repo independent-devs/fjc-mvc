@@ -40,15 +40,9 @@ class Product < ApplicationRecord
 
   def sanitize_slug
     keys = Regexp.union(SLUG_REGEX.keys)
+    to_sanitize = new_record? ? name : slug
 
-    if new_record?
-      self.slug = name.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
-      return
-    end
-
-    return unless slug_changed?
-
-    self.slug = slug.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
+    self.slug = to_sanitize.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
   end
 end
 
