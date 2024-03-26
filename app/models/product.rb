@@ -30,12 +30,20 @@ class Product < ApplicationRecord
   validates :currency, presence: true
 
   # Generators
-  before_save :sanitize_name, if: :name_changed?
+  before_save :sanitize_slug, if: :name_changed?
 
   private
 
   def sanitize_name
-    self.name = name.gsub(/\?|\s+|=|%|(?-mix:\s)/, '-')
+    replacements = { ';' => '', '/' => '-',
+                     '?' => '-', ':' => '-',
+                     '@' => '-', '&' => '-',
+                     '=' => '-', '+' => '-',
+                     ',' => '-' }
+
+    keys = Regexp.union(replacements.keys)
+
+    self.slug = name.gsub(/\s+/, '-').gsub(keys, replacements)
   end
 end
 
