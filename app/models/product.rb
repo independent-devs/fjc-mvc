@@ -3,7 +3,7 @@
 class Product < ApplicationRecord
   # avoid url query characters in slug
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => 'at',
-                 '&' => 'and', '=' => 'equal to', '+' => 'plus', ',' => ' ' }.freeze
+                 '&' => 'and', '=' => 'equal', '+' => 'plus', ',' => ' ' }.freeze
 
   # Relations
   has_many :variants, dependent: :destroy
