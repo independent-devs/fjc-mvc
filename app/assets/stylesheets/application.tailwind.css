@@ -31,7 +31,7 @@
   }
 
   .input-primary {
-    @apply px-3 w-full rounded ring-1 ring-secondary/50 border-0 focus:border-0 focus:ring-2 focus:ring-primary disabled:cursor-not-allowed;
+    @apply px-3 w-full rounded ring-1 ring-secondary/50 border-0 focus:border-0 focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:placeholder:text-gray-300 disabled:ring-gray-300;
   }
 
   .input-error {
