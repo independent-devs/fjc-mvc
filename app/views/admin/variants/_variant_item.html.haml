@@ -1,5 +1,5 @@
-%li{id: dom_id(variant), data: {"sortable-update-url": product_position_admin_variants_path(@product, variant)}}
-  = form_for(variant, as: "product_variant", url: product_update_admin_variants_path(@product, variant), html: {method: :put}, data: {controller: 'autosave'}) do |f|
+%li{id: dom_id(variant), data: {"sortable-update-url": product_position_admin_variant_path(@product, variant)}}
+  = form_for(variant, as: "product_variant", url: product_update_admin_variant_path(@product, variant), html: {method: :put}, data: {controller: 'autosave'}) do |f|
     .grid.grid-cols-5.gap-8
       .flex.py-4
         .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
@@ -13,5 +13,5 @@
       .py-4
         = f.number_field :count_on_hand, id: "count_on_hand_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
       .py-4
-        %button{type: "button", data: {controller: "variant", action: "click->variant#delete", url: product_delete_admin_variants_path(@product, variant)}}
+        %button{type: "button", data: {controller: "variant", action: "click->variant#delete", url: product_delete_admin_variant_path(@product, variant)}}
           = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"

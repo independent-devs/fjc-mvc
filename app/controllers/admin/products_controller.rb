@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ProductsController < Admin::BaseController
-  before_action :set_product, only: %i[show update destroy stocks]
+  before_action :set_product, only: %i[show update destroy]
 
   # GET /admin/products
   def index
@@ -44,9 +44,6 @@ class Admin::ProductsController < Admin::BaseController
       redirect_to admin_products_url, error: I18n.t('products.unexpected')
     end
   end
-
-  # GET /products/1/stocks
-  def stocks; end
 
   private
 
