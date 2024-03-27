@@ -85,7 +85,7 @@ end
 gem 'devise', '~> 4.9'
 
 # .env Variables
-gem 'dotenv-rails', '~> 2.8'
+gem 'dotenv-rails', '~> 3.1'
 
 # Reusable components
 gem 'view_component', '~> 2.82'
