@@ -4,11 +4,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'User using mobile number without email' do
-    phone_no = Faker::PhoneNumber.cell_phone_in_e164
-    user = create(:user, email: nil, phone_no:)
+    user = create(:user, email: nil)
 
     expect(user.email).to eq(nil)
-    expect(user.phone_no).to eq(phone_no)
+    expect(user.uid).to be_blank
     expect(user.provider).to eq('phone_no')
   end
 
@@ -19,6 +18,7 @@ RSpec.describe User, type: :model do
 
     expect(user.email).to eq(oauth[:info][:email])
     expect(user.phone_no).to eq(nil)
+    expect(user.uid).to be_present
     expect(user.provider).to eq('google_oauth2')
   end
 
@@ -29,6 +29,7 @@ RSpec.describe User, type: :model do
 
     expect(user.email).to eq(oauth[:info][:email])
     expect(user.phone_no).to eq(nil)
+    expect(user.uid).to be_present
     expect(user.provider).to eq('facebook')
   end
 end
