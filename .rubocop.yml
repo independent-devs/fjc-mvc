@@ -70,3 +70,7 @@ Rails/BulkChangeTable:
 Style/WordArray:
   Exclude:
     - "db/schema.rb"
+
+convention:Metrics/BlockLength:
+   Exclude:
+    - "config/routes/*"

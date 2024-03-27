@@ -44,14 +44,6 @@ end
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
-#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
-#               product_new_admin_variants GET      /admin/products/:id/variants/new(.:format)                                                        admin/variants#product_variant_new
-#            product_create_admin_variants POST     /admin/products/:id/variants/create(.:format)                                                     admin/variants#product_variant_create
-#            product_update_admin_variants PUT      /admin/products/:id/variants/:vid/update(.:format)                                                admin/variants#product_variant_update
-#            product_delete_admin_variants DELETE   /admin/products/:id/variants/:vid/delete(.:format)                                                admin/variants#product_variant_delete
-#          product_position_admin_variants PATCH    /admin/products/:id/variants/:vid/position(.:format)                                              admin/variants#product_variant_position
-#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
-#                    stocks_admin_products GET      /admin/products/:id/stocks(.:format)                                                              admin/products#stocks
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
 #                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
 #                       new_admin_category GET      /admin/products/categories/new(.:format)                                                          admin/categories#new
@@ -60,6 +52,14 @@ end
 #                                          PATCH    /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          PUT      /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          DELETE   /admin/products/categories/:id(.:format)                                                          admin/categories#destroy
+#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
+#               product_new_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variant_new
+#            product_create_admin_variants POST     /admin/products/:id/variants(.:format)                                                            admin/variants#product_variant_create
+#             product_update_admin_variant PUT      /admin/products/:id/variants/:vid(.:format)                                                       admin/variants#product_variant_update
+#             product_delete_admin_variant DELETE   /admin/products/:id/variants/:vid/delete(.:format)                                                admin/variants#product_variant_delete
+#           product_position_admin_variant PATCH    /admin/products/:id/variants/:vid/position(.:format)                                              admin/variants#product_variant_position
+#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
+#                     product_admin_stocks GET      /admin/products/:id/stocks(.:format)                                                              admin/stocks#product_stocks
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new
