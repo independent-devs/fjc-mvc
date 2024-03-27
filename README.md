@@ -49,17 +49,18 @@ Annotate
 annotate
 ```
 
-Rubocop
+Rubocop Linter
+
+> run
 
 ```
-# run
 rubocop
-# with autocorrect
-rubocop -A
 ```
 
+> with autocorrect
+
 ```
-annotate
+rubocop -A
 ```
 
 HTML to HAML
