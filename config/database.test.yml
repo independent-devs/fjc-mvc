@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+test:
+  <<: *default
+  host: <%= ENV["POSTGRES_HOST"] %>
+  database: <%= ENV["POSTGRES_DB_NAME"] %><%= ENV['TEST_ENV_NUMBER'] %>
+  username: <%= ENV["POSTGRES_USERNAME"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  port: <%= ENV["POSTGRES_PORT"] %>

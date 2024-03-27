@@ -38,7 +38,9 @@ jobs:
           POSTGRES_PORT: 5432
           RAILS_ENV: test
           PARALLEL_TEST_PROCESSORS: 2
-        run: bundle exec rake parallel:setup
+        run: |
+          cp config/database.test.yml config/database.yml
+          bundle exec rake parallel:setup
       - name: Run tests
         env:
           POSTGRES_HOST: localhost
