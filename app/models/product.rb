@@ -38,6 +38,7 @@ class Product < ApplicationRecord
 
   private
 
+  # For generators
   def sanitize_slug
     keys = Regexp.union(SLUG_REGEX.keys)
     to_sanitize = new_record? ? name : slug

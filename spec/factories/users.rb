@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    phone_no { Faker::PhoneNumber.cell_phone_in_e164 }
+    phone_no { '+639012345678' }
     name { Faker::Name.name }
     password { Faker::Internet.password }
     admin { false }

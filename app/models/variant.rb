@@ -30,6 +30,7 @@ class Variant < ApplicationRecord
 
   private
 
+  # For generators
   def capture_price_condition
     price_previously_changed? || deleted_at_previously_changed?
   end
@@ -45,6 +46,7 @@ class Variant < ApplicationRecord
                     has_variant: more_than_one)
   end
 
+  # For validations
   def master_delete_attempt
     return unless is_master && deleted_at.present?
 
