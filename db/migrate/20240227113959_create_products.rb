@@ -9,17 +9,18 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.datetime :discontinue_on, precision: nil
       t.datetime :deleted_at, precision: nil
       t.string :slug, null: false
-      t.text :meta_description
-      t.string :meta_keywords
-      t.boolean :promotionable, null: false, default: true
-      t.boolean :require_login, null: false, default: false
       t.string :meta_title
+      t.string :meta_keywords
+      t.text :meta_description
+      t.boolean :promotable, null: false, default: true
+      t.boolean :order_must_login, null: false, default: false
       t.decimal :lowest_price, precision: 10, scale: 2
       t.decimal :highest_price, precision: 10, scale: 2
-      t.decimal :rating, precision: 1, scale: 1, default: 0
-      t.integer :raters, default: 0
-      t.boolean :has_variant, null: false, default: false
       t.string :currency, null: false
+      t.decimal :rating, precision: 1, scale: 1, default: 0
+      t.integer :rate_count, default: 0
+      t.boolean :has_variant, null: false, default: false
+      t.string :variant_label, null: false, default: 'Variations'
 
       t.timestamps
     end

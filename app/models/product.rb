@@ -62,12 +62,13 @@ end
 #  meta_keywords    :string
 #  meta_title       :string
 #  name             :string           not null
-#  promotionable    :boolean          default(TRUE), not null
-#  raters           :integer          default(0)
+#  order_must_login :boolean          default(FALSE), not null
+#  promotable       :boolean          default(TRUE), not null
+#  rate_count       :integer          default(0)
 #  rating           :decimal(1, 1)    default(0.0)
-#  require_login    :boolean          default(FALSE), not null
 #  slug             :string           not null
 #  uuid             :uuid             not null
+#  variant_label    :string           default("Variations"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
