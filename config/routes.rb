@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'stocks/index'
-  resources :options
-  resources :option_types
-  devise_for :users, path: '/auth', controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
-
+  ## Home (/)
   root 'home#index'
+
+  ## Authentication
+  devise_for :users, path: '/auth', controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
 
   ## draw routes
   draw :profile
@@ -21,23 +20,7 @@ end
 # == Route Map
 #
 #                                   Prefix Verb     URI Pattern                                                                                       Controller#Action
-#                             stocks_index GET      /stocks/index(.:format)                                                                           stocks#index
-#                                  options GET      /options(.:format)                                                                                options#index
-#                                          POST     /options(.:format)                                                                                options#create
-#                               new_option GET      /options/new(.:format)                                                                            options#new
-#                              edit_option GET      /options/:id/edit(.:format)                                                                       options#edit
-#                                   option GET      /options/:id(.:format)                                                                            options#show
-#                                          PATCH    /options/:id(.:format)                                                                            options#update
-#                                          PUT      /options/:id(.:format)                                                                            options#update
-#                                          DELETE   /options/:id(.:format)                                                                            options#destroy
-#                             option_types GET      /option_types(.:format)                                                                           option_types#index
-#                                          POST     /option_types(.:format)                                                                           option_types#create
-#                          new_option_type GET      /option_types/new(.:format)                                                                       option_types#new
-#                         edit_option_type GET      /option_types/:id/edit(.:format)                                                                  option_types#edit
-#                              option_type GET      /option_types/:id(.:format)                                                                       option_types#show
-#                                          PATCH    /option_types/:id(.:format)                                                                       option_types#update
-#                                          PUT      /option_types/:id(.:format)                                                                       option_types#update
-#                                          DELETE   /option_types/:id(.:format)                                                                       option_types#destroy
+#                                     root GET      /                                                                                                 home#index
 #                         new_user_session GET      /auth/sign_in(.:format)                                                                           devise/sessions#new
 #                             user_session POST     /auth/sign_in(.:format)                                                                           devise/sessions#create
 #                     destroy_user_session DELETE   /auth/sign_out(.:format)                                                                          devise/sessions#destroy
@@ -57,7 +40,6 @@ end
 #                                          PUT      /auth(.:format)                                                                                   registrations#update
 #                                          DELETE   /auth(.:format)                                                                                   registrations#destroy
 #                                          POST     /auth(.:format)                                                                                   registrations#create
-#                                     root GET      /                                                                                                 home#index
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
