@@ -236,6 +236,8 @@ GEM
     orm_adapter (0.5.0)
     pagy (6.4.3)
     parallel (1.24.0)
+    parallel_tests (4.6.0)
+      parallel
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
@@ -422,6 +424,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 1.1)
   omniauth-rails_csrf_protection (~> 1.0)
   pagy (~> 6.4)
+  parallel_tests
   pg (~> 1.1)
   phonelib (~> 0.8.4)
   puma (~> 6.4)
