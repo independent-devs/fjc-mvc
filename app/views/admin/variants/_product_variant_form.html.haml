@@ -1,4 +1,4 @@
-- is_new = (action_name == "product_variant_new")
+- is_new = @variant.new_record?
 = form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
   .flex.flex-col.w-full.gap-5
     %span

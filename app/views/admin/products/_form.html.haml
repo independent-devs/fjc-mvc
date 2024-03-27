@@ -1,4 +1,4 @@
-- is_new = (action_name == "new")
+- is_new = @product.new_record?
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
     .field
