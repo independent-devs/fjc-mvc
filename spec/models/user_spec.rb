@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'User using mobile number without email' do
-    user = create(:user, email: nil)
+    phone_no = Faker::PhoneNumber.cell_phone_in_e164
+    user = create(:user, email: nil, phone_no:)
 
     expect(user.email).to eq(nil)
-    expect(user.phone_no).to eq('+639012345678')
+    expect(user.phone_no).to eq(phone_no)
     expect(user.provider).to eq('phone_no')
   end
 
