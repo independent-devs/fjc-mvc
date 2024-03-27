@@ -1,5 +1,37 @@
 # frozen_string_literal: true
 
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  it 'User using mobile number without email' do
+    user = create(:user, email: nil)
+
+    expect(user.email).to eq(nil)
+    expect(user.phone_no).to eq('+639012345678')
+    expect(user.provider).to eq('phone_no')
+  end
+
+  it 'User using google auth without mobile number' do
+    oauth = Faker::Omniauth.google
+    user = create(:user, phone_no: nil, email: oauth[:info][:email], uid: oauth[:uid],
+                         provider: oauth[:provider])
+
+    expect(user.email).to eq(oauth[:info][:email])
+    expect(user.phone_no).to eq(nil)
+    expect(user.provider).to eq('google_oauth2')
+  end
+
+  it 'User using facebook auth without mobile number' do
+    oauth = Faker::Omniauth.facebook
+    user = create(:user, phone_no: nil, email: oauth[:info][:email], uid: oauth[:uid],
+                         provider: oauth[:provider])
+
+    expect(user.email).to eq(oauth[:info][:email])
+    expect(user.phone_no).to eq(nil)
+    expect(user.provider).to eq('facebook')
+  end
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -29,10 +61,3 @@
 #  index_users_on_phone_no              (phone_no) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require 'test_helper'
-
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end

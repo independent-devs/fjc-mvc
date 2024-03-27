@@ -48,17 +48,17 @@ class Variant < ApplicationRecord
   def master_delete_attempt
     return unless is_master && deleted_at.present?
 
-    errors.add(:is_master, I18n.t('variants.validate.master_delete_attempt'))
+    errors.add(:master, I18n.t('variants.validate.master_delete_attempt'))
   end
 
   def only_one_master_condition
-    (new_record? && is_master) || (!is_master && is_master_changed?)
+    new_record? && is_master
   end
 
   def only_one_master
     return unless product.variants.exists?(is_master: true)
 
-    errors.add(:is_master, I18n.t('variants.validate.only_one_master'))
+    errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
 end
 
