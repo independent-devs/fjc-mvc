@@ -76,26 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.index ["variant_id"], name: "index_images_on_variant_id"
   end
 
-  create_table "option_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_option_types_on_deleted_at"
-  end
-
-  create_table "options", force: :cascade do |t|
-    t.string "name"
-    t.bigint "option_type_id", null: false
-    t.bigint "product_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_options_on_deleted_at"
-    t.index ["option_type_id"], name: "index_options_on_option_type_id"
-    t.index ["product_id"], name: "index_options_on_product_id"
-  end
-
   create_table "product_categories", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
@@ -115,17 +95,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.datetime "discontinue_on", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "slug", null: false
-    t.text "meta_description"
-    t.string "meta_keywords"
-    t.boolean "promotionable", default: true, null: false
-    t.boolean "require_login", default: false, null: false
     t.string "meta_title"
+    t.string "meta_keywords"
+    t.text "meta_description"
+    t.boolean "promotable", default: true, null: false
+    t.boolean "order_must_login", default: false, null: false
     t.decimal "lowest_price", precision: 10, scale: 2
     t.decimal "highest_price", precision: 10, scale: 2
-    t.decimal "rating", precision: 1, scale: 1, default: "0.0"
-    t.integer "raters", default: 0
-    t.boolean "has_variant", default: false, null: false
     t.string "currency", null: false
+    t.decimal "rating", precision: 1, scale: 1, default: "0.0"
+    t.integer "rate_count", default: 0
+    t.boolean "has_variant", default: false, null: false
+    t.string "variant_label", default: "Variations", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"
@@ -185,8 +166,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
   add_foreign_key "descriptions", "products"
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
-  add_foreign_key "options", "option_types"
-  add_foreign_key "options", "products"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "variants", "products"
