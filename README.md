@@ -68,5 +68,3 @@ HTML to HAML
 ```
 HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
 ```
-
-
