@@ -30,15 +30,43 @@ Run locally
 ./bin/dev
 ```
 
-HTML to HAML
-
-```
-HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
-```
-
 Test Account
 
 ```
 phone: 09012345678
 pass: password
 ```
+
+RSpec Test
+
+```
+rspec
+```
+
+Annotate
+
+```
+annotate
+```
+
+Rubocop Linter
+
+> run
+
+```
+rubocop
+```
+
+> with autocorrect
+
+```
+rubocop -A
+```
+
+HTML to HAML
+
+```
+HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
+```
+
+
