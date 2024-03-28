@@ -1,0 +1,8 @@
+- if is_parent
+  = render CategoryDragComponent.new is_parent: true, category: category[0]
+
+- if category[1].present?
+  .flex.flex-col.gap-1.pl-9
+    - category[1].each do |child|
+      = render CategoryDragComponent.new is_parent: false, category: child[0]
+      = render "list", is_parent: false, category: child

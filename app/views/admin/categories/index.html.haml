@@ -1,2 +1,8 @@
 .margin-max-screen.h-full.py-8
-  %h1 Listing categories
+  %h1.font-bold.text-xl Categories
+  .flex.flex-col.gap-2.mt-8
+    - @base_parents.each do |base|
+      .flex.flex-col.gap-1
+        - base.subtree.arrange.each do |category|
+          .flex.flex-col.gap-1
+            = render "list", is_parent: true, category:

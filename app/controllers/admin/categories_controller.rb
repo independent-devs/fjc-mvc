@@ -5,7 +5,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @base_parents = Category.not_deleted.sort_by_position.base_parents
   end
 
   # GET /categories/1

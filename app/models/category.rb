@@ -9,6 +9,7 @@ class Category < ApplicationRecord
   # Scopes
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :sort_by_position, -> { rank(:sort_order) }
+  scope :base_parents, -> { where(ancestry: nil) }
 
   # Position
   ranks :sort_order, column: :position, with_same: :ancestry, scope: :not_deleted
