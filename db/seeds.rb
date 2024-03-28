@@ -16,6 +16,11 @@ Category.create!(name: 'Bags', parent: women)
 clothes = Category.create(name: 'Clothes', parent: women)
 Category.create(name: 'Sample', parent: clothes)
 
+shoe = Category.create(name: 'Shoe')
+Category.create!(name: 'Nike', parent: shoe)
+adidas = Category.create(name: 'Adidas', parent: shoe)
+Category.create(name: 'T-21', parent: adidas)
+
 # base = Category.create(name: 'Base 2')
 # lvl_one = Category.create(name: 'Base 2 lvl 1', lft_id: base.id, parent_id: base.id)
 # Category.create(name: 'Base 2 lvl 2', lft_id: lvl_one.id, parent_id: base.id)
