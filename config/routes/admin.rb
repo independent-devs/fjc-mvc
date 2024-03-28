@@ -12,13 +12,13 @@ authenticated :user, -> { _1.admin } do
         resources :variants, path: 'variants', param: :vid, only: [] do
           collection do
             get :index, to: 'variants#product_variants', as: 'product'
-            get :new, to: 'variants#product_variant_new', as: 'product_new'
-            post :create, to: 'variants#product_variant_create', as: 'product_create'
+            get 'new', to: 'variants#product_variant_new', as: 'product_new'
+            post 'create', to: 'variants#product_variant_create', as: 'product_create'
           end
           member do
-            put :update, to: 'variants#product_variant_update', as: 'product_update'
-            delete :destroy, to: 'variants#product_variant_delete', as: 'product_delete'
-            patch :position, to: 'variants#product_variant_position', as: 'product_position'
+            put 'update', to: 'variants#product_variant_update', as: 'product_update'
+            delete 'delete', to: 'variants#product_variant_delete', as: 'product_delete'
+            patch 'position', to: 'variants#product_variant_position', as: 'product_position'
           end
         end
         resources :images, only: [] do
