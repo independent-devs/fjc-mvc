@@ -124,3 +124,6 @@ gem 'money-rails', '~> 1.15'
 
 # Sortable
 gem 'ranked-model', '~> 0.4.9'
+
+# Nested Categories
+gem 'ancestry', '~> 4.3'
