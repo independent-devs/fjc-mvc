@@ -14,5 +14,6 @@ class CreateCategories < ActiveRecord::Migration[7.0]
     add_index :categories, :position
     add_index :categories, :deleted_at
     add_index :categories, :ancestry
+    add_index :categories, %i[name ancestry], unique: true
   end
 end

@@ -14,7 +14,7 @@ class Category < ApplicationRecord
   ranks :sort_order, column: :position, with_same: :ancestry, scope: :not_deleted
 
   # Validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :ancestry }
 end
 
 # == Schema Information
@@ -31,7 +31,8 @@ end
 #
 # Indexes
 #
-#  index_categories_on_ancestry    (ancestry)
-#  index_categories_on_deleted_at  (deleted_at)
-#  index_categories_on_position    (position)
+#  index_categories_on_ancestry           (ancestry)
+#  index_categories_on_deleted_at         (deleted_at)
+#  index_categories_on_name_and_ancestry  (name,ancestry) UNIQUE
+#  index_categories_on_position           (position)
 #

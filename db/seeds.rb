@@ -12,9 +12,9 @@ User.create(name: 'John Doe', phone_no: '+639079247641', password: 'password', a
 User.create(name: 'Admin', phone_no: '+639012345678', password: 'password', admin: true)
 
 women = Category.create(name: 'Women')
-Category.create(name: 'Bags', parent: women)
-women2 = Category.create(name: 'Clothes', parent: women)
-Category.create(name: 'Sample', parent: women2)
+Category.create!(name: 'Bags', parent: women)
+clothes = Category.create(name: 'Clothes', parent: women)
+Category.create(name: 'Sample', parent: clothes)
 
 # base = Category.create(name: 'Base 2')
 # lvl_one = Category.create(name: 'Base 2 lvl 1', lft_id: base.id, parent_id: base.id)

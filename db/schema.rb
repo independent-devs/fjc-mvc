@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
+    t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry", unique: true
     t.index ["position"], name: "index_categories_on_position"
   end
 
