@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
-  has_many :product_categories, dependent: :destroy
+  include RankedModel
 
-  belongs_to :parent, class_name: 'Category', optional: true
-  has_many :subcategories, class_name: 'Category', foreign_key: :parent_id, dependent: :destroy, inverse_of: :category
+  # Relations
+  has_ancestry
+
+  # Scopes
+  scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :sort_by_position, -> { rank(:sort_order) }
+
+  # Position
+  ranks :sort_order, column: :position, with_same: :ancestry, scope: :not_deleted
+
+  # Validations
+  validates :name, presence: true
 end
 
 # == Schema Information
@@ -12,20 +22,16 @@ end
 # Table name: categories
 #
 #  id         :bigint           not null, primary key
+#  ancestry   :string
 #  deleted_at :datetime
-#  name       :string
+#  name       :string           not null
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  parent_id  :bigint
 #
 # Indexes
 #
+#  index_categories_on_ancestry    (ancestry)
 #  index_categories_on_deleted_at  (deleted_at)
-#  index_categories_on_parent_id   (parent_id)
 #  index_categories_on_position    (position)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (parent_id => categories.id)
 #
