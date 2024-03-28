@@ -17,7 +17,7 @@ authenticated :user, -> { _1.admin } do
           end
           member do
             put :update, to: 'variants#product_variant_update', as: 'product_update'
-            delete :delete, to: 'variants#product_variant_delete', as: 'product_delete'
+            delete :destroy, to: 'variants#product_variant_delete', as: 'product_delete'
             patch :position, to: 'variants#product_variant_position', as: 'product_position'
           end
         end
