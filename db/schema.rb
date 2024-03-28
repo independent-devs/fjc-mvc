@@ -44,14 +44,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "position"
     t.datetime "deleted_at"
-    t.bigint "parent_id"
+    t.bigint "from_id"
+    t.bigint "base_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["base_id"], name: "index_categories_on_base_id"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
-    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["from_id"], name: "index_categories_on_from_id"
     t.index ["position"], name: "index_categories_on_position"
   end
 
@@ -162,7 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "categories", "categories", column: "base_id"
+  add_foreign_key "categories", "categories", column: "from_id"
   add_foreign_key "descriptions", "products"
   add_foreign_key "images", "products"
   add_foreign_key "images", "variants"
