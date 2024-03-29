@@ -7,6 +7,7 @@ class CreateCategories < ActiveRecord::Migration[7.0]
       t.integer :position
       t.datetime :deleted_at
       t.string :ancestry
+      t.integer :ancestry_depth, default: 0
 
       t.timestamps
     end

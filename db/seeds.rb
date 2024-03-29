@@ -11,15 +11,14 @@
 User.create(name: 'John Doe', phone_no: '+639079247641', password: 'password', admin: true)
 User.create(name: 'Admin', phone_no: '+639012345678', password: 'password', admin: true)
 
-women = Category.create(name: 'Women')
-Category.create!(name: 'Bags', parent: women)
-clothes = Category.create(name: 'Clothes', parent: women)
-Category.create(name: 'Sample', parent: clothes)
+category = Category.create(name: 'Categories')
 
-shoe = Category.create(name: 'Shoe')
-Category.create!(name: 'Nike', parent: shoe)
-adidas = Category.create(name: 'Adidas', parent: shoe)
-Category.create(name: 'T-21', parent: adidas)
+clothes = Category.create(name: 'Clothes', parent: category)
+Category.create(name: 'Polo Shirt', parent: clothes)
+Category.create(name: 'T-Shirt', parent: clothes)
+pants = Category.create(name: 'Pants', parent: clothes)
+Category.create(name: 'Trousers', parent: pants)
+Category.create(name: 'Shorts', parent: pants)
 
 # base = Category.create(name: 'Base 2')
 # lvl_one = Category.create(name: 'Base 2 lvl 1', lft_id: base.id, parent_id: base.id)

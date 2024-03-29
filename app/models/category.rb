@@ -4,12 +4,11 @@ class Category < ApplicationRecord
   include RankedModel
 
   # Relations
-  has_ancestry
+  has_ancestry cache_depth: true
 
   # Scopes
   scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :sort_by_position, -> { rank(:sort_order) }
-  scope :base_parents, -> { where(ancestry: nil) }
+  scope :base_root, -> { find_by(ancestry: nil) }
 
   # Position
   ranks :sort_order, column: :position, with_same: :ancestry, scope: :not_deleted
@@ -22,13 +21,14 @@ end
 #
 # Table name: categories
 #
-#  id         :bigint           not null, primary key
-#  ancestry   :string
-#  deleted_at :datetime
-#  name       :string           not null
-#  position   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint           not null, primary key
+#  ancestry       :string
+#  ancestry_depth :integer          default(0)
+#  deleted_at     :datetime
+#  name           :string           not null
+#  position       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #

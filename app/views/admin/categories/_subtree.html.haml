@@ -1,0 +1,5 @@
+- if category[1].present?
+  .flex.flex-col.gap-1{class: indent ? "pl-9" : "pl-0"}
+    - category[1].each do |child|
+      = render 'item', category: child[0]
+      = render "subtree", indent: true, category: child
