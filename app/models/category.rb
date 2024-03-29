@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
+  MAX_DEPTH = 4
+
   include RankedModel
 
   # Relations
@@ -15,6 +17,8 @@ class Category < ApplicationRecord
 
   # Validations
   validates :name, presence: true, uniqueness: { scope: :ancestry }
+  validates :ancestry_depth, inclusion: { in: 1..MAX_DEPTH, message: I18n.t('categories.invalid.ancestry_depth') },
+                             if: -> { ancestry.present? }
 end
 
 # == Schema Information
