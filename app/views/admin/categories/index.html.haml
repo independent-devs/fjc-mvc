@@ -1,7 +1,7 @@
 .margin-max-screen.h-full.py-8
   - if @base_category.present?
     %h1.font-bold.text-xl
-      = @base_category.name
+      = t("categories.section_label")
     .flex.flex-col.gap-1.mt-6
       - @base_category.subtree.arrange(order: :position).each do |category|
         = render "subtree", category:
