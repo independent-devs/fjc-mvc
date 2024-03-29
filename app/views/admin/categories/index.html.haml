@@ -4,6 +4,6 @@
       = @base_category.name
     .flex.flex-col.gap-1.mt-6
       - @base_category.subtree.arrange(order: :position).each do |category|
-        = render "subtree", indent: false, category:
+        = render "subtree", category:
   - else
     %span.text-red-500.text-xl.font-bold Something went wrong, must be deleted
