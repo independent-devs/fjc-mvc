@@ -8,8 +8,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(name: 'John Doe', phone_no: '+639079247641', password: 'password', admin: true)
-User.create(name: 'Admin', phone_no: '+639012345678', password: 'password', admin: true)
+if Rails.env.development?
+  User.create(name: 'John Doe', phone_no: '+639079247641', password: 'password', admin: true)
+  User.create(name: 'Admin', phone_no: '+639012345678', password: 'password', admin: true)
+end
 
 category = Category.create(name: 'Categories')
 
