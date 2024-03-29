@@ -5,7 +5,7 @@ class Image < ApplicationRecord
 
   # Relations
   belongs_to :product
-  belongs_to :variant
+  belongs_to :variant, optional: true
   has_one_attached :photo
 
   # Scopes
