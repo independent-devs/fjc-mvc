@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
-  MAX_DEPTH = 4
-
   include RankedModel
+
+  # Constants
+  MAX_DEPTH = 4
 
   # Relations
   has_ancestry cache_depth: true
