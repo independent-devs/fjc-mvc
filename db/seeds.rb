@@ -16,10 +16,7 @@ category = Category.create(name: 'Categories')
 clothes = Category.create(name: 'Clothes', parent: category)
 Category.create(name: 'Polo Shirt', parent: clothes)
 Category.create(name: 'T-Shirt', parent: clothes)
+
 pants = Category.create(name: 'Pants', parent: clothes)
 Category.create(name: 'Trousers', parent: pants)
 Category.create(name: 'Shorts', parent: pants)
-
-# base = Category.create(name: 'Base 2')
-# lvl_one = Category.create(name: 'Base 2 lvl 1', lft_id: base.id, parent_id: base.id)
-# Category.create(name: 'Base 2 lvl 2', lft_id: lvl_one.id, parent_id: base.id)
