@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-  # avoid url query characters in slug
+  # Constants
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => 'at',
                  '&' => 'and', '=' => 'equal', '+' => 'plus', ',' => ' ' }.freeze
 
@@ -12,8 +12,7 @@ class Product < ApplicationRecord
   has_one :description, dependent: :destroy
 
   # Nested form
-  accepts_nested_attributes_for :variants
-  accepts_nested_attributes_for :description
+  accepts_nested_attributes_for :variants, :description, :product_category
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
