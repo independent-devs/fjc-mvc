@@ -1,8 +1,9 @@
 .margin-max-screen.h-full.py-8
-  %h1.font-bold.text-xl Categories
-  .flex.flex-col.gap-2.mt-8
-    - @base_parents.each do |base|
-      .flex.flex-col.gap-1
-        - base.subtree.arrange.each do |category|
-          .flex.flex-col.gap-1
-            = render "list", is_parent: true, category:
+  - if @base_category.present?
+    %h1.font-bold.text-xl
+      = @base_category.name
+    .flex.flex-col.gap-1.mt-6
+      - @base_category.subtree.arrange(order: :position).each do |category|
+        = render "subtree", indent: false, category:
+  - else
+    %span.text-red-500.text-xl.font-bold Something went wrong, must be deleted

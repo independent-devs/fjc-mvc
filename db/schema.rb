@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.integer "position"
     t.datetime "deleted_at"
     t.string "ancestry"
+    t.integer "ancestry_depth", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
