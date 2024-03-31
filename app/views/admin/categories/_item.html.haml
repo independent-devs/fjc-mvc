@@ -1,3 +1,4 @@
-.flex.items-center.gap-4.w-full.border.px-4.rounded{class: "py-1.5", id: dom_id(category)}
-  = icon("fa-solid", "plus", class: "text-gray-700")
+.flex.items-center.gap-2.w-full.border.px-3.rounded{class: "py-1.5", id: dom_id(category)}
+  = button_to "/", class: "flex text-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
+    = icon("fa-solid", "plus", class: "text-sm")
   %span.font-medium.text-sm= category.name
