@@ -1,2 +1,2 @@
-= form_for(category, as: "product_category", url: admin_category_path(category), html: { id:,  method: }) do |f|
+= form_for(category, url: admin_category_path(category), html: { id:,  method: }) do |f|
   = f.text_field :name, class: "px-1.5 py-0 w-full border-none rounded-sm focus:border-none ring-0 focus:ring-1 focus:ring-primary", required: true
