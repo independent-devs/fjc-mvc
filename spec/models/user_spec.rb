@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
     user = create(:user, email: nil)
 
     expect(user.email).to eq(nil)
+    expect(user.phone_no).to be_present
     expect(user.uid).to be_blank
     expect(user.provider).to eq('phone_no')
   end
