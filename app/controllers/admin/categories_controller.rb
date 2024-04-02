@@ -3,23 +3,23 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: %i[show edit update destroy]
 
-  # GET /categories
+  # GET /product/categories
   def index
     @base_category = Category.base_root
   end
 
-  # GET /categories/1
+  # GET /product/categories/1
   def show; end
 
-  # GET /categories/new
+  # GET /product/categories/new
   def new
     @category = Category.new
   end
 
-  # GET /categories/1/edit
+  # GET /product/categories/1/edit
   def edit; end
 
-  # POST /categories
+  # POST /product/categories
   def create
     @category = Category.new(category_params)
 
@@ -30,7 +30,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  # PATCH/PUT /categories/1
+  # PATCH/PUT /product/categories/1
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -57,7 +57,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  # DELETE /categories/1
+  # DELETE /product/categories/1
   def destroy
     @category.destroy
     redirect_to categories_url, notice: I18n.t('categories.destroyed')
