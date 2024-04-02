@@ -32,10 +32,13 @@ class Admin::CategoriesController < Admin::BaseController
 
   # PATCH/PUT /categories/1
   def update
-    if @category.update(category_params)
-      redirect_to admin_categories_url, notice: I18n.t('categories.updated')
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @category.update(category_params)
+        format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
+        format.turbo_stream { render :stream, locals: { notif_type: 'success', message: I18n.t('categories.updated') } }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
