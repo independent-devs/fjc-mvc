@@ -37,15 +37,21 @@ class Admin::VariantsController < Admin::BaseController
       if @variant.update(product_variant_params)
         format.html { redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated') }
         format.turbo_stream do
-          render :stream, locals: { message: I18n.t('variants.updated'),
-                                    type: 'input-table', notif_type: 'success',
-                                    variant: @variant }
+          render :stream, locals: {
+            message: I18n.t('variants.updated'),
+            type: 'input-table',
+            notif_type: 'success',
+            variant: @variant
+          }
         end
       else
         format.turbo_stream do
-          render :stream, locals: { message: @variant.errors.full_messages.first,
-                                    type: 'input-table', notif_type: 'error',
-                                    variant: @product.variants.find(params[:vid]) }
+          render :stream, locals: {
+            message: @variant.errors.full_messages.first,
+            type: 'input-table',
+            notif_type: 'error',
+            variant: @product.variants.find(params[:vid])
+          }
         end
       end
     end
@@ -56,13 +62,19 @@ class Admin::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(deleted_at: DateTime.now)
         format.turbo_stream do
-          render :stream, locals: { message: I18n.t('variants.destroyed'),
-                                    type: 'deleted', notif_type: 'success',
-                                    variant: @variant }
+          render :stream, locals: {
+            message: I18n.t('variants.destroyed'),
+            type: 'deleted', notif_type: 'success',
+            variant: @variant
+          }
         end
       else
         format.turbo_stream do
-          render :stream, locals: { message: @variant.errors.full_messages.first, type: nil, notif_type: 'error' }
+          render :stream, locals: {
+            message: @variant.errors.full_messages.first,
+            type: nil,
+            notif_type: 'error'
+          }
         end
       end
     end
