@@ -35,23 +35,16 @@ class Admin::VariantsController < Admin::BaseController
   def product_variant_update
     respond_to do |format|
       if @variant.update(product_variant_params)
-        format.html { redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.updated') }
         format.turbo_stream do
-          render :stream, locals: {
-            message: I18n.t('variants.updated'),
-            type: 'input-table',
-            notif_type: 'success',
-            variant: @variant
-          }
+          locals = { message: I18n.t('variants.updated'), type: 'input-table', notif_type: 'success',
+                     variant: @variant }
+          render :stream, locals:
         end
       else
         format.turbo_stream do
-          render :stream, locals: {
-            message: @variant.errors.full_messages.first,
-            type: 'input-table',
-            notif_type: 'error',
-            variant: @product.variants.find(params[:vid])
-          }
+          locals = { message: @variant.errors.full_messages.first, type: 'input-table', notif_type: 'error',
+                     variant: @product.variants.find(params[:vid]) }
+          render :stream, locals:
         end
       end
     end
@@ -62,19 +55,13 @@ class Admin::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(deleted_at: DateTime.now)
         format.turbo_stream do
-          render :stream, locals: {
-            message: I18n.t('variants.destroyed'),
-            type: 'deleted', notif_type: 'success',
-            variant: @variant
-          }
+          locals = { message: I18n.t('variants.destroyed'), type: 'deleted', notif_type: 'success', variant: @variant }
+          render :stream, locals:
         end
       else
         format.turbo_stream do
-          render :stream, locals: {
-            message: @variant.errors.full_messages.first,
-            type: nil,
-            notif_type: 'error'
-          }
+          locals = { message: @variant.errors.full_messages.first, type: nil, notif_type: 'error' }
+          render :stream, locals:
         end
       end
     end
