@@ -18,7 +18,7 @@ en:
     created: "Category was successfully created."
     updated: "Category was successfully updated."
     destroyed: "Category was successfully destroyed."
-    invalid:
+    validate:
       ancestry_depth: "invalid depth."
   variants:
     created: "Variant was successfully created."

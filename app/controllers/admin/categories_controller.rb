@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: I18n.t('categories.created')
+      redirect_to admin_categories_url, notice: I18n.t('categories.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,10 +32,15 @@ class Admin::CategoriesController < Admin::BaseController
 
   # PATCH/PUT /categories/1
   def update
-    if @category.update(category_params)
-      redirect_to @category, notice: I18n.t('categories.updated')
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @category.update(category_params)
+        format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
+        format.turbo_stream do
+          render :stream, locals: { notif_type: 'success', type: 'item', message: I18n.t('categories.updated') }
+        end
+      else
+        format.html { redirect_to admin_categories_url, error: @category.errors.full_messages.first }
+      end
     end
   end
 
