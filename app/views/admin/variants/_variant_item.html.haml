@@ -9,7 +9,7 @@
         = f.number_field :price, id: dom_id(variant, "price"), step: :any, class: "input-table", data: { "autosave-target": "input" }
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :cost, id: dom_id(variant, "cost"), step: :any, class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", step: :any, class: "input-table", data: { "autosave-target": "input" }
       .py-4
         = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), class: "input-table", data: { "autosave-target": "input" }
       .py-4
