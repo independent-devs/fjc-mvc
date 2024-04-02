@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: I18n.t('categories.created')
+      redirect_to admin_categories_url, notice: I18n.t('categories.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::CategoriesController < Admin::BaseController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: I18n.t('categories.updated')
+      redirect_to admin_categories_url, notice: I18n.t('categories.updated')
     else
       render :edit, status: :unprocessable_entity
     end

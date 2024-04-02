@@ -9,7 +9,7 @@ authenticated :user, -> { _1.admin } do
         resources :categories
       end
       member do
-        resources :variants, path: 'variants', param: :vid, only: [] do
+        resources :variants, param: :vid, only: [] do
           collection do
             get :index, to: 'variants#product_variants', as: 'product'
             get 'new', to: 'variants#product_variant_new', as: 'product_new'
