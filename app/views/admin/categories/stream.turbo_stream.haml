@@ -1,8 +1,8 @@
 = turbo_stream.prepend "notification-container" do
   = render NotificationComponent.new notif_type:, message: 
- 
+
 - case type
 - when "item"
-  = turbo_stream.replace dom_id(@category) do
-    = render "item", category: @category
+  = turbo_stream.replace dom_id(category) do
+    = render "item", category:
 
