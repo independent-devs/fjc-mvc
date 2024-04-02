@@ -21,6 +21,8 @@
       .py-4
         Actions
     - if @variants.present?
-      %ul.divide-y{data: {controller: "sortable", "sortable-resource-name-value": "product_variant", "sortable-handle-value": ".handle" }}
-        - @variants.each do |variant|
+      %ul.divide-y{data: {controller: "sortable",         |
+      "sortable-resource-name-value": "product_variant",  |
+      "sortable-handle-value": ".handle" }}               |
+        - @variants.each do |variant|                   
           = render "variant_item", variant:

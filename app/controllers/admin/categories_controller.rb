@@ -35,9 +35,11 @@ class Admin::CategoriesController < Admin::BaseController
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
-        format.turbo_stream { render :stream, locals: { notif_type: 'success', message: I18n.t('categories.updated') } }
+        format.turbo_stream do
+          render :stream, locals: { notif_type: 'success', type: 'item', message: I18n.t('categories.updated') }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to admin_categories_url, error: @category.errors.full_messages.first }
       end
     end
   end

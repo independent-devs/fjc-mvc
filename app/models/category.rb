@@ -18,7 +18,7 @@ class Category < ApplicationRecord
 
   # Validations
   validates :name, presence: true, uniqueness: { scope: :ancestry }
-  validates :ancestry_depth, inclusion: { in: 1..MAX_DEPTH, message: I18n.t('categories.invalid.ancestry_depth') },
+  validates :ancestry_depth, inclusion: { in: 1..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') },
                              if: -> { ancestry.present? }
 end
 
