@@ -3,15 +3,15 @@
     .grid.grid-cols-5.gap-8
       .flex.py-4
         .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500")
-        = f.text_field :name, id: "name_#{dom_id(variant)}", class: "input-table h-fit w-full", data: { "autosave-target": "input" }
+        = f.text_field :name, id: dom_id(variant, "name"), class: "input-table h-fit w-full", data: { "autosave-target": "input" }
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :price, id: "price_#{dom_id(variant)}", step: :any, class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :price, id: dom_id(variant, "price"), step: :any, class: "input-table", data: { "autosave-target": "input" }
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :cost, id: "cost_#{dom_id(variant)}", step: :any, class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :cost, id: dom_id(variant, "cost"), step: :any, class: "input-table", data: { "autosave-target": "input" }
       .py-4
-        = f.number_field :count_on_hand, id: "count_on_hand_#{dom_id(variant)}", class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), class: "input-table", data: { "autosave-target": "input" }
       .py-4
         %button{type: "button", data: {controller: "variant", action: "click->variant#delete", url: product_delete_admin_variant_path(@product, variant)}}
           = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"

@@ -3,6 +3,6 @@
 
 - case type
 - when "item"
-  = turbo_stream.replace dom_id(category) do
+  = turbo_stream.replace dom_id(category, type) do
     = render "item", category:
 
