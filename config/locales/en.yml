@@ -17,7 +17,7 @@ en:
     section_title: "Browse By Category"
     created: "Category was successfully created."
     updated: "Category was successfully updated."
-    destroyed: "Category was successfully destroyed."
+    destroyed: "Category was successfully deleted."
     validate:
       ancestry_depth: "invalid depth."
   variants:

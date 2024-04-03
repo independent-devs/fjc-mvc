@@ -38,10 +38,16 @@ class Admin::ProductsController < Admin::BaseController
 
   # DELETE /admin/products/1
   def destroy
-    if @product.update(deleted_at: DateTime.now)
-      redirect_to admin_products_url, notice: I18n.t('products.destroyed')
-    else
-      redirect_to admin_products_url, error: I18n.t('products.unexpected')
+    respond_to do |format|
+      if @product.update(deleted_at: DateTime.now)
+        format.html { redirect_to admin_products_url, notice: I18n.t('products.destroyed') }
+        format.turbo_stream do
+          locals = { product: @product, notif_type: 'success', type: 'deleted', message: I18n.t('products.destroyed') }
+          render :stream, locals:
+        end
+      else
+        format.html { redirect_to admin_products_url, error: I18n.t('products.unexpected') }
+      end
     end
   end
 
