@@ -4,7 +4,8 @@
     %span.text-gray-500
       product:
       = @product.name
-    = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
+    = button_to product_new_admin_variants_path(@product),          | 
+    class: "btn-plain flex gap-2.5 items-center", method: :get do   |
       New Variant
       = icon("fa-solid", "plus")
   %div
@@ -27,4 +28,5 @@
         - @variants.each do |variant|                   
           = render "variant_item", variant:
       - else
-        %li.flex.justify-center.w-full.py-4.text-gray-400.font-medium No variants
+        %li.flex.justify-center.w-full.py-4.text-gray-400 
+          No variants
