@@ -4,7 +4,8 @@
     %span.text-gray-500
       product:
       = @product.name
-    = button_to product_new_admin_variants_path(@product), class: "btn-plain flex gap-2.5 items-center", method: :get do
+    = button_to product_new_admin_variants_path(@product),          | 
+    class: "btn-plain flex gap-2.5 items-center", method: :get do   |
       New Variant
       = icon("fa-solid", "plus")
   %div
@@ -20,9 +21,12 @@
         Count On Hand
       .py-4
         Actions
-    - if @variants.present?
-      %ul.divide-y{data: {controller: "sortable",         |
-      "sortable-resource-name-value": "product_variant",  |
-      "sortable-handle-value": ".handle" }}               |
+    %ul.divide-y{data: {controller: "sortable",         |
+    "sortable-resource-name-value": "product_variant",  |
+    "sortable-handle-value": ".handle" }}               |
+      - if @variants.present?
         - @variants.each do |variant|                   
           = render "variant_item", variant:
+      - else
+        %li.flex.justify-center.w-full.py-4.text-gray-400 
+          No variants
