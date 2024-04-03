@@ -11,8 +11,16 @@ class Product < ApplicationRecord
   has_one :product_category, dependent: :destroy
   has_one :description, dependent: :destroy
 
+  # Scoped Relations
+  has_one :master_variant, -> { where(is_master: true) },
+          class_name: 'Variant', inverse_of: :product,
+          dependent: :destroy
+  has_many :non_master_variants, -> { where(is_master: false) },
+           class_name: 'Variant', inverse_of: :product,
+           dependent: :destroy
+
   # Nested form
-  accepts_nested_attributes_for :variants, :description, :product_category
+  accepts_nested_attributes_for :master_variant, :description, :product_category
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
@@ -24,13 +32,11 @@ class Product < ApplicationRecord
   }
 
   # Validations
-  validates :name, presence: true
-  validates :uuid, uniqueness: true
-  validates :currency, presence: true
+  validates :name, :currency, :master_variant, :slug, presence: true
   validates :rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :slug, presence: true, format: { without: Regexp.union(SLUG_REGEX.keys) }
+  validates :slug, format: { without: Regexp.union(SLUG_REGEX.keys) }
 
   # Generators
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }

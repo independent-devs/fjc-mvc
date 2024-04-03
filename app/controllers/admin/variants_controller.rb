@@ -12,7 +12,7 @@ class Admin::VariantsController < Admin::BaseController
 
   # GET /admin/products/1/variants
   def product_variants
-    @variants = @product.variants.not_master.sort_by_position.not_deleted
+    @variants = @product.non_master_variants.sort_by_position.not_deleted
   end
 
   # GET /admin/products/1/variants/new

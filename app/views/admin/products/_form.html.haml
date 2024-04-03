@@ -1,4 +1,6 @@
 - is_new = @product.new_record?
+- if @product.errors.present?
+  = @product.errors.full_messages
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
     .field
@@ -36,16 +38,16 @@
         {required: true, disabled: true}                                          |
     - if is_new
       = f.hidden_field :currency, value: MoneyRails.default_currency
-    = f.fields_for :variants, is_new ? Variant.new : @product.variants.get_master do |master_variant|
+    = f.fields_for :master_variant, is_new ? Variant.new : f.object.master_variant do |mv|
       .field
-        = master_variant.label "Master price"
-        = master_variant.number_field :price, required: true, step: :any, placeholder: "0.00"
+        = mv.label "Master price"
+        = mv.number_field :price, required: true, step: :any, placeholder: "0.00"
       .field
-        = master_variant.label :cost
-        = master_variant.number_field :cost, step: :any, placeholder: "0.00"
+        = mv.label :cost
+        = mv.number_field :cost, step: :any, placeholder: "0.00"
       .field
-        = master_variant.label "Master SKU"
-        = master_variant.text_field :sku
+        = mv.label "Master SKU"
+        = mv.text_field :sku
       - if is_new
-        = master_variant.hidden_field :is_master, value: true
+        = mv.hidden_field :is_master, value: true
     = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
