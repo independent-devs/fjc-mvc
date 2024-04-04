@@ -1,4 +1,4 @@
-.flex.items-center.gap-2.w-full.border.px-3.rounded{class: "py-1.5", id: dom_id(category, "item")}
-  = button_to "/", class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
-    = icon("fa-solid", "plus", class: "text-sm")
+.flex.items-center.gap-2.w-full.border.px-3.py-1.rounded{id: dom_id(category, "item")}
+  = button_to "/", class: "flex text-sm rounded-sm items-center justify-center p-1 bg-gray-50 ring-1 ring-gray-300" do
+    = icon("fa-solid", "plus", class: "text-xs")
   = render "item_form", id: dom_id(category, "item_form"), category:, method: :put

@@ -4,7 +4,7 @@
       %h1.font-bold.text-xl
         = t("categories.section_label")
       = button_to "/", class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
-        = icon("fa-solid", "plus", class: "text-sm")
+        = icon("fa-solid", "plus", class: "text-xs")
     .flex.flex-col.gap-1.mt-6
       - @base_category.subtree.arrange(order: :position).each do |category|
         = render "subtree", category:
