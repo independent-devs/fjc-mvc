@@ -14,15 +14,16 @@
         = desc.label :description
         = desc.text_area :description, rows: 12
     %h2.font-medium.text-lg.mt-3 SEO
-    .field
-      = f.label :meta_title
-      = f.text_field :meta_title
-    .field
-      = f.label :meta_description
-      = f.text_area :meta_description
-    .field
-      = f.label :meta_keywords
-      = f.text_field :meta_keywords
+    = f.fields_for :seo, is_new ? Seo.new : f.object.seo do |seo|
+      .field
+        = seo.label :meta_title
+        = seo.text_field :meta_title
+      .field
+        = seo.label :meta_description
+        = seo.text_area :meta_description
+      .field
+        = seo.label :meta_keywords
+        = seo.text_field :meta_keywords
   .flex.flex-col.gap-2{class: "w-1/4 md:w-60"}
     .field
       = f.label :available_on
