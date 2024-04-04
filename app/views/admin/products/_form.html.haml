@@ -1,8 +1,8 @@
 - is_new = @product.new_record?
-- if @product.errors.present?
-  = @product.errors.full_messages
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
+    - if @product.errors.present?
+      = @product.errors.full_messages
     .field
       = f.label :name
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
@@ -32,8 +32,7 @@
       = f.datetime_local_field :discontinue_on
     .field
       = f.label :currency
-      = f.select :currency,                                                       |
-        currency_list,                                                            |
+      = f.select :currency, currency_list,                                        |
         {selected: is_new ? MoneyRails.default_currency : @product.currency},     |
         {required: true, disabled: true}                                          |
     - if is_new
@@ -50,4 +49,6 @@
         = mv.text_field :sku
       - if is_new
         = mv.hidden_field :is_master, value: true
-    = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
+    = f.submit is_new ? "Create" : "Update",        |
+    class: "mt-2 btn-primary w-full cursor-pointer  |
+    disabled:bg-gray-300 disabled:cursor-wait"      |
