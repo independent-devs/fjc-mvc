@@ -2,8 +2,8 @@
 
 class Product < ApplicationRecord
   # Constants
-  SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => 'at',
-                 '&' => 'and', '=' => 'equal', '+' => 'plus', ',' => ' ' }.freeze
+  SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
+                 '&' => ' ', '=' => 'equal', ' ' => 'plus', ',' => ' ' }.freeze
 
   # Relations
   has_many :variants, dependent: :destroy
