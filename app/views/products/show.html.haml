@@ -1,5 +1,6 @@
-- title @product.meta_title.present? ? @product.meta_title : @product.name
-- if @product.meta_description.present?
-  - description @product.meta_description
-- if @product.meta_keywords.present?
+- seo = @product.seo
+- title seo&.meta_title.present? ? seo.meta_title : @product.name
+- if seo&.meta_description.present?
+  - description seo.meta_description
+- if seo&.meta_keywords.present?
   - keywords @product.meta_keywords

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -97,9 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.datetime "discontinue_on", precision: nil
     t.datetime "deleted_at", precision: nil
     t.string "slug", null: false
-    t.string "meta_title"
-    t.string "meta_keywords"
-    t.text "meta_description"
     t.boolean "promotable", default: true, null: false
     t.boolean "order_must_login", default: false, null: false
     t.decimal "lowest_price", precision: 10, scale: 2
@@ -119,6 +116,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
     t.index ["name"], name: "index_products_on_name"
     t.index ["slug"], name: "index_products_on_slug"
     t.index ["uuid"], name: "index_products_on_uuid", unique: true
+  end
+
+  create_table "seos", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "meta_title"
+    t.string "meta_description"
+    t.string "meta_keywords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_seos_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -169,5 +176,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_164927) do
   add_foreign_key "images", "variants"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
+  add_foreign_key "seos", "products"
   add_foreign_key "variants", "products"
 end

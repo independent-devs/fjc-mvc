@@ -3,13 +3,14 @@
 class Product < ApplicationRecord
   # Constants
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
-                 '&' => ' ', '=' => 'equal', ' ' => 'plus', ',' => ' ' }.freeze
+                 '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
 
   # Relations
-  has_many :variants, dependent: :destroy
-  has_many :images, dependent: :destroy
   has_one :product_category, dependent: :destroy
   has_one :description, dependent: :destroy
+  has_one :seo, dependent: :destroy
+  has_many :variants, dependent: :destroy
+  has_many :images, dependent: :destroy
 
   # Scoped Relations
   has_one :master_variant, -> { where(is_master: true) },
@@ -20,7 +21,7 @@ class Product < ApplicationRecord
            dependent: :destroy
 
   # Nested form
-  accepts_nested_attributes_for :master_variant, :description, :product_category
+  accepts_nested_attributes_for :master_variant, :description, :product_category, :seo
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
@@ -32,7 +33,7 @@ class Product < ApplicationRecord
   }
 
   # Validations
-  validates :name, :currency, :master_variant, :slug, presence: true
+  validates :name, :currency, :master_variant, :slug, :seo, presence: true
   validates :rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
@@ -64,9 +65,6 @@ end
 #  has_variant      :boolean          default(FALSE), not null
 #  highest_price    :decimal(10, 2)
 #  lowest_price     :decimal(10, 2)
-#  meta_description :text
-#  meta_keywords    :string
-#  meta_title       :string
 #  name             :string           not null
 #  order_must_login :boolean          default(FALSE), not null
 #  promotable       :boolean          default(TRUE), not null

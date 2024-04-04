@@ -9,9 +9,6 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.datetime :discontinue_on, precision: nil
       t.datetime :deleted_at, precision: nil
       t.string :slug, null: false
-      t.string :meta_title
-      t.string :meta_keywords
-      t.text :meta_description
       t.boolean :promotable, null: false, default: true
       t.boolean :order_must_login, null: false, default: false
       t.decimal :lowest_price, precision: 10, scale: 2
