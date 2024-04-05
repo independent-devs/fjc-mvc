@@ -11,13 +11,13 @@
         = f.text_field :name, required: true, placeholder: "e.g Black"
       .field
         = f.label :price
-        = f.text_field :price, value: (is_new && master.present?) ? master.price : f.object.price, required: true, placeholder: "0.00"
+        = f.text_field :price, value: is_new ? master&.price : f.object.price, required: true, placeholder: "0.00"
       .field
         = f.label :cost
-        = f.text_field :cost, value: (is_new && master.present?) ? master.cost : f.object.cost, placeholder: "0.00"
+        = f.text_field :cost, value: is_new ? master&.cost : f.object.cost, placeholder: "0.00"
       .field
         = f.label :sku
-        = f.text_field :sku, value: (is_new && master.present?) ? master.sku : f.object.sku
+        = f.text_field :sku, value: is_new ? master&.sku : f.object.sku
       .field
         = f.label :count_on_hand
         = f.number_field :count_on_hand, placeholder: "0"
