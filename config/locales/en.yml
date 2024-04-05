@@ -5,7 +5,7 @@ en:
     link: "About"
   products:
     all: "All products"
-    link: "Products"
+    title: "Products"
     created: "Product was successfully created."
     updated: "Product was successfully updated."
     destroyed: "Product was successfully destroyed."
@@ -13,6 +13,7 @@ en:
     section_title: "Explore Our Products"
     unexpected: "Something went wrong"
   categories:
+    title: "Categories"
     section_label: "Categories"
     section_title: "Browse By Category"
     created: "Category was successfully created."
