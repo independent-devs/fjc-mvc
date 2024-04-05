@@ -128,3 +128,6 @@ gem 'ranked-model', '~> 0.4.9'
 
 # Nested Categories
 gem 'ancestry', '~> 4.3'
+
+# Ads Integration
+gem 'rack-tracker', '~> 1.13'

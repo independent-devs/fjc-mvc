@@ -40,8 +40,7 @@ Metrics/BlockLength:
   Exclude:
     - "db/schema.rb"
     - "lib/tasks/*"
-    - "config/initializers/devise.rb"
-    - "config/routes/*"
+    - "config/**/**"
 
 Metrics/CyclomaticComplexity:
   Max: 10
