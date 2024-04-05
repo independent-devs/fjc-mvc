@@ -11,8 +11,6 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  config.generators.template_engine = :haml
-
   # Show full error reports.
   # config.exceptions_app = routes
   config.consider_all_requests_local = true
