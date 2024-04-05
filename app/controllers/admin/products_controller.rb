@@ -65,6 +65,6 @@ class Admin::ProductsController < Admin::BaseController
                   :meta_description, :meta_keywords, :promotionable, :meta_title,
                   description_attributes: %i[id description],
                   master_variant_attributes: %i[id price cost sku is_master],
-                  seo_attributes: %i[meta_title meta_description meta_keywords])
+                  seo_attributes: %i[id meta_title meta_description meta_keywords])
   end
 end
