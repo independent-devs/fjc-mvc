@@ -1,7 +1,7 @@
 - is_new = @variant.new_record?
 - if is_new
-  - master = @product.variants.find_by(is_master: true)
-= form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method: method}) do |f|
+  - master = @product.master_variant
+= form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method:}) do |f|
   .flex.flex-col.w-full.gap-5
     %span
       = "currency: (#{currency_symbol(@product.currency)})"
