@@ -42,6 +42,19 @@ class Product < ApplicationRecord
   # Generators
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
 
+  # Low level cache
+  def cached_seo
+    Rails.cache.fetch(['product', id, 'seo', updated_at.to_i], expires_in: 12.hours) do
+      seo
+    end
+  end
+
+  def cached_description
+    Rails.cache.fetch(['product', id, 'desc', updated_at.to_i], expires_in: 12.hours) do
+      description
+    end
+  end
+
   private
 
   # For generators
