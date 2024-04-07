@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
   create_table "images", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "variant_id"
+    t.boolean "is_thumbnail", default: false, null: false
     t.integer "position"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false

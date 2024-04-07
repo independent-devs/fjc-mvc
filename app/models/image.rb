@@ -29,13 +29,14 @@ end
 #
 # Table name: images
 #
-#  id         :bigint           not null, primary key
-#  deleted_at :datetime
-#  position   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  product_id :bigint           not null
-#  variant_id :bigint
+#  id           :bigint           not null, primary key
+#  deleted_at   :datetime
+#  is_thumbnail :boolean          default(FALSE), not null
+#  position     :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  product_id   :bigint           not null
+#  variant_id   :bigint
 #
 # Indexes
 #
