@@ -36,13 +36,15 @@ class Admin::CategoriesController < Admin::BaseController
       if @category.update(category_params)
         format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
         format.turbo_stream do
-          locals = { notif_type: 'success', type: 'item', message: I18n.t('categories.updated'), category: @category }
+          locals = { notif_type: 'success', type: 'item', message: I18n.t('categories.updated'), category: @category,
+                     position: category_params[:position] }
           render :stream, locals:
         end
       else
         format.html { redirect_to admin_categories_url, error: @category.errors.full_messages.first }
         format.turbo_stream do
-          locals = { notif_type: 'error', type: 'item', message: I18n.t('categories.updated'), category: find_category }
+          locals = { notif_type: 'error', type: 'item', message: I18n.t('categories.updated'), category: find_category,
+                     position: category_params[:position] }
           render :stream, locals:
         end
       end
@@ -68,6 +70,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   # Only allow a list of trusted parameters through.
   def category_params
-    params.require(:category).permit(:name, :parent_id)
+    params.require(:category).permit(:name, :parent_id, :position)
   end
 end
