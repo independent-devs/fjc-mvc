@@ -6,7 +6,7 @@ class Image < ApplicationRecord
   # Relations
   belongs_to :product
   belongs_to :variant, optional: true
-  has_one_attached :photo
+  has_one_attached :img
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
@@ -16,12 +16,12 @@ class Image < ApplicationRecord
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
   # Validations
-  validate :check_photo_presence
+  validate :check_image_presence
 
   private
 
-  def check_photo_presence
-    errors.add(:photo, 'no photo attached') unless photo.attached?
+  def check_image_presence
+    errors.add(:img, 'no image attached') unless img.attached?
   end
 end
 
@@ -29,13 +29,14 @@ end
 #
 # Table name: images
 #
-#  id         :bigint           not null, primary key
-#  deleted_at :datetime
-#  position   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  product_id :bigint           not null
-#  variant_id :bigint
+#  id           :bigint           not null, primary key
+#  deleted_at   :datetime
+#  is_thumbnail :boolean          default(FALSE), not null
+#  position     :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  product_id   :bigint           not null
+#  variant_id   :bigint
 #
 # Indexes
 #
