@@ -13,4 +13,6 @@ Category.create(name: 'T-Shirt', parent: clothes)
 
 pants = Category.create(name: 'Pants', parent: clothes)
 Category.create(name: 'Trousers', parent: pants)
-Category.create(name: 'Shorts', parent: pants)
+shorts = Category.create(name: 'Shorts', parent: pants)
+
+Category.create(name: 'Type 1', parent: shorts)
