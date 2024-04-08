@@ -1,4 +1,20 @@
-.margin-max-screen.h-full.py-8
-  %h1 New category
-  = render 'form'
+.margin-max-screen.h-full.py-8.flex.flex-col.gap-5
+  - if params[:ancestor].present?
+    %h1.text-2xl.font-semibold New category
+    - parent = Category.find(params[:ancestor])
+    - ancestors = parent.ancestors
+    %div.flex.flex-col.gap-1
+      %label.font-semibold
+        Ancestors
+      %div.flex.gap-2.items-center
+        - ancestors.each do | an |
+          %div.flex.items-center.gap-2
+            %span= an.name
+            = icon("fa-solid", "angle-right")
+        %div
+          %span.text-primary.font-medium= parent.name
+    = render 'form', parent:
+  - else
+    %span.text-red-500
+      Ancestor Must Exist
 
