@@ -6,12 +6,26 @@ en:
   products:
     all: "All products"
     title: "Products"
+    list: "Product List"
+    new: "New Product"
+    create: "Create Product"
     created: "Product was successfully created."
     updated: "Product was successfully updated."
     destroyed: "Product was successfully destroyed."
     section_label: "Our Products"
     section_title: "Explore Our Products"
     unexpected: "Something went wrong"
+    no_list_found: "No products found"
+    table: 
+      thead:
+        name: "Name"
+        price: "Price"
+        actions: "Actions"
+    tabs:
+      details: "Product Details"
+      variants: "Variants"
+      images: "Images"
+      stocks: "Stocks"
   categories:
     title: "Categories"
     section_label: "Categories"
