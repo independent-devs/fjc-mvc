@@ -1,18 +1,17 @@
 .margin-max-screen.h-full.py-8
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-start
-      %h2.font-medium.text-lg Product List
-      = button_to new_admin_product_path,             | 
-      class: "btn-primary flex gap-2.5 items-center", | 
-      method: :get do                                 |
-        New Product
+      %h2.font-medium.text-lg
+        = t("products.list")
+      = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
+        = t("products.new")
         = icon("fa-solid", "plus")
     %table
       %thead
         %tr
-          %th Name
-          %th Price
-          %th Actions
+          %th= t("products.table.thead.name")
+          %th= t("products.table.thead.price")
+          %th= t("products.table.thead.actions")
       %tbody
         - if @products.present?
           - @products.each do |product|
@@ -21,22 +20,16 @@
                 = product.name
               %td
                 = currency_symbol(product.currency)
-                = render PriceRangeComponent.new    |
-                  lowest: product.lowest_price,     |
-                  highest: product.highest_price    |
+                = render PriceRangeComponent.new lowest: product.lowest_price, highest: product.highest_price
               %td
                 .flex.gap-2.text-gray-400
-                  = link_to admin_product_path(product),  |
-                  class: "hover:text-green-400" do        |
+                  = link_to admin_product_path(product), class: "hover:text-green-400" do
                     = icon("fa-solid", "eye")
-                  = button_to admin_product_path(product),        | 
-                  class: "hover:text-red-500", method: :delete,   |
-                  form: {data: {turbo_confirm:                    | 
-                  'Are you sure to delete this product?'}} do     |
+                  = button_to admin_product_path(product), class: "hover:text-red-500", method: :delete,  |
+                  form: {data: {turbo_confirm: 'Are you sure to delete this product?'}} do                |
                     = icon("fa-solid", "trash")
         - else
           %tr
-            %td
-              No products found
+            %td= t("products.no_list_found")
             %td
             %td
