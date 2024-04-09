@@ -4,6 +4,7 @@ en:
   about:
     link: "About"
   products:
+    link: "Products"
     all: "All products"
     title: "Products"
     list: "Product List"
