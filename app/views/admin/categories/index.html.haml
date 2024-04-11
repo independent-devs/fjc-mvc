@@ -2,11 +2,11 @@
   - if @base_category.present?
     .flex.gap-2.items-center
       %h1.font-bold.text-xl
-        = t("categories.title")
+        = @base_category.name
       = link_to new_admin_category_path(ancestor: @base_category.id), class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
         = icon("fa-solid", "plus", class: "text-xs")
     .flex.flex-col.gap-1.mt-6
-      - @base_category.subtree.arrange(order: :position).each do |category|
+      - @base_category.subtree.arrange(order: :name).each do |category|
         = render "subtree", category:
   - else
-    %span.text-red-500.text-xl.font-bold Something went wrong, must be deleted
+    %span.text-red-500.text-xl.font-bold= t("error.something_went_wrong")

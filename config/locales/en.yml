@@ -3,6 +3,8 @@ en:
     link: "Home"
   about:
     link: "About"
+  error:
+    something_went_wrong: "Something went wrong."
   products:
     link: "Products"
     all: "All products"

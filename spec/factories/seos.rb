@@ -5,7 +5,7 @@ FactoryBot.define do
     product { nil }
     meta_title { 'MyString' }
     meta_description { 'MyString' }
-    meta_description { 'MyString' }
+    meta_keywords { 'MyString' }
   end
 end
 
