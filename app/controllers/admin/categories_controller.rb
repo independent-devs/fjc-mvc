@@ -54,7 +54,14 @@ class Admin::CategoriesController < Admin::BaseController
   # DELETE /product/categories/1
   def destroy
     @category.destroy
-    redirect_to categories_url, notice: I18n.t('categories.destroyed')
+
+    respond_to do |format|
+      format.turbo_stream do
+        locals = { category: @category, type: 'deleted', notif_type: 'success',
+                   message: I18n.t('categories.destroyed') }
+        render :stream, locals:
+      end
+    end
   end
 
   private
