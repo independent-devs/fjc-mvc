@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :seo do
-    product { nil }
-    meta_title { 'MyString' }
-    meta_description { 'MyString' }
-    meta_keywords { 'MyString' }
+    product { create(:product) }
+    meta_title { Faker::Commerce.product_name }
+    meta_description { Faker::Lorem.paragraph_by_chars }
+    meta_keywords { Faker::Commerce.department }
   end
 end
 
