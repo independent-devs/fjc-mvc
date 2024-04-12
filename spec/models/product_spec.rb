@@ -8,6 +8,7 @@ RSpec.describe Product, type: :model do
   it 'create product ' do
     expect(product.name).to be_present
     expect(product.slug).to be_present
+    expect(product.currency).to be_present
     expect(product.lowest_price).to be_present
     expect(product.highest_price).to be_present
 
