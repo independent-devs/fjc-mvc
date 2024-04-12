@@ -21,7 +21,7 @@ class Image < ApplicationRecord
   private
 
   def check_image_presence
-    errors.add(:img, 'no image attached') unless img.attached?
+    errors.add(:img, I18n.t('images.validate.must_be_attached')) unless img.attached?
   end
 end
 
