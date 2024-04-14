@@ -39,13 +39,13 @@
       = f.hidden_field :currency, value: MoneyRails.default_currency
     = f.fields_for :master_variant, is_new ? Variant.new : f.object.master_variant do |mv|
       .field
-        = mv.label "Master price"
+        = mv.label :master_price
         = mv.number_field :price, required: true, step: :any, placeholder: "0.00"
       .field
-        = mv.label :cost
+        = mv.label :master_cost
         = mv.number_field :cost, step: :any, placeholder: "0.00"
       .field
-        = mv.label "Master SKU"
+        = mv.label :master_sku
         = mv.text_field :sku
       - if is_new
         = mv.hidden_field :is_master, value: true
