@@ -163,6 +163,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "count_on_hand", default: 0
     t.boolean "is_master", default: false, null: false
+    t.boolean "trackable", default: true, null: false
+    t.boolean "backorderable", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_variants_on_deleted_at"

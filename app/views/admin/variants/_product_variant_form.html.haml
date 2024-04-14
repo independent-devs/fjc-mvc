@@ -3,22 +3,24 @@
   - master = @product.master_variant
 = form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method:}) do |f|
   .flex.flex-col.w-full.gap-5
-    %span
-      = "currency: (#{currency_symbol(@product.currency)})"
-    .grid.grid-cols-4.gap-3.w-full
+    .grid.grid-cols-3.gap-3.w-full
       .field
         = f.label :name
         = f.text_field :name, required: true, placeholder: "e.g Black"
       .field
-        = f.label :price
+        = f.label :price do
+          Price
+          = currency_symbol(@product.currency)
         = f.text_field :price, value: is_new ? master&.price : f.object.price, required: true, placeholder: "0.00"
       .field
-        = f.label :cost
+        = f.label :cost do 
+          Cost
+          = currency_symbol(@product.currency)
         = f.text_field :cost, value: is_new ? master&.cost : f.object.cost, placeholder: "0.00"
-      .field
-        = f.label :sku
-        = f.text_field :sku, value: is_new ? master&.sku : f.object.sku
       .field
         = f.label :count_on_hand
         = f.number_field :count_on_hand, placeholder: "0"
+      .field
+        = f.label :sku
+        = f.text_field :sku, value: is_new ? master&.sku : f.object.sku
   = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"

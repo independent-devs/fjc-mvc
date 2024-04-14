@@ -13,6 +13,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.integer :count_on_hand, default: 0
       t.boolean :is_master, null: false, default: false
       t.boolean :trackable, null: false, default: true
+      t.boolean :backorderable, null: false, default: false
 
       t.timestamps
     end

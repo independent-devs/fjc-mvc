@@ -1,6 +1,6 @@
 .margin-max-screen.py-8.flex.flex-col.gap-5
   = render "admin/products/tabs"
-  .flex.gap-5.justify-between.items-center
+  .flex.gap-5.justify-between.items-start
     %span.text-gray-500
       product:
       = @product.name
@@ -9,19 +9,19 @@
       New Variant
       = icon("fa-solid", "plus")
   %div
-    .grid.grid-cols-5.border-b.text-sm.gap-8.font-semibold.text-secondary
-      .py-4.flex.items-center
+    %ul.form-table-head
+      %li.items-center
         = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
         Name
-      .py-4
+      %li
         Price
-      .py-4
+      %li
         Cost
-      .py-4
-        Count On Hand
-      .py-4
+      %li
+        Count on hand
+      %li
         Actions
-    %ul.divide-y{data: {controller: "sortable",         |
+    %ul.form-table-body{data: {controller: "sortable",  |
     "sortable-resource-name-value": "product_variant",  |
     "sortable-handle-value": ".handle" }}               |
       - if @variants.present?
