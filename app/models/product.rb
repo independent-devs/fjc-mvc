@@ -16,8 +16,14 @@ class Product < ApplicationRecord
   has_one :master_variant, -> { where(is_master: true) },
           class_name: 'Variant', inverse_of: :product,
           dependent: :destroy
+  has_one :master_category, -> { where(is_master: true) },
+          class_name: 'ProductCategory', inverse_of: :product,
+          dependent: :destroy
   has_many :non_master_variants, -> { where(is_master: false) },
            class_name: 'Variant', inverse_of: :product,
+           dependent: :destroy
+  has_many :non_master_categories, -> { where(is_master: false) },
+           class_name: 'ProductCategory', inverse_of: :product,
            dependent: :destroy
 
   # Nested form

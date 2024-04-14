@@ -82,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
   create_table "product_categories", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
+    t.boolean "is_master", default: false, null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
