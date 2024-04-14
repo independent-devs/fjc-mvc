@@ -69,7 +69,7 @@ end
 # Table name: variants
 #
 #  id            :bigint           not null, primary key
-#  backorderable :boolean          default(TRUE), not null
+#  backorderable :boolean          default(FALSE), not null
 #  cost          :decimal(10, 2)
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
