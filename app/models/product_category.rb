@@ -13,6 +13,7 @@ end
 #
 #  id          :bigint           not null, primary key
 #  deleted_at  :datetime
+#  is_master   :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  category_id :bigint           not null

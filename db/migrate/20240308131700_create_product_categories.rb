@@ -5,6 +5,7 @@ class CreateProductCategories < ActiveRecord::Migration[7.0]
     create_table :product_categories do |t|
       t.references :product, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
+      t.boolean :is_master, null: false, default: false
       t.datetime :deleted_at
 
       t.timestamps

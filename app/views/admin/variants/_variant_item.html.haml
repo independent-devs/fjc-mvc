@@ -17,8 +17,8 @@
         = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", | 
         step: :any, class: "input-table", data: { "autosave-target": "input" }    |
       .py-4
-        = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), | 
-        class: "input-table", data: { "autosave-target": "input" }             |
+        = f.object.count_on_hand
+        = "stock".pluralize(f.object.count_on_hand)
       .py-4
         %button{type: "button",                                     |
         data: {controller: "variant",                               |
