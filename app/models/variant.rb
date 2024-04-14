@@ -69,6 +69,7 @@ end
 # Table name: variants
 #
 #  id            :bigint           not null, primary key
+#  backorderable :boolean          default(TRUE), not null
 #  cost          :decimal(10, 2)
 #  count_on_hand :integer          default(0)
 #  deleted_at    :datetime
@@ -77,6 +78,7 @@ end
 #  position      :integer
 #  price         :decimal(10, 2)   not null
 #  sku           :string
+#  trackable     :boolean          default(TRUE), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  product_id    :bigint           not null
