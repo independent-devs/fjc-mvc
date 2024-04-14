@@ -12,6 +12,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.decimal :price, precision: 10, scale: 2, null: false
       t.integer :count_on_hand, default: 0
       t.boolean :is_master, null: false, default: false
+      t.boolean :trackable, null: false, default: true
 
       t.timestamps
     end
