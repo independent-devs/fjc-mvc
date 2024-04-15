@@ -85,6 +85,7 @@ class Admin::VariantsController < Admin::BaseController
   end
 
   def product_variant_params
-    params.require(:product_variant).permit(:name, :cost, :price, :sku, :count_on_hand, :position)
+    params.require(:product_variant).permit(:name, :cost, :price, :sku, :count_on_hand, :position, :trackable,
+                                            :backorderable)
   end
 end
