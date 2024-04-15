@@ -6,15 +6,15 @@
   %div
     %ul.form-table-head 
       %li
-        Name
+        = t("variants.table.thead.name")
       %li
-        SKU
+        = t("variants.table.thead.sku")
       %li
-        Trackable
+        = t("variants.table.thead.trackable")
       %li
-        Backorderable
+        = t("variants.table.thead.backorderable")
       %li
-        Count on hand
+        = t("variants.table.thead.count_on_hand")
     %ul.form-table-body
       - if @variants.present?
         - @variants.each do |variant|                   
