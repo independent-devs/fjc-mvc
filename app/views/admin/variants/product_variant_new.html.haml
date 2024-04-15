@@ -3,6 +3,5 @@
   .flex.flex-col.gap-1
     %h1.text-2xl.font-semibold= t("variants.create_product_variant")
     %span.text-gray-500
-      product:
       = @product.name
   = render 'product_variant_form', path: product_create_admin_variants_path, method: :post
