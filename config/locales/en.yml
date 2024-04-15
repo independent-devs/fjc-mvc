@@ -40,6 +40,7 @@ en:
       ancestry_depth: "invalid depth."
   variants:
     new: "New variant"
+    create_product_variant: "Create Product Variant"
     created: "Variant was successfully created."
     updated: "Variant was successfully updated."
     destroyed: "Variant was successfully deleted."
