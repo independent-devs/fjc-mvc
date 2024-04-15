@@ -6,7 +6,7 @@
       = @product.name
     = button_to product_new_admin_variants_path(@product),          | 
     class: "btn-plain flex gap-2.5 items-center", method: :get do   |
-      New Variant
+      = t("variants.new")
       = icon("fa-solid", "plus")
   %div
     %ul.form-table-head
