@@ -8,8 +8,8 @@
       .py-4
         = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table"
       .flex.py-4.items-center
-        = f.check_box :trackable, id: dom_id(variant, "trackable"), class: "text-primary rounded-sm"
+        = f.check_box :trackable, id: dom_id(variant, "trackable"), class: "text-primary rounded-sm focus:ring-0"
       .flex.py-4.items-center
-        = f.check_box :backorderable, id: dom_id(variant, "backorderable"), class: "text-primary rounded-sm"
+        = f.check_box :backorderable, id: dom_id(variant, "backorderable"), class: "text-primary rounded-sm focus:ring-0"
       .py-4
         = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), class: "input-table"
