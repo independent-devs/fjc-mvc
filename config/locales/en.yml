@@ -39,12 +39,23 @@ en:
     validate:
       ancestry_depth: "invalid depth."
   variants:
+    new: "New variant"
     created: "Variant was successfully created."
     updated: "Variant was successfully updated."
     destroyed: "Variant was successfully deleted."
     validate:
       only_one_master: "cannot have more than one master per product."
       master_delete_attempt: "cannot delete a master variant."
+    table:
+      thead:
+        name: "Name"
+        price: "Price"
+        cost: "Cost"
+        count_on_hand: "Count on Hand"
+        trackable: "Trackable"
+        backorderable: "Backorderable"
+        actions: "Actions"
+    no_list_found: "No variants found"
   images:
     validate:
       must_be_attached: "must be attached." 

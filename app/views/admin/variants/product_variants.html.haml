@@ -12,15 +12,15 @@
     %ul.form-table-head
       %li.items-center
         = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
-        Name
+        = t("variants.table.thead.name")
       %li
-        Price
+        = t("variants.table.thead.price")
       %li
-        Cost
+        = t("variants.table.thead.cost")
       %li
-        Count on hand
+        = t("variants.table.thead.count_on_hand")
       %li
-        Actions
+        = t("variants.table.thead.actions")
     %ul.form-table-body{data: {controller: "sortable",  |
     "sortable-resource-name-value": "product_variant",  |
     "sortable-handle-value": ".handle" }}               |
@@ -29,4 +29,4 @@
           = render "variant_item", variant:
       - else
         %li.flex.justify-center.w-full.py-4.text-gray-400 
-          No variants
+          = t("variants.no_list_found")
