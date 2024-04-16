@@ -26,9 +26,12 @@ authenticated :user, -> { _1.admin? } do
             get :index, to: 'images#product_images', as: 'product'
           end
         end
-        resources :stocks, only: [] do
+        resources :stocks, param: :vid, only: [] do
           collection do
             get :index, to: 'stocks#product_stocks', as: 'product'
+          end
+          member do
+            put 'update', to: 'stocks#product_stock_update', as: 'product_update'
           end
         end
       end
