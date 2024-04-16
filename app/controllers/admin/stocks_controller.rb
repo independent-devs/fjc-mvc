@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Admin::StocksController < Admin::BaseController
-  before_action :set_product, only: %i[product_stocks product_stocks_movement]
+  before_action :set_product, only: %i[
+    product_stocks
+    product_stock_update
+    product_stocks_movement
+  ]
 
   # GET admin/products/1/stocks
   def product_stocks

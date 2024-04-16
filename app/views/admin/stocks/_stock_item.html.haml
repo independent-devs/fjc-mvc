@@ -1,15 +1,19 @@
 %li{id: dom_id(variant)}
   = form_for(variant, as: "product_variant",                    | 
-  url: product_update_admin_variant_path(@product, variant),    |
+  url: product_update_admin_stock_path(@product, variant),      |
   html: {method: :put}, data: {controller: 'autosave'}) do |f|  |
     .grid.grid-cols-5.gap-8
       .py-4
         = f.object.name
       .py-4
-        = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table"
+        = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "autosave-target": "input" }
       .flex.py-4.items-center
-        = f.check_box :trackable, id: dom_id(variant, "trackable"), class: "text-primary rounded-sm focus:ring-0"
+        = f.check_box :trackable, id: dom_id(variant, "trackable"),   | 
+        data: { action: 'autosave#save' }, class: "text-primary     |
+        rounded-sm focus:ring-0"                                      |
       .flex.py-4.items-center
-        = f.check_box :backorderable, id: dom_id(variant, "backorderable"), class: "text-primary rounded-sm focus:ring-0"
+        = f.check_box :backorderable, id: dom_id(variant, "backorderable"), |
+        data: { action: 'autosave#save' },                                |
+        class: "text-primary rounded-sm focus:ring-0"                       |
       .py-4
         = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), class: "input-table"
