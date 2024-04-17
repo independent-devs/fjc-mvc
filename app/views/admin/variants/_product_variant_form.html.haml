@@ -24,10 +24,10 @@
         = f.text_field :sku
     .flex.gap-5
       .flex.gap-2.items-center
-        = f.check_box :trackable, class: "text-primary focus:ring-0 round-sm"
+        = f.check_box :trackable, checked: is_new ? master&.trackable : f.object.trackable, class: "text-primary focus:ring-0 round-sm"
         %span Trackable
       .flex.gap-2.items-center
-        = f.check_box :backorderable, class: "text-primary focus:ring-0 round-sm"
+        = f.check_box :backorderable, checked: is_new ? master&.backorderable : f.object.backorderable, class: "text-primary focus:ring-0 round-sm"
         %span Backorderable
 
   = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
