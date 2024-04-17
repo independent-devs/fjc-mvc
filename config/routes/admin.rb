@@ -35,6 +35,7 @@ authenticated :user, -> { _1.admin? } do
           end
           member do
             put 'update', to: 'stocks#product_stock_update', as: 'product_update'
+            put 'modify_stock', to: 'stocks#product_stock_modify', as: 'product_modify'
           end
         end
       end

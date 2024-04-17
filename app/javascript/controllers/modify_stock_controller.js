@@ -4,12 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["input", "action"];
 
-  connect() {
-    console.log("stockId:", this.element.dataset.stockId)
-    console.log(this.inputTarget, this.actionTarget)
-  }
-
-  modify() {
+  submit() {
     let formData = new FormData();
     formData.append('product_variant[modify_amount]', this.inputTarget.value);
 
@@ -28,6 +23,16 @@ export default class extends Controller {
   }
 
   cancel() {
-    this.actionTarget
+    this.inputTarget.value = null;
+    this.actionTarget.classList.add("hidden");
+  }
+
+  change(event) {
+    if (!Number(event.target.value)) {
+      this.actionTarget.classList.add("hidden");
+      return;
+    }
+
+    this.actionTarget.classList.remove("hidden");
   }
 }

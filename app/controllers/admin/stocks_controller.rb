@@ -4,6 +4,7 @@ class Admin::StocksController < Admin::BaseController
   before_action :set_product, only: %i[
     product_stocks
     product_stock_update
+    product_stock_modify
     product_stocks_movement
   ]
 
