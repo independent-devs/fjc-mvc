@@ -8,12 +8,20 @@
       .py-4
         = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "autosave-target": "input" }
       .flex.py-4.items-center
-        = f.check_box :trackable, id: dom_id(variant, "trackable"),   | 
-        data: { action: 'autosave#save' }, class: "text-primary     |
-        rounded-sm focus:ring-0"                                      |
-      .flex.py-4.items-center
         = f.check_box :backorderable, id: dom_id(variant, "backorderable"), |
-        data: { action: 'autosave#save' },                                |
+        data: { action: 'autosave#save' },                                  |
         class: "text-primary rounded-sm focus:ring-0"                       |
-      .py-4
-        = f.number_field :count_on_hand, id: dom_id(variant, "count_on_hand"), class: "input-table"
+      .py-4.flex.gap-3
+        = f.object.count_on_hand
+        - if f.object.count_on_hand.zero?
+          .text-red-600.font-medium Out of stock
+        - else
+          = "stock".pluralize(f.object.count_on_hand)
+      .py-4.flex.gap-2.items-center{data: {controller: "modify-stock", stock_id: f.object.id}}
+        = number_field_tag :modify_amount, nil, class: "input-table", data: {"modify-stock-target": "input"}, placeholder: "0"
+        .flex.gap-1.hidden{data: {"modify-stock-target": "action"}}
+          .px-1.py-0.hover:bg-primary.hover:text-white.rounded-md.transition-colors.duration-75
+            = icon("fa-solid", "check", class: "text-lg")
+          .px-1.py-0.hover:bg-primary.hover:text-white.rounded-md.transition-colors.duration-75
+            = icon("fa-solid", "xmark", class: "text-lg")
+
