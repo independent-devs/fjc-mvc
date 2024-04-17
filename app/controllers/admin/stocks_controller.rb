@@ -10,7 +10,7 @@ class Admin::StocksController < Admin::BaseController
 
   # GET admin/products/1/stocks
   def product_stocks
-    @variants = @product.non_master_variants.sort_by_position.not_deleted
+    @variants = @product.variants.sort_by_position.not_deleted
   end
 
   # PUT /admin/products/1/stocks/1/update
