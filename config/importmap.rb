@@ -15,3 +15,4 @@ pin "hotkeys-js" # @3.13.7
 pin "stimulus-use" # @0.51.3
 pin "stimulus-rails-autosave", preload: false # @5.1.0,
 pin "@stimulus-components/dialog", to: "@stimulus-components--dialog.js" # @1.0.1
+pin "js-image-zoom", preload: false # @0.7.0
