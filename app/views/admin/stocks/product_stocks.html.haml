@@ -9,11 +9,11 @@
       %li
         = t("variants.table.thead.sku")
       %li
-        = t("variants.table.thead.trackable")
-      %li
         = t("variants.table.thead.backorderable")
       %li
         = t("variants.table.thead.count_on_hand")
+      %li
+        = t("variants.table.thead.modify")
     %ul.form-table-body
       - if @variants.present?
         - @variants.each do |variant|                   

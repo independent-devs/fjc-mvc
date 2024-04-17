@@ -56,7 +56,9 @@ en:
         trackable: "Trackable"
         backorderable: "Backorderable"
         actions: "Actions"
+        modify: "Modify (+/-)"
     no_list_found: "No variants found"
+    invalid_modify_amount: "Invalid modify amount."
   images:
     validate:
       must_be_attached: "must be attached." 

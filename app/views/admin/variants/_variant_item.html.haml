@@ -16,9 +16,12 @@
         = currency_symbol(@product.currency)
         = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", | 
         step: :any, class: "input-table", data: { "autosave-target": "input" }    |
-      .py-4
+      .py-4.flex.gap-2
         = f.object.count_on_hand
-        = "stock".pluralize(f.object.count_on_hand)
+        - if f.object.count_on_hand.zero?
+          .text-red-600.font-medium Out of stock
+        - else
+          = "stock".pluralize(f.object.count_on_hand)
       .py-4
         %button{type: "button",                                     |
         data: {controller: "variant",                               |

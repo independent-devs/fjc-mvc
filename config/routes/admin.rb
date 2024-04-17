@@ -3,7 +3,10 @@
 ## only show admin routes if user is authenticated and is admin
 authenticated :user, -> { _1.admin? } do
   namespace :admin do
-    root 'home#index'
+    get '/', to: redirect('/admin/dashboard')
+    resources :dashboard, only: [:index]
+
+    ## product routes
     resources :products do
       collection do
         resources :categories

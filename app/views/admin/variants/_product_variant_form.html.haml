@@ -1,4 +1,3 @@
-- is_new = @variant.new_record?
 - if is_new
   - master = @product.master_variant
 = form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method:}) do |f|
@@ -22,7 +21,7 @@
         = f.number_field :count_on_hand, placeholder: "0"
       .field
         = f.label :sku
-        = f.text_field :sku, value: is_new ? master&.sku : f.object.sku
+        = f.text_field :sku
     .flex.gap-5
       .flex.gap-2.items-center
         = f.check_box :trackable, class: "text-primary focus:ring-0 round-sm"
