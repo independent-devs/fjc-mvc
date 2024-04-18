@@ -38,6 +38,7 @@ end
 #  rate_count       :integer          default(0)
 #  rating           :decimal(1, 1)    default(0.0)
 #  slug             :string           not null
+#  thumbnail_url    :string
 #  uuid             :uuid             not null
 #  variant_label    :string           default("Variations"), not null
 #  created_at       :datetime         not null
