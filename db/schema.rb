@@ -108,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.integer "rate_count", default: 0
     t.boolean "has_variant", default: false, null: false
     t.string "variant_label", default: "Variations", null: false
+    t.string "thumbnail_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"

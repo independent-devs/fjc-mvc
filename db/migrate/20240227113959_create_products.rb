@@ -18,6 +18,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.integer :rate_count, default: 0
       t.boolean :has_variant, null: false, default: false
       t.string :variant_label, null: false, default: 'Variations'
+      t.string :thumbnail_url
 
       t.timestamps
     end

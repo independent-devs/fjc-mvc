@@ -43,7 +43,8 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                               admin_root GET      /admin(.:format)                                                                                  admin/home#index
+#                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
+#                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
 #                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
 #                       new_admin_category GET      /admin/products/categories/new(.:format)                                                          admin/categories#new
@@ -60,6 +61,8 @@ end
 #           product_position_admin_variant PATCH    /admin/products/:id/variants/:vid/position(.:format)                                              admin/variants#product_variant_position
 #                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
 #                     product_admin_stocks GET      /admin/products/:id/stocks(.:format)                                                              admin/stocks#product_stocks
+#               product_update_admin_stock PUT      /admin/products/:id/stocks/:vid/update(.:format)                                                  admin/stocks#product_stock_update
+#               product_modify_admin_stock PUT      /admin/products/:id/stocks/:vid/modify_stock(.:format)                                            admin/stocks#product_stock_modify
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new
