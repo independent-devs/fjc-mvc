@@ -3,7 +3,7 @@
 class ActiveStorageAttachment < ApplicationRecord
   include RankedModel
 
-  ranks :sort_order, column: :position, with_same: :name
+  ranks :sort_order, column: :position, with_same: :record_id
 end
 
 # == Schema Information
