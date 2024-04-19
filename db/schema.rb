@@ -21,7 +21,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "record_owner_type"
+    t.bigint "record_owner_id"
+    t.string "record_owner"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_owner", "record_owner_id"], name: "index_active_storage_attachments_record_owner"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 

@@ -5,7 +5,6 @@ class Variant < ApplicationRecord
 
   # Relations
   belongs_to :product
-  has_one :image, dependent: :destroy
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
