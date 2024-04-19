@@ -1,2 +1,7 @@
 .margin-max-screen.py-8.flex.flex-col.gap-5
   = render "admin/products/tabs"
+  %div
+    = form_for(@product, url: admin_product_path(@product), html: {method: :put}) do |f|
+      - @images.each do |image|
+        = f.hidden_field :images, multiple: true, value: image.signed_id
+      = f.file_field :images, multiple: true, accept: "image/*"

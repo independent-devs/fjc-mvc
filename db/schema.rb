@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.integer "position", default: 0
     t.string "record_owner_type"
     t.bigint "record_owner_id"
     t.string "record_owner"
@@ -67,20 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_descriptions_on_product_id"
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "variant_id"
-    t.boolean "is_thumbnail", default: false, null: false
-    t.integer "position"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_images_on_deleted_at"
-    t.index ["position"], name: "index_images_on_position"
-    t.index ["product_id"], name: "index_images_on_product_id"
-    t.index ["variant_id"], name: "index_images_on_variant_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -181,8 +168,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "descriptions", "products"
-  add_foreign_key "images", "products"
-  add_foreign_key "images", "variants"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "seos", "products"
