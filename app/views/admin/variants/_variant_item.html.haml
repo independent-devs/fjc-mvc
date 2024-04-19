@@ -19,7 +19,7 @@
       .py-4.flex.gap-2
         = f.object.count_on_hand
         - if f.object.count_on_hand.zero?
-          .text-red-600.font-medium Out of stock
+          .text-red-600 Out of stock
         - else
           = "stock".pluralize(f.object.count_on_hand)
       .py-4
