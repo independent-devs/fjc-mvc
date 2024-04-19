@@ -5,13 +5,16 @@ class Product < ApplicationRecord
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
 
+  # Image attachment
+  has_many_attached :images
+
   # Relations
   has_one :product_category, dependent: :destroy
   has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
   has_many :variants, dependent: :destroy
 
-  # Scoped Relations
+  # Scoped relations
   has_one :master_variant, -> { where(is_master: true) },
           class_name: 'Variant', inverse_of: :product,
           dependent: :destroy

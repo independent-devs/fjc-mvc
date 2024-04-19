@@ -40,6 +40,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.foreign_key :active_storage_blobs, column: :blob_id
 
       # Custom Fields
+      t.integer :position, default: 0
       t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type
       t.string :record_owner
     end
