@@ -1,7 +1,9 @@
 .margin-max-screen.py-8.flex.flex-col.gap-5
   = render "admin/products/tabs"
-  %div
-    = form_for(@product, url: admin_product_path(@product), html: {method: :put}) do |f|
-      - @images.each do |image|
-        = f.hidden_field :images, multiple: true, value: image.signed_id
-      = f.file_field :images, multiple: true, accept: "image/*"
+  = form_for(@product, url: admin_product_path(@product), html: {method: :put}) do |f|
+    - @images.each do |image|
+      = f.hidden_field :images, multiple: true, value: image.signed_id
+    .flex.items-center.justify-center.w-full
+      %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-full h-64 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
+        = render "upload_icon"  
+        = f.file_field :images, multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden", id: "dropzone-file"
