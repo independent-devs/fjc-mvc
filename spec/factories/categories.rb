@@ -18,7 +18,6 @@ end
 #  ancestry_depth :integer          default(0)
 #  deleted_at     :datetime
 #  name           :string           not null
-#  position       :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -27,5 +26,4 @@ end
 #  index_categories_on_ancestry           (ancestry)
 #  index_categories_on_deleted_at         (deleted_at)
 #  index_categories_on_name_and_ancestry  (name,ancestry) UNIQUE
-#  index_categories_on_position           (position)
 #

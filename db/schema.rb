@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.bigint "record_owner_id"
     t.string "record_owner"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["position"], name: "index_active_storage_attachments_on_position"
     t.index ["record_owner", "record_owner_id"], name: "index_active_storage_attachments_record_owner"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -50,7 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "position"
     t.datetime "deleted_at"
     t.string "ancestry"
     t.integer "ancestry_depth", default: 0
@@ -59,7 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
     t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry", unique: true
-    t.index ["position"], name: "index_categories_on_position"
   end
 
   create_table "descriptions", force: :cascade do |t|
