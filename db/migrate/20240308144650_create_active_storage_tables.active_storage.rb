@@ -40,13 +40,12 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.foreign_key :active_storage_blobs, column: :blob_id
 
       # Custom Fields
-      t.integer :position, default: 0
+      t.integer :position, default: 0, index: true
       t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type
       t.string :record_owner
-    end
 
-    add_index :active_storage_attachments, %i[record_owner record_owner_id],
-              name: :index_active_storage_attachments_record_owner
+      t.index %i[record_owner record_owner_id], name: :index_active_storage_attachments_record_owner
+    end
 
     create_table :active_storage_variant_records, id: primary_key_type do |t|
       t.belongs_to :blob, null: false, index: false, type: foreign_key_type
