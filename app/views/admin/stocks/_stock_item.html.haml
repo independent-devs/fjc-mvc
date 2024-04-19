@@ -22,8 +22,12 @@
           class: "text-primary rounded-sm focus:ring-0"                       |
       .py-4.flex.gap-3
         = f.object.count_on_hand
-        - if f.object.count_on_hand.zero? && (!f.object.is_master || (f.object.is_master && !@product.has_variant))
-          .text-red-600.font-medium Out of stock
+        - if f.object.count_on_hand.zero? && (!f.object.is_master || (!@product.has_variant && f.object.is_master))
+          .text-red-600 Out of stock
+        - elsif f.object.is_master && @product.has_variant 
+          = "stock".pluralize(f.object.count_on_hand)
+          %span.text-zinc-400
+            (ignored)
         - else
           = "stock".pluralize(f.object.count_on_hand)
       = render "modify_stock", variant:

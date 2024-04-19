@@ -26,8 +26,8 @@ class Admin::StocksController < Admin::BaseController
     respond_to do |format|
       if modify_amount.zero?
         return format.turbo_stream do
-          locals = { message: I18n.t('variants.invalid_modify_amount'), type: nil,
-                     notif_type: 'error' }
+          locals = { message: I18n.t('variants.invalid_modify_amount'),
+                     type: nil, notif_type: 'error' }
           render :stream, locals:
         end
       end
@@ -57,10 +57,6 @@ class Admin::StocksController < Admin::BaseController
     @variant = @product.variants.find(params[:vid])
   end
 
-  def product_variant_params
-    params.require(:product_variant).permit(:sku, :count_on_hand, :trackable, :backorderable, :modify_amount)
-  end
-
   def stock_update(stock_params, format)
     if @variant.update(stock_params)
       format.turbo_stream do
@@ -70,10 +66,14 @@ class Admin::StocksController < Admin::BaseController
       end
     else
       format.turbo_stream do
-        locals = { message: @variant.errors.full_messages.first, type: 'input-table', notif_type: 'error',
-                   variant: @product.variants.find(params[:vid]) }
+        locals = { message: @variant.errors.full_messages.first, type: 'input-table',
+                   notif_type: 'error', variant: @product.variants.find(params[:vid]) }
         render :stream, locals:
       end
     end
+  end
+
+  def product_variant_params
+    params.require(:product_variant).permit(:sku, :count_on_hand, :trackable, :backorderable, :modify_amount)
   end
 end
