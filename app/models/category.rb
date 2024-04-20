@@ -12,8 +12,12 @@ class Category < ApplicationRecord
   scope :base_root, -> { find_by(ancestry: nil) }
 
   # Validations
-  validates :name, presence: true,
-                   uniqueness: { scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry') }
+  validates :name,
+            presence: true,
+            uniqueness: {
+              message: I18n.t('categories.validate.unique_name_with_ancestry'),
+              scope: :ancestry
+            }
   validates :ancestry_depth,
             inclusion: {
               message: I18n.t('categories.validate.ancestry_depth'),
