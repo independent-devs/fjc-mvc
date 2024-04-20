@@ -13,7 +13,6 @@ end
 #  id                :bigint           not null, primary key
 #  name              :string           not null
 #  position          :integer          default(0)
-#  record_owner      :string
 #  record_owner_type :string
 #  record_type       :string           not null
 #  created_at        :datetime         not null
@@ -25,7 +24,7 @@ end
 #
 #  index_active_storage_attachments_on_blob_id    (blob_id)
 #  index_active_storage_attachments_on_position   (position)
-#  index_active_storage_attachments_record_owner  (record_owner,record_owner_id)
+#  index_active_storage_attachments_record_owner  (record_owner_type,record_owner_id)
 #  index_active_storage_attachments_uniqueness    (record_type,record_id,name,blob_id) UNIQUE
 #
 # Foreign Keys
