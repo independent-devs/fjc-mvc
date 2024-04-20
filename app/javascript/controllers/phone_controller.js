@@ -7,14 +7,15 @@ export default class extends Controller {
 
   connect() {
     this.fieldTarget.addEventListener("change", this.inputListener);
+    const country = "PH";
 
     this.iti = intlTelInput(this.fieldTarget, {
-      utilsScript:
-        "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
       separateDialCode: true,
-      initialCountry: "PH",
+      initialCountry: country,
       allowDropdown: false,
-      preferredCountries: ["PH"],
+      preferredCountries: [country],
+      onlyCountries: [country],
       customPlaceholder: (placeholder) => "e.g. " + placeholder,
     });
   }
