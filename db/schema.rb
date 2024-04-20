@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.boolean "is_thumbnail", default: false, null: false
     t.integer "position", default: 0
     t.string "record_owner_type"
     t.bigint "record_owner_id"

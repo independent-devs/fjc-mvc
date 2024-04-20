@@ -1,9 +1,25 @@
-.margin-max-screen.py-8.flex.flex-col.gap-5
+.margin-max-screen.py-8.flex.flex-col.gap-8
   = render "admin/products/tabs"
   = form_for(@product, url: admin_product_path(@product), html: {method: :put}) do |f|
     - @images.each do |image|
       = f.hidden_field :images, multiple: true, value: image.signed_id
     .flex.items-center.justify-center.w-full
-      %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-full h-64 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
+      %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
         = render "upload_icon"  
         = f.file_field :images, multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden", id: "dropzone-file"
+  %div
+    %ul.form-table-head.grid.grid-cols-4
+      %li.items-center
+        = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
+        = t("images.table.thead.image")
+      %li
+        = t("images.table.thead.variant")
+      %li
+        = t("images.table.thead.thumbnail")
+      %li
+        = t("images.table.thead.actions")
+    %ul.form-table-body
+      - if @image.present?
+      - else
+        %li.flex.justify-center.w-full.py-6.text-gray-400 
+          = t("images.no_list_found")
