@@ -102,7 +102,7 @@
 
   /* form table */
   ul.form-table-head {
-    @apply grid grid-cols-5 border-b text-sm gap-8 font-semibold text-secondary;
+    @apply border-b text-sm gap-8 font-semibold text-secondary;
   }
 
   ul.form-table-head li {

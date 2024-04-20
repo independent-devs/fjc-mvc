@@ -11,6 +11,7 @@ end
 # Table name: active_storage_attachments
 #
 #  id                :bigint           not null, primary key
+#  is_thumbnail      :boolean          default(FALSE), not null
 #  name              :string           not null
 #  position          :integer          default(0)
 #  record_owner_type :string
