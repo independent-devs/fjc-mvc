@@ -38,6 +38,7 @@ en:
     destroyed: "Category was successfully deleted."
     validate:
       ancestry_depth: "invalid depth."
+      unique_name_with_ancestry: "already exists in this ancestor."
   variants:
     new: "New variant"
     create_product_variant: "Create Product Variant"
