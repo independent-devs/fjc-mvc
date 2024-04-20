@@ -1,10 +1,10 @@
 - if devise_mapping.omniauthable?
-  .flex.flex-col.gap-3.text-sm
-    = button_to omniauth_authorize_path(resource_name, "facebook"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-14 border py-2.5 border-gray-400 justify-center rounded hover:shadow" do
+  .flex.flex-col.gap-3
+    = button_to omniauth_authorize_path(resource_name, "facebook"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-10 border py-2 border-gray-400 justify-center rounded hover:shadow" do
       = image_tag(asset_path("facebook.svg"), height: '25', width: '25')
       = name
       with Facebook
-    = button_to omniauth_authorize_path(resource_name, "google_oauth2"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-14 py-2.5 border border-gray-400 justify-center rounded hover:shadow" do
+    = button_to omniauth_authorize_path(resource_name, "google_oauth2"), data: { turbo: false }, class: "flex w-full items-center gap-3 px-10 py-2 border border-gray-400 justify-center rounded hover:shadow" do
       = image_tag(asset_path("google_oauth2.svg"), height: '25', width: '25')
       = name
       with Google
