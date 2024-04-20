@@ -23,10 +23,15 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      redirect_to admin_categories_url, notice: I18n.t('categories.created')
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to admin_categories_url, notice: I18n.t('categories.created') }
+      else
+        format.turbo_stream do
+          locals = { notif_type: 'error', type: nil, message: @category.errors.full_messages.first }
+          render :stream, locals:
+        end
+      end
     end
   end
 
