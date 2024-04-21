@@ -24,9 +24,12 @@ authenticated :user, -> { _1.admin? } do
             patch 'position', to: 'variants#product_variant_position', as: 'product_position'
           end
         end
-        resources :images, only: [] do
+        resources :images, param: :mid, only: [] do
           collection do
             get :index, to: 'images#product_images', as: 'product'
+          end
+          member do
+            put 'position', to: 'images#product_image_position', as: 'product'
           end
         end
         resources :stocks, param: :vid, only: [] do

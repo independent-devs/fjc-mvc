@@ -20,10 +20,12 @@ class Admin::ProductsController < Admin::BaseController
   def create
     @product = Product.new(product_params)
 
-    if @product.save
-      redirect_to admin_product_url(@product), notice: I18n.t('products.created')
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to admin_product_url(@product), notice: I18n.t('products.created') }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 = form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
     - if @product.errors.present?
-      = @product.errors.full_messages
+      = render ErrorMessageComponent.new(errors: @product.errors.full_messages, label: "validation")
     .field
       = f.label :name
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
