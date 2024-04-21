@@ -9,7 +9,7 @@
         = f.file_field :images, multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden", id: "dropzone-file"
   %div
     %ul.form-table-head.grid.grid-cols-4
-      %li.items-center
+      %li.flex.items-center
         = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
         = t("images.table.thead.image")
       %li
