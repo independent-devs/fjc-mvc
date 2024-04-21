@@ -44,7 +44,7 @@ class Admin::VariantsController < Admin::BaseController
         format.turbo_stream do
           locals = { message: @variant.errors.full_messages.first, type: 'input-table', notif_type: 'error',
                      variant: @product.variants.find(params[:vid]) }
-          render :stream, locals:
+          render :stream, locals:, status: :unprocessable_entity
         end
       end
     end
@@ -61,7 +61,7 @@ class Admin::VariantsController < Admin::BaseController
       else
         format.turbo_stream do
           locals = { message: @variant.errors.full_messages.first, type: nil, notif_type: 'error' }
-          render :stream, locals:
+          render :stream, locals:, status: :unprocessable_entity
         end
       end
     end
