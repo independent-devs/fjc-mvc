@@ -60,6 +60,8 @@ en:
         modify: "Modify (+/-)"
     no_list_found: "No variants found"
     invalid_modify_amount: "Invalid modify amount."
+  stocks:
+    updated: "Stock was successfully updated."
   images:
     validate:
       must_be_attached: "must be attached." 

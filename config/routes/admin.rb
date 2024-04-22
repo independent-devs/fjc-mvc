@@ -8,39 +8,20 @@ authenticated :user, -> { _1.admin? } do
 
     ## product routes
     resources :products do
+      resources :variants, only: %i[index new create update destroy], module: :products do
+        member do
+          patch 'position', to: 'variants#position'
+        end
+      end
+      resources :stocks, only: %i[index update], module: :products do
+        member do
+          put 'modify', to: 'stocks#modify'
+        end
+      end
+      resources :images, only: %i[index create update destroy], module: :products
       collection do
         resources :categories
-      end
-      member do
-        resources :variants, param: :vid, only: [] do
-          collection do
-            get :index, to: 'variants#product_variants', as: 'product'
-            get 'new', to: 'variants#product_variant_new', as: 'product_new'
-            post 'create', to: 'variants#product_variant_create', as: 'product_create'
-          end
-          member do
-            put 'update', to: 'variants#product_variant_update', as: 'product_update'
-            delete 'delete', to: 'variants#product_variant_delete', as: 'product_delete'
-            patch 'position', to: 'variants#product_variant_position', as: 'product_position'
-          end
-        end
-        resources :images, param: :mid, only: [] do
-          collection do
-            get :index, to: 'images#product_images', as: 'product'
-          end
-          member do
-            put 'position', to: 'images#product_image_position', as: 'product'
-          end
-        end
-        resources :stocks, param: :vid, only: [] do
-          collection do
-            get :index, to: 'stocks#product_stocks', as: 'product'
-          end
-          member do
-            put 'update', to: 'stocks#product_stock_update', as: 'product_update'
-            put 'modify_stock', to: 'stocks#product_stock_modify', as: 'product_modify'
-          end
-        end
+        post :create_images
       end
     end
   end

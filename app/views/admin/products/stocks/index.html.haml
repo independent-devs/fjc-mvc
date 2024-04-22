@@ -17,7 +17,8 @@
     %ul.form-table-body
       - if @variants.present?
         - @variants.each do |variant|                   
-          = render "stock_item", variant:
+          = render "item", variant:
       - else
         %li.flex.justify-center.w-full.py-4.text-gray-400 
           No variants
+

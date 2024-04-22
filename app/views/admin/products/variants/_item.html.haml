@@ -1,6 +1,6 @@
-%li{id: dom_id(variant), data: {"sortable-update-url": product_position_admin_variant_path(@product, variant)}}
+%li{id: dom_id(variant), data: {"sortable-update-url": position_admin_product_variant_path(@product, variant)}}
   = form_for(variant, as: "product_variant",                    | 
-  url: product_update_admin_variant_path(@product, variant),    |
+  url:  admin_product_variant_path(@product, variant),    |
   html: {method: :put}, data: {controller: 'autosave'}) do |f|  |
     .grid.grid-cols-5.gap-8
       .flex.py-4
@@ -26,5 +26,6 @@
         %button{type: "button",                                     |
         data: {controller: "variant",                               |
         action: "click->variant#delete",                            |
-        url: product_delete_admin_variant_path(@product, variant)}} |
+        url: admin_product_variant_path(@product, variant)}} |
           = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"
+

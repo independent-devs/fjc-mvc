@@ -1,38 +1,27 @@
 # frozen_string_literal: true
 
-class Admin::VariantsController < Admin::BaseController
-  before_action :set_product, only: %i[
-    product_variants
-    product_variant_new
-    product_variant_create
-    product_variant_update
-    product_variant_delete
-    product_variant_position
-  ]
+class Admin::Products::VariantsController < Admin::BaseController
+  before_action :set_product_variant, only: %i[index new create update destroy position]
 
-  # GET /admin/products/1/variants
-  def product_variants
+  def index
     @variants = @product.non_master_variants.sort_by_position.not_deleted
   end
 
-  # GET /admin/products/1/variants/new
-  def product_variant_new
-    @variant = @product.variants.new
+  def new
+    @variant = Variant.new
   end
 
-  # POST /admin/products/1/variants/create
-  def product_variant_create
+  def create
     @variant = @product.variants.new(product_variant_params)
 
     if @variant.save
-      redirect_to product_admin_variants_url(@product), notice: I18n.t('variants.created')
+      redirect_to admin_product_variants_url(@product), notice: I18n.t('variants.created')
     else
-      render :product_variant_new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PUT /admin/products/1/variants/1/update
-  def product_variant_update
+  def update
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.turbo_stream do
@@ -50,8 +39,7 @@ class Admin::VariantsController < Admin::BaseController
     end
   end
 
-  # DELETE /admin/products/1/variants/1/delete
-  def product_variant_delete
+  def destroy
     respond_to do |format|
       if @variant.update(deleted_at: DateTime.now)
         format.turbo_stream do
@@ -67,20 +55,19 @@ class Admin::VariantsController < Admin::BaseController
     end
   end
 
-  # PATCH /products/1/variants/1/position
-  def product_variant_position
+  def position
     @variant.update(sort_order_position: product_variant_params[:position].to_i)
     head :ok
   end
 
   private
 
-  def set_product
-    @product = Product.find(params[:id])
+  def set_product_variant
+    @product = Product.find(params[:product_id])
 
-    return if params[:vid].blank?
+    return if params[:id].blank?
 
-    @variant = @product.variants.find(params[:vid])
+    @variant = @product.variants.find(params[:id])
   end
 
   def product_variant_params

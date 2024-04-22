@@ -1,26 +1,19 @@
 # frozen_string_literal: true
 
-class Admin::StocksController < Admin::BaseController
-  before_action :set_product, only: %i[
-    product_stocks
-    product_stock_update
-    product_stock_modify
-    product_stocks_movement
-  ]
+class Admin::Products::StocksController < Admin::BaseController
+  before_action :set_product_stock, only: %i[index update modify]
 
-  # GET admin/products/1/stocks
-  def product_stocks
+  def index
     @variants = @product.variants.sort_by_position.not_deleted
   end
 
-  # PUT /admin/products/1/stocks/1/update
-  def product_stock_update
+  def update
     respond_to do |format|
       stock_update(product_variant_params, format)
     end
   end
 
-  def product_stock_modify
+  def modify
     modify_amount = product_variant_params[:modify_amount].to_i
 
     respond_to do |format|
@@ -44,23 +37,24 @@ class Admin::StocksController < Admin::BaseController
     end
   end
 
-  # GET admin/products/1/stocks_movement
-  def product_stocks_movement; end
-
   private
 
-  def set_product
-    @product = Product.find(params[:id])
+  def set_product_stock
+    @product = Product.find(params[:product_id])
 
-    return if params[:vid].blank?
+    return if params[:id].blank?
 
-    @variant = @product.variants.find(params[:vid])
+    @variant = @product.variants.find(params[:id])
+  end
+
+  def product_variant_params
+    params.require(:product_variant).permit(:sku, :count_on_hand, :trackable, :backorderable, :modify_amount)
   end
 
   def stock_update(stock_params, format)
     if @variant.update(stock_params)
       format.turbo_stream do
-        locals = { message: I18n.t('variants.updated'), type: 'input-table', notif_type: 'success',
+        locals = { message: I18n.t('stocks.updated'), type: 'input-table', notif_type: 'success',
                    variant: @variant }
         render :stream, locals:
       end
@@ -71,9 +65,5 @@ class Admin::StocksController < Admin::BaseController
         render :stream, locals:, status: :unprocessable_entity
       end
     end
-  end
-
-  def product_variant_params
-    params.require(:product_variant).permit(:sku, :count_on_hand, :trackable, :backorderable, :modify_amount)
   end
 end
