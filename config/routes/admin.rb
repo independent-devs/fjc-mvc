@@ -9,9 +9,15 @@ authenticated :user, -> { _1.admin? } do
     ## product routes
     resources :products do
       resources :variants, module: :products do
-        patch 'position', to: 'variants#position'
+        member do
+          patch 'position', to: 'variants#position'
+        end
       end
-
+      resources :stocks, only: %i[index update], module: :products do
+        member do
+          put 'modify', to: 'stocks#modify'
+        end
+      end
       collection do
         resources :categories
       end
@@ -22,15 +28,6 @@ authenticated :user, -> { _1.admin? } do
           end
           member do
             put 'position', to: 'images#product_image_position', as: 'product_position'
-          end
-        end
-        resources :stocks, param: :vid, only: [] do
-          collection do
-            get :index, to: 'stocks#product_stocks', as: 'product'
-          end
-          member do
-            put 'update', to: 'stocks#product_stock_update', as: 'product_update'
-            put 'modify_stock', to: 'stocks#product_stock_modify', as: 'product_modify'
           end
         end
       end

@@ -1,0 +1,24 @@
+.margin-max-screen.py-8.flex.flex-col.gap-5
+  = render "admin/products/tabs"
+  %span.text-gray-500
+    = @product.name
+  %div
+    %ul.form-table-head.grid.grid-cols-5
+      %li
+        = t("variants.table.thead.name")
+      %li
+        = t("variants.table.thead.sku")
+      %li
+        = t("variants.table.thead.backorderable")
+      %li
+        = t("variants.table.thead.count_on_hand")
+      %li
+        = t("variants.table.thead.modify")
+    %ul.form-table-body
+      - if @variants.present?
+        - @variants.each do |variant|                   
+          = render "item", variant:
+      - else
+        %li.flex.justify-center.w-full.py-4.text-gray-400 
+          No variants
+

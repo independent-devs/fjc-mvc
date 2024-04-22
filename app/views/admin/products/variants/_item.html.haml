@@ -1,4 +1,4 @@
-%li{id: dom_id(variant), data: {"sortable-update-url": admin_product_variant_position_path(@product, variant)}}
+%li{id: dom_id(variant), data: {"sortable-update-url": position_admin_product_variant_path(@product, variant)}}
   = form_for(variant, as: "product_variant",                    | 
   url:  admin_product_variant_path(@product, variant),    |
   html: {method: :put}, data: {controller: 'autosave'}) do |f|  |

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Products::VariantsController < Admin::BaseController
-  before_action :set_variant, only: %i[index new create update destroy position]
+  before_action :set_product_variant, only: %i[index new create update destroy position]
 
   def index
     @variants = @product.non_master_variants.sort_by_position.not_deleted
@@ -62,7 +62,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   private
 
-  def set_variant
+  def set_product_variant
     @product = Product.find(params[:product_id])
 
     return if params[:id].blank?
