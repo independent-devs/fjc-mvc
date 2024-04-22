@@ -1,6 +1,6 @@
 .margin-max-screen.py-8.flex.flex-col.gap-8
   = render "admin/products/tabs"
-  = form_for(@product, url: admin_product_path(@product), html: {method: :put}) do |f|
+  = form_for(@product, as: "product_image", url: create_images_admin_products_path(@product), html: {method: :post}) do |f|
     - @images.each do |image|
       = f.hidden_field :images, multiple: true, value: image.signed_id
     .flex.items-center.justify-center.w-full

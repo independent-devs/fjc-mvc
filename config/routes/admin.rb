@@ -21,6 +21,7 @@ authenticated :user, -> { _1.admin? } do
       resources :images, only: %i[index create update destroy], module: :products
       collection do
         resources :categories
+        post :create_images
       end
     end
   end
