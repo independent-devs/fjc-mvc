@@ -3,7 +3,7 @@
   .flex.gap-5.justify-between.items-start
     %span.text-gray-500
       = @product.name
-    = button_to product_new_admin_variants_path(@product),          | 
+    = button_to new_admin_product_variant_path(@product),          | 
     class: "btn-plain flex gap-2.5 items-center", method: :get do   |
       = t("variants.new")
       = icon("fa-solid", "plus")
@@ -25,7 +25,8 @@
     "sortable-handle-value": ".handle" }}               |
       - if @variants.present?
         - @variants.each do |variant|                   
-          = render "variant_item", variant:
+          = render "item", variant:
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("variants.no_list_found")
+

@@ -60,6 +60,7 @@ end
 #             product_delete_admin_variant DELETE   /admin/products/:id/variants/:vid/delete(.:format)                                                admin/variants#product_variant_delete
 #           product_position_admin_variant PATCH    /admin/products/:id/variants/:vid/position(.:format)                                              admin/variants#product_variant_position
 #                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
+#             product_position_admin_image PUT      /admin/products/:id/images/:mid/position(.:format)                                                admin/images#product_image_position
 #                     product_admin_stocks GET      /admin/products/:id/stocks(.:format)                                                              admin/stocks#product_stocks
 #               product_update_admin_stock PUT      /admin/products/:id/stocks/:vid/update(.:format)                                                  admin/stocks#product_stock_update
 #               product_modify_admin_stock PUT      /admin/products/:id/stocks/:vid/modify_stock(.:format)                                            admin/stocks#product_stock_modify

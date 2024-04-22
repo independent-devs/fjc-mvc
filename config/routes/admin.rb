@@ -8,28 +8,20 @@ authenticated :user, -> { _1.admin? } do
 
     ## product routes
     resources :products do
+      resources :variants, module: :products do
+        patch 'position', to: 'variants#position'
+      end
+
       collection do
         resources :categories
       end
       member do
-        resources :variants, param: :vid, only: [] do
-          collection do
-            get :index, to: 'variants#product_variants', as: 'product'
-            get 'new', to: 'variants#product_variant_new', as: 'product_new'
-            post 'create', to: 'variants#product_variant_create', as: 'product_create'
-          end
-          member do
-            put 'update', to: 'variants#product_variant_update', as: 'product_update'
-            delete 'delete', to: 'variants#product_variant_delete', as: 'product_delete'
-            patch 'position', to: 'variants#product_variant_position', as: 'product_position'
-          end
-        end
         resources :images, param: :mid, only: [] do
           collection do
             get :index, to: 'images#product_images', as: 'product'
           end
           member do
-            put 'position', to: 'images#product_image_position', as: 'product'
+            put 'position', to: 'images#product_image_position', as: 'product_position'
           end
         end
         resources :stocks, param: :vid, only: [] do
