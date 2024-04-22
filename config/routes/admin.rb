@@ -10,12 +10,12 @@ authenticated :user, -> { _1.admin? } do
     resources :products do
       resources :variants, only: %i[index new create update destroy], module: :products do
         member do
-          patch 'position', to: 'variants#position'
+          patch :position
         end
       end
       resources :stocks, only: %i[index update], module: :products do
         member do
-          put 'modify', to: 'stocks#modify'
+          put :modify
         end
       end
       resources :images, only: %i[index create update destroy], module: :products
