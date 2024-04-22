@@ -8,7 +8,7 @@ authenticated :user, -> { _1.admin? } do
 
     ## product routes
     resources :products do
-      resources :variants, module: :products do
+      resources :variants, only: %i[index new create update destroy], module: :products do
         member do
           patch 'position', to: 'variants#position'
         end
@@ -18,18 +18,9 @@ authenticated :user, -> { _1.admin? } do
           put 'modify', to: 'stocks#modify'
         end
       end
+      resources :images, only: %i[index create update destroy], module: :products
       collection do
         resources :categories
-      end
-      member do
-        resources :images, param: :mid, only: [] do
-          collection do
-            get :index, to: 'images#product_images', as: 'product'
-          end
-          member do
-            put 'position', to: 'images#product_image_position', as: 'product_position'
-          end
-        end
       end
     end
   end
