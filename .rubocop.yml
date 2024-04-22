@@ -71,3 +71,7 @@ Style/WordArray:
   Exclude:
     - "db/schema.rb"
 
+Rails/Output:
+  Exclude:
+    - "db/seeds.rb"
+
