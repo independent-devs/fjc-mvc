@@ -45,6 +45,22 @@ end
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
+#           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
+#                   admin_product_variants GET      /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#index
+#                                          POST     /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#create
+#                new_admin_product_variant GET      /admin/products/:product_id/variants/new(.:format)                                                admin/products/variants#new
+#                    admin_product_variant PATCH    /admin/products/:product_id/variants/:id(.:format)                                                admin/products/variants#update
+#                                          PUT      /admin/products/:product_id/variants/:id(.:format)                                                admin/products/variants#update
+#                                          DELETE   /admin/products/:product_id/variants/:id(.:format)                                                admin/products/variants#destroy
+#               modify_admin_product_stock PUT      /admin/products/:product_id/stocks/:id/modify(.:format)                                           admin/products/stocks#modify
+#                     admin_product_stocks GET      /admin/products/:product_id/stocks(.:format)                                                      admin/products/stocks#index
+#                      admin_product_stock PATCH    /admin/products/:product_id/stocks/:id(.:format)                                                  admin/products/stocks#update
+#                                          PUT      /admin/products/:product_id/stocks/:id(.:format)                                                  admin/products/stocks#update
+#                     admin_product_images GET      /admin/products/:product_id/images(.:format)                                                      admin/products/images#index
+#                                          POST     /admin/products/:product_id/images(.:format)                                                      admin/products/images#create
+#                      admin_product_image PATCH    /admin/products/:product_id/images/:id(.:format)                                                  admin/products/images#update
+#                                          PUT      /admin/products/:product_id/images/:id(.:format)                                                  admin/products/images#update
+#                                          DELETE   /admin/products/:product_id/images/:id(.:format)                                                  admin/products/images#destroy
 #                         admin_categories GET      /admin/products/categories(.:format)                                                              admin/categories#index
 #                                          POST     /admin/products/categories(.:format)                                                              admin/categories#create
 #                       new_admin_category GET      /admin/products/categories/new(.:format)                                                          admin/categories#new
@@ -53,17 +69,7 @@ end
 #                                          PATCH    /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          PUT      /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          DELETE   /admin/products/categories/:id(.:format)                                                          admin/categories#destroy
-#                   product_admin_variants GET      /admin/products/:id/variants(.:format)                                                            admin/variants#product_variants
-#               product_new_admin_variants GET      /admin/products/:id/variants/new(.:format)                                                        admin/variants#product_variant_new
-#            product_create_admin_variants POST     /admin/products/:id/variants/create(.:format)                                                     admin/variants#product_variant_create
-#             product_update_admin_variant PUT      /admin/products/:id/variants/:vid/update(.:format)                                                admin/variants#product_variant_update
-#             product_delete_admin_variant DELETE   /admin/products/:id/variants/:vid/delete(.:format)                                                admin/variants#product_variant_delete
-#           product_position_admin_variant PATCH    /admin/products/:id/variants/:vid/position(.:format)                                              admin/variants#product_variant_position
-#                     product_admin_images GET      /admin/products/:id/images(.:format)                                                              admin/images#product_images
-#             product_position_admin_image PUT      /admin/products/:id/images/:mid/position(.:format)                                                admin/images#product_image_position
-#                     product_admin_stocks GET      /admin/products/:id/stocks(.:format)                                                              admin/stocks#product_stocks
-#               product_update_admin_stock PUT      /admin/products/:id/stocks/:vid/update(.:format)                                                  admin/stocks#product_stock_update
-#               product_modify_admin_stock PUT      /admin/products/:id/stocks/:vid/modify_stock(.:format)                                            admin/stocks#product_stock_modify
+#             create_images_admin_products POST     /admin/products/create_images(.:format)                                                           admin/products#create_images
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new
