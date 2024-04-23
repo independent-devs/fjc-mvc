@@ -29,7 +29,7 @@ class Admin::CategoriesController < Admin::BaseController
       else
         format.turbo_stream do
           locals = { notif_type: 'error', type: nil, message: @category.errors.full_messages.first }
-          render :stream, locals:
+          render :stream, locals:, status: :unprocessable_entity
         end
       end
     end
@@ -42,15 +42,15 @@ class Admin::CategoriesController < Admin::BaseController
         format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
         format.turbo_stream do
           locals = { notif_type: 'success', type: 'item', message: I18n.t('categories.updated'),
-                     category: @category, position: category_params[:position] }
+                     category: @category }
           render :stream, locals:
         end
       else
         format.html { redirect_to admin_categories_url, error: @category.errors.full_messages.first }
         format.turbo_stream do
           locals = { notif_type: 'error', type: 'item', message: I18n.t('categories.updated'),
-                     category: find_category, position: category_params[:position] }
-          render :stream, locals:
+                     category: find_category }
+          render :stream, locals:, status: :unprocessable_entity
         end
       end
     end
