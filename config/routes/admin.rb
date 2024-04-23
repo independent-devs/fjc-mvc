@@ -18,10 +18,13 @@ authenticated :user, -> { _1.admin? } do
           put :modify
         end
       end
-      resources :images, only: %i[index create update destroy], module: :products
+      resources :images, only: %i[index create update destroy], module: :products do
+        collection do
+          post :upload
+        end
+      end
       collection do
         resources :categories
-        post :create_images
       end
     end
   end
