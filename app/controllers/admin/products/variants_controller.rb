@@ -32,7 +32,7 @@ class Admin::Products::VariantsController < Admin::BaseController
       else
         format.turbo_stream do
           locals = { message: @variant.errors.full_messages.first, type: 'input-table', notif_type: 'error',
-                     variant: @product.variants.find(params[:vid]) }
+                     variant: @product.variants.find(params[:id]) }
           render :stream, locals:, status: :unprocessable_entity
         end
       end
