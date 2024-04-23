@@ -53,14 +53,6 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
-  def create_images
-    if @product.update(product_params)
-      redirect_to admin_product_images_url(@product), notice: I18n.t('products.updated')
-    else
-      redirect_to admin_product_images_url(@product), error: @product.errors.full_messages.first
-    end
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

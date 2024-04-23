@@ -11,6 +11,14 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   def destroy; end
 
+  def upload
+    if @product.update(images: product_image_params[:images])
+      redirect_to admin_product_images_url(@product), notice: I18n.t('products.updated')
+    else
+      redirect_to admin_product_images_url(@product), error: @product.errors.full_messages.first
+    end
+  end
+
   private
 
   def set_product_image

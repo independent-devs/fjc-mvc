@@ -17,14 +17,6 @@ class Admin::Products::StocksController < Admin::BaseController
     modify_amount = product_variant_params[:modify_amount].to_i
 
     respond_to do |format|
-      if modify_amount.zero?
-        return format.turbo_stream do
-          locals = { message: I18n.t('variants.invalid_modify_amount'),
-                     type: nil, notif_type: 'error' }
-          render :stream, locals:
-        end
-      end
-
       count_on_hand = (
         if modify_amount.positive?
           @variant.count_on_hand + modify_amount
@@ -61,7 +53,7 @@ class Admin::Products::StocksController < Admin::BaseController
     else
       format.turbo_stream do
         locals = { message: @variant.errors.full_messages.first, type: 'input-table',
-                   notif_type: 'error', variant: @product.variants.find(params[:vid]) }
+                   notif_type: 'error', variant: @product.variants.find(params[:id]) }
         render :stream, locals:, status: :unprocessable_entity
       end
     end
