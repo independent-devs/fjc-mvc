@@ -56,6 +56,8 @@ end
 #                     admin_product_stocks GET      /admin/products/:product_id/stocks(.:format)                                                      admin/products/stocks#index
 #                      admin_product_stock PATCH    /admin/products/:product_id/stocks/:id(.:format)                                                  admin/products/stocks#update
 #                                          PUT      /admin/products/:product_id/stocks/:id(.:format)                                                  admin/products/stocks#update
+#              upload_admin_product_images POST     /admin/products/:product_id/images/upload(.:format)                                               admin/products/images#upload
+#             position_admin_product_image PATCH    /admin/products/:product_id/images/:id/position(.:format)                                         admin/products/images#position
 #                     admin_product_images GET      /admin/products/:product_id/images(.:format)                                                      admin/products/images#index
 #                                          POST     /admin/products/:product_id/images(.:format)                                                      admin/products/images#create
 #                      admin_product_image PATCH    /admin/products/:product_id/images/:id(.:format)                                                  admin/products/images#update
@@ -69,7 +71,6 @@ end
 #                                          PATCH    /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          PUT      /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          DELETE   /admin/products/categories/:id(.:format)                                                          admin/categories#destroy
-#             create_images_admin_products POST     /admin/products/create_images(.:format)                                                           admin/products#create_images
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new

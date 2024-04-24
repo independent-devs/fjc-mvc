@@ -22,6 +22,9 @@ authenticated :user, -> { _1.admin? } do
         collection do
           post :upload
         end
+        member do
+          patch :position
+        end
       end
       collection do
         resources :categories

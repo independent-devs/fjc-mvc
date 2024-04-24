@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Products::ImagesController < Admin::BaseController
-  before_action :set_product_image, only: %i[index update destroy upload]
+  before_action :set_product_image, only: %i[index update destroy upload position]
 
   def index
     @images = @product.images.order(:position)
@@ -19,6 +19,11 @@ class Admin::Products::ImagesController < Admin::BaseController
     end
   end
 
+  def position
+    @image.update(sort_order_position: product_image_params[:position])
+    head :ok
+  end
+
   private
 
   def set_product_image
@@ -26,8 +31,7 @@ class Admin::Products::ImagesController < Admin::BaseController
 
     return if params[:id].blank?
 
-    @image = ActiveStorageAttachment.find_by!(id: params[:id], record_type: @product.class.name,
-                                              record_id: @product.id)
+    @image = @product.images.find(params[:id])
   end
 
   def product_image_params
