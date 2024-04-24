@@ -3,6 +3,10 @@
 class ActiveStorageAttachment < ApplicationRecord
   include RankedModel
 
+  # Relations
+  belongs_to :record_owner, polymorphic: true
+
+  # Position
   ranks :sort_order, column: :position, with_same: %i[record_id record_type name]
 end
 

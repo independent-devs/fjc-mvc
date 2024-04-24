@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
   has_many :variants, dependent: :destroy
+  has_many :active_storage_attachments, as: :record_owner, dependent: :nullify
 
   # Scoped relations
   has_one :master_variant, -> { where(is_master: true) },

@@ -1,34 +1,34 @@
 %li{id: dom_id(variant)}
-  = form_for(variant, as: "product_variant",                    | 
-  url: admin_product_stock_path(@product, variant),      |
-  html: {method: :put}, data: {controller: 'autosave'}) do |f|  |
-    .grid.grid-cols-5.gap-8
-      .py-4
-        - if f.object.is_master
-          = render TagComponent.new(name: "Master")
-        - else
-          = f.object.name
-      .py-4
-        - if f.object.is_master
-          = render TagComponent.new(name: "Master")
-        - else
-          = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "autosave-target": "input" }
-      .flex.py-4.items-center
-        - if f.object.is_master
-          = render TagComponent.new(name: "Master")
-        - else
-          = f.check_box :backorderable, id: dom_id(variant, "backorderable"), |
-          data: { action: 'autosave#save' },                                  |
-          class: "text-primary rounded-sm focus:ring-0"                       |
-      .py-4.flex.gap-3
-        = f.object.count_on_hand
-        - if f.object.count_on_hand.zero? && (!f.object.is_master || (!@product.has_variant && f.object.is_master))
-          .text-red-600 Out of stock
-        - elsif f.object.is_master && @product.has_variant 
-          = "stock".pluralize(f.object.count_on_hand)
-          %span.text-zinc-400
-            (ignored)
-        - else
-          = "stock".pluralize(f.object.count_on_hand)
-      = render "modify_stock", variant:
+= form_for(variant, as: "product_variant",                    | 
+url: admin_product_stock_path(@product, variant),             |
+html: {method: :put}, data: {controller: 'autosave'}) do |f|  |
+  .grid.grid-cols-5.gap-8
+    .py-4
+      - if f.object.is_master
+        = render TagComponent.new(name: "Master")
+      - else
+        = f.object.name
+    .py-4
+      - if f.object.is_master
+        = render TagComponent.new(name: "Master")
+      - else
+        = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "autosave-target": "input" }
+    .flex.py-4.items-center
+      - if f.object.is_master
+        = render TagComponent.new(name: "Master")
+      - else
+        = f.check_box :backorderable, id: dom_id(variant, "backorderable"), |
+        data: { action: 'autosave#save' },                                  |
+        class: "text-primary rounded-sm focus:ring-0"                       |
+    .py-4.flex.gap-3
+      = f.object.count_on_hand
+      - if f.object.count_on_hand.zero? && (!f.object.is_master || (!@product.has_variant && f.object.is_master))
+        .text-red-600 Out of stock
+      - elsif f.object.is_master && @product.has_variant 
+        = "stock".pluralize(f.object.count_on_hand)
+        %span.text-zinc-400
+          (ignored)
+      - else
+        = "stock".pluralize(f.object.count_on_hand)
+    = render "modify_stock", variant:
 
