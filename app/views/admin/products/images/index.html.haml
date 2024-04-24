@@ -20,7 +20,9 @@
         = t("images.table.thead.thumbnail")
       %li
         = t("images.table.thead.actions")
-    %ul.form-table-body
+    %ul.form-table-body{data: {controller: "sortable",  |
+    "sortable-resource-name-value": "product_image",    |
+    "sortable-handle-value": ".handle" }}               |
       - if @images.present?
         - @images.each do |image|
           = render "item", image:

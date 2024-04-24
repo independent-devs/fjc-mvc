@@ -41,7 +41,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
       # Custom Fields
       t.boolean :is_thumbnail, null: false, default: false
-      t.integer :position, default: 0, index: true
+      t.integer :position, index: true
       t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type
 
       t.index %i[record_owner_type record_owner_id], name: :index_active_storage_attachments_record_owner
