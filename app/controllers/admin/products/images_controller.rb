@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Products::ImagesController < Admin::BaseController
-  before_action :set_product_image, only: %i[index update destroy]
+  before_action :set_product_image, only: %i[index update destroy upload]
 
   def index
     @images = @product.images.order(:position)

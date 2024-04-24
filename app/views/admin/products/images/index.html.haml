@@ -1,12 +1,14 @@
 .margin-max-screen.py-8.flex.flex-col.gap-8
   = render "admin/products/tabs"
-  = form_for(@product, as: "product_image", url: upload_admin_product_images_path(@product), html: {method: :post}) do |f|
+  = form_for(@product, as: "product_image", url: upload_admin_product_images_path(@product),
+    html: {data: {controller: "upload-image", action: "submit->upload-image#upload"}, method: :post}) do |f|
     - @images.each do |image|
       = f.hidden_field :images, multiple: true, value: image.signed_id
     .flex.items-center.justify-center.w-full
       %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
         = render "upload_icon"  
-        = f.file_field :images, multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden", id: "dropzone-file"
+        = f.file_field :images, id: "dropzone-file", multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden" 
+    = f.submit 'Sumbit', class: "btn-primary"  
   %div
     %ul.form-table-head.grid.grid-cols-4
       %li.flex.items-center
@@ -19,7 +21,9 @@
       %li
         = t("images.table.thead.actions")
     %ul.form-table-body
-      - if @image.present?
+      - if @images.present?
+        - @images.each do |image|
+          = render "item", image:
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("images.no_list_found")
