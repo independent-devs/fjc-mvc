@@ -6,6 +6,10 @@ module ActiveStorageAttachmentExtension
   included do
     include RankedModel
 
+    # Scopes
+    scope :sort_by_position, -> { rank(:sort_order) }
+
+    # Position
     ranks :sort_order, column: :position, with_same: %i[record_id record_type name]
   end
 end

@@ -4,7 +4,7 @@ class Admin::Products::ImagesController < Admin::BaseController
   before_action :set_product_image, only: %i[index update destroy upload position]
 
   def index
-    @images = @product.images.order(:position)
+    @images = @product.images.sort_by_position
   end
 
   def update; end
