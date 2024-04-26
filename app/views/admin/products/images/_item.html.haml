@@ -4,7 +4,6 @@
   html: {method: :put}, data: {controller: 'autosave'}) do |f|    |
     .grid.grid-cols-4.gap-8
       .py-3.flex.items-center
-        = f.object.record_owner_id
         .w-10.h-full.flex.items-center
           = icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = image_tag url_for(image), class: "w-11 h-11 object-center object-cover rounded border border-primary shadow"
