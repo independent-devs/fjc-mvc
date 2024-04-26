@@ -8,7 +8,8 @@
       %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
         = render "upload_icon"  
         = f.file_field :images, id: "dropzone-file", multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden" 
-    = f.submit 'Sumbit', class: "btn-primary"  
+    = f.submit 'Sumbit', class: "btn-primary"
+  - variant_selection = image_variant_selection(@product)
   %div
     %ul.form-table-head.grid.grid-cols-4
       %li.flex.items-center
@@ -25,7 +26,7 @@
     "sortable-handle-value": ".handle" }}               |
       - if @images.present?
         - @images.each do |image|
-          = render "item", image:
+          = render "item", image:, variant_selection:
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("images.no_list_found")
