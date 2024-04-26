@@ -25,7 +25,7 @@ class Variant < ApplicationRecord
   validate :only_one_master, if: :only_one_master_condition
 
   # Generators
-  after_save :check_image_records, if: :deleted_at_previously_changed?
+  after_save :check_image_records_on_delete, if: :deleted_at_previously_changed?
   after_save :capture_price, if: :capture_price_condition
 
   private
@@ -46,7 +46,7 @@ class Variant < ApplicationRecord
                     has_variant: more_than_one)
   end
 
-  def check_image_records
+  def check_image_records_on_delete
     return if deleted_at.blank?
 
     # rubocop:disable Rails::SkipsModelValidations
