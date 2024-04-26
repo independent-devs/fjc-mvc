@@ -25,6 +25,7 @@ class Variant < ApplicationRecord
   validate :only_one_master, if: :only_one_master_condition
 
   # Generators
+  after_save :check_image_records, if: :deleted_at_previously_changed?
   after_save :capture_price, if: :capture_price_condition
 
   private
@@ -43,6 +44,16 @@ class Variant < ApplicationRecord
     product.update!(lowest_price: captured.minimum(:price),
                     highest_price: captured.maximum(:price),
                     has_variant: more_than_one)
+  end
+
+  def check_image_records
+    return if deleted_at.blank?
+
+    # rubocop:disable Rails::SkipsModelValidations
+    product.images.where(record_owner_type: self.class.name, record_owner_id: id)
+           .update_all(record_owner_type: nil,
+                       record_owner_id: nil)
+    # rubocop:enable Rails::SkipsModelValidations
   end
 
   # For validations

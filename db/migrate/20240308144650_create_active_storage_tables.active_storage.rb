@@ -40,6 +40,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.foreign_key :active_storage_blobs, column: :blob_id
 
       # Custom Fields
+      t.datetime :deleted_at, index: true
       t.boolean :is_thumbnail, null: false, default: false
       t.integer :position, index: true
       t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type

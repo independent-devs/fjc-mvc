@@ -1,15 +1,16 @@
 %li{id: dom_id(image), data: {"sortable-update-url": position_admin_product_image_path(@product, image)}}
   = form_for(image, as: "product_image",                          | 
-  url:  admin_product_images_path(@product, image),               |
+  url:  admin_product_image_path(@product, image),                |
   html: {method: :put}, data: {controller: 'autosave'}) do |f|    |
     .grid.grid-cols-4.gap-8
       .py-3.flex.items-center
+        = f.object.record_owner_id
         .w-10.h-full.flex.items-center
           = icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = image_tag url_for(image), class: "w-11 h-11 object-center object-cover rounded border border-primary shadow"
       .py-3.flex.items-center
-        = f.select :record_owner_id, variant_selection, {}, { class: 'input-table bg-gray-50 w-full' }
-        = f.hidden_field :record_owner, value: "Variant"
+        = f.select :record_owner_id, variant_selection, {}, { data: { action: 'autosave#save' }, class: 'input-table bg-gray-50 w-full' }
+        = f.hidden_field :record_owner_type, value: "Variant"
       .py-3.flex.items-center
       .py-3.flex.items-center
 
