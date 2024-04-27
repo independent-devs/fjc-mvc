@@ -14,7 +14,7 @@ module ActiveStorageAttachmentExtension
     scope :not_deleted, -> { where(deleted_at: nil) }
 
     # Position
-    ranks :sort_order, column: :position, with_same: %i[record_id record_type name]
+    ranks :sort_order, column: :position, with_same: %i[record_id record_type name], scope: :not_deleted
 
     # Generators
     before_save :set_record_owner_blank, if: -> { record_owner_id.blank? || record_owner_type.blank? }
