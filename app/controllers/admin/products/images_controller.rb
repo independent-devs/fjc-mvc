@@ -24,13 +24,13 @@ class Admin::Products::ImagesController < Admin::BaseController
   def destroy
     respond_to do |format|
       if @image.update(deleted_at: DateTime.now)
-        locals = { notif_type: 'deleted', type: nil, message: I18n.t('images.destroyed') }
         format.turbo_stream do
+          locals = { notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed') }
           render :stream, locals:
         end
       else
         format.turbo_stream do
-          locals = { notif_type: 'error', type: 'deleted', message: @image.errors.full_messages.first }
+          locals = { notif_type: 'error', type: nil, message: @image.errors.full_messages.first }
           render :stream, locals:
         end
       end
