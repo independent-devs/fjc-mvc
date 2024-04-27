@@ -5,6 +5,11 @@ export default class extends Controller {
   connect() {
   }
 
+  upload(_event) {
+    let formData = new FormData(this.element)
+    console.log(formData)
+  }
+
   delete() {
     const isConfirmed = confirm("Are you sure you want to delete image?");
 
