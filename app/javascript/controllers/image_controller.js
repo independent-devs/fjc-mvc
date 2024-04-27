@@ -22,5 +22,4 @@ export default class extends Controller {
       .then((res) => res.text())
       .then((html) => Turbo.renderStreamMessage(html));
   }
-
 }
