@@ -21,7 +21,20 @@ class Admin::Products::ImagesController < Admin::BaseController
     end
   end
 
-  def destroy; end
+  def destroy
+    respond_to do |format|
+      if @image.update(deleted_at: DateTime.now)
+        format.turbo_stream do
+          render :stream, locals: { notif_type: 'deleted', type: nil, message: I18n.t('images.destroyed') }
+        end
+      else
+        format.turbo_stream do
+          render :stream,
+                 locals: { notif_type: 'error', type: 'deleted', message: @image.errors.full_messages.first }
+        end
+      end
+    end
+  end
 
   def upload
     if @product.update(images: product_image_params[:images])
