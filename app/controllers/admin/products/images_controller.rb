@@ -3,10 +3,12 @@
 class Admin::Products::ImagesController < Admin::BaseController
   before_action :set_product_image, only: %i[index update destroy upload position]
 
+  # GET /admin/product/:product_id/images
   def index
     @images = @product.images.sort_by_position.not_deleted
   end
 
+  # PATCH/PUT /admin/product/:product_id/images/:id
   def update
     respond_to do |format|
       if @image.update(product_image_params)
@@ -21,6 +23,7 @@ class Admin::Products::ImagesController < Admin::BaseController
     end
   end
 
+  # DELETE /admin/product/:product_id/images/:id
   def destroy
     respond_to do |format|
       if @image.update(deleted_at: DateTime.now)
@@ -37,6 +40,7 @@ class Admin::Products::ImagesController < Admin::BaseController
     end
   end
 
+  # POST /admin/product/:product_id/images/upload
   def upload
     if @product.update(images: product_image_params[:images])
       redirect_to admin_product_images_url(@product), notice: I18n.t('products.updated')
@@ -45,6 +49,7 @@ class Admin::Products::ImagesController < Admin::BaseController
     end
   end
 
+  # PATCH /admin/product/:product_id/images/:id/position
   def position
     @image.update(sort_order_position: product_image_params[:position])
     head :ok
