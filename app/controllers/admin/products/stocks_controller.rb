@@ -16,15 +16,15 @@ class Admin::Products::StocksController < Admin::BaseController
   def modify
     modify_amount = product_variant_params[:modify_amount].to_i
 
-    respond_to do |format|
-      count_on_hand = (
-        if modify_amount.positive?
-          @variant.count_on_hand + modify_amount
-        else
-          @variant.count_on_hand - modify_amount.abs
-        end
-      )
+    count_on_hand = (
+      if modify_amount.positive?
+        @variant.count_on_hand + modify_amount
+      else
+        @variant.count_on_hand - modify_amount.abs
+      end
+    )
 
+    respond_to do |format|
       stock_update({ count_on_hand: }, format)
     end
   end
