@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :seo do
-    product { create(:product) }
+    product {  Product.last || create(:product) }
     meta_title { Faker::Commerce.product_name }
     meta_description { Faker::Lorem.paragraph_by_chars }
     meta_keywords { Faker::Commerce.department }

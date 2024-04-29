@@ -3,16 +3,19 @@
 class Admin::Products::StocksController < Admin::BaseController
   before_action :set_product_stock, only: %i[index update modify]
 
+  # GET /admin/product/:product_id/stocks
   def index
     @variants = @product.variants.sort_by_position.not_deleted
   end
 
+  # PATCH/PUT /admin/product/:product_id/stocks/:id
   def update
     respond_to do |format|
       stock_update(product_variant_params, format)
     end
   end
 
+  # PUT /admin/product/:product_id/stocks/:id/modify
   def modify
     modify_amount = product_variant_params[:modify_amount].to_i
 
