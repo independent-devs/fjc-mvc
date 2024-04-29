@@ -7,6 +7,9 @@
         = f.label :name
         = f.text_field :name, required: true, placeholder: "e.g Black"
       .field
+        = f.label :alternative_name
+        = f.text_field :alternative_name, placeholder: "e.g Black Shoes"
+      .field
         = f.label :price do
           Price
           = currency_symbol(@product.currency)

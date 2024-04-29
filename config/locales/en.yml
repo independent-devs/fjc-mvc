@@ -51,9 +51,10 @@ en:
     table:
       thead:
         name: "Name"
+        alternative_name: "Alternative name"
         price: "Price"
         cost: "Cost"
-        count_on_hand: "Count on Hand"
+        count_on_hand: "Count on hand"
         trackable: "Trackable"
         backorderable: "Backorderable"
         actions: "Actions"

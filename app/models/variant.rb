@@ -78,20 +78,21 @@ end
 #
 # Table name: variants
 #
-#  id            :bigint           not null, primary key
-#  backorderable :boolean          default(FALSE), not null
-#  cost          :decimal(10, 2)
-#  count_on_hand :integer          default(0)
-#  deleted_at    :datetime
-#  is_master     :boolean          default(FALSE), not null
-#  name          :string
-#  position      :integer
-#  price         :decimal(10, 2)   not null
-#  sku           :string
-#  trackable     :boolean          default(TRUE), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  product_id    :bigint           not null
+#  id               :bigint           not null, primary key
+#  alternative_name :string
+#  backorderable    :boolean          default(FALSE), not null
+#  cost             :decimal(10, 2)
+#  count_on_hand    :integer          default(0)
+#  deleted_at       :datetime
+#  is_master        :boolean          default(FALSE), not null
+#  name             :string
+#  position         :integer
+#  price            :decimal(10, 2)   not null
+#  sku              :string
+#  trackable        :boolean          default(TRUE), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  product_id       :bigint           not null
 #
 # Indexes
 #

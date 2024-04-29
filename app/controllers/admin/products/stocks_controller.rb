@@ -46,13 +46,13 @@ class Admin::Products::StocksController < Admin::BaseController
   def stock_update(stock_params, format)
     if @variant.update(stock_params)
       format.turbo_stream do
-        locals = { message: I18n.t('stocks.updated'), type: 'input-table', notif_type: 'success',
+        locals = { message: I18n.t('stocks.updated'), type: 'item', notif_type: 'success',
                    variant: @variant }
         render :stream, locals:
       end
     else
       format.turbo_stream do
-        locals = { message: @variant.errors.full_messages.first, type: 'input-table',
+        locals = { message: @variant.errors.full_messages.first, type: 'item',
                    notif_type: 'error', variant: @product.variants.find(params[:id]) }
         render :stream, locals:, status: :unprocessable_entity
       end
