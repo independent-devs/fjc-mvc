@@ -2,9 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="image"
 export default class extends Controller {
-  connect() {
-  }
-
   upload(_event) {
     let formData = new FormData(this.element)
     console.log(formData)

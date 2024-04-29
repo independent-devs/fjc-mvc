@@ -25,13 +25,13 @@ class Admin::Products::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.turbo_stream do
-          locals = { message: I18n.t('variants.updated'), type: 'input-table', notif_type: 'success',
+          locals = { message: I18n.t('variants.updated'), type: 'item', notif_type: 'success',
                      variant: @variant }
           render :stream, locals:
         end
       else
         format.turbo_stream do
-          locals = { message: @variant.errors.full_messages.first, type: 'input-table', notif_type: 'error',
+          locals = { message: @variant.errors.full_messages.first, type: 'item', notif_type: 'error',
                      variant: @product.variants.find(params[:id]) }
           render :stream, locals:, status: :unprocessable_entity
         end
@@ -72,7 +72,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   def product_variant_params
     params.require(:product_variant)
-          .permit(:name, :cost, :price, :sku, :count_on_hand,
-                  :position, :trackable, :backorderable)
+          .permit(:name, :alternative_name, :cost, :price, :sku,
+                  :count_on_hand, :position, :trackable, :backorderable)
   end
 end
