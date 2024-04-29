@@ -25,8 +25,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.turbo_stream do
-          locals = { message: I18n.t('variants.updated'), type: 'item', notif_type: 'success',
-                     variant: @variant }
+          locals = { message: I18n.t('variants.updated'), type: 'item', notif_type: 'success', variant: @variant }
           render :stream, locals:
         end
       else
