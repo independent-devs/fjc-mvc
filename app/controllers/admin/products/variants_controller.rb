@@ -3,14 +3,17 @@
 class Admin::Products::VariantsController < Admin::BaseController
   before_action :set_product_variant, only: %i[index new create update destroy position]
 
+  # GET /admin/product/:product_id/variants
   def index
     @variants = @product.non_master_variants.sort_by_position.not_deleted
   end
 
+  # GET /admin/product/:product_id/variants/new
   def new
     @variant = Variant.new
   end
 
+  # POST /admin/product/:product_id/variants/:id
   def create
     @variant = @product.variants.new(product_variant_params)
 
@@ -21,6 +24,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     end
   end
 
+  # PATCH/PUT /admin/product/:product_id/variants/:id
   def update
     respond_to do |format|
       if @variant.update(product_variant_params)
@@ -38,6 +42,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     end
   end
 
+  # DELETE /admin/product/:product_id/variants/:id
   def destroy
     respond_to do |format|
       if @variant.update(deleted_at: DateTime.now)
@@ -54,6 +59,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     end
   end
 
+  # PATCH /admin/product/:product_id/variants/:id/position
   def position
     @variant.update(sort_order_position: product_variant_params[:position].to_i)
     head :ok

@@ -15,7 +15,7 @@ class Admin::Products::StocksController < Admin::BaseController
     end
   end
 
-  # POST /admin/product/:product_id/stocks/:id/modify
+  # PUT /admin/product/:product_id/stocks/:id/modify
   def modify
     modify_amount = product_variant_params[:modify_amount].to_i
 
