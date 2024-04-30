@@ -11,6 +11,7 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [320, 320]
   end
   has_one_attached :thumbnail do |attachable|
+    attachable.variant :small, resize_to_limit: [100, 100]
     attachable.variant :card, resize_to_limit: [320, 320]
   end
 
