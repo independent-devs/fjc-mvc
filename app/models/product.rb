@@ -6,7 +6,13 @@ class Product < ApplicationRecord
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
 
   # Image attachment
-  has_many_attached :images
+  has_many_attached :images do |attachable|
+    attachable.variant :small, resize_to_limit: [100, 100]
+    attachable.variant :thumb, resize_to_limit: [320, 320], preprocessed: true
+  end
+  has_one_attached :thumbnail do |attachable|
+    attachable.variant :card, resize_to_limit: [320, 320], preprocessed: true
+  end
 
   # Relations
   has_one :product_category, dependent: :destroy
