@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   # Image attachment
   has_many_attached :images do |attachable|
     attachable.variant :small, resize_to_limit: [100, 100]
-    attachable.variant :thumb, resize_to_limit: [320, 320], preprocessed: true
+    attachable.variant :thumb, resize_to_limit: [320, 320]
   end
   has_one_attached :thumbnail do |attachable|
-    attachable.variant :card, resize_to_limit: [320, 320], preprocessed: true
+    attachable.variant :card, resize_to_limit: [320, 320]
   end
 
   # Relations

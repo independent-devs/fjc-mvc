@@ -1,0 +1,9 @@
+%label{for: "dropzone-file", class: "cursor-pointer rounded-md flex gap-3 items-center border-2 border-dashed border-gray-300 p-2 hover:border-primary transition-colors duration-100"}
+  - if thumbnail.present?
+    = image_tag(thumbnail, id: "thumbnail", class: "rounded max-h-28 border max-w-28 min-h-28 min-w-28 object-cover object-center")
+  - else
+    #thumbnail.min-w-28.min-h-28.border-2.flex.items-center.justify-center.rounded
+      = icon("fa-regular", "image", class: "text-6xl text-gray-300")
+  %span.text-sm.text-gray-500.dark:text-gray-400.text-center PNG, JPG, JPEG
+  = form.file_field :thumbnail, id: "dropzone-file", accept: "image/png, image/jpg, image/jpeg", class: "hidden"
+
