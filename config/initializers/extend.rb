@@ -3,6 +3,7 @@
 module ActiveStorageAttachmentExtension
   extend ActiveSupport::Concern
 
+  # re-run the application to make this extension take effect
   included do
     include RankedModel
 
@@ -17,11 +18,15 @@ module ActiveStorageAttachmentExtension
     ranks :sort_order, column: :position, with_same: %i[record_id record_type name], scope: :not_deleted
 
     # Generators
-    before_save :set_record_owner_blank, if: -> { record_owner_id.blank? || record_owner_type.blank? }
+    before_save :record_owner_blank, if: :record_owner_blank_condition
 
     private
 
-    def set_record_owner_blank
+    def record_owner_blank_condition
+      record_owner_id.blank? || record_owner_type.blank?
+    end
+
+    def record_owner_blank
       self.record_owner_id = nil
       self.record_owner_type = nil
     end

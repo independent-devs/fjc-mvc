@@ -18,16 +18,13 @@
       %li
         = t("images.table.thead.image")
       %li
-        = t("images.table.thead.thumbnail")
+        = t("images.table.thead.options")
       %li
         = t("images.table.thead.actions")
-    %ul.form-table-body{data: {controller: "sortable",  |
-    "sortable-resource-name-value": "product_image",    |
-    "sortable-handle-value": ".handle" }}               |
+    %ul.form-table-body{data: {controller: "sortable", "sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
       - if @images.present?
         - @images.each do |image|
           = render "item", image:, variant_selection:
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("images.no_list_found")
-

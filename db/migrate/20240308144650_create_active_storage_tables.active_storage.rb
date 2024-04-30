@@ -41,7 +41,6 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
       # Custom Fields
       t.datetime :deleted_at, index: true
-      t.boolean :is_thumbnail, null: false, default: false
       t.integer :position, index: true
       t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type
 

@@ -70,7 +70,7 @@ en:
       thead:
         image: "Image"
         variant: "Variant"
-        thumbnail: "Thumbnail"
+        options: "Options"
         actions: "Actions"
     no_list_found: "No images found"
     updated: "Image was successfully updated."
