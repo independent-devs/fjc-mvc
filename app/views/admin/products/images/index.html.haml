@@ -5,7 +5,7 @@
     - @images.each do |image|
       = f.hidden_field :images, multiple: true, value: image.signed_id
     .flex.items-center.justify-center.w-full
-      %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer bg-gray-50"}
+      %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-100 border-2 border-gray-300 hover:border-primary border-dashed rounded-lg cursor-pointer"}
         = render "upload_icon"  
         = f.file_field :images, id: "dropzone-file", multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden" 
     = f.submit 'Sumbit', class: "btn-primary"
