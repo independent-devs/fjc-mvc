@@ -9,7 +9,7 @@
         = f.select :record_owner_id, variant_selection, {}, { id: dom_id(image, "record_owner_item"), data: { action: 'autosave#save' }, class: 'input-table bg-gray-50 w-full' }
         = f.hidden_field :record_owner_type, value: "Variant"
       .py-3.flex.items-center
-        = image_tag rails_blob_url(image.variant(:small)), class: "w-11 h-11 object-center object-cover rounded border shadow"
+        = image_tag rails_blob_url(image.variant(:small)), size: 100, class: "w-11 h-11 object-center object-cover rounded shadow-lg border"
       .py-3.flex.items-center
       .py-3.flex.items-center.gap-2 
         = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"

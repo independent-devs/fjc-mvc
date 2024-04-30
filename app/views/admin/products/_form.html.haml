@@ -24,6 +24,7 @@
         = seo.label :meta_keywords
         = seo.text_field :meta_keywords
   .flex.flex-col.gap-2{class: "w-1/4 md:w-60"}
+    = render "thumbnail_upload", form: f, thumbnail: f.object.thumbnail.variant(:card)
     .field
       = f.label :available_on
       = f.datetime_local_field :available_on
