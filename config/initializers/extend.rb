@@ -22,6 +22,7 @@ module ActiveStorageAttachmentExtension
 
     private
 
+    # For generators
     def record_owner_blank_condition
       record_owner_id.blank? || record_owner_type.blank?
     end

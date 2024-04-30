@@ -9,8 +9,10 @@
         = f.select :record_owner_id, variant_selection, {}, { id: dom_id(image, "record_owner_item"), data: { action: 'autosave#save' }, class: 'input-table bg-gray-50 w-full' }
         = f.hidden_field :record_owner_type, value: "Variant"
       .py-3.flex.items-center
-        = image_tag polymorphic_url(image), class: "w-11 h-11 object-center object-cover rounded border shadow"
+        = image_tag rails_blob_url(image.variant(:small)), class: "w-11 h-11 object-center object-cover rounded border shadow"
       .py-3.flex.items-center
-      .py-3.flex.items-center
-        %button{type: "button", data: {controller: "image", action: "click->image#delete", url: admin_product_image_path(@product, image)}}
-          = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"
+      .py-3.flex.items-center.gap-2 
+        = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"
+        %button{type: "button", class: "text-zinc-400 hover:text-red-500", 
+        data: {controller: "image", action: "click->image#delete", url: admin_product_image_path(@product, image)}}
+          = icon "fa-solid", "trash"
