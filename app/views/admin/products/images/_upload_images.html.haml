@@ -7,4 +7,5 @@
         %span.font-semibold Click to upload
         or drag and drop
       %p.text-sm.text-gray-500.dark:text-gray-400 PNG, JPG, JPEG
-    = form.file_field :images, id: "dropzone-file", multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden" 
+    = form.file_field :images, id: "dropzone-file", data: {"image-target": "files"},
+    multiple: true, accept: "image/png, image/jpg, image/jpeg", class: "hidden" 

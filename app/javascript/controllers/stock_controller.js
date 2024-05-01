@@ -1,10 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="modify-stock"
+// Connects to data-controller="stock"
 export default class extends Controller {
   static targets = ["input", "action"];
 
-  submit() {
+  modify() {
     let formData = new FormData();
     formData.append('product_variant[modify_amount]', this.inputTarget.value);
 
