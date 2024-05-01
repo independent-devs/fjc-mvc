@@ -2,9 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="image"
 export default class extends Controller {
-  upload(_event) {
-    let formData = new FormData(this.element)
-    console.log(formData)
+  static targets = ["files"]
+
+  displayImages() {
+    const images = this.filesTarget.files;
+
+    if (!images.length) return;
+
+    for (let i = 0; i < images.length; i++) {
+      var reader = new FileReader();
+      reader.onload = this.loadImage;
+      reader.readAsDataURL(images[i]);
+    }
+  }
+
+  loadImage(e) {
+    console.log(e.target.result)
   }
 
   delete() {

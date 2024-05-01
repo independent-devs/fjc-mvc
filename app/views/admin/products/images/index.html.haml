@@ -1,7 +1,7 @@
 .margin-max-screen.py-8.flex.flex-col.gap-8
   = render "admin/products/tabs"
   = form_for(@product, as: "product_image", url: upload_admin_product_images_path(@product),
-    html: {data: {controller: "image", action: "submit->image#upload"}, method: :post}) do |f|
+    html: {data: {controller: "image", action: "input->image#displayImages"}, method: :post}) do |f|
     - @images.each do |image|
       = f.hidden_field :images, multiple: true, value: image.signed_id
     = render "upload_images", form: f

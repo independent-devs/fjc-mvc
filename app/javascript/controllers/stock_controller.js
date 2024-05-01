@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["input", "action"];
 
-  submit() {
+  modify() {
     let formData = new FormData();
     formData.append('product_variant[modify_amount]', this.inputTarget.value);
 
