@@ -4,16 +4,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["files"]
 
-  connect() { }
-
-  upload(e) {
-    /*  e.preventDefault() */
-  }
-
-  loadImage(e) {
-    console.log(e.target.result)
-  }
-
   delete() {
     const isConfirmed = confirm("Are you sure you want to delete image?");
 
