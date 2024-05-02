@@ -1,10 +1,11 @@
-%label{for: "dropzone-file", class: "cursor-pointer rounded-md flex gap-1 items-center border-2 border-dashed border-gray-300 p-2 hover:border-primary transition-colors duration-100"}
+%label{for: "dropzone-file", class: "cursor-pointer rounded-md flex gap-1 items-center border-2 border-dashed border-gray-400 p-2 hover:border-primary transition-colors duration-100", data: {controller: "image"}}
   - if form.object.thumbnail.attached?
-    = image_tag form.object.thumbnail.variant(:card), size: 320, id: "thumbnail", 
+    = image_tag form.object.thumbnail.variant(:card), size: 320, id: "thumbnail", data: {"image-target": "image"},
     class: "rounded max-h-20 border max-w-20 min-h-20 min-w-20 object-cover object-center"
   - else
-    #thumbnail.min-w-20.min-h-20.border-2.flex.items-center.justify-center.rounded
-      = icon("fa-regular", "image", class: "text-6xl text-gray-300")
-  .flex.justify-center.items-center.w-full
-    %span.text-sm.text-gray-500.dark:text-gray-400 PNG, JPG, JPEG
-  = form.file_field :thumbnail, id: "dropzone-file", accept: "image/png, image/jpg, image/jpeg", class: "hidden"
+    = image_tag "thumbnail.png", size: 320, id: "thumbnail", data: {"image-target": "image"},
+    class: "rounded max-h-20 border max-w-20 min-h-20 min-w-20 object-cover object-center"
+  .flex.justify-center.items-center.w-full.flex-col.text-gray-500
+    %p.font-medium Select Image
+    %p.text-sm PNG, JPG, JPEG
+  = form.file_field :thumbnail, id: "dropzone-file", data: {action: "input->image#thumbnail"}, accept: "image/png, image/jpg, image/jpeg", class: "hidden"
