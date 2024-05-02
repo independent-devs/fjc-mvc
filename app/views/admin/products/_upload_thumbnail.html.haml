@@ -1,7 +1,7 @@
 %label{for: "dropzone-file", class: "cursor-pointer rounded-md flex gap-1 items-center border-2 border-dashed border-gray-300 p-2 hover:border-primary transition-colors duration-100"}
   - if form.object.thumbnail.attached?
-    = image_tag(form.object.thumbnail.variant(:card), id: "thumbnail", 
-    class: "rounded max-h-20 border max-w-20 min-h-20 min-w-20 object-cover object-center")
+    = image_tag form.object.thumbnail.variant(:card), size: 320, id: "thumbnail", 
+    class: "rounded max-h-20 border max-w-20 min-h-20 min-w-20 object-cover object-center"
   - else
     #thumbnail.min-w-20.min-h-20.border-2.flex.items-center.justify-center.rounded
       = icon("fa-regular", "image", class: "text-6xl text-gray-300")
