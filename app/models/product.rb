@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   # Constants
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
@@ -57,6 +59,7 @@ class Product < ApplicationRecord
 
   # Generators
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
+  after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
 
   # Low level cache
   def cached_seo
@@ -79,6 +82,16 @@ class Product < ApplicationRecord
     to_sanitize = new_record? ? name : slug
 
     self.slug = to_sanitize.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
+  end
+
+  def generate_thumbnail_url_condition
+    attachment_changes['thumbnail'].present?
+  end
+
+  def generate_thumbnail_url
+    # rubocop:disable Rails::SkipsModelValidations
+    update_column(:thumbnail_url, url_for(thumbnail.variant(:card)))
+    # rubocop:enable Rails::SkipsModelValidations
   end
 end
 
