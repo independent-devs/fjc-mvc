@@ -31,10 +31,12 @@ class Admin::ProductsController < Admin::BaseController
 
   # PATCH/PUT /admin/products/1
   def update
-    if @product.update(product_params)
-      redirect_to admin_product_url(@product), notice: I18n.t('products.updated')
-    else
-      render :show, status: :unprocessable_entity
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to admin_product_url(@product), notice: I18n.t('products.updated') }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -49,6 +51,10 @@ class Admin::ProductsController < Admin::BaseController
         end
       else
         format.html { redirect_to admin_products_url, error: I18n.t('products.unexpected') }
+        format.turbo_stream do
+          locals = { product: @product, notif_type: 'error', type: nil, message: I18n.t('products.unexpected') }
+          render :stream, locals:
+        end
       end
     end
   end
