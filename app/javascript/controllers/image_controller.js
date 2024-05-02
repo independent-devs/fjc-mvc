@@ -4,16 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["files"]
 
-  displayImages() {
-    const images = this.filesTarget.files;
+  connect() { }
 
-    if (!images.length) return;
-
-    for (let i = 0; i < images.length; i++) {
-      var reader = new FileReader();
-      reader.onload = this.loadImage;
-      reader.readAsDataURL(images[i]);
-    }
+  upload(e) {
+    /*  e.preventDefault() */
   }
 
   loadImage(e) {

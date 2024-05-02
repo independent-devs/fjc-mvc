@@ -25,17 +25,12 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # DELETE /admin/product/:product_id/images/:id
   def destroy
+    @image.purge
+
     respond_to do |format|
-      if @image.update(deleted_at: DateTime.now)
-        format.turbo_stream do
-          locals = { notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed') }
-          render :stream, locals:
-        end
-      else
-        format.turbo_stream do
-          locals = { notif_type: 'error', type: nil, message: @image.errors.full_messages.first }
-          render :stream, locals:
-        end
+      format.turbo_stream do
+        locals = { notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed') }
+        render :stream, locals:
       end
     end
   end
