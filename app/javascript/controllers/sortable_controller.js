@@ -1,4 +1,4 @@
-import Sortable from "stimulus-sortable";
+import Sortable from "@stimulus-components/sortable";
 
 // Connects to data-controller="sortable"
 export default class extends Sortable {
