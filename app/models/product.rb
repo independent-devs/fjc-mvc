@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
 
-  # Image attachment
+  # Attachments
   has_many_attached :images do |attachable|
     attachable.variant :small, resize_to_limit: [100, 100]
     attachable.variant :thumb, resize_to_limit: [320, 320]
