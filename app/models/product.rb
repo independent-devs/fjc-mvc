@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   # Constants
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
-                 '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ' }.freeze
+                 '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ', '.' => '' }.freeze
 
   # Attachments
   has_many_attached :images do |attachable|
