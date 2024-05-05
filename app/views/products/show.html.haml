@@ -1,1 +1,14 @@
-= render "product_seo", seo: @product.cached_seo
+= render "product_seo", seo: @product.seo
+
+.w-full.margin-max-screen.space-y-10.py-14
+  .flex.gap-5
+    %div{class: "w-2/5"}
+    .flex.flex-col{class: "w-3/5 gap-2.5"}
+      %h2.font-semibold.text-2xl
+        = @product.name
+      .flex.gap-2.items-center
+        = render StarRatingComponent.new(rating: @product.review_avg_rating)
+        %span.text-gray-400
+          = "(#{@product.review_count} #{"review".pluralize(@product.review_count)})"
+      .text-3xl.font-medium.text-primary
+        = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price

@@ -1,0 +1,7 @@
+.relative.inline-block
+  .text-gray-200.inline-flex.space-x-1
+    - stars.times do
+      = icon("fa-solid", "star")
+  .overflow-hidden.absolute.left-0.top-0.text-primary.flex.space-x-1.mt-1{style: "width: #{percentage}%"}
+    - stars.times do
+      = icon("fa-solid", "star")

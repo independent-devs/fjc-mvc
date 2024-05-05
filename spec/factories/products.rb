@@ -24,25 +24,25 @@ end
 #
 # Table name: products
 #
-#  id               :bigint           not null, primary key
-#  available_on     :datetime
-#  currency         :string           not null
-#  deleted_at       :datetime
-#  discontinue_on   :datetime
-#  has_variant      :boolean          default(FALSE), not null
-#  highest_price    :decimal(10, 2)
-#  lowest_price     :decimal(10, 2)
-#  name             :string           not null
-#  order_must_login :boolean          default(FALSE), not null
-#  promotable       :boolean          default(TRUE), not null
-#  rate_count       :integer          default(0)
-#  rating           :decimal(1, 1)    default(0.0)
-#  slug             :string           not null
-#  thumbnail_url    :string
-#  uuid             :uuid             not null
-#  variant_label    :string           default("Variations"), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                :bigint           not null, primary key
+#  available_on      :datetime
+#  currency          :string           not null
+#  deleted_at        :datetime
+#  discontinue_on    :datetime
+#  has_variant       :boolean          default(FALSE), not null
+#  highest_price     :decimal(10, 2)
+#  lowest_price      :decimal(10, 2)
+#  name              :string           not null
+#  order_must_login  :boolean          default(FALSE), not null
+#  promotable        :boolean          default(TRUE), not null
+#  review_avg_rating :decimal(1, 1)    default(0.0)
+#  review_count      :integer          default(0)
+#  slug              :string           not null
+#  thumbnail_url     :string
+#  uuid              :uuid             not null
+#  variant_label     :string           default("Variations"), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
