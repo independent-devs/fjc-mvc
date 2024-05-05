@@ -14,8 +14,8 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.decimal :lowest_price, precision: 10, scale: 2
       t.decimal :highest_price, precision: 10, scale: 2
       t.string :currency, null: false
-      t.decimal :rating, precision: 1, scale: 1, default: 0
-      t.integer :rate_count, default: 0
+      t.decimal :review_avg_rating, precision: 1, scale: 1, default: 0
+      t.integer :review_count, default: 0
       t.boolean :has_variant, null: false, default: false
       t.string :variant_label, null: false, default: 'Variations'
       t.string :thumbnail_url

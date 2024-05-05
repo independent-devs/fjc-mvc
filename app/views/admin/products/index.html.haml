@@ -22,7 +22,6 @@
                   = image_tag(product.thumbnail.variant(:small), size: 100, class: "w-8 h-8 object-cover object-center rounded border")
                 = product.name
               %td
-                = currency_symbol(product.currency)
                 = render PriceRangeComponent.new lowest: product.lowest_price, highest: product.highest_price
               %td
                 = link_to product_path(product.slug, pid: product.uuid), target: "_blank", class: "text-lg text-gray-400 hover:text-primary" do

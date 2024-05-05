@@ -95,8 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.decimal "lowest_price", precision: 10, scale: 2
     t.decimal "highest_price", precision: 10, scale: 2
     t.string "currency", null: false
-    t.decimal "rating", precision: 1, scale: 1, default: "0.0"
-    t.integer "rate_count", default: 0
+    t.decimal "review_avg_rating", precision: 1, scale: 1, default: "0.0"
+    t.integer "review_count", default: 0
     t.boolean "has_variant", default: false, null: false
     t.string "variant_label", default: "Variations", null: false
     t.string "thumbnail_url"
