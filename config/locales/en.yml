@@ -39,6 +39,8 @@ en:
     validate:
       ancestry_depth: "invalid depth."
       unique_name_with_ancestry: "already exists in this ancestor."
+  options:
+    title: "Options"
   variants:
     new: "New variant"
     create_product_variant: "Create Product Variant"
