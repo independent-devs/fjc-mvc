@@ -40,7 +40,6 @@ end
 #  slug              :string           not null
 #  thumbnail_url     :string
 #  uuid              :uuid             not null
-#  variant_label     :string           default("Variations"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

@@ -2,8 +2,8 @@
 
 .w-full.margin-max-screen.space-y-10.py-14
   .flex.gap-5
-    %div{class: "w-2/5"}
-    .flex.flex-col{class: "w-3/5 gap-2.5"}
+    %div{class: "min-w-[550px] max-w-[550px]"}
+    .flex.flex-col{class: "w-full gap-2.5"}
       %h2.font-semibold.text-2xl
         = @product.name
       .flex.gap-2.items-center

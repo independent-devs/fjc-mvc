@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_06_172931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -70,6 +70,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.index ["product_id"], name: "index_descriptions_on_product_id"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_categories", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
@@ -98,7 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_162759) do
     t.decimal "review_avg_rating", precision: 1, scale: 1, default: "0.0"
     t.integer "review_count", default: 0
     t.boolean "has_variant", default: false, null: false
-    t.string "variant_label", default: "Variations", null: false
     t.string "thumbnail_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
