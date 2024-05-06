@@ -29,6 +29,9 @@ authenticated :user, -> { _1.admin? } do
       collection do
         resources :categories
       end
+      collection do
+        resources :options, only: [:index]
+      end
     end
   end
 end

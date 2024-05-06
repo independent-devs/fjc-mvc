@@ -1,7 +1,7 @@
 .margin-max-screen.h-full.py-8
   - if @base_category.present?
     .flex.gap-2.items-center
-      %h1.font-bold.text-xl
+      %h1.font-semibold.text-xl
         = @base_category.name
       = link_to new_admin_category_path(ancestor: @base_category.id), class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
         = icon("fa-solid", "plus", class: "text-xs")
