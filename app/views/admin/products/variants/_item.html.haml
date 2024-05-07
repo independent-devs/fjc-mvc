@@ -1,19 +1,23 @@
 %li{id: dom_id(variant), data: {"sortable-update-url": position_admin_product_variant_path(@product, variant)}}
-  = form_for(variant, as: "product_variant",                    | 
-  url:  admin_product_variant_path(@product, variant),          |
-  html: {method: :put}, data: {controller: 'autosave'}) do |f|  |
+  = form_for(variant, as: "product_variant",                    
+  url:  admin_product_variant_path(@product, variant),          
+  html: {method: :put}, data: {controller: 'autosave'}) do |f|
     .grid.grid-cols-5.gap-8
       .flex.py-4
         .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
-        = f.text_field :name, id: dom_id(variant, "name"), required: true, class: "input-table h-fit w-full", data: { "autosave-target": "input" }              
+        = f.text_field :name, id: dom_id(variant, "name"), required: true,
+        class: "input-table h-fit w-full", data: { "autosave-target": "input" }              
       .py-4
-        = f.text_field :alternative_name, id: dom_id(variant, "alternative_name"), class: "input-table h-fit w-full", data: { "autosave-target": "input" }
+        = f.text_field :alternative_name, id: dom_id(variant, "alternative_name"),
+        class: "input-table h-fit w-full", data: { "autosave-target": "input" }
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :price, id: dom_id(variant, "price"),  placeholder: "0.00", step: :any, required: true, class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :price, id: dom_id(variant, "price"), placeholder: "0.00",
+        step: :any, required: true, class: "input-table", data: { "autosave-target": "input" }
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", step: :any, class: "input-table", data: { "autosave-target": "input" }
+        = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", step: :any,
+        class: "input-table", data: { "autosave-target": "input" }
       .py-4
         %button{type: "button", 
         data: {controller: "variant", 

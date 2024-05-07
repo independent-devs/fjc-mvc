@@ -1,5 +1,6 @@
 .flex.items-center.gap-2.w-full.border.px-3.py-1.rounded{id: dom_id(category, "item")}
-  = button_to admin_category_path(category), method: :delete, form: {data: {turbo_confirm: "Are you sure you want to delete category? All child of this category will be deleted also."}} do |  
+  = button_to admin_category_path(category), method: :delete,
+  form: {data: {turbo_confirm: "Are you sure you want to delete category? All child of this category will be deleted also."}} do |  
     = icon "fa-solid", "trash-can", class: "text-zinc-400 hover:text-red-500"
   - if category.ancestry_depth < Category::MAX_DEPTH
     = link_to new_admin_category_path(ancestor: category.id),     | 
