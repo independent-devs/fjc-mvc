@@ -8,4 +8,5 @@
   .flex.justify-center.items-center.w-full.flex-col.text-gray-500
     %p.font-medium Select Image
     %p.text-sm PNG, JPG, JPEG
-  = form.file_field :thumbnail, id: "dropzone-file", data: {action: "input->image#thumbnail"}, accept: "image/png, image/jpg, image/jpeg", class: "hidden"
+  = form.file_field :thumbnail, id: "dropzone-file", data: {action: "input->image#thumbnail"}, 
+  accept: "image/png, image/jpg, image/jpeg", class: "hidden"
