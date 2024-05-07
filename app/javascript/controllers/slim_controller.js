@@ -9,6 +9,7 @@ export default class extends Controller {
       settings: {
         hideSelected: true,
         closeOnSelect: false,
+        maxSelected: this.element.dataset.maxSelected,
       }
     })
   }

@@ -174,8 +174,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
 
   create_table "variants", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.string "name"
-    t.string "alternative_name"
     t.string "sku"
     t.integer "position"
     t.datetime "deleted_at"

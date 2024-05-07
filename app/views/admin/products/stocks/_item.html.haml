@@ -7,7 +7,6 @@
         - if f.object.is_master
           = render TagComponent.new(name: "Master")
         - else
-          = f.object.name
       .py-4
         - if f.object.is_master
           = render TagComponent.new(name: "Master")
@@ -17,9 +16,9 @@
         - if f.object.is_master
           = render TagComponent.new(name: "Master")
         - else
-          = f.check_box :backorderable, id: dom_id(variant, "backorderable"), |
-          data: { action: 'autosave#save' },                                  |
-          class: "text-primary rounded-sm focus:ring-0"                       |
+          = f.check_box :backorderable, id: dom_id(variant, "backorderable"), 
+          data: { action: 'autosave#save' },                                  
+          class: "text-primary rounded-sm focus:ring-0"
       .py-4.flex.gap-3
         = f.object.count_on_hand
         - if f.object.count_on_hand.zero? && (!f.object.is_master || (!@product.has_variant && f.object.is_master))

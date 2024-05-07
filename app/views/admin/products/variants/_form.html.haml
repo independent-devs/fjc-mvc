@@ -1,14 +1,8 @@
 - if is_new
   - master = @product.master_variant
 = form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method:}) do |f|
-  .flex.flex-col.w-full.gap-5
+  .flex.flex-col.w-full.gap-4
     .grid.grid-cols-3.gap-3.w-full
-      .field
-        = f.label :name
-        = f.text_field :name, required: true, placeholder: "e.g Black"
-      .field
-        = f.label :alternative_name
-        = f.text_field :alternative_name, placeholder: "e.g Black Shoes"
       .field
         = f.label :price do
           Price

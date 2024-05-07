@@ -23,7 +23,6 @@ class Variant < ApplicationRecord
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
 
   # Validations
-  validates :name, presence: true, if: -> { !is_master }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
@@ -85,21 +84,19 @@ end
 #
 # Table name: variants
 #
-#  id               :bigint           not null, primary key
-#  alternative_name :string
-#  backorderable    :boolean          default(FALSE), not null
-#  cost             :decimal(10, 2)
-#  count_on_hand    :integer          default(0)
-#  deleted_at       :datetime
-#  is_master        :boolean          default(FALSE), not null
-#  name             :string
-#  position         :integer
-#  price            :decimal(10, 2)   not null
-#  sku              :string
-#  trackable        :boolean          default(TRUE), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  product_id       :bigint           not null
+#  id            :bigint           not null, primary key
+#  backorderable :boolean          default(FALSE), not null
+#  cost          :decimal(10, 2)
+#  count_on_hand :integer          default(0)
+#  deleted_at    :datetime
+#  is_master     :boolean          default(FALSE), not null
+#  position      :integer
+#  price         :decimal(10, 2)   not null
+#  sku           :string
+#  trackable     :boolean          default(TRUE), not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  product_id    :bigint           not null
 #
 # Indexes
 #
