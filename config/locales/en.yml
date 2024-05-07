@@ -63,6 +63,7 @@ en:
     table:
       thead:
         name: "Name"
+        option_values: "Option Values"
         alternative_name: "Alternative name"
         price: "Price"
         cost: "Cost"
