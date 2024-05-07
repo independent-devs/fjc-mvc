@@ -1,7 +1,7 @@
 .margin-max-screen.h-full.py-8
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-start
-      %h2.font-medium.text-lg
+      %h2.font-semibold.text-xl
         = t("products.list")
       = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
         = t("products.new")
