@@ -71,6 +71,7 @@ end
 #                                          PATCH    /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          PUT      /admin/products/categories/:id(.:format)                                                          admin/categories#update
 #                                          DELETE   /admin/products/categories/:id(.:format)                                                          admin/categories#destroy
+#                            admin_options GET      /admin/products/options(.:format)                                                                 admin/options#index
 #                           admin_products GET      /admin/products(.:format)                                                                         admin/products#index
 #                                          POST     /admin/products(.:format)                                                                         admin/products#create
 #                        new_admin_product GET      /admin/products/new(.:format)                                                                     admin/products#new

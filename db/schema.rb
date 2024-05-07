@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_06_172931) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -90,6 +90,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_06_172931) do
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
+  create_table "product_options", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "option_id", null: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_product_options_on_option_id"
+    t.index ["product_id"], name: "index_product_options_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "name", null: false
@@ -151,6 +161,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_06_172931) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "variant_option_values", force: :cascade do |t|
+    t.bigint "variant_id", null: false
+    t.bigint "product_option_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_option_id"], name: "index_variant_option_values_on_product_option_id"
+    t.index ["variant_id"], name: "index_variant_option_values_on_variant_id"
+  end
+
   create_table "variants", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "name"
@@ -177,6 +197,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_06_172931) do
   add_foreign_key "descriptions", "products"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
+  add_foreign_key "product_options", "options"
+  add_foreign_key "product_options", "products"
   add_foreign_key "seos", "products"
+  add_foreign_key "variant_option_values", "product_options"
+  add_foreign_key "variant_option_values", "variants"
   add_foreign_key "variants", "products"
 end
