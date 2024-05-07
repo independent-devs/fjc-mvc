@@ -48,6 +48,9 @@ en:
         updated_at: "Updated at"
         actions: "Actions"
     no_list_found: "No options found"
+    created: "Option was successfully created."
+    updated: "Option was successfully updated."
+    destroyed: "Option was successfully deleted."
   variants:
     new: "New variant"
     create_product_variant: "Create Product Variant"

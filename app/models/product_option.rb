@@ -1,9 +1,18 @@
 # frozen_string_literal: true
 
 class ProductOption < ApplicationRecord
+  include RankedModel
+
   # Relations
   belongs_to :product
   belongs_to :option
+  has_many :variant_option_values, dependent: :destroy
+
+  # Scopes
+  scope :sort_by_position, -> { rank(:sort_order) }
+
+  # Position
+  ranks :sort_order, column: :position
 end
 
 # == Schema Information

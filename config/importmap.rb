@@ -17,3 +17,4 @@ pin "@stimulus-components/popover", to: "@stimulus-components--popover.js" # @7.
 pin "@stimulus-components/sortable", to: "@stimulus-components--sortable.js", preload: false # @5.0.1
 pin "@rails/request.js", to: "@rails--request.js.js", preload: false # @0.0.8
 pin "sortablejs", preload: false # @1.15.2
+pin "slim-select", preload: false # @2.8.2
