@@ -30,7 +30,7 @@ authenticated :user, -> { _1.admin? } do
         resources :categories
       end
       collection do
-        resources :options, only: [:index]
+        resources :options, only: %i[index create update destroy]
       end
     end
   end

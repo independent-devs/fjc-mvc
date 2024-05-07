@@ -41,6 +41,13 @@ en:
       unique_name_with_ancestry: "already exists in this ancestor."
   options:
     title: "Options"
+    table:
+      thead:
+        name: "Name"
+        created_at: "Created at"
+        updated_at: "Updated at"
+        actions: "Actions"
+    no_list_found: "No options found"
   variants:
     new: "New variant"
     create_product_variant: "Create Product Variant"

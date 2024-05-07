@@ -5,6 +5,7 @@ class Option < ApplicationRecord
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
+  scope :not_deleted, -> { where(deleted_at: nil) }
 
   # Position
   ranks :sort_order, column: :position
@@ -17,6 +18,7 @@ end
 # Table name: options
 #
 #  id         :bigint           not null, primary key
+#  deleted_at :datetime
 #  name       :string
 #  position   :integer
 #  created_at :datetime         not null

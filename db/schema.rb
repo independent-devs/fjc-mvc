@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   create_table "options", force: :cascade do |t|
     t.string "name"
     t.integer "position"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -164,7 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   create_table "variant_option_values", force: :cascade do |t|
     t.bigint "variant_id", null: false
     t.bigint "product_option_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_option_id"], name: "index_variant_option_values_on_product_option_id"
