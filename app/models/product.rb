@@ -22,7 +22,8 @@ class Product < ApplicationRecord
   has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
   has_many :variants, dependent: :destroy
-  has_many :product_option, dependent: :destroy
+  has_many :product_options, dependent: :destroy
+  has_many :options, through: :product_options
 
   # Scoped relations
   has_one :master_variant, -> { where(is_master: true) },

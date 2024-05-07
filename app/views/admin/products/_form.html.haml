@@ -12,6 +12,9 @@
       .field
         = desc.label :description
         = desc.text_area :description, rows: 12
+    .field
+      = f.label :options
+      = f.select :option_ids, Option.pluck(:name, :id), {}, {multiple: true, data: {controller: "slim"}}
     %h2.font-medium.text-lg.mt-3 SEO
     = f.fields_for :seo, is_new ? Seo.new : f.object.seo do |seo|
       .field

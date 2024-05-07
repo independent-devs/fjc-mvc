@@ -2,6 +2,7 @@
 %html{lang:"en"}
   %head
     = render "layouts/head"
+    = stylesheet_link_tag "slimselect", "data-turbo-track": "reload"
   %body.flex
     = render FlashComponent.new
     = render "layouts/sidebar"
