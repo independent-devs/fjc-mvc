@@ -6,7 +6,10 @@ export default class extends Controller {
   connect() {
     new SlimSelect({
       select: this.element,
-      closeOnSelect: false
+      settings: {
+        hideSelected: true,
+        closeOnSelect: false,
+      }
     })
   }
 }
