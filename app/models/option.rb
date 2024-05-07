@@ -3,6 +3,9 @@
 class Option < ApplicationRecord
   include RankedModel
 
+  # Relations
+  has_many :product_option, dependent: :destroy
+
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :not_deleted, -> { where(deleted_at: nil) }

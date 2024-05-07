@@ -11,6 +11,7 @@ class Variant < ApplicationRecord
 
   # Relations
   belongs_to :product
+  has_many :variant_option_values, dependent: :destroy
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
