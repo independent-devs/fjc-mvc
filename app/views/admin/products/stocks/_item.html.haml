@@ -7,6 +7,7 @@
         - if f.object.is_master
           = render TagComponent.new(name: "Master")
         - else
+          = f.object.grouped_name
       .py-4
         - if f.object.is_master
           = render TagComponent.new(name: "Master")

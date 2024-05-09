@@ -5,12 +5,16 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   # GET /admin/product/:product_id/variants
   def index
-    @variants = @product.non_master_variants.sort_by_position.not_deleted
+    @variants = @product.non_master_variants.sort_by_position.not_deleted.with_grouped_name
   end
 
   # GET /admin/product/:product_id/variants/new
   def new
     @variant = Variant.new
+
+    @po = @product.product_options
+                  .select('product_options.*, options.name, options.placeholder')
+                  .joins(:option)
   end
 
   # POST /admin/product/:product_id/variants/:id
@@ -78,6 +82,7 @@ class Admin::Products::VariantsController < Admin::BaseController
   def product_variant_params
     params.require(:product_variant)
           .permit(:name, :alternative_name, :cost, :price, :sku,
-                  :count_on_hand, :position, :trackable, :backorderable)
+                  :count_on_hand, :position, :trackable, :backorderable,
+                  variant_option_values_attributes: %i[id name variant_id product_option_id])
   end
 end

@@ -71,7 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.string "placeholder"
     t.integer "position"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
