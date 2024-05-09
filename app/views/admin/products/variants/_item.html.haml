@@ -5,6 +5,7 @@
     .grid.grid-cols-4.gap-8
       .flex.py-4
         .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
+        = f.object.grouped_name
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
         = f.number_field :price, id: dom_id(variant, "price"), placeholder: "0.00",

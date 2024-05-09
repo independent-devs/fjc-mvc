@@ -6,11 +6,10 @@ module ImagesHelper
   end
 
   def selections(product)
-    variants = product.non_master_variants
-                      .not_deleted.sort_by_position
+    variants = product.non_master_variants.sort_by_position.not_deleted.with_grouped_name
 
     variants.map do |v|
-      [v.name, v.id]
+      [v.grouped_name, v.id]
     end
   end
 end

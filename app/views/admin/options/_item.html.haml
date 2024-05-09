@@ -6,7 +6,8 @@
         = f.text_field :name, id: dom_id(option, "name"), required: true, 
         class: "input-table h-fit w-full", data: {"autosave-target": "input"}             
       .py-4
-        = f.object.created_at
+        = f.text_field :placeholder, id: dom_id(option, "placeholder"), required: true, 
+        class: "input-table h-fit w-full", data: {"autosave-target": "input"} 
       .py-4
         = f.object.updated_at
       .py-4

@@ -13,11 +13,20 @@ class Variant < ApplicationRecord
   belongs_to :product
   has_many :variant_option_values, dependent: :destroy
 
+  # Nested form
+  accepts_nested_attributes_for :variant_option_values
+
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
+  scope :with_grouped_name,
+        lambda {
+          select("variants.*, string_agg(DISTINCT variant_option_values.name, ', ') as grouped_name")
+            .joins(:variant_option_values)
+            .group('variants.id, variant_option_values.variant_id')
+        }
 
   # Position
   ranks :sort_order, column: :position, with_same: :product_id, scope: :not_deleted
