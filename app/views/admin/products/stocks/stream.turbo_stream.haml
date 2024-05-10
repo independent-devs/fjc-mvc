@@ -6,6 +6,6 @@
   = form_for(variant, as: "product_variant", url: admin_product_stock_path(@product, variant)) do |f|
     - if !f.object.is_master
       = turbo_stream.replace dom_id(variant, "sku") do
-        = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "action": "change->autosave#save" }
+        = render "item_sku", form: f
     = turbo_stream.replace "#{f.object.id}_count-on-hand" do
       = render "item_count_on_hand", form: f
