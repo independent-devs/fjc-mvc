@@ -24,7 +24,7 @@ class Variant < ApplicationRecord
   scope :grouped_option_name,
         lambda {
           select("variants.*, string_agg(DISTINCT variant_option_values.name, ', ') as grouped_name")
-            .joins(:variant_option_values)
+            .joins('LEFT JOIN variant_option_values ON variants.id = variant_option_values.variant_id')
             .group('variants.id, variant_option_values.variant_id')
         }
 
@@ -51,14 +51,9 @@ class Variant < ApplicationRecord
   end
 
   def capture_price
-    pvariant = product.variants.not_deleted
-    more_than_one = pvariant.count > 1
+    captured = product.variants.not_deleted.where(is_master: !product.has_variant)
 
-    captured = pvariant.where(is_master: !more_than_one)
-
-    product.update!(lowest_price: captured.minimum(:price),
-                    highest_price: captured.maximum(:price),
-                    has_variant: more_than_one)
+    product.update!(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
   end
 
   def check_image_records_on_delete

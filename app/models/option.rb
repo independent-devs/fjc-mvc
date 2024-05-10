@@ -14,6 +14,7 @@ class Option < ApplicationRecord
   ranks :sort_order, column: :position
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 end
 
 # == Schema Information
@@ -27,4 +28,8 @@ end
 #  position    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_options_on_name  (name) UNIQUE
 #
