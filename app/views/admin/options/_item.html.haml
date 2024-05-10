@@ -1,6 +1,6 @@
 %li{id: dom_id(option)}
   = form_for(option, url: admin_option_path(option), html: {data: {controller: 'autosave'}}) do |f|
-    .grid.grid-cols-4.gap-8
+    .grid.grid-cols-3.gap-8
       .flex.py-4
         .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = f.text_field :name, id: dom_id(option, "name"), required: true, 
@@ -9,5 +9,4 @@
         = f.text_field :placeholder, id: dom_id(option, "placeholder"), required: true, 
         class: "input-table h-fit w-full", data: {"autosave-target": "input"} 
       .py-4
-        = f.object.updated_at
-      .py-4
+        = f.object.created_at

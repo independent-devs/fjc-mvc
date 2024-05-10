@@ -12,9 +12,14 @@
       .field
         = desc.label :description
         = desc.text_area :description, rows: 12
+    .flex.gap-3.items-center.py-2
+      = f.check_box :has_variant, disabled: !is_new,
+      class: "text-primary rounded-sm focus:ring-0 disabled:cursor-not-allowed disabled:text-gray-200 disabled:bg-gray-200"
+      = f.label :has_variant do
+        With variant
     .field
       = f.label :options
-      = f.select :option_ids, Option.pluck(:name, :id), {}, {multiple: true, data: {controller: "slim", max_selected: 3}}
+      = f.select :option_ids, Option.pluck(:name, :id), {}, { disabled: !is_new, multiple: true, data: { controller: "slim", max_selected: 3}}
     %h2.font-medium.text-lg.mt-3 SEO
     = f.fields_for :seo, is_new ? Seo.new : f.object.seo do |seo|
       .field

@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_options_on_name", unique: true
   end
 
   create_table "product_categories", force: :cascade do |t|

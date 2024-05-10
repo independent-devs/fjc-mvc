@@ -52,7 +52,8 @@ class Product < ApplicationRecord
   }
 
   # Validations
-  validates :name, :currency, :master_variant, :slug, :seo, presence: true
+  validates :name, :currency, :master_variant, :slug, presence: true
+  validates :options, presence: true, if: :has_variant
   validates :review_avg_rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
