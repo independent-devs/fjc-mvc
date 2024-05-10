@@ -6,7 +6,7 @@ module ImagesHelper
   end
 
   def selections(product)
-    variants = product.non_master_variants.sort_by_position.not_deleted.with_grouped_name
+    variants = product.non_master_variants.sort_by_position.not_deleted.grouped_option_name
 
     variants.map do |v|
       [v.grouped_name, v.id]

@@ -5,7 +5,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   # GET /admin/product/:product_id/variants
   def index
-    @variants = @product.non_master_variants.sort_by_position.not_deleted.with_grouped_name
+    @variants = @product.non_master_variants.sort_by_position.not_deleted.grouped_option_name
   end
 
   # GET /admin/product/:product_id/variants/new

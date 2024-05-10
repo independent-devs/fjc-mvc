@@ -21,7 +21,7 @@ class Variant < ApplicationRecord
   scope :get_master, -> { where(is_master: true).first }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :not_master, -> { where(is_master: false) }
-  scope :with_grouped_name,
+  scope :grouped_option_name,
         lambda {
           select("variants.*, string_agg(DISTINCT variant_option_values.name, ', ') as grouped_name")
             .joins(:variant_option_values)
