@@ -4,3 +4,9 @@
 - case type
 - when "deleted"
   = turbo_stream.remove dom_id(variant)
+- when "item"
+  = form_for(variant, as: "product_variant", url: admin_product_variant_path(@product, variant)) do |f|
+    = turbo_stream.replace dom_id(variant, "price") do
+      = render "item_price", form: f, variant:
+    = turbo_stream.replace dom_id(variant, "cost") do
+      = render "item_cost", form: f, variant:

@@ -8,12 +8,10 @@
         = f.object.grouped_name
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :price, id: dom_id(variant, "price"), placeholder: "0.00",
-        step: :any, required: true, class: "input-table", data: { "autosave-target": "input" }
+        = render "item_price", form: f, variant:
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = f.number_field :cost, id: dom_id(variant, "cost"), placeholder: "0.00", step: :any,
-        class: "input-table", data: { "autosave-target": "input" }
+        = render "item_cost", form: f, variant:
       .py-4
         %button{type: "button", 
         data: {controller: "variant", 
