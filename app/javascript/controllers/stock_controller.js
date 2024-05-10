@@ -19,7 +19,12 @@ export default class extends Controller {
       },
     })
       .then((res) => res.text())
-      .then((html) => Turbo.renderStreamMessage(html));
+      .then((html) => {
+        this.inputTarget.value = null
+        this.cancel()
+
+        return Turbo.renderStreamMessage(html)
+      });
   }
 
   cancel() {

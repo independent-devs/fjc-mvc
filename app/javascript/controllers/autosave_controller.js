@@ -12,15 +12,5 @@ export default class extends Autosave {
 
   connect() {
     super.connect();
-
-    this.inputTargets.forEach((element) => {
-      element.addEventListener("change", () => super.save());
-    });
-  }
-
-  disconnect() {
-    this.inputTargets.forEach((element) => {
-      element.removeEventListener("change", () => super.save());
-    });
   }
 }
