@@ -7,6 +7,6 @@
 - when "item"
   = form_for(variant, as: "product_variant", url: admin_product_variant_path(@product, variant)) do |f|
     = turbo_stream.replace dom_id(variant, "price") do
-      = render "item_price", form: f, variant:
+      = render "item_price", form: f
     = turbo_stream.replace dom_id(variant, "cost") do
-      = render "item_cost", form: f, variant:
+      = render "item_cost", form: f

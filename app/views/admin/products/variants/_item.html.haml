@@ -8,10 +8,10 @@
         = f.object.grouped_name
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = render "item_price", form: f, variant:
+        = render "item_price", form: f
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
-        = render "item_cost", form: f, variant:
+        = render "item_cost", form: f
       .py-4
         %button{type: "button", 
         data: {controller: "variant", 
