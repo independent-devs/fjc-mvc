@@ -36,7 +36,7 @@ class Admin::Products::VariantsController < Admin::BaseController
           render :stream, locals:
         end
       else
-        format.html { render :show }
+        format.html { render :show, status: :unprocessable_entity }
         format.turbo_stream do
           locals = { message: @variant.errors.full_messages.first, type: 'item', notif_type: 'error',
                      variant: @product.variants.find(params[:id]) }
