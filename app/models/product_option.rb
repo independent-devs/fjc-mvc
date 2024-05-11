@@ -10,6 +10,11 @@ class ProductOption < ApplicationRecord
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
+  scope :with_option_columns,
+        lambda {
+          select('product_options.*, options.name, options.placeholder')
+            .joins(:option)
+        }
 
   # Position
   ranks :sort_order, column: :position

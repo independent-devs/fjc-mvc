@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 class Admin::Products::VariantsController < Admin::BaseController
-  before_action :set_product_variant, only: %i[index new create update destroy position]
+  before_action :set_product_variant, only: %i[index new show create update destroy position]
 
   # GET /admin/product/:product_id/variants
   def index
     @variants = @product.non_master_variants.sort_by_position.not_deleted.grouped_option_name
   end
 
+  def show; end
+
   # GET /admin/product/:product_id/variants/new
   def new
     @variant = Variant.new
-
-    @po = @product.product_options
-                  .select('product_options.*, options.name, options.placeholder')
-                  .joins(:option)
   end
 
   # POST /admin/product/:product_id/variants/:id
@@ -32,11 +30,13 @@ class Admin::Products::VariantsController < Admin::BaseController
   def update
     respond_to do |format|
       if @variant.update(product_variant_params)
+        format.html { redirect_to admin_product_variants_url(@product), notice: I18n.t('variants.updated') }
         format.turbo_stream do
           locals = { message: I18n.t('variants.updated'), type: 'item', notif_type: 'success', variant: @variant }
           render :stream, locals:
         end
       else
+        format.html { render :show, status: :unprocessable_entity }
         format.turbo_stream do
           locals = { message: @variant.errors.full_messages.first, type: 'item', notif_type: 'error',
                      variant: @product.variants.find(params[:id]) }
