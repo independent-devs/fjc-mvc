@@ -63,20 +63,6 @@ class Product < ApplicationRecord
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
   after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
 
-  # # Low level cache
-  # def cached_seo
-  #   Rails.cache.fetch(['product', id, 'seo', updated_at.to_i], expires_in: 12.hours) do
-  #     seo
-  #   end
-  # end
-  #
-  # def cached_description
-  #   Rails.cache.fetch(['product', id, 'desc', updated_at.to_i], expires_in: 12.hours) do
-  #     description
-  #   end
-  # end
-  #
-
   private
 
   # For generators
