@@ -51,7 +51,9 @@ class Variant < ApplicationRecord
   end
 
   def capture_price
-    captured = product.variants.not_deleted.where(is_master: !product.has_variant)
+    variants = product.variants.not_deleted
+    no_variant_records = variants.not_master.count.zero?
+    captured = variants.where(is_master: no_variant_records)
 
     product.update!(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
   end

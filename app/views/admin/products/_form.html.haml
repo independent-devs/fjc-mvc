@@ -1,4 +1,4 @@
-= form_for(@product, url: path, html: {class: "w-full flex gap-5", method: method}) do |f|
+= form_for(@product, url: path, html: {data: {controller: "product"}, class: "w-full flex gap-5", method: method}) do |f|
   .flex.flex-col.gap-2.w-full
     - if @product.errors.present?
       = render ErrorMessageComponent.new(errors: @product.errors.full_messages, label: "validation")
@@ -7,21 +7,23 @@
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
     .field
       = f.label :slug, class: ("text-gray-300" if is_new)
-      = f.text_field :slug, disabled: is_new, required: !is_new, placeholder: "e.g. nike-shoe"
-    = f.fields_for :description, is_new ? Description.new : @product.description do |desc|
+      = f.text_field :slug, disabled: is_new, value: is_new ? nil : f.object.slug, required: !is_new, placeholder: "e.g. nike-shoe"
+    = f.fields_for :description, @product.description || Description.new do |desc|
       .field
         = desc.label :description
         = desc.text_area :description, rows: 12
     .flex.gap-3.items-center.py-2
-      = f.check_box :has_variant, disabled: !is_new,
+      = f.check_box :has_variant, disabled: !is_new, data: { action: "product#hasVariantToogle" },
       class: "text-primary rounded-sm focus:ring-0 disabled:cursor-not-allowed disabled:text-gray-200 disabled:bg-gray-200"
       = f.label :has_variant do
-        With variant
+        With variants
     .field
       = f.label :options
-      = f.select :option_ids, Option.pluck(:name, :id), {}, { disabled: !is_new, multiple: true, data: { controller: "slim", max_selected: 3}}
+      = f.select :option_ids, Option.pluck(:name, :id), {}, 
+        {disabled: @product.errors.present? ? !f.object.has_variant : true, 
+        multiple: true, data: { "product-target": "optionInput" }}
     %h2.font-medium.text-lg.mt-3 SEO
-    = f.fields_for :seo, is_new ? Seo.new : f.object.seo do |seo|
+    = f.fields_for :seo, @product.seo || Seo.new do |seo|
       .field
         = seo.label :meta_title
         = seo.text_field :meta_title
@@ -48,7 +50,7 @@
         {required: true, disabled: true}
     - if is_new
       = f.hidden_field :currency, value: MoneyRails.default_currency
-    = f.fields_for :master_variant, is_new ? Variant.new : f.object.master_variant do |mv|
+    = f.fields_for :master_variant, @product.master_variant || Variant.new do |mv|
       .field
         = mv.label :master_price
         = mv.number_field :price, required: true, step: :any, placeholder: "0.00"
