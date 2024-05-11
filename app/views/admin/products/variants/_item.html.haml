@@ -12,10 +12,11 @@
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)
         = render "item_cost", form: f
-      .py-4
+      .py-4.flex.items-center.gap-3
+        = link_to admin_product_variant_path(@product, variant), class: "text-zinc-400 hover:text-red-500" do
+          = icon "fa-solid", "pen-to-square"
         %button{type: "button", 
         data: {controller: "variant", 
         action: "click->variant#delete", 
         url: admin_product_variant_path(@product, variant)}}
           = icon "fa-solid", "trash", class: "text-zinc-400 hover:text-red-500"
-

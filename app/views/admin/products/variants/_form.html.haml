@@ -1,19 +1,10 @@
 - if is_new
   - master = @product.master_variant
-= form_for(@variant, as: "product_variant", url: path, html: {class: "w-full flex flex-col gap-3", method:}) do |f|
+= form_for(@variant, as: "product_variant", url: path, html: {"data-turbo": false, class: "w-full flex flex-col gap-3", method:}) do |f|
   .flex.flex-col.w-full.gap-10
     - if @variant.errors.present?
-      = @variant.errors.full_messages.to_json
-    .space-y-3
-      %h2.font-medium.text-lg Options
-      .grid.grid-cols-3.gap-3
-        - @po.each do |po|
-          - if is_new 
-            = f.fields_for :variant_option_values, VariantOptionValue.new do |vov|
-              .field
-                = vov.label po.name
-                = vov.text_field :name, placeholder: po.placeholder, required: true
-              = vov.hidden_field :product_option_id, value: po.id
+      = render ErrorMessageComponent.new(errors: @variant.errors.full_messages, label: "validation")
+    = render "option_values", is_new:, form: f
     .grid.grid-cols-3.gap-3
       .field
         = f.label :price do
@@ -32,9 +23,6 @@
         = f.label :sku
         = f.text_field :sku
     .flex.gap-5
-      -# .flex.gap-2.items-center
-      -#   = f.check_box :trackable, checked: is_new ? master&.trackable : f.object.trackable, class: "text-primary focus:ring-0 round-sm"
-      -#   %span Trackable
       .flex.gap-2.items-center
         = f.check_box :backorderable, checked: is_new ? master&.backorderable : f.object.backorderable, class: "text-primary focus:ring-0 round-sm"
         %span Backorderable

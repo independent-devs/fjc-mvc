@@ -8,7 +8,7 @@ authenticated :user, -> { _1.admin? } do
 
     ## product routes
     resources :products do
-      resources :variants, only: %i[index new create update destroy], module: :products do
+      resources :variants, only: %i[index new show create update destroy], module: :products do
         member do
           patch :position
         end
