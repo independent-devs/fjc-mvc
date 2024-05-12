@@ -83,6 +83,6 @@ class Admin::Products::VariantsController < Admin::BaseController
     params.require(:product_variant)
           .permit(:name, :alternative_name, :cost, :price, :sku,
                   :count_on_hand, :position, :trackable, :backorderable,
-                  variant_option_values_attributes: %i[id name variant_id product_option_id])
+                  variant_option_values_attributes: %i[id name variant_id product_option_id position])
   end
 end

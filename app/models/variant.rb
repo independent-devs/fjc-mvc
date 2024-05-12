@@ -23,9 +23,9 @@ class Variant < ApplicationRecord
   scope :not_master, -> { where(is_master: false) }
   scope :grouped_option_name,
         lambda {
-          select("variants.*, string_agg(DISTINCT variant_option_values.name, ', ') as grouped_name")
-            .joins('LEFT JOIN variant_option_values ON variants.id = variant_option_values.variant_id')
-            .group('variants.id, variant_option_values.variant_id')
+          select("variants.*, string_agg(vov.name, ', ' order by vov.position) as grouped_name")
+            .joins('LEFT JOIN variant_option_values AS vov ON variants.id = vov.variant_id')
+            .group('variants.id, vov.variant_id')
         }
 
   # Position

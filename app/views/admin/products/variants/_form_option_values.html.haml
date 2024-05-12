@@ -1,17 +1,19 @@
 .space-y-3
   %h2.font-medium.text-lg Options
   .grid.grid-cols-3.gap-3
-    - @product.product_options.with_option_columns.each do |po|
+    - @product.product_options.with_option_columns.each_with_index do |po, index|
       - if is_new
         = form.fields_for :variant_option_values, VariantOptionValue.new do |vov|
           .field
             = vov.label po.name
             = vov.text_field :name, placeholder: po.placeholder, required: true
           = vov.hidden_field :product_option_id, value: po.id
+          = vov.hidden_field :position, value: index
       - else
         - option_values = @variant.variant_option_values.find_by(product_option_id: po.id)
         = form.fields_for :variant_option_values, option_values || VariantOtionValue.new do |vov|
           .field
             = vov.label po.name
             = vov.text_field :name, required: true
+          = vov.hidden_field :position, value: index
 
