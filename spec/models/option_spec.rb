@@ -14,13 +14,14 @@ end
 #
 # Table name: options
 #
-#  id          :bigint           not null, primary key
-#  deleted_at  :datetime
-#  name        :string           not null
-#  placeholder :string
-#  position    :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :bigint           not null, primary key
+#  deleted_at   :datetime
+#  display_name :string
+#  name         :string           not null
+#  placeholder  :string
+#  position     :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 # Indexes
 #
