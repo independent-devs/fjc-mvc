@@ -4,6 +4,7 @@ class CreateOptions < ActiveRecord::Migration[7.0]
   def change
     create_table :options do |t|
       t.string :name, null: false
+      t.string :display_name
       t.string :placeholder
       t.integer :position
       t.datetime :deleted_at

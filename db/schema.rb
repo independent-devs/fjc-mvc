@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
 
   create_table "options", force: :cascade do |t|
     t.string "name", null: false
+    t.string "display_name"
     t.string "placeholder"
     t.integer "position"
     t.datetime "deleted_at"
