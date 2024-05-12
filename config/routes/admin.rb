@@ -8,7 +8,7 @@ authenticated :user, -> { _1.admin? } do
 
     ## product routes
     resources :products do
-      resources :variants, only: %i[index new show create update destroy], module: :products do
+      resources :variants, except: [:edit], module: :products do
         member do
           patch :position
         end
@@ -18,7 +18,7 @@ authenticated :user, -> { _1.admin? } do
           put :modify
         end
       end
-      resources :images, only: %i[index create update destroy], module: :products do
+      resources :images, except: %i[edit new], module: :products do
         collection do
           post :upload
         end
@@ -30,7 +30,7 @@ authenticated :user, -> { _1.admin? } do
         resources :categories
       end
       collection do
-        resources :options, only: %i[index create update destroy]
+        resources :options, except: %i[show edit new]
       end
     end
   end

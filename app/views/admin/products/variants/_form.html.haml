@@ -4,7 +4,7 @@
   .flex.flex-col.w-full.gap-10
     - if @variant.errors.present?
       = render ErrorMessageComponent.new(errors: @variant.errors.full_messages, label: "validation")
-    = render "option_values", is_new:, form: f
+    = render "form_option_values", form: f, is_new:
     .grid.grid-cols-3.gap-3
       .field
         = f.label :price do

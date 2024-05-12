@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Admin::Products::ImagesController < Admin::BaseController
-  before_action :set_product_image, only: %i[index update destroy upload position]
+  before_action :set_product_image, only: %i[index show update destroy upload position]
 
   # GET /admin/product/:product_id/images
   def index
     @images = @product.images.sort_by_position.not_deleted
   end
+
+  def show; end
 
   # PATCH/PUT /admin/product/:product_id/images/:id
   def update
