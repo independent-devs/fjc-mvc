@@ -39,13 +39,14 @@ class Variant < ApplicationRecord
   validate :only_one_master, if: :only_one_master_condition
 
   # Generators
-  before_destroy :capture_price
+  after_destroy :capture_price
+  after_save :capture_price, if: :price_previously_changed?
 
   private
 
   # For generators
   def capture_price
-    variants = product.variants.where.not(id:)
+    variants = product.variants
     no_variant_records = variants.not_master.count.zero?
     captured = variants.where(is_master: no_variant_records)
 

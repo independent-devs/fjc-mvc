@@ -6,7 +6,12 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :product_option
 
   # Scopes
-  scope :grouped_name, -> { select('name, count(name) as count').group(:name) }
+  scope :with_variant_position,
+        lambda {
+          select('variant_option_values.*, variants.position')
+            .joins(:variant)
+            .order('variants.position ASC')
+        }
 
   # Validations
   validates :name, presence: true

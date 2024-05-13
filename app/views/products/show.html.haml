@@ -12,15 +12,16 @@
           = "(#{@product.review_count} #{"review".pluralize(@product.review_count)})"
       .text-3xl.font-medium.text-primary
         = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
-      .mt-5.flex.flex-col.gap-4
+      .mt-5.flex.flex-col.gap-5
         - if @product.has_variant
           - @product_options.each_with_index do |po, index|
-            .flex.flex-col.gap-2
+            .flex.flex-col.gap-3
               %label.font-medium
                 = po.display_name
-              %ul.flex-wrap.flex.gap-3
-                - po.variant_option_values.grouped_name.each do |vov|
+              %ul.flex-wrap.flex{class: "gap-2.5"}
+                - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
                   %li
-                    = radio_button_tag dom_id(po, "radio"), vov.id, false, id: dom_id(po, "radio"), class: "peer hidden"
-                    %label.rounded-sm.bg-white.drop-shadow-sm.ring-1.ring-gray-400.cursor-pointer.px-2.py-1.peer-disabled:text-gray-300.peer-disabled:ring-gray-300.peer-checked:text-primary.peer-checked:ring-primary{for: dom_id(po, "radio")}
-                      = vov.name
+                    = radio_button_tag "po_#{po.id}", key, false, id: key, class: "peer hidden",
+                    data: { variant_list: arr.map { |a| a.variant_id }.join(',') }
+                    %label.rounded-sm.bg-white.drop-shadow-sm.ring-1.ring-gray-400.cursor-pointer.peer-disabled:text-gray-300.peer-disabled:ring-gray-300.peer-checked:text-primary.peer-checked:ring-primary.px-3.py-2{for: key}
+                      = key
