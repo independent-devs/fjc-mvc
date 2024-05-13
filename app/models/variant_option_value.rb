@@ -5,6 +5,14 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :variant
   belongs_to :product_option
 
+  # Scopes
+  scope :with_variant_position,
+        lambda {
+          select('variant_option_values.*, variants.position')
+            .joins(:variant)
+            .order('variants.position ASC')
+        }
+
   # Validations
   validates :name, presence: true
 end
@@ -15,6 +23,7 @@ end
 #
 #  id                :bigint           not null, primary key
 #  name              :string           not null
+#  position          :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_option_id :bigint           not null

@@ -5,7 +5,7 @@ class Admin::Products::StocksController < Admin::BaseController
 
   # GET /admin/product/:product_id/stocks
   def index
-    @variants = @product.variants.sort_by_position.not_deleted.grouped_option_name
+    @variants = @product.variants.sort_by_position.grouped_option_name
   end
 
   # PATCH/PUT /admin/product/:product_id/stocks/:id

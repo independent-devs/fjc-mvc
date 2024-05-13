@@ -22,7 +22,6 @@ end
 # Table name: options
 #
 #  id           :bigint           not null, primary key
-#  deleted_at   :datetime
 #  display_name :string
 #  name         :string           not null
 #  placeholder  :string

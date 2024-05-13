@@ -52,13 +52,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "deleted_at"
     t.string "ancestry"
     t.integer "ancestry_depth", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
-    t.index ["deleted_at"], name: "index_categories_on_deleted_at"
     t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry", unique: true
   end
 
@@ -75,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.string "display_name"
     t.string "placeholder"
     t.integer "position"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_options_on_name", unique: true
@@ -85,11 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.bigint "product_id", null: false
     t.bigint "category_id", null: false
     t.boolean "is_master", default: false, null: false
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_product_categories_on_category_id"
-    t.index ["deleted_at"], name: "index_product_categories_on_deleted_at"
     t.index ["product_id", "category_id"], name: "index_product_categories_on_product_id_and_category_id", unique: true
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
@@ -168,6 +163,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   create_table "variant_option_values", force: :cascade do |t|
     t.bigint "variant_id", null: false
     t.bigint "product_option_id", null: false
+    t.integer "position"
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -179,7 +175,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.bigint "product_id", null: false
     t.string "sku"
     t.integer "position"
-    t.datetime "deleted_at"
     t.decimal "cost", precision: 10, scale: 2
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "count_on_hand", default: 0
@@ -188,7 +183,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.boolean "backorderable", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_variants_on_deleted_at"
     t.index ["position"], name: "index_variants_on_position"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"

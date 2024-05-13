@@ -16,7 +16,8 @@
         = t("images.table.thead.image")
       %li
         = t("images.table.thead.actions")
-    %ul.form-table-body{data: {controller: "sortable", "sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
+    %ul.form-table-body{data: {controller: "sortable", "sortable-resource-name-value": "product_image", 
+    "sortable-handle-value": ".handle" }}
       - if @images.present?
         - @images.each do |image|
           = render "item", image:, variant_selection:

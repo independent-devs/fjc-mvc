@@ -7,7 +7,6 @@ class CreateOptions < ActiveRecord::Migration[7.0]
       t.string :display_name
       t.string :placeholder
       t.integer :position
-      t.datetime :deleted_at
 
       t.timestamps
     end

@@ -12,6 +12,7 @@ end
 #
 #  id                :bigint           not null, primary key
 #  name              :string           not null
+#  position          :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_option_id :bigint           not null
