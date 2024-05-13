@@ -5,7 +5,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   # GET /admin/product/:product_id/variants
   def index
-    @variants = @product.non_master_variants.sort_by_position.not_deleted.grouped_option_name
+    @variants = @product.non_master_variants.sort_by_position.grouped_option_name
   end
 
   def show; end
@@ -48,17 +48,12 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   # DELETE /admin/product/:product_id/variants/:id
   def destroy
+    @variant.destroy
+
     respond_to do |format|
-      if @variant.update(deleted_at: DateTime.now)
-        format.turbo_stream do
-          locals = { message: I18n.t('variants.destroyed'), type: 'deleted', notif_type: 'success', variant: @variant }
-          render :stream, locals:
-        end
-      else
-        format.turbo_stream do
-          locals = { message: @variant.errors.full_messages.first, type: nil, notif_type: 'error' }
-          render :stream, locals:, status: :unprocessable_entity
-        end
+      format.turbo_stream do
+        locals = { message: I18n.t('variants.destroyed'), type: 'deleted', notif_type: 'success', variant: @variant }
+        render :stream, locals:
       end
     end
   end

@@ -30,7 +30,7 @@ authenticated :user, -> { _1.admin? } do
         resources :categories
       end
       collection do
-        resources :options, except: %i[show edit new]
+        resources :options, only: [:index]
       end
     end
   end

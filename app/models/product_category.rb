@@ -12,7 +12,6 @@ end
 # Table name: product_categories
 #
 #  id          :bigint           not null, primary key
-#  deleted_at  :datetime
 #  is_master   :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -22,7 +21,6 @@ end
 # Indexes
 #
 #  index_product_categories_on_category_id                 (category_id)
-#  index_product_categories_on_deleted_at                  (deleted_at)
 #  index_product_categories_on_product_id                  (product_id)
 #  index_product_categories_on_product_id_and_category_id  (product_id,category_id) UNIQUE
 #

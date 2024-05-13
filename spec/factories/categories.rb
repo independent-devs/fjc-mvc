@@ -16,7 +16,6 @@ end
 #  id             :bigint           not null, primary key
 #  ancestry       :string
 #  ancestry_depth :integer          default(0)
-#  deleted_at     :datetime
 #  name           :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -24,6 +23,5 @@ end
 # Indexes
 #
 #  index_categories_on_ancestry           (ancestry)
-#  index_categories_on_deleted_at         (deleted_at)
 #  index_categories_on_name_and_ancestry  (name,ancestry) UNIQUE
 #

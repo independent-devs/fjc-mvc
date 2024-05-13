@@ -6,7 +6,6 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.references :product, null: false, foreign_key: true
       t.string :sku
       t.integer :position
-      t.datetime :deleted_at
       t.decimal :cost, precision: 10, scale: 2
       t.decimal :price, precision: 10, scale: 2, null: false
       t.integer :count_on_hand, default: 0
@@ -18,7 +17,6 @@ class CreateVariants < ActiveRecord::Migration[7.0]
     end
 
     add_index :variants, :position
-    add_index :variants, :deleted_at
     add_index :variants, :sku
   end
 end

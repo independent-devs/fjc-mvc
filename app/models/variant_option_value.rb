@@ -5,6 +5,9 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :variant
   belongs_to :product_option
 
+  # Scopes
+  scope :grouped_name, -> { select('name, count(name) as count').group(:name) }
+
   # Validations
   validates :name, presence: true
 end
