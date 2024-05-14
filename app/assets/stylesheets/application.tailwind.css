@@ -112,4 +112,8 @@
   ul.form-table-body {
     @apply divide-y;
   }
+
+  #public-price {
+    @apply text-3xl font-medium text-primary
+  }
 }

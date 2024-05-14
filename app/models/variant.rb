@@ -78,6 +78,7 @@ end
 #  price         :decimal(10, 2)   not null
 #  sku           :string
 #  trackable     :boolean          default(TRUE), not null
+#  uuid          :uuid             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  product_id    :bigint           not null
@@ -87,6 +88,7 @@ end
 #  index_variants_on_position    (position)
 #  index_variants_on_product_id  (product_id)
 #  index_variants_on_sku         (sku)
+#  index_variants_on_uuid        (uuid) UNIQUE
 #
 # Foreign Keys
 #

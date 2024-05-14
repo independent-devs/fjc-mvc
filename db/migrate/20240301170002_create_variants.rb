@@ -3,6 +3,7 @@
 class CreateVariants < ActiveRecord::Migration[7.0]
   def change
     create_table :variants do |t|
+      t.uuid :uuid, null: false, default: 'gen_random_uuid()'
       t.references :product, null: false, foreign_key: true
       t.string :sku
       t.integer :position
@@ -16,6 +17,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
+    add_index :variants, :uuid, unique: true
     add_index :variants, :position
     add_index :variants, :sku
   end
