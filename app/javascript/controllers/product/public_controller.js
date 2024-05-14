@@ -19,6 +19,7 @@ export default class extends Controller {
       event.target.dataset.wasChecked = true
     }
 
+    // update ui for price and stock amount
     console.log(this.commonVariant)
   }
 
@@ -37,7 +38,7 @@ export default class extends Controller {
   get commonVariant() {
     const collection = this.radioCollections;
 
-    if (!collection.length) return null;
+    if (!collection || !collection.length) return null;
 
     const duplicates = [];
     const frequencyMap = {};
@@ -59,11 +60,9 @@ export default class extends Controller {
   }
 
   get radioCollections() {
+    if (this.optionTargets.length != this.checkedRadioCount) return null;
+
     let collection = [];
-
-    const checkedCount = this.optionsTarget.querySelectorAll("input[type='radio']:checked").length;
-
-    if (this.optionTargets.length != checkedCount) return collection;
 
     this.optionTargets.forEach((el) => {
       const checkedEl = el.querySelector("input[type='radio']:checked")
@@ -74,5 +73,9 @@ export default class extends Controller {
     })
 
     return collection;
+  }
+
+  get checkedRadioCount() {
+    return this.optionsTarget.querySelectorAll("input[type='radio']:checked").length;
   }
 }
