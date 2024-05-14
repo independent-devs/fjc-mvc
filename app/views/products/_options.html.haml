@@ -5,7 +5,7 @@
     %ul.flex-wrap.flex{class: "gap-2.5"}
       - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
         %li
-          = radio_button_tag "po_#{po.id}", key, false, id: key, class: "peer hidden",
-          data: { variant_list: arr.map { |a| a.variant_id }.join(',') }
+          = radio_button_tag po.name, key, false, id: key, class: "peer hidden",
+          data: {list: arr.map { |a| a.variant_id }.join(',')}
           %label.rounded-sm.bg-white.drop-shadow-sm.ring-1.ring-gray-400.cursor-pointer.peer-disabled:text-gray-300.peer-disabled:ring-gray-300.peer-checked:text-primary.peer-checked:ring-primary.px-3.py-2{for: key, class: "peer-checked:bg-primary/[.04]"}
             = key

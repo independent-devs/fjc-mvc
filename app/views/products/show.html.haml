@@ -1,4 +1,4 @@
-= render "product_seo", seo: @product.seo
+= render "seo", seo: @product.seo
 
 .w-full.margin-max-screen.space-y-10.py-14
   .flex.gap-5
@@ -14,4 +14,5 @@
         = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       .mt-5.flex.flex-col.gap-5
         - if @product.has_variant
-          = render "product_options"
+          = render "options"
+      = render "actions"
