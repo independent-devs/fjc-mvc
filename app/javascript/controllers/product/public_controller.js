@@ -40,15 +40,15 @@ export default class extends Controller {
 
     if (!collection || !collection.length) return null;
 
-    const duplicates = [];
-    const frequencyMap = {};
+    let variantId = null;
+    let frequencyMap = {};
 
     for (let i = 0; i < collection.length; i++) {
       const element = collection[i];
 
       if (frequencyMap[element]) {
-        if (!duplicates.includes(element)) {
-          duplicates.push(element);
+        if (!variantId) {
+          variantId = element;
           break
         }
       } else {
@@ -56,7 +56,7 @@ export default class extends Controller {
       }
     }
 
-    return duplicates.length ? duplicates[0] : null;
+    return variantId;
   }
 
   get radioCollections() {
