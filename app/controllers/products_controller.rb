@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   # GET /products/black-shoes?pid=34b404d1-8104-402a-a25a-30e831712b7a
   def show
     @product = Product.single_public(params[:slug], params[:pid])
-    @product_options = @product.product_options.with_option_columns
   rescue ActiveRecord::RecordNotFound
     render 'not_found', status: :not_found
   end

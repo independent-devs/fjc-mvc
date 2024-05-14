@@ -14,14 +14,4 @@
         = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       .mt-5.flex.flex-col.gap-5
         - if @product.has_variant
-          - @product_options.each_with_index do |po, index|
-            .flex.flex-col.gap-3
-              %label.font-medium
-                = po.display_name
-              %ul.flex-wrap.flex{class: "gap-2.5"}
-                - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
-                  %li
-                    = radio_button_tag "po_#{po.id}", key, false, id: key, class: "peer hidden",
-                    data: { variant_list: arr.map { |a| a.variant_id }.join(',') }
-                    %label.rounded-sm.bg-white.drop-shadow-sm.ring-1.ring-gray-400.cursor-pointer.peer-disabled:text-gray-300.peer-disabled:ring-gray-300.peer-checked:text-primary.peer-checked:ring-primary.px-3.py-2{for: key}
-                      = key
+          = render "product_options"
