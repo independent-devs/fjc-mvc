@@ -8,10 +8,11 @@ class VariantOptionValue < ApplicationRecord
   # Scopes
   scope :with_variant_position,
         lambda {
-          select('variant_option_values.*, variants.position')
+          select('variant_option_values.*, variants.position, variants.uuid as variant_uuid')
             .joins(:variant)
             .order('variants.position ASC')
         }
+  scope :grouped_names, -> { select('name').group(:name) }
 
   # Validations
   validates :name, presence: true

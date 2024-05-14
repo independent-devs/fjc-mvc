@@ -172,6 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
   end
 
   create_table "variants", force: :cascade do |t|
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "product_id", null: false
     t.string "sku"
     t.integer "position"
@@ -186,6 +187,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_07_073944) do
     t.index ["position"], name: "index_variants_on_position"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
+    t.index ["uuid"], name: "index_variants_on_uuid", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

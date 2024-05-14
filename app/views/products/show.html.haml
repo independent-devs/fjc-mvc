@@ -3,16 +3,15 @@
 .w-full.margin-max-screen.space-y-10.py-14
   .flex.gap-5
     %div{class: "min-w-[550px] max-w-[550px]"}
-    .flex.flex-col{class: "w-full gap-2.5"}
+    .flex.flex-col{class: "w-full gap-2.5", data: {controller: "product--public"}}
       %h2.font-semibold.text-2xl
         = @product.name
       .flex.gap-2.items-center
         = render StarRatingComponent.new(rating: @product.review_avg_rating)
         %span.text-gray-400
           = "(#{@product.review_count} #{"review".pluralize(@product.review_count)})"
-      .text-3xl.font-medium.text-primary
+      #public-price
         = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
-      .mt-5.flex.flex-col.gap-5
-        - if @product.has_variant
-          = render "options"
+      - if @product.has_variant
+        = render "options"
       = render "actions"

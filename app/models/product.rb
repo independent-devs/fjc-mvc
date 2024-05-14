@@ -46,6 +46,7 @@ class Product < ApplicationRecord
   scope :sort_by_latest, -> { order(id: :desc) }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
+  scope :using_uuid, ->(uuid) { find_by!(uuid:, deleted_at: nil) }
   scope :base_on_date, lambda { |now = DateTime.now|
     where('available_on >= ?', now)
       .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
