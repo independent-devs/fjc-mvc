@@ -9,6 +9,7 @@
         - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
           %li
             = radio_button_tag po.name, key, false, id: key, class: "peer hidden",
-            data: {list: arr.map { |a| a.variant_uuid }.join(',')}
+            data: {action: "click->product--public#radioToggle", was_checked: false,
+            list: arr.map { |a| a.variant_uuid }.join(',')}
             %label.rounded-sm.bg-white.drop-shadow-sm.ring-1.ring-gray-400.cursor-pointer.peer-disabled:text-gray-300.peer-disabled:ring-gray-300.peer-checked:text-primary.peer-checked:ring-primary.px-3.py-2{for: key, class: "text-[15px] peer-checked:bg-primary/[.04]"}
               = key
