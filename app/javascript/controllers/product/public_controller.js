@@ -63,8 +63,7 @@ export default class extends Controller {
   }
 
   otherRadios(name) {
-    let query = `input[type="radio"]`
-    query += `:not([name="${name}"])`
+    let query = `input[type="radio"]:not([name="${name}"])`
 
     return this.optionsTarget.querySelectorAll(query)
   }
@@ -85,9 +84,7 @@ export default class extends Controller {
           variantId = element;
           break
         }
-      } else {
-        frequencyMap[element] = true;
-      }
+      } else frequencyMap[element] = true;
     }
 
     return variantId;
@@ -101,9 +98,8 @@ export default class extends Controller {
     this.optionTargets.forEach((el) => {
       const checkedEl = el.querySelector("input[type='radio']:checked")
 
-      if (checkedEl?.dataset.variantIds) {
+      if (checkedEl?.dataset.variantIds)
         collection = [...collection, ...checkedEl.dataset.variantIds.split(",")];
-      }
     })
 
     return collection;
