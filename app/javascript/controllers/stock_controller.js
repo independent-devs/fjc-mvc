@@ -6,7 +6,7 @@ export default class extends Controller {
 
   modify() {
     let formData = new FormData();
-    formData.append('product_variant[modify_amount]', this.inputTarget.value);
+    formData.append("product_variant[modify_amount]", this.inputTarget.value);
 
     fetch(this.element.dataset.url, {
       method: "put",
@@ -20,10 +20,10 @@ export default class extends Controller {
     })
       .then((res) => res.text())
       .then((html) => {
-        this.inputTarget.value = null
-        this.cancel()
+        this.inputTarget.value = null;
+        this.cancel();
 
-        return Turbo.renderStreamMessage(html)
+        return Turbo.renderStreamMessage(html);
       });
   }
 

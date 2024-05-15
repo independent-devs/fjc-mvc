@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
-import SlimSelect from 'slim-select'
+import { Controller } from "@hotwired/stimulus";
+import SlimSelect from "slim-select";
 
 // Connects to data-controller="slim"
 export default class extends Controller {
@@ -10,7 +10,7 @@ export default class extends Controller {
         hideSelected: true,
         closeOnSelect: false,
         maxSelected: this.element.dataset.maxSelected,
-      }
-    })
+      },
+    });
   }
 }

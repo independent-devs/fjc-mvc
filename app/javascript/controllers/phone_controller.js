@@ -10,7 +10,8 @@ export default class extends Controller {
     const country = "PH";
 
     this.iti = intlTelInput(this.fieldTarget, {
-      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+      utilsScript:
+        "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
       separateDialCode: true,
       initialCountry: country,
       allowDropdown: false,
