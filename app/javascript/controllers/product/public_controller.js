@@ -56,6 +56,8 @@ export default class extends Controller {
 
       if (!hasVariant) {
         el.disabled = true
+        el.checked = false
+        el.dataset.wasChecked = false
       }
     }
   }
