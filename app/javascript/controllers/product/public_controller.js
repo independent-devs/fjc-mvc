@@ -12,27 +12,59 @@ export default class extends Controller {
     this.setRadios(radioName, null, radioID)
 
     if (event.target.dataset.wasChecked == "true") {
-      // set radio with the event element
-      this.setRadios(radioName, radioID, null)
+      this.setRadios(radioName, radioID, null) // set radio with the event element
     } else {
       event.target.checked = true
       event.target.dataset.wasChecked = true
     }
 
+    this.disableGroupRadios(event, event.target.dataset.wasChecked)
+
     // update ui for price and stock amount
     console.log(this.commonVariant)
   }
 
-  setRadios(name, includeId, excludeId) {
-    let query = `input[type="radio"][name="${name}"]`
+  setRadios(groupName, includeId, excludeId) {
+    let query = "input[type='radio']"
 
+    if (groupName) query += `[name="${groupName}"]`
     if (includeId) query += `[id="${includeId}"]`
     if (excludeId) query += `:not([id="${excludeId}"]`
 
-    this.optionsTarget.querySelectorAll(query).forEach((el) => {
+    const radios = this.optionsTarget.querySelectorAll(query)
+
+    for (let el of radios) {
       el.checked = false
       el.dataset.wasChecked = false
-    })
+    }
+  }
+
+  disableGroupRadios(event, wasChecked) {
+    const elements = this.otherRadios(event.target.name)
+
+    // enable all first
+    for (let el of elements) el.disabled = false
+
+    if (wasChecked == "false") return
+
+    const variantIds = event.target.dataset.variantIds.split(",");
+
+    // disable non related variant
+    for (let el of elements) {
+      const otherVariantIds = el.dataset.variantIds.split(",");
+      const hasVariant = variantIds.some((item) => otherVariantIds.includes(item))
+
+      if (!hasVariant) {
+        el.disabled = true
+      }
+    }
+  }
+
+  otherRadios(name) {
+    let query = `input[type="radio"]`
+    query += `:not([name="${name}"])`
+
+    return this.optionsTarget.querySelectorAll(query)
   }
 
   get commonVariant() {
