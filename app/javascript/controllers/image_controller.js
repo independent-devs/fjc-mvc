@@ -1,8 +1,8 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="image"
 export default class extends Controller {
-  static targets = ["files", "image"]
+  static targets = ["files", "image"];
 
   delete() {
     const isConfirmed = confirm("Are you sure you want to delete image?");
@@ -26,7 +26,7 @@ export default class extends Controller {
     const imageElement = this.imageTarget;
     const reader = new FileReader();
 
-    reader.onload = function() {
+    reader.onload = function () {
       imageElement.src = reader.result;
     };
 

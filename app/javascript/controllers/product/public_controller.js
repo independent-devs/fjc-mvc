@@ -1,81 +1,81 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="product--public"
 export default class extends Controller {
-  static targets = [
-    "price",
-    "option",
-    "options",
-    "addToCartBtn",
-    "buyNowBtn"
-  ]
+  static targets = ["price", "option", "options", "addToCartBtn", "buyNowBtn"];
 
   connect() {
-    this.initPriceHTML = this.priceTarget.outerHTML
+    this.initPriceHTML = this.priceTarget.outerHTML;
   }
 
   radioToggle(event) {
-    const radioName = event.target.name
-    const radioID = event.target.id
+    const radioName = event.target.name;
+    const radioID = event.target.id;
 
     // clear radio not including the event element
-    this.setRadios(radioName, null, radioID)
+    this.setRadios(radioName, null, radioID);
 
     if (event.target.dataset.wasChecked == "true") {
-      this.setRadios(radioName, radioID, null) // set radio with the event element
+      this.setRadios(radioName, radioID, null); // set radio with the event element
     } else {
-      event.target.checked = true
-      event.target.dataset.wasChecked = true
+      event.target.checked = true;
+      event.target.dataset.wasChecked = true;
     }
 
-    this.disableGroupRadios(event, event.target.dataset.wasChecked)
+    this.disableGroupRadios(event, event.target.dataset.wasChecked);
 
     // update ui for price and stock amount
-    console.log(this.commonVariant)
+    console.log(this.commonVariant);
   }
 
   setRadios(groupName, includeId, excludeId) {
-    let query = "input[type='radio']"
+    let query = "input[type='radio']";
 
-    if (groupName) query += `[name="${groupName}"]`
-    if (includeId) query += `[id="${includeId}"]`
-    if (excludeId) query += `:not([id="${excludeId}"]`
+    if (groupName) query += `[name="${groupName}"]`;
+    if (includeId) query += `[id="${includeId}"]`;
+    if (excludeId) query += `:not([id="${excludeId}"]`;
 
-    const radios = this.optionsTarget.querySelectorAll(query)
+    const radios = this.optionsTarget.querySelectorAll(query);
 
     for (let el of radios) {
-      el.checked = false
-      el.dataset.wasChecked = false
+      el.checked = false;
+      el.dataset.wasChecked = false;
     }
   }
 
   disableGroupRadios(event, wasChecked) {
-    const elements = this.otherRadios(event.target.name)
+    const elements = this.otherRadios(event.target.name);
 
     // enable all first
-    for (let el of elements) el.disabled = false
+    for (let el of elements) el.disabled = false;
 
-    if (wasChecked == "false") return
+    if (wasChecked == "false") return;
 
-    const variantIds = event.target.dataset.variantIds.split(",");
+    const variantIds = this.radioVariantList(event.target);
 
     // disable non related variant
     for (let el of elements) {
-      const otherVariantIds = el.dataset.variantIds.split(",");
-      const hasVariant = variantIds.some((item) => otherVariantIds.includes(item))
+      const otherVariantIds = this.radioVariantList(el);
+      const hasVariant = variantIds.some((item) =>
+        otherVariantIds.includes(item)
+      );
 
       if (!hasVariant) {
-        el.disabled = true
-        el.checked = false
-        el.dataset.wasChecked = false
+        el.disabled = true;
+        el.checked = false;
+        el.dataset.wasChecked = false;
       }
     }
   }
 
   otherRadios(name) {
-    let query = `input[type="radio"]:not([name="${name}"])`
+    return this.optionsTarget.querySelectorAll(
+      `input[type="radio"]:not([name="${name}"])`
+    );
+  }
 
-    return this.optionsTarget.querySelectorAll(query)
+  radioVariantList(elTarget) {
+    return elTarget.dataset.variantIds.split(",");
   }
 
   get commonVariant() {
@@ -92,7 +92,7 @@ export default class extends Controller {
       if (frequencyMap[element]) {
         if (!variantId) {
           variantId = element;
-          break
+          break;
         }
       } else frequencyMap[element] = true;
     }
@@ -106,16 +106,20 @@ export default class extends Controller {
     let collection = [];
 
     this.optionTargets.forEach((el) => {
-      const checkedEl = el.querySelector("input[type='radio']:checked")
+      const checkedEl = el.querySelector("input[type='radio']:checked");
 
       if (checkedEl?.dataset.variantIds)
-        collection = [...collection, ...checkedEl.dataset.variantIds.split(",")];
-    })
+        collection = [
+          ...collection,
+          ...checkedEl.dataset.variantIds.split(","),
+        ];
+    });
 
     return collection;
   }
 
   get checkedRadioCount() {
-    return this.optionsTarget.querySelectorAll("input[type='radio']:checked").length;
+    return this.optionsTarget.querySelectorAll("input[type='radio']:checked")
+      .length;
   }
 }
