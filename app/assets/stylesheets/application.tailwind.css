@@ -116,8 +116,35 @@
   ul.form-table-body {
     @apply divide-y;
   }
-
+  
+  /* Public Product */
   #public-price {
     @apply text-3xl font-medium text-primary
+  }
+
+  /* Quantity */
+  #quantity {
+    @apply flex;
+  }
+
+  #quantity .decrement {
+    @apply text-sm border border-gray-400 px-3 py-0 h-9 rounded-l-sm hover:border-primary hover:text-primary;
+  }
+
+  #quantity .increment {
+    @apply text-sm border border-gray-400 px-3 py-0 h-9 rounded-r-sm;
+  }
+
+  #quantity .number-input {
+    @apply h-9 px-1 focus:border-gray-400 border border-x-0 border-y-gray-400 w-[60px] text-center focus:ring-0;
+  }
+
+  #quantity input[type="number"] {
+    appearance: textfield;
+  }
+
+  #quantity input[type="number"]::-webkit-inner-spin-button,
+  #quantity input[type="number"]::-webkit-outer-spin-button {
+    @apply appearance-none;
   }
 }

@@ -2,10 +2,39 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="product--public"
 export default class extends Controller {
-  static targets = ["price", "option", "options", "addToCartBtn", "buyNowBtn"];
+  static targets = [
+    "price",
+    "quantity",
+    "option",
+    "options",
+    "addToCartBtn",
+    "buyNowBtn",
+  ];
 
   connect() {
     this.initPriceHTML = this.priceTarget.outerHTML;
+  }
+
+  increment() {
+    this.quantityTarget.stepUp();
+  }
+
+  decrement() {
+    this.quantityTarget.stepDown();
+  }
+
+  quantityChange(event) {
+    if (Number(event.target.value) < 0)
+      event.target.value = Math.abs(event.target.value);
+    else if (
+      (event.target.value != "" || event.data == "e") &&
+      Number(event.target.value) == 0
+    )
+      event.target.value = 1;
+  }
+
+  quantityChangeAfter(event) {
+    if (event.target.value == "") event.target.value = 1;
   }
 
   radioToggle(event) {
