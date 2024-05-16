@@ -1,33 +1,46 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :set_variant, only: %i[buy_now add_to_cart]
+  before_action :set_variant, only: %i[show buy_now add_to_cart variant_info]
 
   # GET /products
   def index
     @products = Product.base_on_date.not_deleted.sort_by_latest
   end
 
-  # GET /products/black-shoes?pid=34b404d1-8104-402a-a25a-30e831712b7a
-  def show
-    @product = Product.single_public(params[:slug], params[:pid])
-  rescue ActiveRecord::RecordNotFound
-    render 'not_found', status: :not_found
-  end
+  # GET /products/:slug?pid=:uuid
+  def show; end
 
   def buy_now; end
 
   def add_to_cart; end
+
+  def variant_info; end
 
   private
 
   def create_cart; end
 
   def set_variant
-    @product = Product.using_uuid(params[:pid])
-
+    set_product
     return if params[:vid].blank?
 
-    @variant = @product.variants.find(params[:vid])
+    @variant = @product.variants.single_using_uuid(params[:vid])
+  rescue ActiveRecord::RecordNotFound
+    case action_name
+    when 'variant_info'
+      render 'variant_not_found', status: :not_found
+    when 'show'
+      render 'not_found', status: :not_found
+    end
+  end
+
+  def set_product
+    @product = case action_name
+               when 'show'
+                 Product.single_public(params[:slug], params[:pid])
+               else
+                 Product.single_using_uuid(params[:pid])
+               end
   end
 end

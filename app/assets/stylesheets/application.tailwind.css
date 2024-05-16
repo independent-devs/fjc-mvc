@@ -122,6 +122,10 @@
     @apply text-3xl font-medium text-primary
   }
 
+  #quantity-container #stocks {
+    @apply text-gray-800;
+  }
+
   /* Quantity */
   #quantity {
     @apply flex;
@@ -132,7 +136,7 @@
   }
 
   #quantity .increment {
-    @apply text-sm border border-gray-400 px-3 py-0 h-9 rounded-r-sm;
+    @apply text-sm border border-gray-400 px-3 py-0 h-9 rounded-r-sm hover:border-primary hover:text-primary;
   }
 
   #quantity .number-input {

@@ -1,10 +1,10 @@
 .py-4.flex.gap-3{id: "#{form.object.id}_count-on-hand"}
-  = form.object.count_on_hand
   - if form.object.count_on_hand.zero? && (!form.object.is_master || (!@product.has_variant && form.object.is_master))
+    = render StockCountComponent.new count: form.object.count_on_hand
     .text-red-600 Out of stock
   - elsif form.object.is_master && @product.has_variant 
-    = "stock".pluralize(form.object.count_on_hand)
+    = render StockCountComponent.new count: form.object.count_on_hand
     %span.text-zinc-400
       (ignored)
   - else
-    = "stock".pluralize(form.object.count_on_hand)
+    = render StockCountComponent.new count: form.object.count_on_hand

@@ -21,6 +21,8 @@ class Variant < ApplicationRecord
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :get_master, -> { where(is_master: true).first }
   scope :not_master, -> { where(is_master: false) }
+  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
+  scope :stock_sum, -> { sum(:count_on_hand) }
   scope :grouped_option_name,
         lambda {
           select("variants.*, string_agg(vov.name, ', ' order by vov.position) as grouped_name")

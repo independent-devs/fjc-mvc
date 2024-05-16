@@ -1,7 +1,13 @@
-#quantity.mt-5
-  = button_tag class: "decrement", data: {action: "click->product--public#decrement"} do
-    = icon("fa-solid", "minus")
-  = number_field_tag 'quantity', '1', class: "number-input", min: 1, max: 1000,
-  data: {"product--public-target": "quantity", action: "input->product--public#quantityChange focusout->product--public#quantityChangeAfter"}
-  = button_tag class: "increment", data: {action: "product--public#increment"} do
-    = icon("fa-solid", "plus")
+#quantity-container.flex.gap-4.items-center.mt-5
+  #quantity
+    = button_tag class: "decrement", data: {action: "click->product--public#decrement"} do
+      = icon("fa-solid", "minus")
+    = number_field_tag 'quantity', '1', class: "number-input", min: 1, max: 1000,
+    data: {"product--public-target": "quantity", action: "input->product--public#quantityChange focusout->product--public#quantityChangeAfter"}
+    = button_tag class: "increment", data: {action: "product--public#increment"} do
+      = icon("fa-solid", "plus")
+  #stocks{data: {"product--public-target": "stocks"}}
+    - if @product.has_variant
+      = render StockCountComponent.new count: @product.variants.not_master.stock_sum
+    - else
+      = render StockCountComponent.new count: @product.master_variant.count_on_hand

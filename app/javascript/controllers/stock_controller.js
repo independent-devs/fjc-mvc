@@ -9,7 +9,7 @@ export default class extends Controller {
     formData.append("product_variant[modify_amount]", this.inputTarget.value);
 
     fetch(this.element.dataset.url, {
-      method: "put",
+      method: "PUT",
       body: formData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",

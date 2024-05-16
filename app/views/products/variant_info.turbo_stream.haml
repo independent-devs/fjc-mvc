@@ -1,0 +1,7 @@
+= turbo_stream.replace "public-price" do
+  #public-price{data: {"product--public-target": "price"}}
+    = render PriceRangeComponent.new lowest: @variant.price, highest: @variant.price
+
+= turbo_stream.replace "stocks" do
+  #stocks{data: {"product--public-target": "stocks"}}
+    = render StockCountComponent.new count: @variant.count_on_hand

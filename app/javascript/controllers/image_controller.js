@@ -10,7 +10,7 @@ export default class extends Controller {
     if (!isConfirmed) return;
 
     fetch(this.element.dataset.url, {
-      method: "delete",
+      method: "DELETE",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
         "X-CSRF-Token": document
