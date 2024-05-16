@@ -82,6 +82,7 @@ export default class extends Controller {
   }
 
   resetPriceAndStocks() {
+    this.quantityTarget.value = 1;
     this.priceTarget.outerHTML = this.initPriceHTML;
     this.stocksTarget.outerHTML = this.initStocksHTML;
   }
