@@ -56,11 +56,13 @@ export default class extends Controller {
     }
 
     this.disableGroupRadios(event, event.target.dataset.wasChecked);
-    this.getVariantInfo();
+    this.variantInfo();
   }
 
-  getVariantInfo() {
+  variantInfo() {
     if (this.commonVariant) {
+      this.setActionBtn(false);
+
       fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
         method: "GET",
         headers: {
@@ -73,6 +75,7 @@ export default class extends Controller {
         .then((res) => res.text())
         .then((html) => {
           if (this.allRadioChecked) Turbo.renderStreamMessage(html);
+          this.setActionBtn(true);
         });
 
       return;
@@ -82,9 +85,16 @@ export default class extends Controller {
   }
 
   resetPriceAndStocks() {
-    this.quantityTarget.value = 1;
     this.priceTarget.outerHTML = this.initPriceHTML;
     this.stocksTarget.outerHTML = this.initStocksHTML;
+    this.quantityTarget.value = this.quantityTarget.min;
+    this.quantityTarget.max = this.element.dataset.stockNum;
+    this.setActionBtn(true);
+  }
+
+  setActionBtn(enabled = true) {
+    this.buyNowBtnTarget.disabled = !enabled;
+    this.addToCartBtnTarget.disabled = !enabled;
   }
 
   setRadios(groupName, includeId, excludeId) {

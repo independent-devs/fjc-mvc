@@ -1,5 +1,5 @@
 .flex.gap-4
-  = button_tag class: "btn-primary-lite flex items-center gap-2" do
+  = button_tag data: {"product--public-target": "addToCartBtn"}, class: "btn-primary-lite flex items-center gap-2 disabled:border-gray-300 disabled:text-gray-300 disabled:bg-gray-200/10 disabled:cursor-progress" do
     = icon("fa-solid", "cart-plus", class: "text-lg")
     Add to cart
-  = button_tag "Buy now", class: "btn-primary"
+  = button_tag "Buy now", data: {"product--public-target": "buyNowBtn"}, class: "btn-primary disabled:bg-gray-200 disabled:cursor-progress"
