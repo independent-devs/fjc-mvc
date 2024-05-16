@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "format": "npx prettier --write ./app/javascript"
+    "format:js": "npx prettier --write ./app/javascript"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
