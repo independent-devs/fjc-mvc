@@ -1,9 +1,10 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme";
 
 module.exports = {
   content: [
     "./public/*.html",
     "./app/helpers/**/*.rb",
+    "./app/assets/**/*.css",
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
     "./app/components/**/*.{erb,haml,html,slim}",
