@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = [
     "price",
     "quantity",
+    "stocks",
     "option",
     "options",
     "addToCartBtn",
@@ -13,8 +14,10 @@ export default class extends Controller {
 
   connect() {
     this.initPriceHTML = this.priceTarget.outerHTML;
+    this.initStocksHTML = this.stocksTarget.outerHTML;
   }
 
+  /* Quantity */
   increment() {
     this.quantityTarget.stepUp();
   }
@@ -37,6 +40,7 @@ export default class extends Controller {
     if (event.target.value == "") event.target.value = 1;
   }
 
+  /* Radio Inputs */
   radioToggle(event) {
     const radioName = event.target.name;
     const radioID = event.target.id;
@@ -52,9 +56,34 @@ export default class extends Controller {
     }
 
     this.disableGroupRadios(event, event.target.dataset.wasChecked);
+    this.getVariantInfo();
+  }
 
-    // update ui for price and stock amount
-    console.log(this.commonVariant);
+  getVariantInfo() {
+    if (this.commonVariant) {
+      fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
+        method: "GET",
+        headers: {
+          Accept: "text/vnd.turbo-stream.html",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+      })
+        .then((res) => res.text())
+        .then((html) => {
+          if (this.allRadioChecked) Turbo.renderStreamMessage(html);
+        });
+
+      return;
+    }
+
+    this.resetPriceAndStocks();
+  }
+
+  resetPriceAndStocks() {
+    this.priceTarget.outerHTML = this.initPriceHTML;
+    this.stocksTarget.outerHTML = this.initStocksHTML;
   }
 
   setRadios(groupName, includeId, excludeId) {
@@ -129,8 +158,12 @@ export default class extends Controller {
     return variantId;
   }
 
+  get allRadioChecked() {
+    return this.optionTargets.length == this.checkedRadioCount;
+  }
+
   get radioCollections() {
-    if (this.optionTargets.length != this.checkedRadioCount) return null;
+    if (!this.allRadioChecked) return null;
 
     let collection = [];
 
