@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Cart < ApplicationRecord
-  belongs_to :user
+  # Relations
+  belongs_to :user, optional: true
   belongs_to :variant
 
+  # Validations
   validates :qty, numericality: { greater_than: 0 }
 end
 

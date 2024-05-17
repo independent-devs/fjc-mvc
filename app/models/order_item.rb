@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class OrderItem < ApplicationRecord
+  # Relations
   belongs_to :order
   belongs_to :variant
 
+  # Validations
   validates :qty, numericality: { greater_than: 0 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
 end
