@@ -45,6 +45,7 @@ end
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
 #                              add_to_cart POST     /add_to_cart/:pid/:vid(.:format)                                                                  products#add_to_cart
 #                                  buy_now POST     /buy_now/:pid/:vid(.:format)                                                                      products#buy_now
+#                             variant_info GET      /variant_info/:pid/:vid(.:format)                                                                 products#variant_info {:format=>"turbo_stream"}
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
