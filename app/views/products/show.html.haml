@@ -13,7 +13,7 @@
           = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       - if @product.has_variant
         = render "options"
-      .grid.gap-2.mt-5
+      .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
         = render "quantity", stock_num:

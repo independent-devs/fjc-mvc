@@ -2,7 +2,7 @@
 
 class OrderStatus < ApplicationRecord
   # constants
-  STATUS = %w[cart pending shipped fulfilled].freeze
+  STATUS = %w[pending shipped unfulfilled fulfilled].freeze
 
   # Relationships
   has_many :order, dependent: :destroy

@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :set_variant, only: %i[show buy_now add_to_cart variant_info]
+  before_action :authenticate_user!, only: %i[add_to_cart buy_now]
+  before_action :set_variant, only: %i[
+    show
+    buy_now
+    add_to_cart
+    guest_buy_now
+    guest_add_to_cart
+    variant_info
+  ]
 
   # GET /products
   def index
@@ -11,11 +19,15 @@ class ProductsController < ApplicationController
   # GET /products/:slug?pid=:uuid
   def show; end
 
+  def variant_info; end
+
   def buy_now; end
 
   def add_to_cart; end
 
-  def variant_info; end
+  def guest_buy_now; end
+
+  def guest_add_to_cart; end
 
   private
 
