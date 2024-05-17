@@ -3,26 +3,4 @@
 - keywords "User, Login, Register"
 
 .margin-max-screen.grid.place-items-center.h-full.py-20
-  .flex.flex-col.gap-6.w-80
-    %ul
-      - resource.errors.full_messages.each do |message|
-        %li= message
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "h-fit"}) do |f|
-      .grid{class: "gap-2.5"}
-        %h2.font-semibold.text-2xl.mb-2 Sign up
-        .field{"data-controller": "phone"}
-          = f.label "Phone No."
-          = f.phone_field  :phone_no, required: true, autocomplete: "phone_no", "data-phone-target": "field"
-          = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "input-tel"
-        .field
-          = f.label :password
-          = f.password_field :password, required: true, autocomplete: "new-password"
-        .field
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "new-password"
-        .mt-2
-          = f.submit "Sign up", class: "btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
-        = render "users/shared/sign_in"
-    %fieldset.border-t.border-gray-400
-      %legend.mx-auto.px-3.text-sm.uppercase.text-gray-600 or
-    = render "users/shared/omniauth", name: "Sign up"
+  = render "card", resource:, resource_name:, origin: root_path
