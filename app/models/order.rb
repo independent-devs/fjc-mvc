@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  belongs_to :user
+  # Relations
+  belongs_to :user, optional: true
   belongs_to :order_status
 end
 

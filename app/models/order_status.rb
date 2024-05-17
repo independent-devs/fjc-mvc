@@ -4,7 +4,7 @@ class OrderStatus < ApplicationRecord
   # constants
   STATUS = %w[pending shipped unfulfilled fulfilled].freeze
 
-  # Relationships
+  # Relations
   has_many :order, dependent: :destroy
 
   # Validations
