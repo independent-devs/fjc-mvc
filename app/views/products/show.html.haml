@@ -8,15 +8,12 @@
       .grid{class: "gap-2"}
         %h2.font-semibold.text-2xl
           = @product.name
-        .flex.gap-2.items-center
-          = render StarRatingComponent.new(rating: @product.review_avg_rating)
-          %span.text-gray-400
-            = "(#{@product.review_count} #{"review".pluralize(@product.review_count)})"
+        = render "star_reviews" 
         #public-price{data: {"product--public-target": "price"}}
           = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       - if @product.has_variant
         = render "options"
-      .grid.gap-2.mt-5
+      .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
         = render "quantity", stock_num:
