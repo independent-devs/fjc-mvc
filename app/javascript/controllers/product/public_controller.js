@@ -33,11 +33,11 @@ export default class extends Controller {
       (event.target.value != "" || event.data == "e") &&
       Number(event.target.value) == 0
     )
-      event.target.value = 1;
+      event.target.value = this.quantityTarget.min;
   }
 
   quantityChangeAfter(event) {
-    if (event.target.value == "") event.target.value = 1;
+    if (event.target.value == "") event.target.value = this.quantityTarget.min;
   }
 
   /* Radio Inputs */
