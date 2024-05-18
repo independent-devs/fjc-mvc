@@ -11,6 +11,7 @@ end
 # Table name: orders
 #
 #  id              :bigint           not null, primary key
+#  uuid            :uuid             not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  order_status_id :bigint           not null
