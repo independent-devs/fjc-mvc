@@ -1,9 +1,8 @@
-#quantity-container.flex.gap-4.items-center
+#quantity-container
   #quantity
     = button_tag class: "decrement", data: {action: "click->product--public#decrement"} do
       = icon("fa-solid", "minus")
-    = number_field_tag 'quantity', '1', class: "number-input", min: 1, max: stock_num,
-    data: {"product--public-target": "quantity", action: "input->product--public#quantityChange focusout->product--public#quantityChangeAfter"}
+    = number_field_tag 'quantity', '1', class: "number-input", min: 1, max: stock_num, data: {"product--public-target": "quantity", action: "input->product--public#quantityChange focusout->product--public#quantityChangeAfter"}
     = button_tag class: "increment", data: {action: "product--public#increment"} do
       = icon("fa-solid", "plus")
   #stocks{data: {"product--public-target": "stocks"}}
