@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   ## draw routes
   draw :profile
   draw :products
+  draw :cart
   draw :admin
 
   ## error routes
@@ -43,9 +44,11 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                              add_to_cart POST     /add_to_cart/:pid/:vid(.:format)                                                                  products#add_to_cart
 #                                  buy_now POST     /buy_now/:pid/:vid(.:format)                                                                      products#buy_now
 #                             variant_info GET      /variant_info/:pid/:vid(.:format)                                                                 products#variant_info {:format=>"turbo_stream"}
+#                         add_to_cart_cart POST     /carts/:uuid/add_to_cart(.:format)                                                                carts#add_to_cart
+#                   guest_add_to_cart_cart POST     /carts/:uuid/guest_add_to_cart(.:format)                                                          carts#guest_add_to_cart
+#                                    carts GET      /carts(.:format)                                                                                  carts#index
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
