@@ -1,16 +1,19 @@
 = render "seo", seo: @product.seo
 - stock_num = @product.has_variant ? @product.variants.not_master.stock_sum : @product.master_variant.count_on_hand
-
 .w-full.margin-max-screen.space-y-10.py-14{data: {controller: "product--public", pid: @product.uuid, stock_num:}}
   .flex.gap-5
     %div{class: "min-w-[550px] max-w-[550px]"}
-    .flex.flex-col{class: "w-full gap-7"}
-      .grid{class: "gap-2"}
+    .flex.flex-col.w-full.gap-7
+      .grid.gap-2
         %h2.font-semibold.text-2xl
           = @product.name
         = render "star_reviews" 
         #public-price{data: {"product--public-target": "price"}}
-          = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
+          - if @product.has_variant
+            = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
+          - else
+            - price = @product.master_variant.price
+            = render PriceRangeComponent.new lowest: price, highest: price
       - if @product.has_variant
         = render "options"
       .grid.gap-2
