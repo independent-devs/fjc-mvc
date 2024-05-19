@@ -8,6 +8,7 @@ export default class extends Controller {
     "stocks",
     "option",
     "options",
+    "vid",
     "addToCartBtn",
     "buyNowBtn",
   ];
@@ -16,6 +17,8 @@ export default class extends Controller {
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
   }
+
+  /* Actions */
 
   /* Quantity */
   increment() {
@@ -89,6 +92,7 @@ export default class extends Controller {
     this.stocksTarget.outerHTML = this.initStocksHTML;
     this.quantityTarget.value = this.quantityTarget.min;
     this.quantityTarget.max = this.element.dataset.stockNum;
+    this.vidTarget.dataset.vid = "";
     this.setActionBtn(true);
   }
 
