@@ -4,3 +4,6 @@
 
 = turbo_stream.replace "quantity-container" do
   = render "quantity", stock_num: @variant.count_on_hand
+
+= turbo_stream.replace "vid" do
+  = render "vid", vid: @variant.uuid
