@@ -1,12 +1,11 @@
 en:
   home:
-    link: "Home"
+    title: "Home"
   about:
-    link: "About"
+    title: "About"
   error:
     something_went_wrong: "Something went wrong."
   products:
-    link: "Products"
     all: "All products"
     title: "Products"
     list: "Product List"
