@@ -1,10 +1,5 @@
 .w-full.margin-max-screen.flex.flex-col.gap-10.py-8
-  = render SectionComponent.new                   |
-      label: t("categories.section_label"),       |
-      title: t("categories.section_title") do     |
+  = render SectionComponent.new label: t("categories.section_label"), title: t("categories.section_title") do     
     sample
-  = render SectionComponent.new                   |
-      label: t("products.section_label"),         |
-      title: t("products.section_title"),         |
-      action_partial: "product_action" do         |
+  = render SectionComponent.new label: t("products.section_label"), title: t("products.section_title"), action_partial: "product_action" do         
     sample

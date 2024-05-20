@@ -97,28 +97,26 @@ export default class extends Controller {
   }
 
   variantInfo() {
-    if (this.commonVariant) {
-      this.setActionBtn(false);
-
-      fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
-        method: "GET",
-        headers: {
-          Accept: "text/vnd.turbo-stream.html",
-          "X-CSRF-Token": document
-            .querySelector('meta[name="csrf-token"]')
-            .getAttribute("content"),
-        },
-      })
-        .then((res) => res.text())
-        .then((html) => {
-          if (this.allRadioChecked) Turbo.renderStreamMessage(html);
-          this.setActionBtn(true);
-        });
-
+    if (!this.commonVariant) {
+      this.resetPriceAndStocks();
       return;
     }
 
-    this.resetPriceAndStocks();
+    this.setActionBtn(false);
+    fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
+      method: "GET",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+    })
+      .then((res) => res.text())
+      .then((html) => {
+        if (this.allRadioChecked) Turbo.renderStreamMessage(html);
+        this.setActionBtn(true);
+      });
   }
 
   resetPriceAndStocks() {
