@@ -3,11 +3,11 @@
     .flex.flex-col.gap-3
       %label.font-medium.text-sm.text-zinc-500
         = po.display_name
-      %ul.flex-wrap.flex{class: "gap-2.5", data: { "product--public-target": "option"}}
+      %ul.flex-wrap.flex{class: "gap-2.5", data: {"product--public-target": "option"}}
         - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
           %li
-            = radio_button_tag po.name, key, false, id: key, class: "peer hidden",
+            = radio_button_tag po.name, key, false, id: key, class: "peer hidden", disabled: true,
             data: {action: "click->product--public#radioToggle", was_checked: false,
-            variant_ids: arr.map { |a| a.variant_uuid }.join(',')}
+            variant_ids: arr.map { |a| a.variant_uuid }.join(','), "product--public-target": "radio"}
             %label.variant-radio{for: key}
               = key
