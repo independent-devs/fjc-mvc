@@ -23,29 +23,24 @@ export default class extends Controller {
 
   /* Actions */
   addToCart() {
-    if (!this.vidTarget.dataset.vid) return;
+    if (this.userSignedInTarget.checked) {
+      fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
+        method: "GET",
+        headers: {
+          Accept: "text/vnd.turbo-stream.html",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+      })
+        .then((res) => res.text())
+        .then((html) => {
+          if (this.allRadioChecked) Turbo.renderStreamMessage(html);
+          this.setActionBtn(true);
+        });
 
-    const actionPath = this.userSignedInTarget.checked
-      ? "add_to_cart"
-      : "guest_add_to_cart";
-
-    const fullPath = `${window.location.origin}/carts/${this.vidTarget.dataset.vid}/${actionPath}`;
-
-    const formData = new FormData();
-    formData.append("cart[qty]", this.quantityTarget.value);
-
-    fetch(fullPath, {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
-      },
-    })
-      .then((res) => res.text())
-      .then((html) => Turbo.renderStreamMessage(html));
+      return;
+    }
   }
 
   /* Quantity */

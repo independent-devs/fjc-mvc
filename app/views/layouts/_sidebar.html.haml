@@ -2,14 +2,9 @@
   .text-2xl.font-bold.px-4.py-3.mt-3
     FJC Admin
   .flex.flex-col.mt-3.px-4
-    = render SidebarLinkComponent.new label: "Dashboard", 
-    path: admin_dashboard_index_path, 
+    = render SidebarLinkComponent.new label: "Dashboard", path: admin_dashboard_index_path, 
     icon: icon("fa-solid", "chart-simple")
-    = render SidebarLinkComponent.new                               |
-    label: t("products.title"),                                     |
-    path: admin_products_path,                                      |
-    icon: icon("fa-solid", "bag-shopping"),                         |
-    sub_paths: [                                                    |
-      { label: t("options.title"), path: admin_options_path },      |  
-      { label: t("categories.title"), path: admin_categories_path } |
-    ]                                                               |
+    = render SidebarLinkComponent.new label: t("products.title"), path: admin_products_path, 
+    icon: icon("fa-solid", "bag-shopping"),                         
+    sub_paths: [{label: t("options.title"), path: admin_options_path}, 
+    {label: t("categories.title"), path: admin_categories_path}]                                                               
