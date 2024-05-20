@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_20_130006) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -50,6 +50,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cart_sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "carts", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.integer "qty", default: 1, null: false
@@ -60,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["uuid"], name: "index_carts_on_uuid", unique: true
     t.index ["variant_id"], name: "index_carts_on_variant_id"
   end
 
@@ -119,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.datetime "updated_at", null: false
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["uuid"], name: "index_orders_on_uuid", unique: true
   end
 
   create_table "product_categories", force: :cascade do |t|

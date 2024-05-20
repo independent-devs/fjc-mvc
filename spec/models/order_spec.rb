@@ -21,6 +21,7 @@ end
 #
 #  index_orders_on_order_status_id  (order_status_id)
 #  index_orders_on_user_id          (user_id)
+#  index_orders_on_uuid             (uuid) UNIQUE
 #
 # Foreign Keys
 #
