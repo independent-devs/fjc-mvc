@@ -3,13 +3,14 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="product--public"
 export default class extends Controller {
   static targets = [
+    "vid",
     "price",
     "quantity",
     "stocks",
     "radio",
     "option",
     "options",
-    "vid",
+    "userSignedIn",
     "addToCartBtn",
     "buyNowBtn",
   ];
@@ -18,6 +19,33 @@ export default class extends Controller {
     this.initRadios();
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
+  }
+
+  /* Actions */
+  addToCart() {
+    if (!this.vidTarget.dataset.vid) return;
+
+    const actionPath = this.userSignedInTarget.checked
+      ? "add_to_cart"
+      : "guest_add_to_cart";
+
+    const fullPath = `${window.location.origin}/carts/${this.vidTarget.dataset.vid}/${actionPath}`;
+
+    const formData = new FormData();
+    formData.append("cart[qty]", this.quantityTarget.value);
+
+    fetch(fullPath, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+    })
+      .then((res) => res.text())
+      .then((html) => Turbo.renderStreamMessage(html));
   }
 
   /* Quantity */
