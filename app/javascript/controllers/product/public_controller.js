@@ -6,6 +6,7 @@ export default class extends Controller {
     "price",
     "quantity",
     "stocks",
+    "radio",
     "option",
     "options",
     "vid",
@@ -14,6 +15,7 @@ export default class extends Controller {
   ];
 
   connect() {
+    this.initRadios();
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
   }
@@ -58,6 +60,12 @@ export default class extends Controller {
 
     this.disableGroupRadios(event, event.target.dataset.wasChecked);
     this.variantInfo();
+  }
+
+  initRadios() {
+    this.radioTargets.forEach((el) => {
+      el.disabled = false;
+    });
   }
 
   variantInfo() {

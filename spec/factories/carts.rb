@@ -25,6 +25,7 @@ end
 #
 #  index_carts_on_order_id    (order_id)
 #  index_carts_on_user_id     (user_id)
+#  index_carts_on_uuid        (uuid) UNIQUE
 #  index_carts_on_variant_id  (variant_id)
 #
 # Foreign Keys
