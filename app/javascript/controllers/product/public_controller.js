@@ -18,8 +18,6 @@ export default class extends Controller {
     this.initStocksHTML = this.stocksTarget.outerHTML;
   }
 
-  /* Actions */
-
   /* Quantity */
   increment() {
     this.quantityTarget.stepUp();
