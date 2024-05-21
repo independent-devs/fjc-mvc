@@ -3,16 +3,16 @@
 class CartsController < ApplicationController
   before_action :set_cart_session, only: %i[guest_add_to_cart]
   before_action :authenticate_user!, only: %i[add_to_cart]
-  before_action :set_cart, only: %i[add_to_cart guest_add_to_cart]
+  before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index; end
 
   def add_to_cart
-    @cart = current_user.cart.new(qty: cart_params[:qty], variant: @variant)
+    @cart = current_user.carts.new(qty: cart_params[:qty], variant: @variant)
 
     respond_to do |format|
       if @cart.save
-        format.turbo_stream { render :add_to_cart }
+        format.turbo_stream
       else
         format.turbo_stream { render :error }
       end
@@ -24,7 +24,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.turbo_stream { render :add_to_cart }
+        format.turbo_stream
       else
         format.turbo_stream { render :error }
       end
@@ -37,8 +37,8 @@ class CartsController < ApplicationController
     params.require(:cart).permit(:qty)
   end
 
-  def set_cart
-    @variant = Variant.find_by!(uuid: params[:uuid])
+  def set_variant
+    @variant = Variant.single_using_uuid(params[:uuid])
   end
 
   def set_cart_session
