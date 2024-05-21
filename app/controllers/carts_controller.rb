@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :set_cart_session, only: %i[guest_add_to_cart]
   before_action :authenticate_user!, only: %i[add_to_cart]
+  # setters
+  before_action :set_cart_session, only: %i[index guest_add_to_cart]
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index; end
@@ -47,7 +48,12 @@ class CartsController < ApplicationController
 
       cookies.signed.permanent[:cart_session] = @cart_session.id
     else
-      @cart_session = CartSession.find(cookies.signed[:cart_session])
+      @cart_session = CartSession.find_by(id: cookies.signed[:cart_session]) || CartSession.create
+
+      if @cart_session.new_record?
+        cookies.delete :cart_session
+        cookies.signed.permanent[:cart_session] = @cart_session.id
+      end
     end
   end
 end
