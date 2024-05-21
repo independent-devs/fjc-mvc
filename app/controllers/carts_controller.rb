@@ -2,11 +2,15 @@
 
 class CartsController < ApplicationController
   before_action :authenticate_user!, only: %i[add_to_cart]
-  # setters
+
+  # Setters
   before_action :set_cart_session, only: %i[index guest_add_to_cart]
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
-  def index; end
+  def index
+    @guest_carts = @cart_session.carts.not_owned.not_ordered if cookies.signed[:cart_session].present?
+    @carts = current_user.carts.not_ordered if current_user.present?
+  end
 
   def add_to_cart
     @cart = current_user.carts.new(qty: cart_params[:qty], variant: @variant)
