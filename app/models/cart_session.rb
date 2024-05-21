@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CartSession < ApplicationRecord
+  has_many :carts, dependent: :destroy
 end
 
 # == Schema Information
