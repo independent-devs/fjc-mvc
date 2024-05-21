@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   # Relations
   has_many :carts, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   # Validations
   validates :provider, inclusion: { in: ALLOWED_PROVIDER, message: I18n.t('devise.failure.provider.not_allowed') }
