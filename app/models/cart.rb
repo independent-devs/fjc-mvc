@@ -8,7 +8,8 @@ class Cart < ApplicationRecord
   belongs_to :cart_session, optional: true
 
   # Scopes
-  scope :guest_cart, -> { where(user_id: nil) }
+  scope :not_owned, -> { where(user_id: nil) }
+  scope :not_ordered, -> { where(order_id: nil) }
 
   # Validations
   validates :qty, numericality: { greater_than: 0 }
