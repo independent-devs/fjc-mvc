@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_20_130006) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -61,8 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_20_130006) do
     t.bigint "variant_id", null: false
     t.bigint "user_id"
     t.bigint "order_id"
+    t.bigint "cart_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cart_session_id"], name: "index_carts_on_cart_session_id"
     t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
     t.index ["uuid"], name: "index_carts_on_uuid", unique: true
@@ -242,6 +244,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_20_130006) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "cart_sessions"
   add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "carts", "variants"

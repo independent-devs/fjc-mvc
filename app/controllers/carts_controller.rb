@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   end
 
   def guest_add_to_cart
-    @cart = Cart.new(qty: cart_params[:qty], variant: @variant)
+    @cart = @cart_session.carts.new(qty: cart_params[:qty], variant: @variant)
 
     respond_to do |format|
       if @cart.save
@@ -42,10 +42,12 @@ class CartsController < ApplicationController
   end
 
   def set_cart_session
-    return if cookies.signed[:cart_session].present?
+    if cookies.signed[:cart_session].blank?
+      @cart_session = CartSession.create
 
-    @cart_session = CartSession.create
-
-    cookies.signed.permanent[:cart_session] = @cart_session.id
+      cookies.signed.permanent[:cart_session] = @cart_session.id
+    else
+      @cart_session = CartSession.find(cookies.signed[:cart_session])
+    end
   end
 end
