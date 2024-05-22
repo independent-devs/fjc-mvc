@@ -13,10 +13,8 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
-    @cart = current_user.carts.new(qty: cart_params[:qty], variant: @variant)
-
     respond_to do |format|
-      if @cart.save
+      if create_cart current_user
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -25,10 +23,8 @@ class CartsController < ApplicationController
   end
 
   def guest_add_to_cart
-    @cart = @cart_session.carts.new(qty: cart_params[:qty], variant: @variant)
-
     respond_to do |format|
-      if @cart.save
+      if create_cart @cart_session
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -44,6 +40,15 @@ class CartsController < ApplicationController
 
   def set_variant
     @variant = Variant.single_using_uuid(params[:uuid])
+  end
+
+  def create_cart(parent)
+    return true if (@cart = parent.carts.find_by(variant: @variant)).present? &&
+                   @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
+
+    return true if parent.carts.new(qty: cart_params[:qty], variant: @variant).save
+
+    false
   end
 
   def set_cart_session

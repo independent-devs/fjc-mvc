@@ -77,6 +77,10 @@ en:
     invalid_modify_amount: "Invalid modify amount."
   stocks:
     updated: "Stock was successfully updated."
+  carts:
+    user_added_cart: "Successfully added to cart"
+    guest_added_cart: "Successfully added to guest cart"
+    something_went_wrong: "Something went wrong"
   images:
     validate:
       must_be_attached: "must be attached." 
