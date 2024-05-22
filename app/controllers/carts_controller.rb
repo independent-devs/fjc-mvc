@@ -13,11 +13,23 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
-    create_cart(current_user)
+    respond_to do |format|
+      if create_cart(current_user)
+        format.turbo_stream
+      else
+        format.turbo_stream { render :error }
+      end
+    end
   end
 
   def guest_add_to_cart
-    create_cart(@cart_session)
+    respond_to do |format|
+      if create_cart(@cart_session)
+        format.turbo_stream
+      else
+        format.turbo_stream { render :error }
+      end
+    end
   end
 
   private
@@ -31,23 +43,12 @@ class CartsController < ApplicationController
   end
 
   def create_cart(parent)
-    respond_to do |format|
-      if (@cart = parent.carts.find_by(variant: @variant)).present? &&
-         @cart.update(qty: @cart.qty + cart_params[:qty].to_i)
+    return true if (@cart = parent.carts.find_by(variant: @variant)).present? &&
+                   @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
 
-        format.turbo_stream
-        return
-      end
+    return true if parent.carts.new(qty: cart_params[:qty], variant: @variant).save
 
-      @cart = parent.carts.new(qty: cart_params[:qty], variant: @variant)
-
-      if @cart.save
-        format.turbo_stream
-        return
-      end
-
-      format.turbo_stream { render :error }
-    end
+    false
   end
 
   def set_cart_session
