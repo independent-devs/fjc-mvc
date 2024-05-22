@@ -1,2 +1,2 @@
 = turbo_stream.prepend "notification-container" do
-  = render NotificationComponent.new notif_type: "success", message: "Successfully added to guest cart"
+  = render NotificationComponent.new notif_type: "error", message: t("carts.guest_added_cart")
