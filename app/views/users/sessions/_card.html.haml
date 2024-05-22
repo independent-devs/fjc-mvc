@@ -6,8 +6,9 @@
         = render ErrorMessageComponent.new(errors: [flash[:alert]], label: "")
       .field{"data-controller": "phone"}
         = f.label "Phone No."
-        = f.phone_field  :phone_no, required: true, autocomplete: "phone_no", "data-phone-target": "field"
-        = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "input-tel"
+        = f.phone_field  :phone_no, required: true, autocomplete: "phone_no",
+        data: {"phone-target": "input", action: "change->phone#inputListener" }
+        = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "hidden-field"
       .field
         = f.label :password
         = f.password_field :password, required: true, autocomplete: "current-password"
