@@ -20,7 +20,7 @@ export default class extends Controller {
     });
   }
 
-  hiddenInputValue() {
+  telHiddenInput() {
     this.hiddenTarget.value = this.iti.getNumber();
   }
 }
