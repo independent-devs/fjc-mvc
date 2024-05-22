@@ -3,7 +3,7 @@
     .grid{class: "gap-2.5"}
       %h2.font-semibold.text-2xl.mb-2 Sign up
       - if resource.errors.present?
-        = render ErrorMessageComponent.new(errors: resource.errors.full_messages, label: "")
+        = render ErrorMessageComponent.new(errors: resource.errors.full_messages, label: nil)
       .field{"data-controller": "phone"}
         = f.label "Phone No."
         = f.phone_field  :phone_no, required: true, autocomplete: "phone_no",
