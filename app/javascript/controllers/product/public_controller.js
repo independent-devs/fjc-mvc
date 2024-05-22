@@ -123,7 +123,6 @@ export default class extends Controller {
     this.priceTarget.outerHTML = this.initPriceHTML;
     this.stocksTarget.outerHTML = this.initStocksHTML;
     this.quantityTarget.value = this.quantityTarget.min;
-    this.quantityTarget.max = this.element.dataset.stockNum;
     this.vidTarget.dataset.vid = "";
     this.setActionBtn(true);
   }
