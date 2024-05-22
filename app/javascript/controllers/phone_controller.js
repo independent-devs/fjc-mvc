@@ -20,8 +20,7 @@ export default class extends Controller {
     });
   }
 
-  inputListener() {
-    if (!this.iti) return;
+  hiddenInputValue() {
     this.hiddenTarget.value = this.iti.getNumber();
   }
 }

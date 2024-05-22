@@ -7,7 +7,7 @@
       .field{"data-controller": "phone"}
         = f.label "Phone No."
         = f.phone_field  :phone_no, required: true, autocomplete: "phone_no",
-        data: {"phone-target": "input", action: "change->phone#inputListener" }
+        data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
         = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "hidden-field"
       .field
         = f.label :password
