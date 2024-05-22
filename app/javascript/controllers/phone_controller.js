@@ -3,30 +3,24 @@ import intlTelInput from "intl-tel-input";
 
 // Connects to data-controller="phone"
 export default class extends Controller {
-  static targets = ["field", "hidden"];
+  static targets = ["input", "hidden"];
 
   connect() {
-    this.fieldTarget.addEventListener("change", this.inputListener);
-    const country = "PH";
+    const COUNTRY = "PH";
 
-    this.iti = intlTelInput(this.fieldTarget, {
+    this.iti = intlTelInput(this.inputTarget, {
       utilsScript:
         "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
       separateDialCode: true,
-      initialCountry: country,
+      initialCountry: COUNTRY,
       allowDropdown: false,
-      preferredCountries: [country],
-      onlyCountries: [country],
+      preferredCountries: [COUNTRY],
+      onlyCountries: [COUNTRY],
       customPlaceholder: (placeholder) => "e.g. " + placeholder,
     });
   }
 
-  inputListener = (_event) => {
-    if (!this.iti) return;
+  telHiddenInput() {
     this.hiddenTarget.value = this.iti.getNumber();
-  };
-
-  disconnect() {
-    this.fieldTarget.removeEventListener("change", this.inputListener);
   }
 }
