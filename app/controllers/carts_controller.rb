@@ -14,7 +14,7 @@ class CartsController < ApplicationController
 
   def add_to_cart
     respond_to do |format|
-      if create_cart(current_user)
+      if create_cart current_user
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -24,7 +24,7 @@ class CartsController < ApplicationController
 
   def guest_add_to_cart
     respond_to do |format|
-      if create_cart(@cart_session)
+      if create_cart @cart_session
         format.turbo_stream
       else
         format.turbo_stream { render :error }
