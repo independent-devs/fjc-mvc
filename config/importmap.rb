@@ -18,3 +18,4 @@ pin "@stimulus-components/sortable", to: "@stimulus-components--sortable.js", pr
 pin "@rails/request.js", to: "@rails--request.js.js", preload: false # @0.0.8
 pin "sortablejs", preload: false # @1.15.2
 pin "slim-select", preload: false # @2.8.2
+pin "@stimulus-components/checkbox-select-all", to: "@stimulus-components--checkbox-select-all.js" # @6.0.0
