@@ -161,6 +161,8 @@ export default class extends Controller {
   disableGroupRadios(event) {
     const elements = this.otherRadios(event.target.name);
 
+    if (!elements.length) return;
+
     // enable all first
     for (let el of elements) el.disabled = false;
 
