@@ -1,6 +1,6 @@
 .flex.flex-col.gap-5{data: {"product--public-target": "options"}}
-  - @product.product_options.with_option_columns.each_with_index do |po, index|
-    .flex.flex-col.gap-3
+  - @product.product_options.with_option_columns.each do |po|
+    .flex.flex-col.gap-3{data: {"product--public-target": "optionInstance"}}
       %label.font-medium.text-sm.text-zinc-500
         = po.display_name
       %ul.flex-wrap.flex{class: "gap-2.5", data: {"product--public-target": "option"}}

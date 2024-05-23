@@ -10,6 +10,7 @@ export default class extends Controller {
     "radio",
     "option",
     "options",
+    "optionInstance",
     "userSignedIn",
     "addToCartBtn",
     "buyNowBtn",
@@ -86,8 +87,8 @@ export default class extends Controller {
       event.target.dataset.wasChecked = true;
     }
 
-    this.disableGroupRadios(event, event.target.dataset.wasChecked);
-    this.variantInfo();
+    this.disableGroupRadios(event);
+    this.variantInfo(event);
   }
 
   initRadios() {
@@ -96,14 +97,24 @@ export default class extends Controller {
     });
   }
 
-  variantInfo() {
-    if (!this.commonVariant) {
+  variantInfo(event) {
+    if (this.isMultiOptions && !this.commonVariant) {
       this.resetPriceAndStocks();
       return;
     }
 
+    if (!this.isMultiOptions && event.target.dataset.wasChecked == "false") {
+      this.resetPriceAndStocks();
+      return;
+    }
+
+    let variantID = this.isMultiOptions
+      ? this.commonVariant
+      : event.target.dataset.variantIds;
+
     this.setActionBtn(false);
-    fetch(`/variant_info/${this.element.dataset.pid}/${this.commonVariant}`, {
+
+    fetch(`/variant_info/${this.element.dataset.pid}/${variantID}`, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -147,13 +158,13 @@ export default class extends Controller {
     }
   }
 
-  disableGroupRadios(event, wasChecked) {
+  disableGroupRadios(event) {
     const elements = this.otherRadios(event.target.name);
 
     // enable all first
     for (let el of elements) el.disabled = false;
 
-    if (wasChecked == "false") return;
+    if (event.target.dataset.wasChecked == "false") return;
 
     const variantIds = this.radioVariantList(event.target);
 
@@ -180,6 +191,10 @@ export default class extends Controller {
 
   radioVariantList(elTarget) {
     return elTarget.dataset.variantIds.split(",");
+  }
+
+  get isMultiOptions() {
+    return this.optionInstanceTargets.length > 1;
   }
 
   get commonVariant() {
