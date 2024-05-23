@@ -1,8 +1,6 @@
 = render "seo", seo: @product.seo
-- stock_num = @product.has_variant ? @product.variants.not_master.stock_sum : @product.master_variant.count_on_hand
 
-.w-full.margin-max-screen.py-10{data: {controller: "product--public", has_variant: @product.has_variant.to_s,
-pid: @product.uuid, stock_num:}}
+.w-full.margin-max-screen.py-10{data: {controller: "product--public", has_variant: @product.has_variant.to_s, pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", 
   data: {"product--public-target": "userSignedIn"}
   .flex.gap-5
@@ -23,6 +21,6 @@ pid: @product.uuid, stock_num:}}
       .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
-        = render "quantity", stock_num:
+        = render "quantity", stock_num: @product.has_variant ? @product.variants.not_master.stock_sum : @product.master_variant.count_on_hand
       = render "vid", vid: !@product.has_variant ? @product.master_variant.uuid : ""
       = render "actions"
