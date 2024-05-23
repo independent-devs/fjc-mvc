@@ -98,12 +98,10 @@ export default class extends Controller {
   }
 
   variantInfo(event) {
-    if (this.isMultiOptions && !this.commonVariant) {
-      this.resetPriceAndStocks();
-      return;
-    }
-
-    if (!this.isMultiOptions && event.target.dataset.wasChecked == "false") {
+    if (
+      (this.isMultiOptions && !this.commonVariant) ||
+      (!this.isMultiOptions && event.target.dataset.wasChecked == "false")
+    ) {
       this.resetPriceAndStocks();
       return;
     }
