@@ -24,13 +24,13 @@ export default class extends Controller {
 
   /* Actions */
   addToCart() {
-    if (!this.vidTarget.dataset.vid) return;
+    if (!this.variantID) return;
 
-    const actionPath = this.userSignedInTarget.checked
+    const actionPath = this.isUserSignedIn
       ? "add_to_cart"
       : "guest_add_to_cart";
 
-    const fullPath = `${window.location.origin}/carts/${this.vidTarget.dataset.vid}/${actionPath}`;
+    const fullPath = `${window.location.origin}/carts/${this.variantID}/${actionPath}`;
 
     const formData = new FormData();
     formData.append("cart[qty]", this.quantityTarget.value);
@@ -106,13 +106,13 @@ export default class extends Controller {
       return;
     }
 
+    this.setActionBtn(false);
+
     let variantID = this.isMultiOptions
       ? this.commonVariant
       : event.target.dataset.variantIds;
 
-    this.setActionBtn(false);
-
-    fetch(`/variant_info/${this.element.dataset.pid}/${variantID}`, {
+    fetch(`/variant_info/${this.productID}/${variantID}`, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -193,8 +193,29 @@ export default class extends Controller {
     return elTarget.dataset.variantIds.split(",");
   }
 
+  get isUserSignedIn() {
+    return this.userSignedInTarget.checked;
+  }
+
+  get productID() {
+    return this.element.dataset.pid;
+  }
+
+  get variantID() {
+    return this.vidTarget.dataset.vid;
+  }
+
   get isMultiOptions() {
     return this.optionInstanceTargets.length > 1;
+  }
+
+  get allRadioChecked() {
+    return this.optionTargets.length == this.checkedRadioCount;
+  }
+
+  get checkedRadioCount() {
+    return this.optionsTarget.querySelectorAll("input[type='radio']:checked")
+      .length;
   }
 
   get commonVariant() {
@@ -219,10 +240,6 @@ export default class extends Controller {
     return variantId;
   }
 
-  get allRadioChecked() {
-    return this.optionTargets.length == this.checkedRadioCount;
-  }
-
   get radioCollections() {
     if (!this.allRadioChecked) return null;
 
@@ -239,10 +256,5 @@ export default class extends Controller {
     });
 
     return collection;
-  }
-
-  get checkedRadioCount() {
-    return this.optionsTarget.querySelectorAll("input[type='radio']:checked")
-      .length;
   }
 }
