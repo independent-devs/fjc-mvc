@@ -1,7 +1,8 @@
 = render "seo", seo: @product.seo
 
-.w-full.margin-max-screen.py-10{data: {controller: "product--public", has_variant: @product.has_variant.to_s, pid: @product.uuid}}
-  = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", data: {"product--public-target": "userSignedIn"}
+.w-full.margin-max-screen.py-10{data: {controller: "product--public", pid: @product.uuid}}
+  = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, 
+  class: "hidden", data: {"product--public-target": "userSignedIn"}
   .flex.gap-5
     %div{class: "min-w-[550px] max-w-[550px]"}
     .flex.flex-col.w-full.gap-7
@@ -11,7 +12,8 @@
         = render "star_reviews" 
         #public-price{data: {"product--public-target": "price"}}
           - if @product.has_variant
-            = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
+            = render PriceRangeComponent.new lowest: @product.lowest_price, 
+            highest: @product.highest_price
           - else
             - price = @product.master_variant.price
             = render PriceRangeComponent.new lowest: price, highest: price
@@ -20,7 +22,7 @@
       .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
-        = render "quantity", stock_num: @product.has_variant ? @product.variants.not_master.stock_sum : @product.master_variant.count_on_hand
-      = render "vid", vid: !@product.has_variant ? @product.master_variant.uuid : ""
+        = render "quantity", stock_num: pub_product_stock_num(@product) 
       = render "errors"
       = render "actions"
+      = render "variant_uuid", uuid: pub_product_variant(@product)

@@ -117,7 +117,7 @@ export default class extends Controller {
   variantInfo(event) {
     if (
       (this.isMultiOptions && !this.commonVariant) ||
-      (!this.isMultiOptions && event.target.dataset.wasChecked == "false")
+      (!this.isMultiOptions && !event.target.checked)
     ) {
       this.resetPriceAndStocks();
       return;
@@ -181,7 +181,7 @@ export default class extends Controller {
     // enable all first
     for (let el of elements) el.disabled = false;
 
-    if (event.target.dataset.wasChecked == "false") return;
+    if (!event.target.checked) return;
 
     const variantIds = this.radioVariantList(event.target);
 
