@@ -1,7 +1,7 @@
-%ul.py-2.px-3.rounded-md.border.border-red-600{class: "bg-red-600/10"}
+%ul.errors
   - if label.present? 
-    %li.text-red-600.font-medium{class: "text-[15px]"}
+    %li.font-medium
       = "#{label}:"
   - errors.each do |error|
-    %li.text-red-600{class: "text-[15px]"}
+    %li
       = "• #{error}"

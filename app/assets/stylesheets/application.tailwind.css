@@ -159,6 +159,10 @@
   #quantity input[type="number"]::-webkit-outer-spin-button {
     @apply appearance-none;
   }
+
+  .errors {
+    @apply py-2 px-3 rounded border border-red-600 bg-red-600/10 text-red-600 text-[15px];
+  }
 }
 
 /* Stimulus Dialog */
