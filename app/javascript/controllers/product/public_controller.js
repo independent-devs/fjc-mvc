@@ -8,6 +8,7 @@ export default class extends Controller {
     "quantity",
     "stocks",
     "radio",
+    "errors",
     "option",
     "options",
     "optionInstance",
@@ -24,7 +25,10 @@ export default class extends Controller {
 
   /* Actions */
   addToCart() {
-    if (!this.variantID) return;
+    if (!this.variantID) {
+      this.setError(true, "Please select product variation first");
+      return;
+    }
 
     const actionPath = this.isUserSignedIn
       ? "add_to_cart"
@@ -47,6 +51,17 @@ export default class extends Controller {
     })
       .then((res) => res.text())
       .then((html) => Turbo.renderStreamMessage(html));
+  }
+
+  setError(remove = true, message) {
+    if (remove) {
+      this.errorsTarget.classList.remove("hidden");
+      this.errorsTarget.innerHTML = message;
+      return;
+    }
+
+    this.errorsTarget.classList.add("hidden");
+    this.errorsTarget.innerHTML = "";
   }
 
   /* Quantity */
@@ -89,6 +104,8 @@ export default class extends Controller {
 
     this.disableGroupRadios(event);
     this.variantInfo(event);
+
+    if (this.allRadioChecked) this.setError(false);
   }
 
   initRadios() {
