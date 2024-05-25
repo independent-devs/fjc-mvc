@@ -1,9 +1,6 @@
-.py-4.flex.gap-3{id: "#{form.object.id}_count-on-hand"}
-  - if form.object.count_on_hand.zero? && (!form.object.is_master || (!@product.has_variant && form.object.is_master))
-    = render StockCountComponent.new count: form.object.count_on_hand
-    .text-red-600 Out of stock
-  - elsif form.object.is_master && @product.has_variant 
-    = render StockCountComponent.new count: form.object.count_on_hand
+.py-4.flex.gap-3{id: dom_id(form.object, "count_on_hand")}
+  - if form.object.is_master && @product.has_variant 
+    = render StockCountComponent.new count: form.object.count_on_hand, display_oos: false
     %span.text-zinc-400
       (ignored)
   - else
