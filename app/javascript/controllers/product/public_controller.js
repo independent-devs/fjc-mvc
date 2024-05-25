@@ -30,18 +30,9 @@ export default class extends Controller {
       return;
     }
 
-    const actionPath = this.isUserSignedIn
-      ? "add_to_cart"
-      : "guest_add_to_cart";
-
-    const fullPath = `${window.location.origin}/carts/${this.variantID}/${actionPath}`;
-
-    const formData = new FormData();
-    formData.append("cart[qty]", this.quantityTarget.value);
-
-    fetch(fullPath, {
+    fetch(`${this.baseURL}/carts/${this.variantID}/${this.addToCartPath}`, {
       method: "POST",
-      body: formData,
+      body: this.cartFormData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
         "X-CSRF-Token": document
@@ -130,7 +121,7 @@ export default class extends Controller {
       ? this.commonVariant
       : event.target.dataset.variantIds;
 
-    fetch(`/variant_info/${this.productID}/${variantID}`, {
+    fetch(`variant_info/${this.productID}/${variantID}`, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -209,6 +200,21 @@ export default class extends Controller {
 
   radioVariantList(elTarget) {
     return elTarget.dataset.variantIds.split(",");
+  }
+
+  get baseURL() {
+    return location.origin;
+  }
+
+  get addToCartPath() {
+    return this.isUserSignedIn ? "add_to_cart" : "guest_add_to_cart";
+  }
+
+  get cartFormData() {
+    const formData = new FormData();
+    formData.append("cart[qty]", this.quantityTarget.value);
+
+    return formData;
   }
 
   get isUserSignedIn() {
