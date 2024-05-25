@@ -22,7 +22,7 @@
       .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
-        = render "quantity", stock_num: pub_product_stock_num(@product) 
+        = render "quantity", stock_num: pub_stock_num(@product) 
       = render "errors"
       = render "actions"
-      = render "variant_uuid", uuid: pub_product_variant(@product)
+      = render "variant_uuid", uuid: pub_variant_uuid(@product)
