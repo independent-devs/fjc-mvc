@@ -6,7 +6,6 @@
       = f.hidden_field :images, multiple: true, value: image.signed_id, id: dom_id(image, "hidden")
     = render "upload_images", form: f
     = f.submit 'Sumbit', class: "btn-primary"
-  - variant_selection = image_variant_selection(@product)
   %div
     %ul.form-table-head.grid.grid-cols-3
       %li.flex.items-center
@@ -20,7 +19,7 @@
     "sortable-handle-value": ".handle" }}
       - if @images.present?
         - @images.each do |image|
-          = render "item", image:, variant_selection:
+          = render "item", image:, variant_selection: variant_selection(@product)
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("images.no_list_found")
