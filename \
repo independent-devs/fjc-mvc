@@ -30,9 +30,16 @@ export default class extends Controller {
       return;
     }
 
-    fetch(`${this.baseURL}/carts/${this.variantID}/${this.addToCartPath}`, {
+    const actionPath = this.isUserSignedIn
+      ? "add_to_cart"
+      : "guest_add_to_cart";
+
+    const formData = new FormData();
+    formData.append("cart[qty]", this.quantityTarget.value);
+
+    fetch(`${location.origin}/carts/${this.variantID}/${actionPath}`, {
       method: "POST",
-      body: this.cartFormData,
+      body: formData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
         "X-CSRF-Token": document
@@ -204,17 +211,6 @@ export default class extends Controller {
 
   get baseURL() {
     return location.origin;
-  }
-
-  get addToCartPath() {
-    return this.isUserSignedIn ? "add_to_cart" : "guest_add_to_cart";
-  }
-
-  get cartFormData() {
-    const formData = new FormData();
-    formData.append("cart[qty]", this.quantityTarget.value);
-
-    return formData;
   }
 
   get isUserSignedIn() {
