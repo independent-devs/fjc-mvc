@@ -89,17 +89,18 @@ export default class extends Controller {
 
   /* Radio Inputs */
   radioToggle(event) {
-    const radioName = event.target.name;
-    const radioID = event.target.id;
-
     // clear radio not including the event element
-    this.setRadios(radioName, null, radioID);
+    this.setRadios(event.target.name, null, event.target.id);
 
-    if (event.target.dataset.wasChecked == "true") {
-      this.setRadios(radioName, radioID, null); // set radio with the event element
-    } else {
-      event.target.checked = true;
-      event.target.dataset.wasChecked = true;
+    // set radio with the event element
+    switch (event.target.dataset.wasChecked) {
+      case "true":
+        this.setRadios(event.target.name, event.target.id, null);
+        break;
+      default:
+        event.target.checked = true;
+        event.target.dataset.wasChecked = true;
+        break;
     }
 
     this.disableGroupRadios(event);
