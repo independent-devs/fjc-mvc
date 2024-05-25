@@ -5,16 +5,16 @@ export default class extends Controller {
   static targets = [
     "vid",
     "price",
-    "quantity",
-    "stocks",
     "radio",
     "errors",
+    "stocks",
     "option",
     "options",
-    "optionInstance",
+    "quantity",
+    "buyNowBtn",
     "userSignedIn",
     "addToCartBtn",
-    "buyNowBtn",
+    "optionInstance",
   ];
 
   connect() {
