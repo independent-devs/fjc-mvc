@@ -7,5 +7,5 @@
     - if !f.object.is_master
       = turbo_stream.replace dom_id(variant, "sku") do
         = render "item_sku", form: f
-    = turbo_stream.replace "#{f.object.id}_count-on-hand" do
+    = turbo_stream.replace dom_id(variant, "count_on_hand") do
       = render "item_count_on_hand", form: f

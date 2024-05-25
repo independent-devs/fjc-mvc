@@ -1,3 +1,7 @@
-%span 
-  = count
-  = "stock".pluralize(count)
+.flex.gap-3
+  %span 
+  - if display_oos && count.zero?
+    .text-red-600 Out of stock
+  - else
+    = count
+    = "stock".pluralize(count)
