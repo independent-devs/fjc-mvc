@@ -68,3 +68,13 @@ HTML to HAML
 ```
 HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
 ```
+
+## Troubleshoot
+
+Libvips
+
+> Could not open library 'vips.42'; Could not open library 'libvips.42.dylib'
+
+```
+sudo apt-get install -y libvips
+```
