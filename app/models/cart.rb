@@ -10,6 +10,15 @@ class Cart < ApplicationRecord
   # Scopes
   scope :not_owned, -> { where(user_id: nil) }
   scope :not_ordered, -> { where(order_id: nil) }
+  scope :detailed,
+        lambda {
+          select('carts.*, variants.product_id, products.name AS product_name')
+            .select('variants.count_on_hand, products.has_variant')
+            .select('products.thumbnail_url AS product_thumbnail')
+            .select('variants.thumbnail_url AS variant_thumbnail')
+            .joins(:variant)
+            .joins('INNER JOIN products ON products.id = variants.product_id')
+        }
 
   # Validations
   validates :qty, numericality: { greater_than: 0 }

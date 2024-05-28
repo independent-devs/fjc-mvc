@@ -13,6 +13,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.boolean :is_master, null: false, default: false
       t.boolean :trackable, null: false, default: true
       t.boolean :backorderable, null: false, default: false
+      t.string :thumbnail_url
 
       t.timestamps
     end

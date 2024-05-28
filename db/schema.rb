@@ -234,6 +234,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.boolean "is_master", default: false, null: false
     t.boolean "trackable", default: true, null: false
     t.boolean "backorderable", default: false, null: false
+    t.string "thumbnail_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_variants_on_position"

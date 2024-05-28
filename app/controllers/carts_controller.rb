@@ -8,8 +8,8 @@ class CartsController < ApplicationController
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index
-    @guest_carts = @cart_session.carts.not_owned.not_ordered if cookies.signed[:cart_session].present?
-    @carts = current_user.carts.not_ordered if current_user.present?
+    @guest_carts = @cart_session.carts.not_owned.not_ordered.detailed if cookies.signed[:cart_session].present?
+    @carts = current_user.carts.not_ordered.detailed if current_user.present?
   end
 
   def add_to_cart
