@@ -1,3 +1,16 @@
 .w-full.margin-max-screen.py-8
-  %h1 Carts#index
-  %p Find me in app/views/carts/index.html.haml
+  .grid.divide-y
+    - if @carts.present?
+      - @carts.each do |cart|
+        .grid.gap-5.grid-cols-4.py-4.place-items-center.justify-items-start
+          .flex.gap-2
+            - if cart.variant_thumbnail.present?
+              = image_tag cart.variant_thumbnail, size: 320, class: "w-20 h-20 object-cover object-center"
+            - elsif cart.product_thumbnail.present?
+              = image_tag cart.product_thumbnail, size: 320, class: "w-20 h-20 object-cover object-center"
+            - else
+              = image_tag "thumbnail.png", size: 100, class: "w-20 h-20 object-cover object-center"
+            = cart.product_name
+          %div
+            qty: 
+            = cart.qty

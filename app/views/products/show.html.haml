@@ -24,5 +24,5 @@
           Quantity
         = render "quantity", stock_num: pub_stock_num(@product) 
       = render "errors"
-      = render "actions"
+      = render "actions", disable_atc: false, disable_bn: false
       = render "variant_uuid", uuid: pub_variant_uuid(@product)

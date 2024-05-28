@@ -43,6 +43,7 @@ class Variant < ApplicationRecord
   # Generators
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
+  after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
 
   private
 
@@ -65,6 +66,16 @@ class Variant < ApplicationRecord
   def only_one_master_condition
     new_record? && is_master
   end
+
+  def generate_thumbnail_url
+    # rubocop:disable Rails::SkipsModelValidations
+    update_column(:thumbnail_url, url_for(thumbnail.variant(:card)))
+    # rubocop:enable Rails::SkipsModelValidations
+  end
+
+  def generate_thumbnail_url_condition
+    attachment_changes['thumbnail'].present?
+  end
 end
 
 # == Schema Information
@@ -79,6 +90,7 @@ end
 #  position      :integer
 #  price         :decimal(10, 2)   not null
 #  sku           :string
+#  thumbnail_url :string
 #  trackable     :boolean          default(TRUE), not null
 #  uuid          :uuid             not null
 #  created_at    :datetime         not null

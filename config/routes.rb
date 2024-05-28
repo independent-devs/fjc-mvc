@@ -44,8 +44,8 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                                  buy_now POST     /buy_now/:pid/:vid(.:format)                                                                      products#buy_now
-#                             variant_info GET      /variant_info/:pid/:vid(.:format)                                                                 products#variant_info {:format=>"turbo_stream"}
+#                                  buy_now POST     /products/buy_now/:pid/:vid(.:format)                                                             products#buy_now
+#                             variant_info GET      /products/variant_info/:pid/:vid(.:format)                                                        products#variant_info {:format=>"turbo_stream"}
 #                         add_to_cart_cart POST     /carts/:uuid/add_to_cart(.:format)                                                                carts#add_to_cart
 #                   guest_add_to_cart_cart POST     /carts/:uuid/guest_add_to_cart(.:format)                                                          carts#guest_add_to_cart
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
