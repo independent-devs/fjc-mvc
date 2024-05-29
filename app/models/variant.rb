@@ -25,7 +25,7 @@ class Variant < ApplicationRecord
   scope :stock_sum, -> { sum(:count_on_hand) }
   scope :grouped_option_name,
         lambda {
-          select("variants.*, string_agg(vov.name, ', ' order by vov.position) as grouped_name")
+          select("variants.*, STRING_AGG(vov.name, ', ' ORDER BY vov.position) AS grouped_name")
             .joins('LEFT JOIN variant_option_values AS vov ON variants.id = vov.variant_id')
             .group('variants.id, vov.variant_id')
         }
