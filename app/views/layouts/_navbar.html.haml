@@ -11,9 +11,9 @@
           %li.decoration-2.underline-offset-4.hover:underline
             = t("about.title")
     .flex.gap-5
-      = button_to carts_path, method: :get do
+      = link_to carts_path do
         = icon("fa-solid", "cart-shopping", class: "text-xl")
-      = button_to profile_index_path, method: :get do
+      = link_to profile_index_path do
         = icon("fa-regular", "heart", class: "text-xl")
-      = button_to profile_index_path, method: :get do
+      = link_to profile_index_path do
         = icon("fa-regular", "user", class: "text-xl")
