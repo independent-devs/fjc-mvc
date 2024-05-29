@@ -15,14 +15,14 @@
             = render PriceRangeComponent.new lowest: @product.lowest_price, 
             highest: @product.highest_price
           - else
-            - price = @product.master_variant.price
-            = render PriceRangeComponent.new lowest: price, highest: price
+            = render PriceRangeComponent.new lowest: @product.master_variant.price
       - if @product.has_variant
         = render "options"
+      - stock_num = pub_stock_num(@product)
       .grid.gap-2
         %label.font-medium.text-sm.text-zinc-500
           Quantity
-        = render "quantity", stock_num: pub_stock_num(@product) 
+        = render "quantity", stock_num:
       = render "errors"
-      = render "actions", disable_atc: false, disable_bn: false
+      = render "actions", disable_atc: false, disable_bn: stock_num.zero?
       = render "variant_uuid", uuid: pub_variant_uuid(@product)

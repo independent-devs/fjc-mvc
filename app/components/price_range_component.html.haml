@@ -1,7 +1,7 @@
 %span
-  - if lowest == highest
-    = number_to_currency(highest, precision: 2, strip_insignificant_zeros: true, unit: currency_symbol(currency))
+  - if lowest == highest || highest.nil?
+    = price_with_currency(lowest, currency_symbol(currency))
   - else
-    = number_to_currency(lowest, precision: 2, strip_insignificant_zeros: true, unit: currency_symbol(currency))
+    = price_with_currency(lowest, currency_symbol(currency))
     = "-"
-    = number_to_currency(highest, precision: 2, strip_insignificant_zeros: true, unit: currency_symbol(currency))
+    = price_with_currency(highest, currency_symbol(currency))

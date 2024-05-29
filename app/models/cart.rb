@@ -13,7 +13,8 @@ class Cart < ApplicationRecord
   scope :detailed,
         lambda {
           select('carts.*, variants.product_id, products.name AS product_name')
-            .select('variants.count_on_hand, products.has_variant')
+            .select('variants.count_on_hand, variants.is_master, variants.price as unit_price')
+            .select('products.currency AS unit_currency')
             .select('products.thumbnail_url AS product_thumbnail')
             .select('variants.thumbnail_url AS variant_thumbnail')
             .joins(:variant)
