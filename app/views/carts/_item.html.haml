@@ -1,0 +1,33 @@
+.grid.gap-3.grid-cols-7.py-4.place-items-center
+  .flex.w-full.gap-4.col-span-3.items-center
+    .flex.gap-3{class: "w-4/6"}
+      - if (thumbnail = cart.variant_thumbnail || cart.product_thumbnail).present?
+        = image_tag thumbnail, size: 320, class: "w-[75px] h-[75px] object-cover object-center border rounded"
+      - else
+        = image_tag "thumbnail.png", size: 100, class: "w-[75px] h-[75px] object-cover object-center"
+      %div
+        .leading-tight.line-clamp-2
+          = cart.product_name
+    - unless cart.is_master
+      %button.flex.flex-col.text-zinc-500.items-center
+        .flex.gap-2.items-center
+          Variations:
+          = icon("fa-solid", "caret-down")
+        #variant-pair
+          = cart.variant_pair
+  %div
+    = render PriceRangeComponent.new lowest: cart.unit_price, currency: cart.currency
+  %div
+    #quantity-container
+      #quantity.small
+        = button_tag class: "decrement" do
+          = icon("fa-solid", "minus")
+        = number_field_tag 'quantity', cart.qty, id: "#{cart.uuid}-quantity", class: "number-input", min: 1
+        = button_tag class: "increment" do
+          = icon("fa-solid", "plus")
+  .text-primary
+    = render PriceRangeComponent.new lowest: total_price_calc(price: cart.unit_price, qty: cart.qty), 
+    currency: cart.currency
+  %button.hover:text-red-600
+    delete
+
