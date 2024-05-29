@@ -9,23 +9,23 @@
         .leading-tight.line-clamp-2
           = cart.product_name
     - unless cart.is_master
-      %button.flex.flex-col.text-zinc-500.items-center
+      %button.flex.flex-col.text-zinc-500.items-center{id: "cart-#{cart.uuid}-variant-pair"}
         .flex.gap-2.items-center
           Variations:
           = icon("fa-solid", "caret-down")
         #variant-pair
           = cart.variant_pair
-  %div
+  %div{id: "cart-#{cart.uuid}-unit-price"}
     = render PriceRangeComponent.new lowest: cart.unit_price, currency: cart.currency
-  %div
+  %div{id: "cart-#{cart.uuid}-qty"}
     #quantity-container
       #quantity.small
         = button_tag class: "decrement" do
           = icon("fa-solid", "minus")
-        = number_field_tag 'quantity', cart.qty, id: "#{cart.uuid}-quantity", class: "number-input", min: 1
+        = number_field_tag 'quantity', cart.qty, id: "cart-#{cart.uuid}-qty-input", class: "number-input", min: 1
         = button_tag class: "increment" do
           = icon("fa-solid", "plus")
-  .text-primary
+  .text-primary{id: "cart-#{cart.uuid}-total-price"}
     = render PriceRangeComponent.new lowest: total_price_calc(price: cart.unit_price, qty: cart.qty), 
     currency: cart.currency
   %button.hover:text-red-600.text-gray-400.text-lg
