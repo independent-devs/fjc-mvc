@@ -1,10 +1,8 @@
 .grid.gap-3.grid-cols-7.py-4.place-items-center
   .flex.w-full.gap-4.col-span-3.items-center
     .flex.gap-3{class: "w-4/6"}
-      - if (thumbnail = cart.variant_thumbnail || cart.product_thumbnail).present?
-        = image_tag thumbnail, size: 320, class: "w-[75px] h-[75px] object-cover object-center border rounded"
-      - else
-        = image_tag "thumbnail.png", size: 100, class: "w-[75px] h-[75px] object-cover object-center"
+      = image_tag cart.variant_thumbnail || cart.product_thumbnail || "thumbnail.png", size: 320,
+      id: "cart-#{cart.uuid}-thumbnail", class: "w-[75px] h-[75px] object-cover object-center border rounded-sm"
       %div
         .leading-tight.line-clamp-2
           = cart.product_name
