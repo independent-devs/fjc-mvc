@@ -28,6 +28,6 @@
   .text-primary
     = render PriceRangeComponent.new lowest: total_price_calc(price: cart.unit_price, qty: cart.qty), 
     currency: cart.currency
-  %button.hover:text-red-600
-    delete
+  %button.hover:text-red-600.text-gray-400.text-lg
+    = icon("fa-solid", "trash")
 
