@@ -1,9 +1,20 @@
 .w-full.margin-max-screen.py-8
   .grid.divide-y
+    .grid.gap-5.grid-cols-7.py-3.place-items-center
+      .col-span-3.font-semibold.w-full
+        My Cart
+      %div
+        Unit Price
+      %div
+        Quantity
+      %div
+        Total Price
+      %div
+        Actions
     - if @carts.present?
       - @carts.each do |cart|
-        .grid.gap-5.grid-cols-4.py-4.place-items-center.justify-items-start
-          .flex.gap-2
+        .grid.gap-5.grid-cols-7.py-4.place-items-center
+          .flex.gap-2.col-span-3.w-full
             - if cart.variant_thumbnail.present?
               = image_tag cart.variant_thumbnail, size: 320, class: "w-20 h-20 object-cover object-center"
             - elsif cart.product_thumbnail.present?
@@ -12,5 +23,15 @@
               = image_tag "thumbnail.png", size: 100, class: "w-20 h-20 object-cover object-center"
             = cart.product_name
           %div
-            qty: 
-            = cart.qty
+            = render PriceRangeComponent.new lowest: cart.unit_price, currency: cart.unit_currency
+          %div
+            #quantity-container
+              #quantity.small
+                = button_tag class: "decrement" do
+                  = icon("fa-solid", "minus")
+                = number_field_tag 'quantity', cart.qty, class: "number-input", min: 1
+                = button_tag class: "increment" do
+                  = icon("fa-solid", "plus")
+          %div.text-primary
+            = render PriceRangeComponent.new lowest: total_price_calc(price: cart.unit_price, qty: cart.qty), 
+            currency: cart.unit_currency
