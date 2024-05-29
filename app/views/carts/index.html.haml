@@ -14,13 +14,15 @@
     - if @carts.present?
       - @carts.each do |cart|
         .grid.gap-3.grid-cols-7.py-4.place-items-center
-          .flex.w-full.gap-2.col-span-3.items-center
-            .flex.gap-2{class: "w-4/6"}
+          .flex.w-full.gap-4.col-span-3.items-center
+            .flex.gap-3{class: "w-4/6"}
               - if (thumbnail = cart.variant_thumbnail || cart.product_thumbnail).present?
-                = image_tag thumbnail, size: 320, class: "w-20 h-20 object-cover object-center"
+                = image_tag thumbnail, size: 320, class: "w-[75px] h-[75px] object-cover object-center border rounded"
               - else
-                = image_tag "thumbnail.png", size: 100, class: "w-20 h-20 object-cover object-center"
-              = cart.product_name
+                = image_tag "thumbnail.png", size: 100, class: "w-[75px] h-[75px] object-cover object-center border"
+              %div
+                .leading-tight.line-clamp-2
+                  = cart.product_name
             - unless cart.is_master
               %button.flex.flex-col.text-zinc-500.items-center
                 .flex.gap-2.items-center
@@ -41,3 +43,5 @@
           .text-primary
             = render PriceRangeComponent.new lowest: total_price_calc(price: cart.unit_price, qty: cart.qty), 
             currency: cart.currency
+          %button.hover:text-red-600
+            delete
