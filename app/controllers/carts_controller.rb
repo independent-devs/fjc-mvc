@@ -8,8 +8,13 @@ class CartsController < ApplicationController
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index
-    @guest_carts = @guest_session.carts.not_owned.not_ordered.detailed if cookies.signed[:guest_session].present?
-    @carts = current_user.carts.not_ordered.detailed if current_user.present?
+    @carts = (
+      if current_user.present?
+        user_carts_with_guest(@guest_session)
+      else
+        @guest_session.carts.not_owned.not_ordered.detailed
+      end
+    )
   end
 
   def add_to_cart
@@ -33,6 +38,14 @@ class CartsController < ApplicationController
   end
 
   private
+
+  def user_carts_with_guest(guest_session)
+    if guest_session.present?
+      current_user.carts.or(Cart.where(guest_session:)).not_ordered.detailed
+    else
+      current_user.carts.not_ordered.detailed
+    end
+  end
 
   def cart_params
     params.require(:cart).permit(:qty)

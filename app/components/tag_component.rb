@@ -6,7 +6,7 @@ class TagComponent < ViewComponent::Base
   BG_COLOR = {
     primary: 'bg-primary',
     success: 'bg-green-600',
-    warning: 'bg-yellow-600',
+    warning: 'bg-yellow-500',
     error: 'bg-red-600'
   }.freeze
 
