@@ -16,20 +16,15 @@ class Cart < ApplicationRecord
             # variant_option_values
             .select("(SELECT STRING_AGG(vov.name, ', ' ORDER BY vov.position) " \
                     'FROM variant_option_values vov ' \
-                    'WHERE vov.variant_id = carts.variant_id) as variant_pair')
+                    'WHERE vov.variant_id = carts.variant_id) AS variant_pair')
             # variants
-            .select('variants.count_on_hand, variants.is_master, variants.price as unit_price, ' \
+            .select('variants.count_on_hand, variants.is_master, variants.price AS unit_price, ' \
                     'variants.product_id, variants.thumbnail_url AS variant_thumbnail')
             .joins(:variant)
             # products
             .select('products.name AS product_name, products.currency, ' \
                     'products.thumbnail_url AS product_thumbnail')
             .joins('INNER JOIN products ON products.id = variants.product_id')
-          ## slow approach
-          # .select('vov.variant_pair')
-          # .joins("LEFT JOIN (SELECT variant_id, STRING_AGG(name, ', ' ORDER BY position) AS variant_pair " \
-          #        'FROM variant_option_values GROUP BY variant_id) ' \
-          #        'vov ON carts.variant_id = vov.variant_id')
         }
 
   # Validations
