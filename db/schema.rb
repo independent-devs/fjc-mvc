@@ -50,21 +50,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "cart_sessions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "carts", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.integer "qty", default: 1, null: false
     t.bigint "variant_id", null: false
     t.bigint "user_id"
     t.bigint "order_id"
-    t.bigint "cart_session_id"
+    t.bigint "guest_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_session_id"], name: "index_carts_on_cart_session_id"
+    t.index ["guest_session_id"], name: "index_carts_on_guest_session_id"
     t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
     t.index ["uuid"], name: "index_carts_on_uuid", unique: true
@@ -87,6 +82,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_descriptions_on_product_id"
+  end
+
+  create_table "guest_sessions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "options", force: :cascade do |t|
@@ -123,8 +123,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "user_id"
     t.bigint "order_status_id", null: false
+    t.bigint "guest_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
     t.index ["uuid"], name: "index_orders_on_uuid", unique: true
@@ -245,13 +247,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "carts", "cart_sessions"
+  add_foreign_key "carts", "guest_sessions"
   add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "carts", "variants"
   add_foreign_key "descriptions", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "variants"
+  add_foreign_key "orders", "guest_sessions"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"

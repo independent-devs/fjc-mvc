@@ -4,11 +4,11 @@ class CartsController < ApplicationController
   before_action :authenticate_user!, only: %i[add_to_cart]
 
   # Setters
-  before_action :set_cart_session, only: %i[index guest_add_to_cart]
+  before_action :set_guest_session, only: %i[index guest_add_to_cart]
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index
-    @guest_carts = @cart_session.carts.not_owned.not_ordered.detailed if cookies.signed[:cart_session].present?
+    @guest_carts = @guest_session.carts.not_owned.not_ordered.detailed if cookies.signed[:guest_session].present?
     @carts = current_user.carts.not_ordered.detailed if current_user.present?
   end
 
@@ -24,7 +24,7 @@ class CartsController < ApplicationController
 
   def guest_add_to_cart
     respond_to do |format|
-      if create_cart @cart_session
+      if create_cart @guest_session
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -43,26 +43,22 @@ class CartsController < ApplicationController
   end
 
   def create_cart(parent)
-    return true if (@cart = parent.carts.find_by(variant: @variant)).present? &&
-                   @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
+    if ((@cart = parent.carts.find_by(variant: @variant)).present? &&
+      @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)) ||
+       parent.carts.new(qty: cart_params[:qty], variant: @variant).save
 
-    return true if parent.carts.new(qty: cart_params[:qty], variant: @variant).save
+      return true
+    end
 
     false
   end
 
-  def set_cart_session
-    if cookies.signed[:cart_session].blank?
-      @cart_session = CartSession.create
-
-      cookies.signed.permanent[:cart_session] = @cart_session.id
-    else
-      @cart_session = CartSession.find_by(id: cookies.signed[:cart_session]) || CartSession.create
-
-      if @cart_session.new_record?
-        cookies.delete :cart_session
-        cookies.signed.permanent[:cart_session] = @cart_session.id
-      end
+  def set_guest_session
+    if cookies.signed[:guest_session].blank?
+      cookies.signed.permanent[:guest_session] = (@guest_session = GuestSession.create).id
+    elsif (@guest_session = GuestSession.find_by(id: cookies.signed[:guest_session]) || GuestSession.create).new_record?
+      cookies.delete :guest_session
+      cookies.signed.permanent[:guest_session] = @guest_session.id
     end
   end
 end
