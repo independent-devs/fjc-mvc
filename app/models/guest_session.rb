@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class CartSession < ApplicationRecord
+class GuestSession < ApplicationRecord
   has_many :carts, dependent: :destroy
+  has_many :orders, dependent: :destroy
 end
 
 # == Schema Information
 #
-# Table name: cart_sessions
+# Table name: guest_sessions
 #
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null

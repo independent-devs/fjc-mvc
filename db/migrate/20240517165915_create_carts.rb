@@ -8,7 +8,7 @@ class CreateCarts < ActiveRecord::Migration[7.0]
       t.references :variant, null: false, foreign_key: true
       t.references :user, foreign_key: true
       t.references :order, foreign_key: true
-      t.references :cart_session, foreign_key: true
+      t.references :guest_session, foreign_key: true
 
       t.timestamps
     end
