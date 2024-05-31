@@ -1,0 +1,22 @@
+.flex.w-full.gap-3.col-span-3.items-center
+  .flex.gap-4.items-center{class: "w-[65%]"}
+    = check_box_tag "cart_ids", cart.uuid, false, data: {"cart--select-all-target": "checkbox"}, 
+    id: "#{cart.uuid}-checkbox", disabled: user_signed_in? && cart.user_id.nil?, class: "checkbox-primary"
+    .flex.gap-2
+      = image_tag cart.variant_thumbnail || cart.product_thumbnail || "thumbnail.png", size: 320,
+      class: "min-w-[75px] min-h-[75px] max-w-[75px] max-h-[75px] object-cover object-center border rounded-sm",
+      id: "cart-#{cart.uuid}-thumbnail"
+      .flex.flex-col.gap-1
+        .leading-tight.line-clamp-2
+          = cart.product_name
+        - if cart.guest_session_id.present? && cart.user_id.nil?
+          .flex.items-center{class: "gap-2.5"}
+            = render TagComponent.new name: "Guest", variant: :warning
+            = icon("fa-solid", "arrows-rotate", class: "text-gray-400 text-lg hover:text-gray-600")
+  - unless cart.is_master
+    %button.flex.flex-col.text-zinc-500.items-center{id: "cart-#{cart.uuid}-variant-pair"}
+      .flex.gap-2.items-center
+        Variations:
+        = icon("fa-solid", "caret-down")
+      #variant-pair
+        = cart.variant_pair
