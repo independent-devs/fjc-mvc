@@ -42,11 +42,12 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = case action_name
-               when 'show'
-                 Product.single_public(params[:slug], params[:pid])
-               else
-                 Product.single_using_uuid(params[:pid])
-               end
+    @product =
+      (case action_name
+       when 'show'
+         Product.single_public(params[:slug], params[:pid])
+       else
+         Product.single_using_uuid(params[:pid])
+       end)
   end
 end
