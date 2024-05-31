@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
+  # Authentication
   before_action :authenticate_user!, only: %i[add_to_cart]
 
   # Setters
@@ -39,16 +40,8 @@ class CartsController < ApplicationController
 
   private
 
-  def user_carts_with_guest(guest_session)
-    if guest_session.present?
-      current_user.carts.or(Cart.where(guest_session:)).not_ordered.detailed
-    else
-      current_user.carts.not_ordered.detailed
-    end
-  end
-
   def cart_params
-    params.require(:cart).permit(:qty)
+    params.require(:cart).permit(:qty, :variant_id)
   end
 
   def set_variant
@@ -56,14 +49,19 @@ class CartsController < ApplicationController
   end
 
   def create_cart(parent)
-    if ((@cart = parent.carts.find_by(variant: @variant)).present? &&
-      @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)) ||
-       parent.carts.new(qty: cart_params[:qty], variant: @variant).save
-
-      return true
+    if (@cart = parent.carts.find_by(variant: @variant)).present?
+      return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
-    false
+    parent.carts.new(qty: cart_params[:qty], variant: @variant).save
+  end
+
+  def user_carts_with_guest(guest_session)
+    if guest_session.present?
+      current_user.carts.or(Cart.where(guest_session:)).not_ordered.detailed
+    else
+      current_user.carts.not_ordered.detailed
+    end
   end
 
   def set_guest_session
