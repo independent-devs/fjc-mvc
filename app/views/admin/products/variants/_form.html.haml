@@ -1,11 +1,11 @@
 - if is_new
   - master = @product.master_variant
 = form_for(@variant, as: "product_variant", url: path, html: {"data-turbo": false, class: "w-full flex flex-col gap-3", method:}) do |f|
-  .flex.flex-col.w-full.gap-10
+  .flex.flex-col.w-full.divide-y
     - if @variant.errors.present?
       = render ErrorMessageComponent.new(errors: @variant.errors.full_messages, label: "validation")
     = render "form_option_values", form: f, is_new:
-    .grid.grid-cols-3.gap-3
+    .grid.grid-cols-3.gap-3.py-5
       .field
         = f.label :price do
           Price
@@ -22,9 +22,11 @@
       .field
         = f.label :sku
         = f.text_field :sku
-    .flex.gap-5
+    .flex.gap-5.py-5
       .flex.gap-2.items-center
-        = f.check_box :backorderable, checked: is_new ? master&.backorderable : f.object.backorderable, class: "text-primary focus:ring-0 round-sm"
+        = f.check_box :backorderable, checked: is_new ? master&.backorderable : f.object.backorderable, 
+        class: "checkbox-primary"
         %span Backorderable
-  = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
+  = f.submit is_new ? "Create" : "Update", 
+  class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
 

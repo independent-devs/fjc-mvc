@@ -1,6 +1,5 @@
 %li{id: dom_id(variant)}
-  = form_for(variant, as: "product_variant",                    
-  url: admin_product_stock_path(@product, variant),             
+  = form_for(variant, as: "product_variant", url: admin_product_stock_path(@product, variant),             
   html: {method: :put}, data: {controller: 'autosave'}) do |f|
     .grid.grid-cols-5.gap-8
       .py-4
@@ -18,6 +17,6 @@
           = render TagComponent.new(name: "Master")
         - else
           = f.check_box :backorderable, id: dom_id(variant, "backorderable"), 
-          data: { action: 'autosave#save' }, class: "text-primary rounded-sm focus:ring-0"
+          data: { action: 'autosave#save' }, class: "checkbox-primary"
       = render "item_count_on_hand", form: f
       = render "modify_stock", variant:

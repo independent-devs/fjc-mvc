@@ -7,14 +7,15 @@
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
     .field
       = f.label :slug, class: ("text-gray-300" if is_new)
-      = f.text_field :slug, disabled: is_new, value: is_new ? nil : f.object.slug, required: !is_new, placeholder: "e.g. nike-shoe"
+      = f.text_field :slug, disabled: is_new, value: is_new ? nil : f.object.slug, required: !is_new,
+      placeholder: "e.g. nike-shoe"
     = f.fields_for :description, @product.description || Description.new do |desc|
       .field
         = desc.label :description
         = desc.text_area :description, rows: 12
     .flex.gap-3.items-center.py-2
-      = f.check_box :has_variant, disabled: !is_new, data: { action: "product--admin-form#hasVariantToogle" },
-      class: "text-primary rounded-sm focus:ring-0 disabled:cursor-not-allowed disabled:text-gray-200 disabled:bg-gray-200"
+      = f.check_box :has_variant, disabled: !is_new, class: "checkbox-primary", 
+      data: {action: "product--admin-form#hasVariantToogle"}
       = f.label :has_variant do
         With variants
     .field
@@ -60,10 +61,10 @@
       .field
         = mv.label :master_sku
         = mv.text_field :sku
-      .flex.gap-2.items-center
-        = mv.check_box :backorderable, class: "text-primary focus:ring-0 round-sm"
+      .flex.gap-2.items-center.mt-1
+        = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
         %span Backorderable
       - if is_new
         = mv.hidden_field :is_master, value: true
-    = f.submit is_new ? "Create" : "Update",          
+    = f.submit is_new ? "Create" : "Update", 
     class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"

@@ -46,6 +46,10 @@
     @apply px-2 py-0 rounded-md w-32 bg-transparent ring-1 bg-zinc-50 ring-zinc-300 border-0 focus:border-0 focus:ring-2 focus:ring-primary;
   }
 
+  .checkbox-primary {
+    @apply w-[18px] h-[18px] rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed;
+  }
+
   /* form */
   .field {
     @apply flex flex-col gap-1 w-full
@@ -155,12 +159,24 @@
     @apply text-sm border border-gray-400 px-2.5 py-0 h-8 rounded-l-sm hover:border-primary hover:text-primary;
   }
 
+  #quantity.small:has(.number-input[disabled]) .decrement {
+    @apply text-sm border border-gray-200 text-gray-200 px-2.5 py-0 h-8 rounded-l-sm cursor-not-allowed;
+  }
+
   #quantity.small .increment {
     @apply text-sm border border-gray-400 px-2.5 py-0 h-8 rounded-r-sm hover:border-primary hover:text-primary;
   }
 
+  #quantity.small:has(.number-input[disabled]) .increment {
+    @apply text-sm border border-gray-200 text-gray-200 px-2.5 py-0 h-8 rounded-r-sm cursor-not-allowed;
+  }
+
   #quantity.small .number-input {
     @apply h-8 px-1 focus:border-gray-400 border border-x-0 border-y-gray-400 w-[54px] text-[15px] text-center focus:ring-0;
+  }
+
+  #quantity.small .number-input[disabled] {
+    @apply h-8 px-1 cursor-not-allowed text-gray-200 border border-x-0 border-y-gray-200 w-[54px] text-[15px] text-center focus:ring-0;
   }
 
   #quantity input[type="number"] {
