@@ -9,13 +9,12 @@ class CartsController < ApplicationController
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
 
   def index
-    @carts = (
-      if current_user.present?
-        user_carts_with_guest(@guest_session)
-      else
-        @guest_session.carts.not_owned.not_ordered.detailed
-      end
-    )
+    @carts =
+      (if current_user.present?
+         user_carts_with_guest(@guest_session)
+       else
+         @guest_session.carts.not_owned.not_ordered.detailed
+       end)
   end
 
   def add_to_cart

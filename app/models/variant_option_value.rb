@@ -6,13 +6,14 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :product_option
 
   # Scopes
+  scope :grouped_names, -> { select('name').group(:name) }
   scope :with_variant_position,
         lambda {
-          select('variant_option_values.*, variants.position, variants.uuid as variant_uuid')
+          select('variant_option_values.*')
+            .select('variants.position, variants.uuid as variant_uuid')
             .joins(:variant)
             .order('variants.position ASC')
         }
-  scope :grouped_names, -> { select('name').group(:name) }
 
   # Validations
   validates :name, presence: true
