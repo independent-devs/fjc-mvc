@@ -1,4 +1,5 @@
 import { Controller as t } from "@hotwired/stimulus";
+
 function o(t, s) {
   let i;
   return (...a) => {
@@ -8,6 +9,7 @@ function o(t, s) {
       }, s));
   };
 }
+
 const s = class e extends t {
   initialize() {
     this.save = this.save.bind(this);
@@ -19,6 +21,7 @@ const s = class e extends t {
     this.element.requestSubmit();
   }
 };
+
 s.values = { delay: { type: Number, default: 150 } };
 let i = s;
 export { i as default };
