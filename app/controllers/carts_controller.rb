@@ -2,11 +2,21 @@
 
 class CartsController < ApplicationController
   # Authentication
-  before_action :authenticate_user!, only: %i[add_to_cart]
+  before_action :authenticate_user!, only: %i[
+    sync_cart
+    add_to_cart
+    sync_all_carts
+    cart_item_update
+  ]
 
   # Setters
-  before_action :set_guest_session, only: %i[index guest_add_to_cart]
+  before_action :set_cart, only: %i[cart_item_update guest_cart_item_update]
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
+  before_action :set_guest_session, only: %i[
+    index
+    guest_add_to_cart
+    guest_cart_item_update
+  ]
 
   def index
     @carts =
@@ -37,14 +47,50 @@ class CartsController < ApplicationController
     end
   end
 
+  def cart_item_update
+    cart = get_cart(current_user)
+
+    respond_to do |format|
+      if update_cart cart
+        format.turbo_stream
+      else
+        format.turbo_stream { render :error }
+      end
+    end
+  end
+
+  def guest_cart_item_update
+    cart = get_cart(@guest_session)
+
+    respond_to do |format|
+      if update_cart cart
+        format.turbo_stream
+      else
+        format.turbo_stream { render :error }
+      end
+    end
+  end
+
+  def sync_cart; end
+
+  def sync_all_carts; end
+
   private
 
   def cart_params
     params.require(:cart).permit(:qty, :variant_id)
   end
 
+  def update_cart(cart)
+    cart.update(cart_params)
+  end
+
   def set_variant
     @variant = Variant.single_using_uuid(params[:uuid])
+  end
+
+  def get_cart(parent)
+    parent.carts.single_using_uuid(params[:uuid])
   end
 
   def create_cart(parent)
