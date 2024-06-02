@@ -10,7 +10,12 @@ class Cart < ApplicationRecord
   # Scopes
   scope :not_owned, -> { where(user_id: nil) }
   scope :not_ordered, -> { where(order_id: nil) }
-  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
+  scope :single_using_uuid, lambda { |uuid|
+    select('carts.*, variants.price, products.currency')
+      .joins(:variant)
+      .joins('INNER JOIN products ON variants.product_id = products.id')
+      .find_by!(uuid:)
+  }
   scope :detailed,
         lambda {
           select('carts.*')
@@ -19,7 +24,7 @@ class Cart < ApplicationRecord
                     'FROM variant_option_values vov ' \
                     'WHERE vov.variant_id = carts.variant_id) AS variant_pair')
             # variants
-            .select('variants.count_on_hand, variants.is_master, variants.price AS unit_price, ' \
+            .select('variants.count_on_hand, variants.is_master, variants.price, ' \
                     'variants.product_id, variants.thumbnail_url AS variant_thumbnail')
             .joins(:variant)
             # products

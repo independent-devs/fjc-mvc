@@ -1,0 +1,5 @@
+- if @cart.qty_previously_changed?
+  = turbo_stream.replace "cart-#{@cart.uuid}-total-price" do
+    = render "item_total_price", cart: @cart
+  = turbo_stream.replace "cart-#{@cart.uuid}-unit-price" do
+    = render "item_unit_price", cart: @cart
