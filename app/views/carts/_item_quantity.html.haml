@@ -1,9 +1,11 @@
 %div{id: "cart-#{cart.uuid}-qty"}
   #quantity-container
     #quantity.small
-      = button_tag class: "decrement", data: {action: "click->cart--item#decrement"} do
+      = button_tag class: "decrement transition-colors duration-200", 
+      data: {action: "click->cart--item#decrement"} do
         = icon("fa-solid", "minus")
-      = number_field_tag 'quantity', cart.qty, data: {"cart--item-target": "quantity"}, 
-      id: "cart-#{cart.uuid}-qty-input", class: "number-input", min: 1
-      = button_tag class: "increment", data: {action: "click->cart--item#increment"} do
+      = number_field_tag 'quantity', cart.qty, data: {"cart--item-target": "quantity"}, min: 1,
+      id: "cart-#{cart.uuid}-qty-input", class: "number-input transition-colors duration-200"
+      = button_tag class: "increment transition-colors duration-200",
+      data: {action: "click->cart--item#increment"} do
         = icon("fa-solid", "plus")

@@ -6,16 +6,15 @@ class CartsController < ApplicationController
     sync_cart
     add_to_cart
     sync_all_carts
-    cart_item_update
+    item_update
   ]
 
   # Setters
-  before_action :set_cart, only: %i[cart_item_update guest_cart_item_update]
   before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
   before_action :set_guest_session, only: %i[
     index
     guest_add_to_cart
-    guest_cart_item_update
+    guest_item_update
   ]
 
   def index
@@ -47,11 +46,11 @@ class CartsController < ApplicationController
     end
   end
 
-  def cart_item_update
-    cart = get_cart(current_user)
+  def item_update
+    get_cart(current_user)
 
     respond_to do |format|
-      if update_cart cart
+      if @cart.update(cart_params)
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -59,11 +58,11 @@ class CartsController < ApplicationController
     end
   end
 
-  def guest_cart_item_update
-    cart = get_cart(@guest_session)
+  def guest_item_update
+    get_cart(@guest_session)
 
     respond_to do |format|
-      if update_cart cart
+      if @cart.update(cart_params)
         format.turbo_stream
       else
         format.turbo_stream { render :error }
@@ -81,8 +80,8 @@ class CartsController < ApplicationController
     params.require(:cart).permit(:qty, :variant_id)
   end
 
-  def update_cart(cart)
-    cart.update(cart_params)
+  def update_cart
+    @cart.update(cart_params)
   end
 
   def set_variant
@@ -90,7 +89,7 @@ class CartsController < ApplicationController
   end
 
   def get_cart(parent)
-    parent.carts.single_using_uuid(params[:uuid])
+    @cart = parent.carts.single_using_uuid(params[:uuid])
   end
 
   def create_cart(parent)
