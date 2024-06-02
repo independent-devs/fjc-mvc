@@ -47,7 +47,7 @@
   }
 
   .checkbox-primary {
-    @apply w-[18px] h-[18px] rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed;
+    @apply w-[18px] h-[18px] rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed cursor-pointer;
   }
 
   /* form */

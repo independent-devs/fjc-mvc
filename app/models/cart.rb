@@ -10,6 +10,7 @@ class Cart < ApplicationRecord
   # Scopes
   scope :not_owned, -> { where(user_id: nil) }
   scope :not_ordered, -> { where(order_id: nil) }
+  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
   scope :detailed,
         lambda {
           select('carts.*')

@@ -73,8 +73,14 @@ HAML_RAILS_DELETE_ERB=true rails haml:erb2haml
 
 Libvips
 
-> Could not open library 'vips.42'; Could not open library 'libvips.42.dylib'
+> Ubuntu - Could not open library 'vips.*'
 
 ```
 sudo apt-get install -y libvips
+```
+
+> MAC - Could not open library 'glib-*>'
+
+```
+brew install vips
 ```

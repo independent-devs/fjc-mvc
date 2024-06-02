@@ -1,9 +1,10 @@
+= render "seo"
 .w-full.margin-max-screen.py-8
   .grid.divide-y{data: {controller: "cart--select-all"}}
     .grid.gap-3.grid-cols-7.py-4.place-items-center
       .col-span-3.w-full.flex.gap-4.items-center
-        = check_box_tag "select-all", "yes", false, class: "checkbox-primary mt-0.5",
-        data: {"cart--select-all-target": "checkboxAll"}
+        = check_box_tag "select-all", "yes", false, data: {"cart--select-all-target": "checkboxAll"},
+        class: "checkbox-primary mt-0.5"
         %span.font-semibold.text-primary
           My Cart
       %div

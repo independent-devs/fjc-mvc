@@ -8,7 +8,7 @@ export default class extends Controller {
   increment() {
     if (this.quantityTarget.disabled) return;
     this.quantityTarget.stepUp();
-    this.updateQuantity(this.quantityTarget.value);
+    this.updateQuantity();
   }
 
   decrement() {
