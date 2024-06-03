@@ -2,7 +2,6 @@ import { Controller as t } from "@hotwired/stimulus";
 import { patch as a } from "@rails/request.js";
 import e from "sortablejs";
 
-import { patch as a } from "@rails/request.js";
 const i = class _StimulusSortable extends t {
   initialize() {
     this.onUpdate = this.onUpdate.bind(this);

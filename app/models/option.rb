@@ -13,8 +13,8 @@ class Option < ApplicationRecord
   # Position
   ranks :sort_order, column: :position
 
-  validates :name, presence: true
-  validates :name, uniqueness: true
+  # Validations
+  validates :name, presence: true, uniqueness: true
 end
 
 # == Schema Information

@@ -48,8 +48,8 @@ end
 #                             variant_info GET      /products/variant_info/:pid/:vid(.:format)                                                        products#variant_info {:format=>"turbo_stream"}
 #                         add_to_cart_cart POST     /carts/:uuid/add_to_cart(.:format)                                                                carts#add_to_cart
 #                   guest_add_to_cart_cart POST     /carts/:uuid/guest_add_to_cart(.:format)                                                          carts#guest_add_to_cart
-#                         item_update_cart POST     /carts/:uuid/item_update(.:format)                                                                carts#item_update
-#                   guest_item_update_cart POST     /carts/:uuid/guest_item_update(.:format)                                                          carts#guest_item_update
+#                         item_update_cart PUT      /carts/:uuid/item_update(.:format)                                                                carts#item_update
+#                   guest_item_update_cart PUT      /carts/:uuid/guest_item_update(.:format)                                                          carts#guest_item_update
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index

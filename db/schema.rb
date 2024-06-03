@@ -21,14 +21,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "deleted_at", precision: nil
     t.integer "position"
-    t.string "record_owner_type"
-    t.bigint "record_owner_id"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["deleted_at"], name: "index_active_storage_attachments_on_deleted_at"
     t.index ["position"], name: "index_active_storage_attachments_on_position"
-    t.index ["record_owner_type", "record_owner_id"], name: "index_active_storage_attachments_record_owner"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 

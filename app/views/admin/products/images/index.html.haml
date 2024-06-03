@@ -7,11 +7,9 @@
     = render "upload_images", form: f
     = f.submit 'Sumbit', class: "btn-primary"
   %div
-    %ul.form-table-head.grid.grid-cols-3
+    %ul.form-table-head.grid.grid-cols-2
       %li.flex.items-center
         = icon "fa-solid", "up-down", class: "ml-0.5 mr-5 text-lg text-zinc-400"
-        = t("images.table.thead.display_to")
-      %li
         = t("images.table.thead.image")
       %li
         = t("images.table.thead.actions")
@@ -19,7 +17,7 @@
     "sortable-handle-value": ".handle" }}
       - if @images.present?
         - @images.each do |image|
-          = render "item", image:, variant_selection: variant_selection(@product)
+          = render "item", image:
       - else
         %li.flex.justify-center.w-full.py-6.text-gray-400 
           = t("images.no_list_found")
