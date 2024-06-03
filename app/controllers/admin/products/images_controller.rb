@@ -5,7 +5,7 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # GET /admin/product/:product_id/images
   def index
-    @images = @product.images.sort_by_position.not_deleted
+    @images = @product.images.sort_by_position
   end
 
   def show; end
@@ -63,6 +63,6 @@ class Admin::Products::ImagesController < Admin::BaseController
   end
 
   def product_image_params
-    params.require(:product_image).permit(:position, :record_owner_type, :record_owner_id, images: [])
+    params.require(:product_image).permit(:position, images: [])
   end
 end

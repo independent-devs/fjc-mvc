@@ -40,11 +40,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.foreign_key :active_storage_blobs, column: :blob_id
 
       # Custom Fields
-      t.datetime :deleted_at, index: true
       t.integer :position, index: true
-      t.references :record_owner, polymorphic: true, index: false, type: foreign_key_type
-
-      t.index %i[record_owner_type record_owner_id], name: :index_active_storage_attachments_record_owner
     end
 
     create_table :active_storage_variant_records, id: primary_key_type do |t|

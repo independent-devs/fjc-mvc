@@ -3,6 +3,7 @@
 class Order < ApplicationRecord
   # Relations
   belongs_to :user, optional: true
+  belongs_to :guest_session, optional: true
   belongs_to :order_status
 end
 
