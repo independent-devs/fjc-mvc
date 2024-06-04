@@ -8,9 +8,8 @@ class OrderStatus < ApplicationRecord
   has_many :order, dependent: :destroy
 
   # Validations
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, inclusion: { in: STATUS }
   validates :step, presence: true, uniqueness: true
-  validates :name, inclusion: { in: STATUS }
 end
 
 # == Schema Information
