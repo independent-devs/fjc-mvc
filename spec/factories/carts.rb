@@ -3,8 +3,10 @@
 FactoryBot.define do
   factory :cart do
     user { User.last || create(:user) }
-    variant { Variant.last || create(:variant) }
-    qty { 1 }
+    guest_session { GuestSession.last || create(:guest_session) }
+    variant { create(:variant, is_master: false) }
+    qty { Faker::Number.non_zero_digit }
+    order { Order.last || create(:order) }
   end
 end
 

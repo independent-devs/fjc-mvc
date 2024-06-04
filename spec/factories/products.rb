@@ -5,7 +5,11 @@ FactoryBot.define do
     name { Faker::Commerce.product_name }
     currency { MoneyRails.default_currency }
     master_variant_attributes do
-      { price: 100.00, cost: 80.00, is_master: true }
+      {
+        price: Faker::Commerce.price,
+        cost: Faker::Commerce.price,
+        is_master: true
+      }
     end
     description_attributes do
       { description: Faker::Lorem.paragraph_by_chars }

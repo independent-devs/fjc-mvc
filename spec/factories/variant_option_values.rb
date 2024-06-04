@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :variant_option_value do
-    variant { nil }
-    product_option { nil }
-    name { 'MyString' }
+    product_option { ProductOption.last || create(:product_option) }
+    name { Faker::Commerce.brand }
+    variant { create(:variant, is_master: false) }
   end
 end
 

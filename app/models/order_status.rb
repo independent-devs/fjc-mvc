@@ -10,6 +10,7 @@ class OrderStatus < ApplicationRecord
   # Validations
   validates :name, presence: true, uniqueness: true
   validates :step, presence: true, uniqueness: true
+  validates :name, inclusion: { in: STATUS }
 end
 
 # == Schema Information

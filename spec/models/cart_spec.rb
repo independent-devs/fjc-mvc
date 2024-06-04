@@ -3,7 +3,50 @@
 require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'Guest cart without user' do
+    cart = create(:cart, user: nil, order: nil)
+
+    expect(cart.user).to eq(nil)
+    expect(cart.variant).to be_present
+    expect(cart.guest_session).to be_present
+    expect(cart.order).to eq(nil)
+  end
+
+  it 'User cart not synced with guest' do
+    cart = create(:cart, guest_session: nil, order: nil)
+
+    expect(cart.user).to be_present
+    expect(cart.variant).to be_present
+    expect(cart.guest_session).to eq(nil)
+    expect(cart.order).to eq(nil)
+  end
+
+  it 'User cart synced with guest' do
+    cart = create(:cart, order: nil)
+
+    expect(cart.user).to be_present
+    expect(cart.variant).to be_present
+    expect(cart.guest_session).to be_present
+    expect(cart.order).to eq(nil)
+  end
+
+  it 'User ordered cart not synced with guest' do
+    cart = create(:cart, guest_session: nil)
+
+    expect(cart.user).to be_present
+    expect(cart.variant).to be_present
+    expect(cart.guest_session).to eq(nil)
+    expect(cart.order).to be_present
+  end
+
+  it 'User ordered cart synced with guest' do
+    cart = create(:cart)
+
+    expect(cart.user).to be_present
+    expect(cart.variant).to be_present
+    expect(cart.guest_session).to be_present
+    expect(cart.order).to be_present
+  end
 end
 
 # == Schema Information
