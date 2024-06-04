@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class OmniauthController < Devise::OmniauthCallbacksController
-  before_action :set_provider
+  before_action :set_oauth_account
 
   def google_oauth2
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-
     if @user.persisted?
       sign_in(@user)
       success_redirect
@@ -15,8 +13,6 @@ class OmniauthController < Devise::OmniauthCallbacksController
   end
 
   def facebook
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-
     if @user.persisted?
       sign_in(@user)
       success_redirect
@@ -29,7 +25,9 @@ class OmniauthController < Devise::OmniauthCallbacksController
 
   private
 
-  def set_provider
+  def set_oauth_account
+    @user = User.create_from_provider_data(request.env['omniauth.auth'])
+
     case action_name
     when 'facebook'
       @provider = 'Facebook'
@@ -48,6 +46,6 @@ class OmniauthController < Devise::OmniauthCallbacksController
     return unless is_navigational_format?
 
     flash[:error] =
-      @user.errors.full_messages.first || "Something went wrong while trying to register with #{@provider}"
+      @user&.errors&.full_messages&.first || "Something went wrong while trying to register with #{@provider}"
   end
 end
