@@ -48,7 +48,7 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # PATCH /admin/product/:product_id/images/:id/position
   def position
-    @image.update(sort_order_position: product_image_params[:position])
+    @image.update(sort_order_position: product_image_params[:position].to_i)
     head :ok
   end
 
