@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :order do
     user { User.last || create(:user) }
-    order_status { OrderStatus.last || create(:order_status) }
+    order_status { OrderStatus.first || create(:order_status) }
+    guest_session { GuestSession.last || create(:guest_session) }
   end
 end
 

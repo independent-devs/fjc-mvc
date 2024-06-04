@@ -41,6 +41,7 @@ Metrics/BlockLength:
     - "db/schema.rb"
     - "lib/tasks/*"
     - "config/**/**"
+    - "spec/**/**"
 
 Metrics/CyclomaticComplexity:
   Max: 10
