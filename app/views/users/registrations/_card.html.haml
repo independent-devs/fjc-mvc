@@ -14,7 +14,7 @@
         = f.password_field :password, required: true, autocomplete: "new-password"
       .field
         = f.label :password_confirmation
-        = f.password_field :password_confirmation, autocomplete: "new-password"
+        = f.password_field :password_confirmation, required: true, autocomplete: "new-password"
       .mt-2
         = f.submit "Sign up", class: "btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
       = render "users/shared/sign_in"

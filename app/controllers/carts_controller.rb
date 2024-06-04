@@ -63,7 +63,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.update(cart_params)
-        format.turbo_stream
+        format.turbo_stream { render :item_update }
       else
         format.turbo_stream { render :error }
       end
@@ -93,8 +93,8 @@ class CartsController < ApplicationController
   end
 
   def create_cart(parent)
-    if (@cart = parent.carts.find_by(variant: @variant)).present?
-      return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
+    if (cart = parent.carts.find_by(variant: @variant)).present?
+      return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
     end
 
     parent.carts.new(qty: cart_params[:qty], variant: @variant).save
