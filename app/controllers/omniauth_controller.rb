@@ -44,6 +44,10 @@ class OmniauthController < Devise::OmniauthCallbacksController
   end
 
   def error_redirect
-    redirect_to(new_user_registration_path, error: "There was a problem signing with #{@provider}")
+    redirect_to new_user_registration_path
+    return unless is_navigational_format?
+
+    flash[:error] =
+      @user.errors.full_messages.first || "Something went wrong while trying to register with #{@provider}"
   end
 end
