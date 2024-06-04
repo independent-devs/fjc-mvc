@@ -63,7 +63,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.update(cart_params)
-        format.turbo_stream
+        format.turbo_stream { render :item_update }
       else
         format.turbo_stream { render :error }
       end
