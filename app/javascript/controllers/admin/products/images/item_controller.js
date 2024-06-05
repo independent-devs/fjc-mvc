@@ -1,15 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="image"
+// Connects to data-controller="admin--product--images--item"
 export default class extends Controller {
-  static targets = ["files", "image"];
-
   delete() {
     const isConfirmed = confirm("Are you sure you want to delete image?");
 
     if (!isConfirmed) return;
 
-    fetch(this.element.dataset.url, {
+    fetch(this.element.dataset.deleteUrl, {
       method: "DELETE",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -20,16 +18,5 @@ export default class extends Controller {
     })
       .then((res) => res.text())
       .then((html) => Turbo.renderStreamMessage(html));
-  }
-
-  thumbnail(event) {
-    const imageElement = this.imageTarget;
-    const reader = new FileReader();
-
-    reader.onload = function () {
-      imageElement.src = reader.result;
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
   }
 }

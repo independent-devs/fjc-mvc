@@ -1,10 +1,9 @@
-.py-4.flex.gap-2.items-center{data: {controller: "stock", url: modify_admin_product_stock_path(@product, variant)}}
-  = number_field_tag :modify_amount, nil, class: "input-table",
-  data: {"stock-target": "input", action: "input->stock#change"}, placeholder: "0"
-  .flex.gap-1.hidden{data: {"stock-target": "action"}}
-    = button_tag type: "button", data: {action: "click->stock#modify"}, 
+.py-4.flex.gap-2.items-center{data: {url: modify_admin_product_stock_path(@product, variant)}}
+  = number_field_tag :modify_amount, nil, class: "input-table", placeholder: "0", data: {"admin--products--stocks--item-target": "input", action: "input->admin--products--stocks--item#change"}
+  .flex.gap-1.hidden{data: {"admin--products--stocks--item-target": "action"}}
+    = button_tag type: "button", data: {action: "click->admin--products--stocks--item#modify"}, 
     class: "px-1 py-0 hover:bg-green-600 hover:text-white rounded-md transition-colors duration-75" do
       = icon("fa-solid", "check", class: "text-lg")
-    = button_tag type: "button", data: {action: "click->stock#cancel"}, 
-    class: "px-1 py-0 hover:bg-red-600 hover:text-white rounded-md transition-colors duration-75" do
+    = button_tag type: "button", data: {action: "click->admin--products--stocks--item#cancel"}, 
+    class: "px-1 py-0 hover:bg-red-600 hover:text-white ounded-md transition-colors duration-75" do
       = icon("fa-solid", "xmark", class: "text-lg")

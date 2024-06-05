@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="product--public"
+// Connects to data-controller="products--public"
 export default class extends Controller {
   static targets = [
     "vid",
@@ -44,10 +44,10 @@ export default class extends Controller {
       .then((html) => Turbo.renderStreamMessage(html));
   }
 
-  setError(remove = true, message) {
-    if (remove) {
+  setError(adding = true, message) {
+    if (adding) {
       this.errorsTarget.classList.remove("hidden");
-      this.errorsTarget.innerHTML = message;
+      this.errorsTarget.innerHTML = message || "Something went wrong.";
       return;
     }
 
@@ -101,9 +101,7 @@ export default class extends Controller {
   }
 
   initRadios() {
-    this.radioTargets.forEach((el) => {
-      el.disabled = false;
-    });
+    this.radioTargets.forEach((el) => (el.disabled = false));
   }
 
   variantInfo(event) {
@@ -213,7 +211,6 @@ export default class extends Controller {
   get cartFormData() {
     const formData = new FormData();
     formData.append("cart[qty]", this.quantityTarget.value);
-
     return formData;
   }
 

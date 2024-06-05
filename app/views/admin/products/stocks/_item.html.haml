@@ -1,6 +1,6 @@
 %li{id: dom_id(variant)}
   = form_for(variant, as: "product_variant", url: admin_product_stock_path(@product, variant),             
-  html: {method: :put}, data: {controller: 'autosave'}) do |f|
+    html: {method: :put}, data: {controller: "autosave admin--products--stocks--item", modify_url: modify_admin_product_stock_path(@product, variant)}) do |f|
     .grid.grid-cols-5.gap-8
       .py-4
         - if f.object.is_master
@@ -11,7 +11,8 @@
         - if f.object.is_master
           = render TagComponent.new(name: "Master")
         - else
-          = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: { "action": "change->autosave#save" }
+          = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table",
+          data: { "action": "change->autosave#save" }
       .flex.py-4.items-center
         - if f.object.is_master
           = render TagComponent.new(name: "Master")

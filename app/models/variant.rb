@@ -13,7 +13,6 @@ class Variant < ApplicationRecord
   belongs_to :product
   has_many :variant_option_values, dependent: :destroy
   has_many :carts, dependent: :destroy
-  has_many :active_storage_attachment, as: :record_owner, dependent: :nullify
 
   # Nested form
   accepts_nested_attributes_for :variant_option_values

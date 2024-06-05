@@ -1,8 +1,8 @@
 = render "seo", seo: @product.seo
 
-.w-full.margin-max-screen.py-10{data: {controller: "product--public", pid: @product.uuid}}
+.w-full.margin-max-screen.py-10{data: {controller: "products--public", pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, 
-  class: "hidden", data: {"product--public-target": "userSignedIn"}
+  class: "hidden", data: {"products--public-target": "userSignedIn"}
   .flex.gap-5
     %div{class: "min-w-[550px] max-w-[550px]"}
     .flex.flex-col.w-full.gap-7
@@ -10,7 +10,7 @@
         %h2.font-semibold.text-2xl
           = @product.name
         = render "star_reviews" 
-        #public-price{data: {"product--public-target": "price"}}
+        #public-price{data: {"products--public-target": "price"}}
           - if @product.has_variant
             = render PriceRangeComponent.new lowest: @product.lowest_price, 
             highest: @product.highest_price

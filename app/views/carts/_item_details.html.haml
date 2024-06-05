@@ -1,6 +1,6 @@
 .flex.w-full.gap-3.col-span-3.items-center
   .flex.gap-4.items-center{class: "w-[65%]"}
-    = check_box_tag "cart_ids", cart.uuid, false, data: {"cart--select-all-target": "checkbox"}, 
+    = check_box_tag "cart_ids", cart.uuid, false, data: {"carts--select-all-target": "checkbox"}, 
     id: "#{cart.uuid}-checkbox", disabled: user_signed_in? && cart.user_id.nil?, class: "checkbox-primary"
     .flex.gap-2
       = image_tag cart.variant_thumbnail || cart.product_thumbnail || "thumbnail.png", size: 320,
