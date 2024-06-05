@@ -8,7 +8,7 @@ export default class extends Controller {
     const formData = new FormData();
     formData.append("product_variant[modify_amount]", this.inputTarget.value);
 
-    fetch(this.element.dataset.url, {
+    fetch(this.element.dataset.modifyUrl, {
       method: "PUT",
       body: formData,
       headers: {

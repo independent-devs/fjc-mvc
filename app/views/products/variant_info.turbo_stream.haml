@@ -1,5 +1,5 @@
 = turbo_stream.replace "public-price" do
-  #public-price{data: {"product--public-target": "price"}}
+  #public-price{data: {"products--public-target": "price"}}
     = render PriceRangeComponent.new lowest: @variant.price, currency: @product.currency
 
 = turbo_stream.replace "quantity-container" do

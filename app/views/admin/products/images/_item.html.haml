@@ -1,13 +1,12 @@
-%li{id: dom_id(image, "item"), data: {"sortable-update-url": position_admin_product_image_path(@product, image)}}
-  .grid.grid-cols-2.gap-8
-    .py-3.flex.items-center
-      .w-10.h-full.flex.items-center
-        = icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
-      = image_tag image.variant(:small), size: 100,
-      class: "w-11 h-11 object-center object-cover rounded border"
-    .py-3.flex.items-center.gap-2 
-      = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"
-      %button{type: "button", class: "text-zinc-400 hover:text-red-500", 
-      data: {controller: "image", action: "click->image#delete",
-      url: admin_product_image_path(@product, image)}}
-        = icon "fa-solid", "trash"
+%li{id: dom_id(image, "item"), class: "grid grid-cols-2 gap-8 bg-white",
+data: {controller: "admin--products--images--item", "sortable-update-url": position_admin_product_image_path(@product, image), delete_url: admin_product_image_url(@product, image)}}
+  .py-3.flex.items-center
+    .w-10.h-full.flex.items-center
+      = icon("fa-solid", "grip", class: "ml-1 handle cursor-move text-zinc-500 text-lg")
+    = image_tag image.variant(:small), size: 100,
+    class: "w-11 h-11 object-center object-cover rounded border"
+  .py-3.flex.items-center.gap-2 
+    = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"
+    %button{type: "button", class: "text-zinc-400 hover:text-red-500", 
+    data: {action: "click->admin--products--images--item#delete"}}
+      = icon "fa-solid", "trash"
