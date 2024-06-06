@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   # Constants
+  ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ', '.' => '' }.freeze
 
@@ -59,6 +60,8 @@ class Product < ApplicationRecord
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :slug, format: { without: Regexp.union(SLUG_REGEX.keys) }
+  validates :thumbnail, content_type: ALLOWED_IMAGE_TYPES
+  validates :images, content_type: ALLOWED_IMAGE_TYPES
 
   # Generators
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
