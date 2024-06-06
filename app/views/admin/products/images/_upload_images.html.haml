@@ -1,10 +1,9 @@
 .flex.items-center.justify-center.w-full
-  = form.file_field :images, id: "dropzone-file",
-  data: {"admin--products--images--upload-target": "upload"},
+  = file_field :product_image, :images, id: "dropzone-file", data: {"admin--products--images--upload-target": "upload", action: "input->admin--products--images--upload#handler"},
   multiple: true, disabled: true, class: "hidden peer",
   accept: "image/png, image/jpg, image/jpeg"
  
-  %label{for: "dropzone-file", class: "flex flex-col items-center justify-center w-[700px] h-60 transition-colors duration-200 border-2 text-gray-500 peer-disabled:text-gray-300 border-gray-400 peer-disabled:border-gray-300 peer-disabled:cursor-not-allowed hover:text-primary hover:border-primary border-dashed rounded-lg cursor-pointer"}
+  %label{for: "dropzone-file", data: {"admin--products--images--upload-target": "dropArea"}, class: "flex flex-col items-center justify-center w-full h-60 transition-colors duration-200 border-2 text-gray-500 peer-disabled:text-gray-300 border-gray-400 peer-disabled:border-gray-300 peer-disabled:cursor-not-allowed hover:text-primary hover:border-primary border-dashed rounded-lg cursor-pointer"}
     = icon("fa-solid", "cloud-arrow-up", class: "text-4xl mb-3")
     %p.mb-1
       %span.font-semibold Click to upload

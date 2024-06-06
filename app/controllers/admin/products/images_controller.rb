@@ -4,9 +4,7 @@ class Admin::Products::ImagesController < Admin::BaseController
   before_action :set_product_image, only: %i[index show update destroy upload position]
 
   # GET /admin/product/:product_id/images
-  def index
-    @images = @product.images.sort_by_position
-  end
+  def index; end
 
   def show; end
 
@@ -31,7 +29,9 @@ class Admin::Products::ImagesController < Admin::BaseController
 
     respond_to do |format|
       format.turbo_stream do
-        locals = { notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed') }
+        locals = {
+          notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed')
+        }
         render :stream, locals:
       end
     end
@@ -39,10 +39,9 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # POST /admin/product/:product_id/images/upload
   def upload
-    if @product.update(images: product_image_params[:images])
-      redirect_to admin_product_images_url(@product), notice: I18n.t('products.updated')
-    else
-      redirect_to admin_product_images_url(@product), error: @product.errors.full_messages.first
+    respond_to do |format|
+      @product.update(images: product_image_params[:images])
+      format.turbo_stream
     end
   end
 

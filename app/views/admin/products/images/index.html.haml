@@ -1,11 +1,8 @@
-.margin-max-screen.py-8.flex.flex-col.gap-8
+.margin-max-screen.py-8.flex.flex-col.gap-8{data: {controller: "admin--products--images--upload", upload_url: upload_admin_product_images_url(@product)}}
   = render "admin/products/tabs"
-  = form_for(@product, as: "product_image", url: upload_admin_product_images_path(@product), 
-  html: {data: {controller: "admin--products--images--upload"}, method: :post}) do |f|
-    - @images.each do |image|
-      = f.hidden_field :images, data: {"admin--product--images--upload-target": "signedImage"},
-      multiple: true, value: image.signed_id, id: dom_id(image, "hidden")
-    = render "upload_images", form: f
+  .w-full.flex.flex-col.gap-10{data: {"admin--products--images--upload-target": "uploadContainer"}}
+    = render "upload_images"
+    = render "uploading"
   %div
     %ul.form-table-head.grid.grid-cols-2
       %li.flex.items-center
@@ -13,11 +10,4 @@
         = t("images.table.thead.image")
       %li
         = t("images.table.thead.actions")
-    %ul.form-table-body{data: {controller: "sortable", "sortable-resource-name-value": "product_image", 
-    "sortable-handle-value": ".handle" }}
-      - if @images.present?
-        - @images.each do |image|
-          = render "item", image:
-      - else
-        %li.flex.justify-center.w-full.py-6.text-gray-400 
-          = t("images.no_list_found")
+    = render "data"
