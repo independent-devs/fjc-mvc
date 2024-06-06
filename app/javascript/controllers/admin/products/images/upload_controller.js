@@ -63,19 +63,19 @@ export default class extends Controller {
       const fileSize = document.createElement("span");
 
       container.classList.add("grid", "place-items-center", "w-24");
+      fileSize.innerHTML = (files[i].size / (1024 * 1024)).toFixed(2) + " MB";
+      fileName.innerHTML = isFileAllowed ? files[i].name : "Invalid file";
       fileSize.classList.add(
         isFileAllowed ? "text-gray-800" : "text-red-600",
         "text-sm",
         "mt-1"
       );
-      fileSize.innerHTML = (files[i].size / (1024 * 1024)).toFixed(2) + " MB";
       fileName.classList.add(
         isFileAllowed ? "text-gray-800" : "text-red-600",
         "text-sm",
         "break-all",
         "line-clamp-2"
       );
-      fileName.innerHTML = isFileAllowed ? files[i].name : "Invalid file";
 
       reader.onload = (e) => {
         const img = new Image();
