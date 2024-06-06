@@ -5,6 +5,8 @@ authenticated :user, -> { _1.admin? } do
   namespace :admin do
     get '/', to: redirect('/admin/dashboard')
     resources :dashboard, only: [:index]
+    resources :orders, only: %i[index show]
+
     ## product routes
     resources :products do
       resources :variants, except: [:edit], module: :products do
