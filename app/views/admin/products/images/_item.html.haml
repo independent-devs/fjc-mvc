@@ -1,10 +1,14 @@
 %li{id: dom_id(image, "item"), class: "grid grid-cols-2 gap-8 bg-white",
-data: {controller: "admin--products--images--item", "sortable-update-url": position_admin_product_image_path(@product, image), delete_url: admin_product_image_url(@product, image)}}
-  .py-3.flex.items-center
-    .w-10.h-full.flex.items-center
+data: {"admin--products--images--upload-target":"signedImage", signed_id: image.signed_id, controller: "admin--products--images--item", "sortable-update-url": position_admin_product_image_path(@product, image), delete_url: admin_product_image_url(@product, image)}}
+  .py-3.flex.items-center.gap-5
+    .h-full.flex.items-center
       = icon("fa-solid", "grip", class: "ml-1 handle cursor-move text-zinc-500 text-lg")
-    = image_tag image.variant(:small), size: 100,
-    class: "w-11 h-11 object-center object-cover rounded border"
+    .flex.gap-2.items-center
+      = image_tag image.variant(:small), size: 100, 
+        class: "max-w-12 max-h-12 min-w-12 min-h-12 object-center object-cover rounded border"
+      %p.line-clamp-1
+        = image.filename
+        = image.filename
   .py-3.flex.items-center.gap-2 
     = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"
     %button{type: "button", class: "text-zinc-400 hover:text-red-500", 
