@@ -131,3 +131,6 @@ gem 'ancestry', '~> 4.3'
 
 # Ads Integration
 gem 'rack-tracker', '~> 1.13'
+
+# Attachment validations
+gem 'active_storage_validations'

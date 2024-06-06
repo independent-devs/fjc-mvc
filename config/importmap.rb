@@ -9,7 +9,7 @@ pin_all_from "app/javascript/controllers", under: "controllers", preload: false
 pin 'intl-tel-input', to: 'https://ga.jspm.io/npm:intl-tel-input@18.2.1/index.js', preload: false
 pin "stimulus-notification" # @2.2.0
 pin "hotkeys-js" # @3.13.7
-pin "stimulus-use" # @0.51.3
+pin "stimulus-use" # @0.52.2
 pin "stimulus-rails-autosave", preload: false # @5.1.0,
 pin "@stimulus-components/dialog", to: "@stimulus-components--dialog.js" # @1.0.1
 pin "js-image-zoom", preload: false # @0.7.0
@@ -19,3 +19,4 @@ pin "@rails/request.js", to: "@rails--request.js.js", preload: false # @0.0.8
 pin "sortablejs", preload: false # @1.15.2
 pin "slim-select", preload: false # @2.8.2
 pin "@stimulus-components/checkbox-select-all", to: "@stimulus-components--checkbox-select-all.js" # @6.0.0
+pin "@stimulus-components/dropdown", to: "@stimulus-components--dropdown.js" # @3.0.0
