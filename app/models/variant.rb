@@ -12,14 +12,13 @@ class Variant < ApplicationRecord
   # Relations
   belongs_to :product
   has_many :variant_option_values, dependent: :destroy
-  has_many :carts, dependent: :destroy
+  has_many :carts, dependent: :nullify
 
   # Nested form
   accepts_nested_attributes_for :variant_option_values
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
-  scope :get_master, -> { where(is_master: true).first }
   scope :not_master, -> { where(is_master: false) }
   scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
   scope :stock_sum, -> { sum(:count_on_hand) }
@@ -39,6 +38,7 @@ class Variant < ApplicationRecord
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
 
   validate :only_one_master, if: :only_one_master_condition
+  validate :product_has_variant, unless: :is_master
 
   # Generators
   after_destroy :capture_price
@@ -68,6 +68,12 @@ class Variant < ApplicationRecord
 
   def only_one_master_condition
     (new_record? && is_master) || (is_master_changed? && is_master_was)
+  end
+
+  def product_has_variant
+    return if product.has_variant
+
+    errors.add(:product, I18n.t('variants.validate.product_has_variant'))
   end
 
   def generate_thumbnail_url

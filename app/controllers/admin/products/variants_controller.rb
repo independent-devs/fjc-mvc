@@ -71,7 +71,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
     return if params[:id].blank?
 
-    @variant = @product.variants.find(params[:id])
+    @variant = @product.variants.not_master.find(params[:id])
   end
 
   def product_variant_params
