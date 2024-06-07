@@ -53,7 +53,10 @@ class Variant < ApplicationRecord
     no_variant_records = variants.not_master.count.zero?
     captured = variants.where(is_master: no_variant_records)
 
-    product.update!(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
+    product.update!(
+      lowest_price: captured.minimum(:price),
+      highest_price: captured.maximum(:price)
+    )
   end
 
   # For validations
@@ -64,7 +67,7 @@ class Variant < ApplicationRecord
   end
 
   def only_one_master_condition
-    new_record? && is_master
+    (new_record? && is_master) || (is_master_changed? && is_master_was)
   end
 
   def generate_thumbnail_url
