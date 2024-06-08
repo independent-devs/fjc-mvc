@@ -2,7 +2,7 @@
 
 class GuestSession < ApplicationRecord
   has_many :carts, dependent: :destroy
-  has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :nullify
 end
 
 # == Schema Information

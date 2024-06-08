@@ -1,0 +1,4 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('variants.destroyed')
+
+= turbo_stream.remove dom_id(@variant)

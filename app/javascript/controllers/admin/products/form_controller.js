@@ -14,14 +14,19 @@ export default class extends Controller {
         maxSelected: 3,
       },
     });
+
+    this.optionInputTarget.style = "opacity: 0; height: 65px;";
+    this.optionInputTarget.classList.add("absolute", "top-0");
   }
 
   hasVariantToogle() {
     if (this.slim.settings.disabled) {
       this.slim.enable();
+      this.optionInputTarget.required = true;
       return;
     }
 
+    this.optionInputTarget.required = false;
     this.slim.disable();
     this.slim.setSelected([]);
   }

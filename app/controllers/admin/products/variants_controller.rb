@@ -31,31 +31,17 @@ class Admin::Products::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.html { redirect_to admin_product_variants_url(@product), notice: I18n.t('variants.updated') }
-        format.turbo_stream do
-          locals = { message: I18n.t('variants.updated'), type: 'item', notif_type: 'success', variant: @variant }
-          render :stream, locals:
-        end
       else
         format.html { render :show, status: :unprocessable_entity }
-        format.turbo_stream do
-          locals = { message: @variant.errors.full_messages.first, type: 'item', notif_type: 'error',
-                     variant: @product.variants.find(params[:id]) }
-          render :stream, locals:, status: :unprocessable_entity
-        end
       end
+
+      format.turbo_stream
     end
   end
 
   # DELETE /admin/product/:product_id/variants/:id
   def destroy
     @variant.destroy
-
-    respond_to do |format|
-      format.turbo_stream do
-        locals = { message: I18n.t('variants.destroyed'), type: 'deleted', notif_type: 'success', variant: @variant }
-        render :stream, locals:
-      end
-    end
   end
 
   # PATCH /admin/product/:product_id/variants/:id/position

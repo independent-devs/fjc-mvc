@@ -18,7 +18,7 @@
       data: {action: "admin--products--form#hasVariantToogle"}
       = f.label :has_variant do
         With variants
-    .field
+    .field.relative
       = f.label :options
       = f.select :option_ids, Option.pluck(:name, :id), {}, 
         {disabled: @product.errors.present? ? !f.object.has_variant : true, 
