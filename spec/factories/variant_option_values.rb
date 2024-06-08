@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :variant_option_value do
     product_option { ProductOption.last || create(:product_option) }
     name { Faker::Commerce.brand }
-    variant { create(:variant, is_master: false) }
+    variant { create(:variant) }
   end
 end
 

@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :cart do
     user { User.last || create(:user) }
     guest_session { GuestSession.last || create(:guest_session) }
-    variant { create(:variant, is_master: false) }
+    variant { create(:variant) }
     qty { Faker::Number.non_zero_digit }
     order { Order.last || create(:order) }
   end

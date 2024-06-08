@@ -2,12 +2,12 @@
 
 FactoryBot.define do
   factory :variant do
+    product { create(:product, :with_variants) }
+    is_master { false }
     cost { Faker::Commerce.price }
     count_on_hand { Faker::Number.digit }
-    is_master { false }
     trackable { true }
     backorderable { false }
-    product { Product.last || create(:product) }
     price { Faker::Commerce.price }
     sku { nil }
   end

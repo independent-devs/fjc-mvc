@@ -4,6 +4,8 @@ FactoryBot.define do
   factory :product do
     name { Faker::Commerce.product_name }
     currency { MoneyRails.default_currency }
+    has_variant { false }
+    option_ids { nil }
     master_variant_attributes do
       {
         price: Faker::Commerce.price,
@@ -20,6 +22,16 @@ FactoryBot.define do
         meta_description: Faker::Lorem.paragraph_by_chars,
         meta_keywords: Faker::Commerce.department
       }
+    end
+
+    trait :with_variants do
+      has_variant { true }
+      option_ids do
+        [
+          create(:option).id,
+          create(:option).id
+        ]
+      end
     end
   end
 end
