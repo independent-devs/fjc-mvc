@@ -28,8 +28,8 @@ FactoryBot.define do
       has_variant { true }
       option_ids do
         [
-          create(:option).id,
-          create(:option).id
+          build(:option).tap(&:save).id,
+          build(:option).tap(&:save).id
         ]
       end
     end
