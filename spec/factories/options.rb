@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :option do
-    name { Faker::Types.rb_string }
+    name { Faker::Commerce.material }
   end
 end
 
