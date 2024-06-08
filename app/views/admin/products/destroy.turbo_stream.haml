@@ -1,0 +1,7 @@
+- if @product.errors.present?
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "error", message: I18n.t('products.unexpected')
+- else
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "success", message: I18n.t('products.destroyed')
+  = turbo_stream.remove dom_id(@product)

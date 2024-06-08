@@ -44,18 +44,12 @@ class Admin::ProductsController < Admin::BaseController
   def destroy
     respond_to do |format|
       if @product.update(deleted_at: DateTime.now)
-        format.html { redirect_to admin_products_url, notice: I18n.t('products.destroyed') }
-        format.turbo_stream do
-          locals = { product: @product, notif_type: 'success', type: 'deleted', message: I18n.t('products.destroyed') }
-          render :stream, locals:
-        end
+        format.html { redirect_to admin_products_url, error: I18n.t('products.destroyed') }
       else
-        format.html { redirect_to admin_products_url, error: I18n.t('products.unexpected') }
-        format.turbo_stream do
-          locals = { product: @product, notif_type: 'error', type: nil, message: I18n.t('products.unexpected') }
-          render :stream, locals:
-        end
+        format.html { redirect_to admin_products_url, notice: I18n.t('products.unexpected') }
       end
+
+      format.turbo_stream
     end
   end
 

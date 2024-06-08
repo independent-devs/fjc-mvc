@@ -1,0 +1,12 @@
+- if @variant.errors.blank?
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "success", message: I18n.t('variants.updated')
+- else
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "error", message: @variant.errors.full_messages.first
+
+= form_for(@variant, as: "product_variant", url: admin_product_variant_path(@product, @variant)) do |f|
+  = turbo_stream.replace dom_id(@variant, "price") do
+    = render "item_price", form: f
+  = turbo_stream.replace dom_id(@variant, "cost") do
+    = render "item_cost", form: f
