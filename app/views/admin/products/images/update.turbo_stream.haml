@@ -1,0 +1,8 @@
+- if @image.errors.blank?
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "success", message: I18n.t('images.updated')
+- else
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: "error", message: @image.errors.full_messages.first
+
+

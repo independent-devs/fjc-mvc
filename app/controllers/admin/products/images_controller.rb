@@ -10,16 +10,10 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # PATCH/PUT /admin/product/:product_id/images/:id
   def update
+    @image.update(product_image_params[:image])
+
     respond_to do |format|
-      if @image.update(product_image_params)
-        format.turbo_stream do
-          render :stream, locals: { notif_type: 'success', type: nil, message: I18n.t('images.updated') }
-        end
-      else
-        format.turbo_stream do
-          render :stream, locals: { notif_type: 'error', type: 'deleted', message: @image.errors.full_messages.first }
-        end
-      end
+      format.turbo_stream
     end
   end
 
@@ -28,19 +22,15 @@ class Admin::Products::ImagesController < Admin::BaseController
     @image.purge
 
     respond_to do |format|
-      format.turbo_stream do
-        locals = {
-          notif_type: 'success', type: 'deleted', image: @image, message: I18n.t('images.destroyed')
-        }
-        render :stream, locals:
-      end
+      format.turbo_stream
     end
   end
 
   # POST /admin/product/:product_id/images/upload
   def upload
+    @product.update(images: product_image_params[:images])
+
     respond_to do |format|
-      @product.update(images: product_image_params[:images])
       format.turbo_stream
     end
   end
@@ -62,6 +52,6 @@ class Admin::Products::ImagesController < Admin::BaseController
   end
 
   def product_image_params
-    params.require(:product_image).permit(:position, images: [])
+    params.require(:product_image).permit(:position, :image, images: [])
   end
 end
