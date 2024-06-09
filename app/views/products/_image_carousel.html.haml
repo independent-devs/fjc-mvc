@@ -1,0 +1,11 @@
+%div{class: "min-w-[460px] max-w-[460px]"}
+  - if @carousel.present?
+    .grid.gap-2
+      .w-full{class: "max-h-[430px] min-h-[420px]"}
+        = image_tag @carousel.first, 
+        class: "w-full object-center object-cover h-full border"
+      .grid.grid-cols-5.gap-2
+        - @carousel.each do |image|
+          .w-full-h-full.grid.items-center
+            = image_tag image.variant(:small), size: 100, 
+            class: "w-full object-center object-cover h-full border"

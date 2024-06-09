@@ -8,6 +8,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     @variants = @product.non_master_variants.sort_by_position.grouped_option_name
   end
 
+  # GET /admin/product/:product_id/variants/:id
   def show; end
 
   # GET /admin/product/:product_id/variants/new
@@ -62,8 +63,8 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   def product_variant_params
     params.require(:product_variant)
-          .permit(:name, :alternative_name, :cost, :price, :sku,
-                  :count_on_hand, :position, :trackable, :backorderable,
+          .permit(:name, :alternative_name, :cost, :price, :count_on_hand,
+                  :position, :trackable, :backorderable, :sku,
                   variant_option_values_attributes: %i[id name variant_id product_option_id position])
   end
 end

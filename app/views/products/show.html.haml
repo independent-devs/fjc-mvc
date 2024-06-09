@@ -3,8 +3,8 @@
 .w-full.margin-max-screen.py-10{data: {controller: "products--public", pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, 
   class: "hidden", data: {"products--public-target": "userSignedIn"}
-  .flex.gap-5
-    %div{class: "min-w-[550px] max-w-[550px]"}
+  .flex.gap-9
+    = render "image_carousel"
     .flex.flex-col.w-full.gap-7
       .grid.gap-2
         %h2.font-semibold.text-2xl

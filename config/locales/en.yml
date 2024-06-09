@@ -83,7 +83,8 @@ en:
     guest_added_cart: "Successfully added to guest cart."
     something_went_wrong: "Something went wrong."
   images:
-    uploaded: "Successfully uploaded"
+    success: "Successfully uploaded"
+    failed: "Failed to upload"
     validate:
       must_be_attached: "must be attached." 
     table:

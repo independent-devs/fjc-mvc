@@ -6,8 +6,7 @@ data: {"admin--products--images--upload-target":"signedImage", signed_id: image.
     .flex.gap-2.items-center
       = image_tag image.variant(:small), size: 100, 
         class: "max-w-12 max-h-12 min-w-12 min-h-12 object-center object-cover rounded border"
-      %p.line-clamp-1
-        = image.filename
+      %p.line-clamp-1.text-gray-500
         = image.filename
   .py-3.flex.items-center.gap-2 
     = icon "fa-solid", "pen-to-square", class: "text-zinc-400 hover:text-red-500"
