@@ -1,10 +1,11 @@
 - unless @product.errors.present?
   = turbo_stream.prepend "notification-container" do
-    = render NotificationComponent.new notif_type: "success", message: I18n.t('images.uploaded')
+    = render NotificationComponent.new notif_type: "success", message: I18n.t('images.success')
   = turbo_stream.replace "data" do
     = render "data"
-  = turbo_stream.replace "uploading-container" do
-    = render "uploading"
 - else
   = turbo_stream.prepend "notification-container" do
-    = render NotificationComponent.new notif_type: "error", message: I18n.t('error.something_went_wrong')
+    = render NotificationComponent.new notif_type: "error", message: I18n.t('images.failed')
+
+= turbo_stream.replace "uploading-container" do
+  = render "uploading"

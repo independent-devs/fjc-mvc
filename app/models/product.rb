@@ -67,6 +67,10 @@ class Product < ApplicationRecord
   before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
   after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
 
+  def carousel(limit = 5)
+    images.limit(limit)
+  end
+
   private
 
   # For generators

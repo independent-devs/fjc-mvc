@@ -20,7 +20,7 @@ module.exports = {
         "secondary-light": "#7D8184",
       },
       maxWidth: {
-        margin: "1280px",
+        margin: "1240px",
       },
     },
   },

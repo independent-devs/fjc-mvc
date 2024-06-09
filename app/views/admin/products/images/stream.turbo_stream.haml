@@ -1,6 +1,0 @@
-= turbo_stream.prepend "notification-container" do
-  = render NotificationComponent.new notif_type:, message: 
-
-- case type
-- when "deleted"
-  = turbo_stream.remove dom_id(image, "item")

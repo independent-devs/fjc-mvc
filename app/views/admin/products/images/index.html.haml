@@ -1,7 +1,7 @@
 .margin-max-screen.py-8.flex.flex-col.gap-8{data: {controller: "admin--products--images--upload", upload_url: upload_admin_product_images_url(@product)}}
   = render "admin/products/tabs"
-  .w-full.flex.flex-col.gap-10{data: {"admin--products--images--upload-target": "uploadContainer"}}
-    = render "upload_images"
+  .w-full.flex.flex-col.gap-10
+    = render "drag_and_drop"
     = render "uploading"
   %div
     %ul.form-table-head.grid.grid-cols-2
