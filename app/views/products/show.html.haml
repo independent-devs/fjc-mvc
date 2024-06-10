@@ -1,5 +1,4 @@
 = render "seo", seo: @product.seo
-
 .w-full.margin-max-screen.py-10{data: {controller: "products--public", pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, 
   class: "hidden", data: {"products--public-target": "userSignedIn"}
@@ -20,9 +19,9 @@
         = render "options"
       - stock_num = pub_stock_num(@product)
       .grid.gap-2
-        %label.font-medium.text-sm.text-zinc-500
+        %span.font-medium.text-sm.text-zinc-500
           Quantity
         = render "quantity", stock_num:
       = render "errors"
-      = render "actions", disable_atc: false, disable_bn: stock_num.zero?
+      = render "actions"
       = render "variant_uuid", uuid: pub_variant_uuid(@product)

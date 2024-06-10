@@ -7,7 +7,3 @@
 
 = turbo_stream.replace "vid" do
   = render "variant_uuid", uuid: @variant.uuid
-
-- if @variant.count_on_hand.zero?
-  = turbo_stream.replace "actions" do
-    = render "actions", disable_atc: false, disable_bn: true
