@@ -441,7 +441,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_storage_validations
+  active_storage_validations (~> 1.1)
   ancestry (~> 4.3)
   annotate
   bootsnap
