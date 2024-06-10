@@ -1,10 +1,18 @@
-%div{class: "min-w-[455px] max-w-[455px]"}
+.grid{data: {controller: "products--carousel"}, class: "min-w-[455px] max-w-[455px] gap-2.5"} 
   - if @carousel.present?
-    .grid{class: "gap-2.5"} 
+    .w-full.relative{class: "h-[420px] max-h-[420px]"}
       - @carousel.each_with_index do |image, index|
-        .w-full{class: "max-h-[430px] min-h-[420px] #{index >= 1 ? "hidden" : nil}"}
-          = image_tag image, class: "carousel-img"
-      .grid.grid-cols-5{class: "gap-2.5"}
-        - @carousel.each_with_index do |image, index|
-          %button{class: index >= 5 ? "hidden" : nil}
-            = image_tag image.variant(:small), size: 100, class: "carousel-img"
+        = image_tag image, size: 420, data: {"products--carousel-target": "main", position: index + 1}, class: "#{index >= 1 ? "hidden" : nil} w-full h-full object-center object-cover border border-gray-100"
+      - if @carousel.size > 1
+        %button.py-3.px-1.absolute.items-center{class: "top-[40%] bg-black/5 hover:bg-black/10 transition-colors duration-200 text-white/50 hover:text-white"}
+          = icon("fa-solid", "angle-left", class: "text-2xl")
+        %button.py-3.px-1.absolute.items-center{class: "top-[40%] right-0 bg-black/5 hover:bg-black/10 transition-colors duration-200 text-white/50 hover:text-white"}
+          = icon("fa-solid", "angle-right", class: "text-2xl")
+    .grid.grid-cols-5.relative{class: "gap-2.5"}
+      - @carousel.each_with_index do |image, index|
+        = image_tag image.variant(:thumb), size: 100, data: {"products--carousel-target": "thumb", position: index + 1}, class: "#{index >= 5 ? "hidden" : nil} h-20 max-h-20 w-full object-center object-cover border border-gray-100 cursor-pointer"
+      - if @carousel.size > 5
+        %button.py-2.px-1.absolute.items-center{class: "top-[25%] bg-black/10"}
+          = icon("fa-solid", "angle-left", class: "text-xl text-white")
+        %button.py-2.px-1.absolute.items-center{class: "top-[25%] right-0 bg-black/10"}
+          = icon("fa-solid", "angle-right", class: "text-xl text-white")

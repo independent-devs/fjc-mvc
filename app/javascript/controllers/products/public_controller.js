@@ -21,6 +21,7 @@ export default class extends Controller {
     this.initRadios();
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
+    this.setActionBtn(true);
   }
 
   /* Actions */
