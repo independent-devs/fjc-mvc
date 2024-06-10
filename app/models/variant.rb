@@ -39,7 +39,7 @@ class Variant < ApplicationRecord
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
 
   validate :only_one_master, if: :only_one_master_condition
-  validate :product_has_variant, unless: :is_master
+  validate :product_supports_variant, unless: :is_master
 
   # Generators
   after_destroy :capture_price
@@ -71,10 +71,10 @@ class Variant < ApplicationRecord
     (new_record? && is_master) || (is_master_changed? && is_master_was)
   end
 
-  def product_has_variant
+  def product_supports_variant
     return if product.has_variant
 
-    errors.add(:product, I18n.t('variants.validate.product_has_variant'))
+    errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
   end
 
   def generate_thumbnail_url

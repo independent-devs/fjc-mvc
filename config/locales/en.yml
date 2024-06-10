@@ -61,7 +61,7 @@ en:
     validate:
       only_one_master: "cannot have more than one master per product."
       master_delete_attempt: "cannot delete a master variant."
-      product_has_variant: "does not support variant"
+      variant_not_supported: "does not support variant"
     table:
       thead:
         name: "Name"
