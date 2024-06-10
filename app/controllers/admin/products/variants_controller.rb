@@ -32,11 +32,11 @@ class Admin::Products::VariantsController < Admin::BaseController
     respond_to do |format|
       if @variant.update(product_variant_params)
         format.html { redirect_to admin_product_variants_url(@product), notice: I18n.t('variants.updated') }
+        format.turbo_stream
       else
         format.html { render :show, status: :unprocessable_entity }
+        format.turbo_stream { render status: :unprocessable_entity }
       end
-
-      format.turbo_stream
     end
   end
 

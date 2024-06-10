@@ -3,9 +3,13 @@
     = render NotificationComponent.new notif_type: "success", message: I18n.t('images.success')
   = turbo_stream.replace "data" do
     = render "data"
+  = turbo_stream.replace "img-count" do
+    #img-count
+      = @product.images.count
 - else
   = turbo_stream.prepend "notification-container" do
-    = render NotificationComponent.new notif_type: "error", message: I18n.t('images.failed')
+    = render NotificationComponent.new notif_type: "error", 
+    message: @product.errors[:images]&.first || I18n.t('images.failed')
 
 = turbo_stream.replace "uploading-container" do
   = render "uploading"
