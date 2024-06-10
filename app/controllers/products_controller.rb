@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   # GET /products/:slug?pid=:uuid
   def show
-    @carousel = @product.carousel
+    @carousel = @product.images.all
   end
 
   def variant_info; end

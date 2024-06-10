@@ -31,7 +31,7 @@ class CartsController < ApplicationController
       if create_cart current_user
         format.turbo_stream
       else
-        format.turbo_stream { render :error }
+        format.turbo_stream { render :error, status: :unprocessable_entity }
       end
     end
   end
@@ -41,7 +41,7 @@ class CartsController < ApplicationController
       if create_cart @guest_session
         format.turbo_stream
       else
-        format.turbo_stream { render :error }
+        format.turbo_stream { render :error, status: :unprocessable_entity }
       end
     end
   end
@@ -53,7 +53,7 @@ class CartsController < ApplicationController
       if @cart.update(cart_params)
         format.turbo_stream
       else
-        format.turbo_stream { render :error }
+        format.turbo_stream { render :error, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +65,7 @@ class CartsController < ApplicationController
       if @cart.update(cart_params)
         format.turbo_stream { render :item_update }
       else
-        format.turbo_stream { render :error }
+        format.turbo_stream { render :error, :unprocessable_entity }
       end
     end
   end

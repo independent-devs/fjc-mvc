@@ -1,0 +1,9 @@
+.text-gray-400.flex.gap-1
+  %span
+    = "LIMIT:"
+  .flex
+    #img-count
+      = @product.images.count
+    %div
+      = "/#{Product::MAX_IMAGES}"
+

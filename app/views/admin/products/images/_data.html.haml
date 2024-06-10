@@ -1,6 +1,8 @@
-%ul.form-table-body{id: "data", data: {controller: "sortable", "sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
-  - if @product.images.sort_by_position.present?
-    - @product.images.sort_by_position.each do |image|
+- images = @product.images.sort_by_position
+%ul.form-table-body{id: "data", data: {controller: "sortable", 
+"sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
+  - if images.present?
+    - images.each do |image|
       = render "item", image:
   - else
     %li.flex.justify-center.w-full.py-6.text-gray-400 

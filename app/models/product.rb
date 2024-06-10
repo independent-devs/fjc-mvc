@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   # Constants
+  MAX_IMAGES = 8
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ', '.' => '' }.freeze
@@ -61,15 +62,12 @@ class Product < ApplicationRecord
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :slug, format: { without: Regexp.union(SLUG_REGEX.keys) }
   validates :thumbnail, content_type: ALLOWED_IMAGE_TYPES
-  validates :images, content_type: ALLOWED_IMAGE_TYPES
+  validates :images, content_type: ALLOWED_IMAGE_TYPES,
+                     limit: { max: MAX_IMAGES, message: I18n.t('images.validate.max', max: MAX_IMAGES) }
 
   # Generators
-  before_validation :sanitize_slug, if: proc { |pr| pr.new_record? || pr.slug_changed? }
+  before_validation :sanitize_slug, if: :sanitize_slug_condition
   after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
-
-  def carousel(limit = 5)
-    images.limit(limit)
-  end
 
   private
 
@@ -89,6 +87,10 @@ class Product < ApplicationRecord
     # rubocop:disable Rails::SkipsModelValidations
     update_column(:thumbnail_url, url_for(thumbnail.variant(:card)))
     # rubocop:enable Rails::SkipsModelValidations
+  end
+
+  def sanitize_slug_condition
+    new_record? || slug_changed?
   end
 end
 

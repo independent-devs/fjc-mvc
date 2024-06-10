@@ -1,11 +1,10 @@
 %div{class: "min-w-[455px] max-w-[455px]"}
   - if @carousel.present?
-    .grid{class: "gap-2.5"}
-      .w-full{class: "max-h-[430px] min-h-[420px]"}
-        = image_tag @carousel.first, 
-        class: "w-full object-center object-cover h-full border"
+    .grid{class: "gap-2.5"} 
+      - @carousel.each_with_index do |image, index|
+        .w-full{class: "max-h-[430px] min-h-[420px] #{index >= 1 ? "hidden" : nil}"}
+          = image_tag image, class: "carousel-img"
       .grid.grid-cols-5{class: "gap-2.5"}
-        - @carousel.each do |image|
-          .w-full-h-full.grid.items-center
-            = image_tag image.variant(:small), size: 100, 
-            class: "w-full object-center object-cover h-full border"
+        - @carousel.each_with_index do |image, index|
+          %button{class: index >= 5 ? "hidden" : nil}
+            = image_tag image.variant(:small), size: 100, class: "carousel-img"

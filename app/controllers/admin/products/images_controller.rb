@@ -10,10 +10,12 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # PATCH/PUT /admin/product/:product_id/images/:id
   def update
-    @image.update(product_image_params[:image])
-
     respond_to do |format|
-      format.turbo_stream
+      if @image.update(product_image_params[:image])
+        format.turbo_stream
+      else
+        format.turbo_stream { render status: :unprocessable_entity }
+      end
     end
   end
 
@@ -28,10 +30,12 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # POST /admin/product/:product_id/images/upload
   def upload
-    @product.update(images: product_image_params[:images])
-
     respond_to do |format|
-      format.turbo_stream
+      if @product.update(images: product_image_params[:images])
+        format.turbo_stream
+      else
+        format.turbo_stream { render status: :unprocessable_entity }
+      end
     end
   end
 

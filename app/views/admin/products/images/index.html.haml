@@ -3,7 +3,8 @@
   .w-full.flex.flex-col.gap-10
     = render "drag_and_drop"
     = render "uploading"
-  %div
+  .grid
+    = render "limit"
     %ul.form-table-head.grid.grid-cols-2
       %li.flex.items-center
         = icon "fa-solid", "up-down", class: "ml-2 mr-6 text-lg text-zinc-400"

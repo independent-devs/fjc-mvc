@@ -45,11 +45,11 @@ class Admin::ProductsController < Admin::BaseController
     respond_to do |format|
       if @product.update(deleted_at: DateTime.now)
         format.html { redirect_to admin_products_url, error: I18n.t('products.destroyed') }
+        format.turbo_stream
       else
         format.html { redirect_to admin_products_url, notice: I18n.t('products.unexpected') }
+        format.turbo_stream { render status: :unprocessable_entity }
       end
-
-      format.turbo_stream
     end
   end
 

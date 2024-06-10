@@ -1,3 +1,4 @@
 = form.number_field :cost, id: dom_id(form.object, "cost"), placeholder: "0.00", step: :any,
+value: form.object.errors.present? ? form.object.cost_was : form.object.cost,
 class: "input-table", data: { action: "change->autosave#save" }
 
