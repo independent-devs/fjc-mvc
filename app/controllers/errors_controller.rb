@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ErrorsController < ApplicationController
+class ErrorsController < BaseController
   def not_found
     render status: :not_found
   end

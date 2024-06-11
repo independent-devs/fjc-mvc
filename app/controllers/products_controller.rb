@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProductsController < ApplicationController
+class ProductsController < BaseController
   before_action :authenticate_user!, only: %i[buy_now]
   before_action :set_variant, only: %i[
     show

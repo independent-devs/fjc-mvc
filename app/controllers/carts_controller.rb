@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CartsController < ApplicationController
+class CartsController < BaseController
   # Authentication
   before_action :authenticate_user!, only: %i[
     sync_cart
@@ -105,15 +105,6 @@ class CartsController < ApplicationController
       current_user.carts.or(Cart.where(guest_session:)).not_ordered.detailed
     else
       current_user.carts.not_ordered.detailed
-    end
-  end
-
-  def set_guest_session
-    if cookies.signed[:guest_session].blank?
-      cookies.signed.permanent[:guest_session] = (@guest_session = GuestSession.create).id
-    elsif (@guest_session = GuestSession.find_by(id: cookies.signed[:guest_session]) || GuestSession.create).new_record?
-      cookies.delete :guest_session
-      cookies.signed.permanent[:guest_session] = @guest_session.id
     end
   end
 end
