@@ -29,11 +29,8 @@ export default class extends Controller {
 
   quantityChange(event) {
     event.target.value = event.target.value || this.quantityTarget.min;
-    this.updateQuantity();
-  }
-
-  quantityOnEnter(event) {
     event.target.blur();
+    this.updateQuantity();
   }
 
   updateQuantity() {

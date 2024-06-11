@@ -81,6 +81,7 @@ export default class extends Controller {
 
   quantityChange(event) {
     event.target.value = event.target.value || this.quantityTarget.min;
+    event.target.blur();
   }
 
   /* Radio Inputs */
