@@ -4,9 +4,9 @@
       - @carousel.each_with_index do |image, index|
         = image_tag image, size: 420, data: {"products--carousel-target": "main", position: index + 1}, class: "#{index >= 1 ? "hidden" : nil} w-full h-full object-center object-cover border border-gray-100"
       - if @carousel.size > 1
-        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#prevImg"}, class: "top-[40%] bg-black/5 hover:bg-black/10 transition-colors duration-200 text-white/50 hover:text-white"}
+        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#prevImg"}, class: "top-[40%] bg-black/5 hover:bg-black/15 transition-colors duration-200 text-white/50 hover:text-white"}
           = icon("fa-solid", "angle-left", class: "text-2xl")
-        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#nextImg"}, class: "top-[40%] right-0 bg-black/5 hover:bg-black/10 transition-colors duration-200 text-white/50 hover:text-white"}
+        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#nextImg"}, class: "top-[40%] right-0 bg-black/5 hover:bg-black/15 transition-colors duration-200 text-white/50 hover:text-white"}
           = icon("fa-solid", "angle-right", class: "text-2xl")
     .grid.grid-cols-5.relative{data: {"products--carousel-target": "items", total_items: @carousel.size}, class: "gap-2.5"}
       - @carousel.each_with_index do |image, index|
