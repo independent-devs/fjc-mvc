@@ -133,4 +133,4 @@ gem 'ancestry', '~> 4.3'
 gem 'rack-tracker', '~> 1.13'
 
 # Attachment validations
-gem 'active_storage_validations'
+gem 'active_storage_validations', '~> 1.1'
