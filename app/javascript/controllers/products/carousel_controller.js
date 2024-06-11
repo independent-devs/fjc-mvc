@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="product--carousel"
+// Connects to data-controller="products--carousel"
 export default class extends Controller {
   static targets = ["main", "thumb", "items"];
 

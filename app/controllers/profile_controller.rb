@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class ProfileController < ApplicationController
+class ProfileController < BaseController
   def index; end
 end
