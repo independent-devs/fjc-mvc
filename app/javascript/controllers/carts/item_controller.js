@@ -30,16 +30,16 @@ export default class extends Controller {
   quantityChange(event) {
     event.target.value = event.target.value || this.quantityTarget.min;
     event.target.blur();
-    this.updateQuantity();
+    this.updateQuantity(0);
   }
 
-  updateQuantity() {
+  updateQuantity(delay = 1000) {
     clearTimeout(this.timeout);
 
     this.timeout = setTimeout(() => {
       this.quantityTarget.disabled = true;
       this.updateItem();
-    }, 1000);
+    }, delay);
   }
 
   updateItem() {
