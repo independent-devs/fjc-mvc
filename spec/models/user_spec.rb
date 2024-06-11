@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'User using mobile number without email' do
-    user = create(:user, email: nil)
+    user = create(:user, :auth_phone_no)
 
     expect(user.email).to eq(nil)
     expect(user.phone_no).to be_present
@@ -13,22 +13,18 @@ RSpec.describe User, type: :model do
   end
 
   it 'User using google auth without mobile number' do
-    oauth = Faker::Omniauth.google
-    user = create(:user, phone_no: nil, email: oauth[:info][:email], uid: oauth[:uid],
-                         provider: oauth[:provider])
+    user = create(:user, :oauth_google)
 
-    expect(user.email).to eq(oauth[:info][:email])
+    expect(user.email).to be_present
     expect(user.phone_no).to eq(nil)
     expect(user.uid).to be_present
     expect(user.provider).to eq('google_oauth2')
   end
 
   it 'User using facebook auth without mobile number' do
-    oauth = Faker::Omniauth.facebook
-    user = create(:user, phone_no: nil, email: oauth[:info][:email], uid: oauth[:uid],
-                         provider: oauth[:provider])
+    user = create(:user, :oauth_facebook)
 
-    expect(user.email).to eq(oauth[:info][:email])
+    expect(user.email).to be_present
     expect(user.phone_no).to eq(nil)
     expect(user.uid).to be_present
     expect(user.provider).to eq('facebook')

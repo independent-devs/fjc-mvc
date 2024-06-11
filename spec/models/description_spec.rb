@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Description, type: :model do
-  let(:description) { create(:description) }
+  let(:description) { build(:description) }
 
-  it 'create description' do
+  it 'Create description' do
+    expect(description).to be_valid
     expect(description.description).to be_present
     expect(description.product).to be_present
   end
