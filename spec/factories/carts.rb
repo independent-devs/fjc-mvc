@@ -7,6 +7,33 @@ FactoryBot.define do
     variant { create(:variant) }
     qty { Faker::Number.non_zero_digit }
     order { Order.last || create(:order) }
+
+    trait :guest_cart do
+      order { nil }
+      user { nil }
+    end
+
+    trait :user_cart do
+      guest_session { nil }
+      order { nil }
+    end
+
+    trait :user_cart_synced do
+      order { nil }
+    end
+
+    trait :guest_session_order do
+      user { nil }
+    end
+
+    trait :user_order do
+      guest_session { nil }
+    end
+
+    trait :invalid_check do
+      user { nil }
+      guest_session { nil }
+    end
   end
 end
 

@@ -36,6 +36,7 @@ class Cart < ApplicationRecord
   # Validations
   validates :qty, numericality: { greater_than: 0 }
   validates :guest_session, presence: true, unless: :user
+  validates :user, presence: true, unless: :guest_session
 end
 
 # == Schema Information

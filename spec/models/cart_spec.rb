@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
   it 'Guest cart without user' do
-    cart = create(:cart, user: nil, order: nil)
+    cart = create(:cart, :guest_cart)
 
     expect(cart.user).to eq(nil)
     expect(cart.variant).to be_present
@@ -13,7 +13,7 @@ RSpec.describe Cart, type: :model do
   end
 
   it 'User cart not synced with guest' do
-    cart = create(:cart, guest_session: nil, order: nil)
+    cart = create(:cart, :user_cart)
 
     expect(cart.user).to be_present
     expect(cart.variant).to be_present
@@ -22,7 +22,7 @@ RSpec.describe Cart, type: :model do
   end
 
   it 'User cart synced with guest' do
-    cart = create(:cart, order: nil)
+    cart = create(:cart, :user_cart_synced)
 
     expect(cart.user).to be_present
     expect(cart.variant).to be_present
@@ -31,7 +31,7 @@ RSpec.describe Cart, type: :model do
   end
 
   it 'User ordered cart not synced with guest' do
-    cart = create(:cart, guest_session: nil)
+    cart = create(:cart, :user_order)
 
     expect(cart.user).to be_present
     expect(cart.variant).to be_present
@@ -46,6 +46,12 @@ RSpec.describe Cart, type: :model do
     expect(cart.variant).to be_present
     expect(cart.guest_session).to be_present
     expect(cart.order).to be_present
+  end
+
+  it 'Invalid Cart' do
+    cart = build(:cart, :invalid_check)
+
+    expect(cart).not_to be_valid
   end
 end
 
