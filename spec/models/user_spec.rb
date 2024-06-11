@@ -4,8 +4,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'User using mobile number without email' do
-    user = create(:user, :auth_phone_no)
+    user = build(:user, :auth_phone_no)
 
+    expect(user).to be_valid
     expect(user.email).to eq(nil)
     expect(user.phone_no).to be_present
     expect(user.uid).to be_blank
@@ -13,8 +14,9 @@ RSpec.describe User, type: :model do
   end
 
   it 'User using google auth without mobile number' do
-    user = create(:user, :oauth_google)
+    user = build(:user, :oauth_google)
 
+    expect(user).to be_valid
     expect(user.email).to be_present
     expect(user.phone_no).to eq(nil)
     expect(user.uid).to be_present
@@ -22,8 +24,9 @@ RSpec.describe User, type: :model do
   end
 
   it 'User using facebook auth without mobile number' do
-    user = create(:user, :oauth_facebook)
+    user = build(:user, :oauth_facebook)
 
+    expect(user).to be_valid
     expect(user.email).to be_present
     expect(user.phone_no).to eq(nil)
     expect(user.uid).to be_present
