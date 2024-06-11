@@ -30,7 +30,7 @@ FactoryBot.define do
       guest_session { nil }
     end
 
-    trait :invalid_check do
+    trait :not_owned do
       user { nil }
       guest_session { nil }
     end

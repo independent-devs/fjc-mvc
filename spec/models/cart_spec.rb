@@ -53,8 +53,8 @@ RSpec.describe Cart, type: :model do
     expect(cart.order).to be_present
   end
 
-  it 'Invalid Cart' do
-    cart = build(:cart, :invalid_check)
+  it 'Cart should have a parent/owned' do
+    cart = build(:cart, :not_owned)
 
     expect(cart).not_to be_valid
   end
