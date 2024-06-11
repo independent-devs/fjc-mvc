@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Option, type: :model do
-  let(:option) { create(:option) }
+  let(:option) { build(:option) }
 
-  it 'create option' do
+  it 'Create option' do
+    expect(option).to be_valid
     expect(option.name).to be_present
   end
 end

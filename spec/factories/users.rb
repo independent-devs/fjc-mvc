@@ -8,6 +8,28 @@ FactoryBot.define do
     password { Faker::Internet.password }
     admin { false }
     provider { 'phone_no' }
+
+    trait :auth_phone_no do
+      email { nil }
+    end
+
+    trait :oauth_facebook do
+      oauth = Faker::Omniauth.facebook
+
+      phone_no { nil }
+      email { oauth[:info][:email] }
+      uid { oauth[:uid] }
+      provider { oauth[:provider] }
+    end
+
+    trait :oauth_google do
+      oauth = Faker::Omniauth.google
+
+      phone_no { nil }
+      email { oauth[:info][:email] }
+      uid { oauth[:uid] }
+      provider { oauth[:provider] }
+    end
   end
 end
 
