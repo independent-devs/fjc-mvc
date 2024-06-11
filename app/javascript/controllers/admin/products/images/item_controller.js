@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="admin--product--images--item"
+// Connects to data-controller="admin--products--images--item"
 export default class extends Controller {
   delete() {
     const isConfirmed = confirm("Are you sure you want to delete image?");

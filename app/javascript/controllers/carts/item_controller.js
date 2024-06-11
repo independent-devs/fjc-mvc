@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="cart--item"
+// Connects to data-controller="carts--item"
 export default class extends Controller {
   static targets = ["quantity"];
 
@@ -15,6 +15,25 @@ export default class extends Controller {
     if (this.quantityTarget.disabled) return;
     this.quantityTarget.stepDown();
     this.updateQuantity();
+  }
+
+  quantityInput(event) {
+    if (Number(event.target.value) < 0)
+      event.target.value = Math.abs(event.target.value);
+    else if (
+      (event.target.value != "" || event.data == "e") &&
+      Number(event.target.value) == 0
+    )
+      event.target.value = this.quantityTarget.min;
+  }
+
+  quantityChange(event) {
+    event.target.value = event.target.value || this.quantityTarget.min;
+    this.updateQuantity();
+  }
+
+  quantityOnEnter(event) {
+    event.target.blur();
   }
 
   updateQuantity() {
