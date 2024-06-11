@@ -9,7 +9,7 @@ FactoryBot.define do
     trackable { true }
     backorderable { false }
     price { Faker::Commerce.price }
-    sku { nil }
+    sku { Faker::Barcode.ean(13) }
   end
 end
 
