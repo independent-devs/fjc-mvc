@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   # Constants
-  MAX_IMAGES = 8
+  MAX_IMAGES = 15
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
   SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
                  '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ', '.' => '' }.freeze
