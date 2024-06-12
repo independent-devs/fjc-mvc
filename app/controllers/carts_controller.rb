@@ -10,9 +10,13 @@ class CartsController < BaseController
   ]
 
   # Setters
-  before_action :set_variant, only: %i[add_to_cart guest_add_to_cart]
+  before_action :set_variant, only: %i[
+    add_to_cart
+    guest_add_to_cart
+  ]
   before_action :set_guest_session, only: %i[
     index
+    sync_cart
     guest_add_to_cart
     guest_item_update
   ]
@@ -47,7 +51,7 @@ class CartsController < BaseController
   end
 
   def item_update
-    get_cart(current_user)
+    @cart = get_cart(current_user)
 
     respond_to do |format|
       if @cart.update(cart_params)
@@ -59,7 +63,7 @@ class CartsController < BaseController
   end
 
   def guest_item_update
-    get_cart(@guest_session)
+    @cart = get_cart(@guest_session)
 
     respond_to do |format|
       if @cart.update(cart_params)
@@ -70,7 +74,17 @@ class CartsController < BaseController
     end
   end
 
-  def sync_cart; end
+  def sync_cart
+    @cart = get_cart(@guest_session)
+
+    respond_to do |format|
+      if @cart.user.nil? && @cart.update(user: current_user)
+        format.turbo_stream
+      else
+        format.turbo_stream { render :unprocessable_entity }
+      end
+    end
+  end
 
   def sync_all_carts; end
 
@@ -89,7 +103,7 @@ class CartsController < BaseController
   end
 
   def get_cart(parent)
-    @cart = parent.carts.single_using_uuid(params[:uuid])
+    parent.carts.single_using_uuid(params[:uuid])
   end
 
   def create_cart(parent)

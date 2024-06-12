@@ -16,6 +16,11 @@ class Cart < ApplicationRecord
       .joins('INNER JOIN products ON variants.product_id = products.id')
       .find_by!(uuid:)
   }
+  scope :total_count, lambda {
+    joins(:variant)
+      .joins('INNER JOIN products ON products.id = variants.product_id AND products.deleted_at IS NULL')
+      .count
+  }
   scope :detailed,
         lambda {
           select('carts.*')
