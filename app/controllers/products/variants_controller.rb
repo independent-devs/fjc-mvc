@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Products::VariantsController < BaseController
-  before_action :authenticate_user!, only: %i[add_to_cart]
+  before_action :authenticate_user!, only: %i[add_to_cart buy_now]
   before_action :set_guest_session, only: %i[guest_add_to_cart guest_buy_now]
   before_action :set_product_variant, only: %i[info add_to_cart guest_add_to_cart buy_now guest_buy_now]
 
@@ -9,7 +9,7 @@ class Products::VariantsController < BaseController
 
   def add_to_cart
     respond_to do |format|
-      if create_cart(current_user, @variant, cart_params[:qty])
+      if create_cart(current_user)
         format.turbo_stream { render locals: { message: I18n.t('carts.user_added_cart') } }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -19,7 +19,7 @@ class Products::VariantsController < BaseController
 
   def guest_add_to_cart
     respond_to do |format|
-      if create_cart(@guest_session, @variant, cart_params[:qty])
+      if create_cart(@guest_session)
         format.turbo_stream { render :add_to_cart, locals: { message: I18n.t('carts.guest_added_cart') } }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -47,5 +47,13 @@ class Products::VariantsController < BaseController
     when 'info'
       render :error, status: :not_found
     end
+  end
+
+  def create_cart(parent)
+    if (cart = parent.carts.find_by(variant: @variant)).present?
+      return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
+    end
+
+    parent.carts.new(qty: cart_params[:qty], variant: @variant).save
   end
 end
