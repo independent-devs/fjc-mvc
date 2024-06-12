@@ -1,0 +1,8 @@
+= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
+  = render "item_checkbox", cart: @cart
+
+= turbo_stream.remove "cart-#{@cart.uuid}-guest-display"
+
+= turbo.replace "cart-#{cart.uuid}-update-url" do
+  = render "item_update_url", cart: @cart
+

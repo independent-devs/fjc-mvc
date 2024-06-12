@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="carts--item"
 export default class extends Controller {
-  static targets = ["quantity"];
+  static targets = ["quantity", "updateUrl"];
 
   /* Quantity */
   increment() {
@@ -46,7 +46,7 @@ export default class extends Controller {
     const formData = new FormData();
     formData.append("cart[qty]", this.quantityTarget.value);
 
-    fetch(this.element.dataset.url, {
+    fetch(this.updateUrlTarget.dataset.url, {
       method: "PUT",
       body: formData,
       headers: {
