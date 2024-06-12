@@ -14,7 +14,7 @@ class Cart < ApplicationRecord
     select('carts.*, variants.price, products.currency')
       .joins(:variant)
       .joins('INNER JOIN products ON variants.product_id = products.id')
-      .find_by!(uuid:)
+      .find_by!(uuid:, order: nil)
   }
   scope :total_count, lambda {
     joins(:variant)
@@ -34,7 +34,8 @@ class Cart < ApplicationRecord
             .joins(:variant)
             # products
             .select('products.name AS product_name, products.currency, ' \
-                    'products.thumbnail_url AS product_thumbnail')
+                    'products.thumbnail_url AS product_thumbnail, ' \
+                    'products.slug AS product_slug, products.uuid AS product_uuid')
             .joins('INNER JOIN products ON products.id = variants.product_id AND products.deleted_at IS NULL')
             .order(id: :desc)
         }

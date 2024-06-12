@@ -31,16 +31,19 @@ export default class extends Controller {
       return;
     }
 
-    fetch(`${this.baseURL}/carts/${this.variantID}/${this.addToCartPath}`, {
-      method: "POST",
-      body: this.cartFormData,
-      headers: {
-        Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
-      },
-    })
+    fetch(
+      `${this.productID}/variants/${this.variantID}/${this.addToCartPath}`,
+      {
+        method: "POST",
+        body: this.cartFormData,
+        headers: {
+          Accept: "text/vnd.turbo-stream.html",
+          "X-CSRF-Token": document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content"),
+        },
+      }
+    )
       .then((res) => res.text())
       .then((html) => Turbo.renderStreamMessage(html));
   }
@@ -125,7 +128,7 @@ export default class extends Controller {
       ? this.commonVariant
       : event.target.dataset.variantIds;
 
-    fetch(`variant_info/${this.productID}/${variantID}`, {
+    fetch(`${this.productID}/variants/${variantID}/info`, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html",

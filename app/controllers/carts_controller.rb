@@ -1,25 +1,8 @@
 # frozen_string_literal: true
 
 class CartsController < BaseController
-  # Authentication
-  before_action :authenticate_user!, only: %i[
-    sync_cart
-    add_to_cart
-    sync_all_carts
-    item_update
-  ]
-
-  # Setters
-  before_action :set_variant, only: %i[
-    add_to_cart
-    guest_add_to_cart
-  ]
-  before_action :set_guest_session, only: %i[
-    index
-    sync_cart
-    guest_add_to_cart
-    guest_item_update
-  ]
+  before_action :authenticate_user!, only: %i[sync sync_all item_update destroy]
+  before_action :set_guest_session, only: %i[index sync guest_item_update guest_destroy]
 
   def index
     @carts =
@@ -30,24 +13,12 @@ class CartsController < BaseController
        end)
   end
 
-  def add_to_cart
-    respond_to do |format|
-      if create_cart current_user
-        format.turbo_stream
-      else
-        format.turbo_stream { render :error, status: :unprocessable_entity }
-      end
-    end
+  def destroy
+    get_cart(current_user).destroy
   end
 
-  def guest_add_to_cart
-    respond_to do |format|
-      if create_cart @guest_session
-        format.turbo_stream
-      else
-        format.turbo_stream { render :error, status: :unprocessable_entity }
-      end
-    end
+  def guest_destroy
+    get_cart(@guest_session).destroy
   end
 
   def item_update
@@ -74,7 +45,7 @@ class CartsController < BaseController
     end
   end
 
-  def sync_cart
+  def sync
     @cart = get_cart(@guest_session)
 
     respond_to do |format|
@@ -86,16 +57,12 @@ class CartsController < BaseController
     end
   end
 
-  def sync_all_carts; end
+  def sync_all; end
 
   private
 
   def cart_params
     params.require(:cart).permit(:qty, :variant_id)
-  end
-
-  def update_cart
-    @cart.update(cart_params)
   end
 
   def set_variant
@@ -104,14 +71,6 @@ class CartsController < BaseController
 
   def get_cart(parent)
     parent.carts.single_using_uuid(params[:uuid])
-  end
-
-  def create_cart(parent)
-    if (cart = parent.carts.find_by(variant: @variant)).present?
-      return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
-    end
-
-    parent.carts.new(qty: cart_params[:qty], variant: @variant).save
   end
 
   def user_carts_with_guest(guest_session)
