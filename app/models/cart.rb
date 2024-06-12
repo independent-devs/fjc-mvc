@@ -2,7 +2,7 @@
 
 class Cart < ApplicationRecord
   # Relations
-  belongs_to :variant
+  belongs_to :variant, optional: true
   belongs_to :user, optional: true
   belongs_to :order, optional: true
   belongs_to :guest_session, optional: true
@@ -41,6 +41,7 @@ class Cart < ApplicationRecord
         }
 
   # Validations
+  validates :variant_id, presence: true
   validates :qty, numericality: { greater_than: 0 }
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
