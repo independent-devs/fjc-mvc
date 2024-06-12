@@ -2,5 +2,14 @@
 
 resources :products, param: :slug, only: %i[index show]
 
-post 'products/buy_now/:pid/:vid', to: 'products#buy_now', as: "buy_now"
-get 'products/variant_info/:pid/:vid', to: 'products#variant_info', as: "variant_info", defaults: { format: 'turbo_stream' }
+resources :products, param: :uuid, only: [] do
+  resources :variants, except: [], param: :variant_uuid, module: :products do
+    member do
+      get :info
+      post :add_to_cart
+      post :guest_add_to_cart
+      post :buy_now
+      post :guest_buy_now
+    end
+  end
+end

@@ -9,4 +9,12 @@ class BaseController < ApplicationController
       cookies.signed.permanent[:guest_session] = @guest_session.id
     end
   end
+
+  def create_cart(parent, variant, qty)
+    if (cart = parent.carts.find_by(variant:)).present?
+      return cart.update(qty: cart.qty + qty.to_i.abs)
+    end
+
+    parent.carts.new(qty:, variant:).save
+  end
 end

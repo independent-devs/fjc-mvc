@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 class ProductsController < BaseController
-  before_action :authenticate_user!, only: %i[buy_now]
-  before_action :set_variant, only: %i[
-    show
-    buy_now
-    guest_buy_now
-    variant_info
-  ]
+  before_action :set_product, only: %i[show]
 
   # GET /products
   def index
@@ -19,37 +13,14 @@ class ProductsController < BaseController
     @carousel = @product.images.all
   end
 
-  def variant_info; end
-
-  def buy_now; end
-
-  def guest_buy_now; end
-
   private
 
-  def create_cart; end
-
-  def set_variant
-    set_product
-    return if params[:vid].blank?
-
-    @variant = @product.variants.single_using_uuid(params[:vid])
+  def set_product
+    @product = Product.single_using_uuid(params[:pid])
   rescue ActiveRecord::RecordNotFound
     case action_name
-    when 'variant_info'
-      render 'variant_not_found', status: :not_found
     when 'show'
       render 'not_found', status: :not_found
     end
-  end
-
-  def set_product
-    @product =
-      (case action_name
-       when 'show'
-         Product.single_public(params[:slug], params[:pid])
-       else
-         Product.single_using_uuid(params[:pid])
-       end)
   end
 end

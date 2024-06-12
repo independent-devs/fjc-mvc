@@ -3,7 +3,7 @@
     = render PriceRangeComponent.new lowest: @variant.price, currency: @product.currency
 
 = turbo_stream.replace "quantity-container" do
-  = render "quantity", stock_num: @variant.count_on_hand
+  = render "products/quantity", stock_num: @variant.count_on_hand
 
 = turbo_stream.replace "vid" do
-  = render "variant_uuid", uuid: @variant.uuid
+  = render "products/variant_uuid", uuid: @variant.uuid
