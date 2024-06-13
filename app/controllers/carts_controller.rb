@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CartsController < BaseController
-  before_action :set_guest_session, only: %i[index sync guest_update guest_destroy]
+  before_action :set_guest_session, only: %i[index sync sync_all guest_update guest_destroy]
   before_action :set_cart, only: %i[update guest_update destroy guest_destroy sync]
   load_and_authorize_resource except: %i[index]
 
