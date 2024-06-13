@@ -4,10 +4,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, guest_session)
-    if guest_session.present? # Guest
-      # carts controller
-      can(:guest_update, Cart, guest_session:, order: nil, user: nil) if user.blank?
-      can(:guest_destroy, Cart, guest_session:, order: nil)
+    # carts controller
+    if guest_session.present? && user.blank? # Guest
+      can(%i[guest_update guest_destroy], Cart, guest_session:, order: nil, user: nil)
     end
 
     return if user.blank? # Authenticated
@@ -18,7 +17,6 @@ class Ability
       can(:sync_all, Cart)
     end
 
-    can(:update, Cart, user:, order: nil)
-    can(:destroy, Cart, user:)
+    can(%i[update destroy], Cart, user:, order: nil)
   end
 end
