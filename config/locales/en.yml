@@ -5,6 +5,7 @@ en:
     title: "About"
   error:
     something_went_wrong: "Something went wrong."
+    unathorized: "You are not authorized"
   products:
     all: "All products"
     title: "Products"

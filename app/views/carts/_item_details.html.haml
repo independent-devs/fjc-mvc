@@ -8,10 +8,10 @@
         = link_to product_path(cart.product_slug, pid: cart.product_uuid),
           class: "leading-tight line-clamp-2 text-[15px]" do
           = cart.product_name
-        - if cart.guest_session_id.present? && cart.user_id.nil?
+        - if cannot?(:update, cart)
           .flex.items-center{id: "cart-#{cart.uuid}-guest-cart-display", class: "gap-2.5"}
             = render TagComponent.new name: "Guest", variant: :warning
-            - if user_signed_in?
+            - if can?(:sync, cart)
               = icon("fa-solid", "arrows-rotate", class: "text-gray-400 text-lg hover:text-gray-600")
   - unless cart.is_master
     %button.flex.flex-col.text-zinc-500.items-center{id: "cart-#{cart.uuid}-variant-pair"}

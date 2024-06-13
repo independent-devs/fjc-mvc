@@ -3,13 +3,23 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, guest_session)
+    if guest_session.present?
+      # carts controller
+      can(:guest_update, Cart, guest_session:, order: nil) if user.blank?
+      can(:guest_destroy, Cart, guest_session:)
+    end
+
     return if user.blank?
 
-    can :read, :all
-    return unless user.admin?
+    # carts controller
+    can(:update, Cart, user:, order: nil)
+    can(:sync, Cart, user: nil, guest_session:)
+    can(:destroy, Cart, user:)
 
-    can :manage, :all
+    # return unless user.admin?
+    #
+    # can :manage, :all
 
     # rThe frrst argument to `can` is the action you are giving the user
     # permission to do.
