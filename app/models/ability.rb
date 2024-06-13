@@ -14,8 +14,9 @@ class Ability
 
     # carts controller
     can(:update, Cart, user:, order: nil)
-    can(:sync, Cart, user: nil, guest_session:, order: nil)
     can(:destroy, Cart, user:)
+    can(:sync, Cart, user: nil, guest_session:, order: nil)
+    can(:sync_all, Cart) if guest_session.present?
 
     # return unless user.admin?
     #
