@@ -4,39 +4,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, guest_session)
-    if guest_session.present?
-      # carts controller
-      can(:guest_update, Cart, guest_session:, order: nil) if user.blank?
-      can(:guest_destroy, Cart, guest_session:)
+    # carts controller
+    if guest_session.present? && user.blank? # Guest
+      can(%i[guest_update guest_destroy], Cart, guest_session:, order: nil, user: nil)
     end
 
-    return if user.blank?
+    return if user.blank? # Authenticated
 
     # carts controller
-    can(:update, Cart, user:, order: nil)
-    can(:sync, Cart, user: nil, guest_session:)
-    can(:destroy, Cart, user:)
+    if guest_session.present?
+      can(:sync, Cart, guest_session:, order: nil, user: nil)
+      can(:sync_all, Cart)
+    end
 
-    # return unless user.admin?
-    #
-    # can :manage, :all
-
-    # rThe frrst argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, published: true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
+    can(%i[update destroy], Cart, user:, order: nil)
   end
 end
