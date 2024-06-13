@@ -34,3 +34,7 @@
 !/app/assets/builds/.keep
 .env
 node_modules
+
+/config/credentials/development.key
+
+/config/credentials/production.key
