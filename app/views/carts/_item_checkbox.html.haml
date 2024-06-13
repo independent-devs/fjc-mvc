@@ -1,1 +1,1 @@
-= check_box_tag "cart_ids", cart.uuid, false, data: {"carts--select-all-target": "checkbox"}, id: "cart-#{cart.uuid}-checkbox", disabled: user_signed_in? && cart.user_id.nil?, class: "checkbox-primary"
+= check_box_tag "cart_ids", cart.uuid, false, data: {"carts--select-all-target": "checkbox"}, id: "cart-#{cart.uuid}-checkbox", disabled: cannot?(:guest_update, cart) && cannot?(:update, cart), class: "checkbox-primary"

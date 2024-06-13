@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class BaseController < ApplicationController
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden }
+      format.html { redirect_to root_path, alert: exception.message }
+      format.turbo_stream { render 'errors/unauthorized', status: :unauthorized }
+    end
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, @guest_session)
+  end
+
   def set_guest_session
     if cookies.signed[:guest_session].blank?
       cookies.signed.permanent[:guest_session] = (@guest_session = GuestSession.create).id
