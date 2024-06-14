@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class TabComponent < ViewComponent::Base
-  attr_reader :name, :path
+  attr_reader :path
 
-  def initialize(name:, path:)
-    @name = name
+  def initialize(path:)
     @path = path
     super
   end

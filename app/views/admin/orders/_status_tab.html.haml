@@ -1,0 +1,14 @@
+.font-medium.text-center.text-gray-500.border-b.border-gray-200
+  %ul.flex.gap-2.text-sm
+    %li
+      = render TabComponent.new path: admin_orders_path(status: :pending) do
+        = t("orders.tabs.pending")
+    %li
+      = render TabComponent.new path: admin_orders_path(status: :shipped) do
+        = t("orders.tabs.shipped")
+    %li
+      = render TabComponent.new path: admin_orders_path(status: :fullfilled) do
+        = t("orders.tabs.fullfilled")
+    %li
+      = render TabComponent.new path: admin_orders_path(status: :unfullfilled) do 
+        = t("orders.tabs.unfullfilled")

@@ -1,11 +1,15 @@
 .font-medium.text-center.text-gray-500.border-b.border-gray-200
-  %ul.flex.flex-wrap.text-sm
-    %li.me-2
-      = render TabComponent.new name: t("products.tabs.details"), path: admin_product_path(@product)
-    %li.me-2
-      = render TabComponent.new name: t("products.tabs.images"), path: admin_product_images_path(@product)
+  %ul.flex.gap-2.text-sm
+    %li
+      = render TabComponent.new path: admin_product_path(@product) do
+        = t("products.tabs.details")
+    %li
+      = render TabComponent.new path: admin_product_images_path(@product) do
+        = t("products.tabs.images")
     - if @product.has_variant 
-      %li.me-2
-        = render TabComponent.new name: t("products.tabs.variants"), path: admin_product_variants_path(@product)
-    %li.me-2
-      = render TabComponent.new name: t("products.tabs.stocks"), path: admin_product_stocks_path(@product)
+      %li
+        = render TabComponent.new path: admin_product_variants_path(@product) do
+          = t("products.tabs.variants")
+    %li
+      = render TabComponent.new path: admin_product_stocks_path(@product) do 
+        = t("products.tabs.stocks")
