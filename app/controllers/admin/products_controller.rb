@@ -5,7 +5,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /admin/products
   def index
-    @products = Product.not_deleted.sort_by_latest
+    @pagy, @products = pagy(Product.not_deleted.sort_by_latest)
   end
 
   # GET /admin/products/1
