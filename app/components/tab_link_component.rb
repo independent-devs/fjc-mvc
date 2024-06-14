@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TabComponent < ViewComponent::Base
+class TabLinkComponent < ViewComponent::Base
   attr_reader :path
 
   def initialize(path:)

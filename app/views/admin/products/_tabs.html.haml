@@ -1,15 +1,15 @@
 .font-medium.text-center.text-gray-500.border-b.border-gray-200
   %ul.flex.gap-2.text-sm
     %li
-      = render TabComponent.new path: admin_product_path(@product) do
+      = render TabLinkComponent.new path: admin_product_path(@product) do
         = t("products.tabs.details")
     %li
-      = render TabComponent.new path: admin_product_images_path(@product) do
+      = render TabLinkComponent.new path: admin_product_images_path(@product) do
         = t("products.tabs.images")
     - if @product.has_variant 
       %li
-        = render TabComponent.new path: admin_product_variants_path(@product) do
+        = render TabLinkComponent.new path: admin_product_variants_path(@product) do
           = t("products.tabs.variants")
     %li
-      = render TabComponent.new path: admin_product_stocks_path(@product) do 
+      = render TabLinkComponent.new path: admin_product_stocks_path(@product) do 
         = t("products.tabs.stocks")
