@@ -2,7 +2,7 @@
   %td.flex.gap-2.items-center
     - if product.thumbnail.attached?
       = image_tag(product.thumbnail.variant(:small), size: 100, 
-      class: "w-7 h-7 object-cover object-center rounded border")
+      class: "w-7 h-7 min-h-7 min-w-7 object-cover object-center rounded border")
     = product.name
   %td
     = render PriceRangeComponent.new lowest: product.lowest_price, 

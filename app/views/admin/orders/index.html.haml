@@ -1,2 +1,19 @@
-.margin-max-screen.py-8
-  Orders
+.margin-max-screen.py-8.space-y-5
+  = render "status_tab"
+  .flex.flex-col.gap-5
+    %h2.font-semibold.text-xl
+      = t("orders.title")
+    %table
+      %thead
+        %tr
+          %th= t("orders.table.thead.order_id")
+          %th= t("orders.table.thead.ordered_at")
+          %th= t("orders.table.thead.ordered_by")
+      - if @orders.present?
+        - @orders.each do |product|
+          = render "item", product:
+      - else
+        %tr
+          %td= t("orders.no_list_found")
+          %td
+          %td

@@ -7,6 +7,12 @@ class OrderStatus < ApplicationRecord
   # Relations
   has_many :order, dependent: :destroy
 
+  # Scopes
+  scope :pending, -> { find_by!(name: :pending) }
+  scope :shipped, -> { find_by!(name: :shipped) }
+  scope :unfulfilled, -> { find_by!(name: :unfulfilled) }
+  scope :fulfilled, -> { find_by!(name: :fulfilled) }
+
   # Validations
   validates :name, presence: true, uniqueness: true, inclusion: { in: STATUS }
   validates :step, presence: true, uniqueness: true

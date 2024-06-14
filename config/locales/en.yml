@@ -5,11 +5,11 @@ en:
     title: "About"
   error:
     something_went_wrong: "Something went wrong."
+    unathorized_action: "Unauthorized action"
     unathorized: "You are not authorized"
   products:
     all: "All products"
     title: "Products"
-    list: "Product List"
     new: "New Product"
     create: "Create Product"
     created: "Product was successfully created."
@@ -83,6 +83,19 @@ en:
     user_added_cart: "Successfully added to cart."
     guest_added_cart: "Successfully added to guest cart."
     something_went_wrong: "Something went wrong."
+  orders:
+    title: "Orders"
+    no_list_found: "No orders found"
+    table: 
+      thead:
+        order_id: "Order ID"
+        ordered_at: "Ordered At"
+        ordered_by: "Ordered By"
+    tabs:
+      pending: "Pending"
+      shipped:  "Shipped"
+      unfulfilled: "Unfulfilled"
+      fullfilled: "Fullfilled"
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"

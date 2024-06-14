@@ -7,7 +7,7 @@
 Copy ENV
 
 ```
-cp .env.example .env
+cp .env.dev .env
 ```
 
 Install Dependencies

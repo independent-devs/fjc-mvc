@@ -2,24 +2,29 @@
   .flex.flex-col.gap-6
     .flex.gap-5.justify-between.items-start
       %h2.font-semibold.text-xl
-        = t("products.list")
+        = t("products.title")
       = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
         = t("products.new")
         = icon("fa-solid", "plus")
-    %table
-      %thead
-        %tr
-          %th= t("products.table.thead.name")
-          %th= t("products.table.thead.price")
-          %th= t("products.table.thead.visit")
-          %th= t("products.table.thead.actions")
-      %tbody
-        - if @products.present?
-          - @products.each do |product|
-            = render "item", product:
-        - else
+    .flex.flex-col.gap-4
+      %table
+        %thead
           %tr
-            %td= t("products.no_list_found")
-            %td
-            %td
-            %td
+            %th= t("products.table.thead.name")
+            %th= t("products.table.thead.price")
+            %th= t("products.table.thead.visit")
+            %th= t("products.table.thead.actions")
+        %tbody
+          - if @products.present?
+            - @products.each do |product|
+              = render "item", product:
+          - else
+            %tr
+              %td= t("products.no_list_found")
+              %td
+              %td
+              %td
+      - if @pagy.pages > 1          
+        .flex.gap-3.items-center.w-full.justify-between
+          != pagy_info(@pagy)
+          != pagy_nav(@pagy)
