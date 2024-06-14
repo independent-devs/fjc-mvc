@@ -240,11 +240,11 @@
   }
 
   .pagy-nav .page.active {
-    @apply bg-white rounded-sm ring-1 ring-primary px-3 py-0.5 text-primary;
+    @apply bg-zinc-50 rounded-sm ring-1 ring-primary px-3 py-0.5 text-primary;
   }
 
   .pagy-nav .page {
-    @apply flex items-center bg-white rounded-sm ring-1 ring-gray-300;
+    @apply bg-zinc-50 flex items-center rounded-sm ring-1 ring-gray-300;
   }
 
   .pagy-nav .page a {
@@ -252,11 +252,11 @@
   }
 
   .pagy-nav .page.prev.disabled {
-    @apply bg-white rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
+    @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
   }
 
   .pagy-nav .page.next.disabled {
-    @apply bg-white rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
+    @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
   }
 
   .pagy-info {
