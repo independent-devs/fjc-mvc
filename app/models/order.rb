@@ -8,6 +8,10 @@ class Order < ApplicationRecord
 
   has_many :order_items, dependent: :nullify
   has_many :carts, dependent: :destroy
+
+  # Validations
+  validates :guest_session, presence: true, unless: :user
+  validates :user, presence: true, unless: :guest_session
 end
 
 # == Schema Information
