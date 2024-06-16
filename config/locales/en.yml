@@ -89,13 +89,16 @@ en:
     table: 
       thead:
         order_id: "Order ID"
-        ordered_at: "Ordered At"
-        ordered_by: "Ordered By"
+        total: "Total"
+        status: "Status"
+        created_at: "Created At"
+        user: "User"
     tabs:
       pending: "Pending"
-      shipped:  "Shipped"
-      unfulfilled: "Unfulfilled"
+      to_ship: "To Ship"
+      to_recieve: "To Recieve"
       fulfilled: "Fulfilled"
+      unfulfilled: "Unfulfilled"
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"

@@ -8,14 +8,18 @@
         %thead
           %tr
             %th= t("orders.table.thead.order_id")
-            %th= t("orders.table.thead.ordered_at")
-            %th= t("orders.table.thead.ordered_by")
+            %th= t("orders.table.thead.status")
+            %th= t("orders.table.thead.user")
+            %th= t("orders.table.thead.created_at")
+            %th= t("orders.table.thead.total")
         - if @orders.present?
-          - @orders.each do |product|
-            = render "item", product:
+          - @orders.each do |order|
+            = render "item", order:
         - else
           %tr
             %td= t("orders.no_list_found")
+            %td
+            %td
             %td
             %td
       - if @pagy.pages > 1          
