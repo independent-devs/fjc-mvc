@@ -14,12 +14,12 @@
           = icon("fa-solid", "truck")
           = t("orders.tabs.shipped")
     %li
-      = render TabLinkComponent.new path: admin_orders_path(status: :fullfilled, page: params[:page]) do
+      = render TabLinkComponent.new path: admin_orders_path(status: :fulfilled, page: params[:page]) do
         .flex.gap-2.items-center
           = icon("fa-solid", "square-check", class: "text-base")
-          = t("orders.tabs.fullfilled")
+          = t("orders.tabs.fulfilled")
     %li
-      = render TabLinkComponent.new path: admin_orders_path(status: :unfullfilled, page: params[:page]) do 
+      = render TabLinkComponent.new path: admin_orders_path(status: :unfulfilled, page: params[:page]) do 
         .flex.gap-2.items-center
           = icon("fa-solid", "square-xmark", class: "text-base")
-          = t("orders.tabs.unfullfilled")
+          = t("orders.tabs.unfulfilled")

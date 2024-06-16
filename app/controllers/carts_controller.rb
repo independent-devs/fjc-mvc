@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class CartsController < BaseController
-  before_action :set_guest_session, only: %i[index sync sync_all guest_update guest_destroy]
-  before_action :set_cart, only: %i[update guest_update destroy guest_destroy sync]
-  load_and_authorize_resource except: %i[index]
+  before_action :set_guest_session, only: %i[index sync sync_all update destroy]
+  load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def index
     @carts =
@@ -24,21 +23,7 @@ class CartsController < BaseController
     end
   end
 
-  def guest_update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.turbo_stream { render :update }
-      else
-        format.turbo_stream { render :error, :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
-    @cart.destroy
-  end
-
-  def guest_destroy
     @cart.destroy
   end
 
@@ -55,10 +40,6 @@ class CartsController < BaseController
   def sync_all; end
 
   private
-
-  def set_cart
-    @cart = Cart.single_using_uuid(params[:uuid])
-  end
 
   def user_carts_with_guest(guest_session)
     if guest_session.present?

@@ -95,7 +95,7 @@ en:
       pending: "Pending"
       shipped:  "Shipped"
       unfulfilled: "Unfulfilled"
-      fullfilled: "Fullfilled"
+      fulfilled: "Fulfilled"
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"
