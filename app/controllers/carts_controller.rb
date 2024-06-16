@@ -2,7 +2,7 @@
 
 class CartsController < BaseController
   before_action :set_guest_session, only: %i[index sync sync_all update destroy]
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid
+  load_and_authorize_resource find_by: :uuid, id_param: :uuid, except: :index
 
   def index
     @carts =

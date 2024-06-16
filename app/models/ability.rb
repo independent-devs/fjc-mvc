@@ -4,8 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, guest_session)
-    can :index, Cart
-
     guest(guest_session) if guest_session.present? && user.blank?
 
     return if user.blank?
@@ -22,5 +20,6 @@ class Ability
 
   def guest(guest_session)
     can(%i[update destroy], Cart, guest_session:, order: nil, user: nil)
+    can(%i[update], Order, guest_session:, user: nil)
   end
 end
