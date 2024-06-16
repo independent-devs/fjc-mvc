@@ -43,15 +43,31 @@ end
 #                            profile_index GET      /profile(.:format)                                                                                profile#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                                  buy_now POST     /products/buy_now/:pid/:vid(.:format)                                                             products#buy_now
-#                             variant_info GET      /products/variant_info/:pid/:vid(.:format)                                                        products#variant_info {:format=>"turbo_stream"}
-#                         add_to_cart_cart POST     /carts/:uuid/add_to_cart(.:format)                                                                carts#add_to_cart
-#                   guest_add_to_cart_cart POST     /carts/:uuid/guest_add_to_cart(.:format)                                                          carts#guest_add_to_cart
-#                         item_update_cart PUT      /carts/:uuid/item_update(.:format)                                                                carts#item_update
-#                   guest_item_update_cart PUT      /carts/:uuid/guest_item_update(.:format)                                                          carts#guest_item_update
+#                     info_product_variant GET      /products/:product_uuid/variants/:variant_uuid/info(.:format)                                     products/variants#info
+#              add_to_cart_product_variant POST     /products/:product_uuid/variants/:variant_uuid/add_to_cart(.:format)                              products/variants#add_to_cart
+#        guest_add_to_cart_product_variant POST     /products/:product_uuid/variants/:variant_uuid/guest_add_to_cart(.:format)                        products/variants#guest_add_to_cart
+#                  buy_now_product_variant POST     /products/:product_uuid/variants/:variant_uuid/buy_now(.:format)                                  products/variants#buy_now
+#            guest_buy_now_product_variant POST     /products/:product_uuid/variants/:variant_uuid/guest_buy_now(.:format)                            products/variants#guest_buy_now
+#                         product_variants GET      /products/:product_uuid/variants(.:format)                                                        products/variants#index
+#                                          POST     /products/:product_uuid/variants(.:format)                                                        products/variants#create
+#                      new_product_variant GET      /products/:product_uuid/variants/new(.:format)                                                    products/variants#new
+#                     edit_product_variant GET      /products/:product_uuid/variants/:variant_uuid/edit(.:format)                                     products/variants#edit
+#                          product_variant GET      /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#show
+#                                          PATCH    /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#update
+#                                          PUT      /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#update
+#                                          DELETE   /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#destroy
+#                                sync_cart POST     /carts/:uuid/sync(.:format)                                                                       carts#sync
+#                            sync_all_cart POST     /carts/:uuid/sync_all(.:format)                                                                   carts#sync_all
+#                        guest_update_cart PUT      /carts/:uuid/guest_update(.:format)                                                               carts#guest_update
+#                       guest_destroy_cart DELETE   /carts/:uuid/guest_destroy(.:format)                                                              carts#guest_destroy
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
+#                                     cart PATCH    /carts/:uuid(.:format)                                                                            carts#update
+#                                          PUT      /carts/:uuid(.:format)                                                                            carts#update
+#                                          DELETE   /carts/:uuid(.:format)                                                                            carts#destroy
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
+#                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
+#                              admin_order GET      /admin/orders/:id(.:format)                                                                       admin/orders#show
 #           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
 #                   admin_product_variants GET      /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#index
 #                                          POST     /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#create
