@@ -8,7 +8,7 @@
         = link_to product_path(cart.product_slug, pid: cart.product_uuid),
           class: "leading-tight line-clamp-2 text-[15px]" do
           = cart.product_name
-        - if cannot?(:update, cart)
+        - if cart.user_id.blank? && cart.guest_session_id.present?
           .flex.items-center{id: "cart-#{cart.uuid}-guest-cart-display", class: "gap-2.5"}
             = render TagComponent.new name: "Guest", variant: :warning
             - if can?(:sync, cart)
