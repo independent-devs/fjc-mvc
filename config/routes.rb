@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  ## Home (/)
   root 'home#index'
 
   ## Authentication
-  devise_for :users, path: '/auth', controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
+  draw :devise
 
   ## draw routes
   draw :profile
   draw :products
-  draw :cart
+  draw :carts
   draw :admin
 
   ## error routes
