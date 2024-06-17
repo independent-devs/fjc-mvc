@@ -20,7 +20,7 @@ class Ability
 
     # Order
     can(:read, Order, user:)
-    can(:cancel, Order, user:)
+    can(:cancel, Order, user:, order_status: { name: 'pending' })
   end
 
   private
@@ -32,6 +32,6 @@ class Ability
 
     # Order
     can(:read, Order, guest_session:, user: nil)
-    can(:cancel, Order, guest_session:, user: nil)
+    can(:cancel, Order, guest_session:, user: nil, order_status: { name: 'pending' })
   end
 end
