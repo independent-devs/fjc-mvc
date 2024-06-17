@@ -2,15 +2,10 @@
 
 class CartsController < BaseController
   before_action :set_guest_session, only: %i[index sync sync_all update destroy]
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid, except: :index
+  load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def index
-    @carts =
-      (if current_user.present?
-         user_carts_with_guest(@guest_session)
-       else
-         @guest_session.carts.not_owned.not_ordered.detailed
-       end)
+    @carts = Cart.accessible_by(current_ability).detailed
   end
 
   def update
@@ -40,14 +35,6 @@ class CartsController < BaseController
   def sync_all; end
 
   private
-
-  def user_carts_with_guest(guest_session)
-    if guest_session.present?
-      current_user.carts.or(Cart.where(guest_session:)).not_ordered.detailed
-    else
-      current_user.carts.not_ordered.detailed
-    end
-  end
 
   def cart_params
     params.require(:cart).permit(:qty, :variant_id)

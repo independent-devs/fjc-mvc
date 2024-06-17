@@ -2,7 +2,7 @@
 
 class OrderStatus < ApplicationRecord
   # constants
-  STATUS = %w[pending to_ship to_recieve fulfilled unfullfilled].freeze
+  STATUS = %w[pending to_ship to_recieve fulfilled unfulfilled].freeze
 
   # Relations
   has_many :order, dependent: :destroy
@@ -13,9 +13,6 @@ class OrderStatus < ApplicationRecord
   scope :to_recieve, -> { find_by!(name: :to_recieve) }
   scope :fulfilled, -> { find_by!(name: :fulfilled) }
   scope :unfulfilled, -> { find_by!(name: :unfulfilled) }
-  scope :cancelled, -> { find_by!(name: :cancelled) }
-  scope :returned, -> { find_by!(name: :returned) }
-  scope :refunded, -> { find_by!(name: :refunded) }
 
   # Validations
   validates :name, presence: true, uniqueness: true, inclusion: { in: STATUS }
