@@ -1,4 +1,4 @@
-.grid.gap-3.grid-cols-7.py-4.place-items-center{data: {controller: "carts--item"}}
+.grid.gap-3.grid-cols-7.py-4.place-items-center{id: "cart-#{cart.uuid}", data: {controller: "carts--item"}}
   = render "item_update_url", cart:
   = render "item_details", cart:
   = render "item_unit_price", uuid: cart.uuid, price: cart.price, currency: cart.currency

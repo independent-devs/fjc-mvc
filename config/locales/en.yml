@@ -14,7 +14,7 @@ en:
     create: "Create Product"
     created: "Product was successfully created."
     updated: "Product was successfully updated."
-    destroyed: "Product was successfully destroyed."
+    destroyed: "Product was successfully deleted."
     section_label: "Our Products"
     section_title: "Explore Our Products"
     unexpected: "Something went wrong"
@@ -83,6 +83,7 @@ en:
     user_added_cart: "Successfully added to cart."
     guest_added_cart: "Successfully added to guest cart."
     something_went_wrong: "Something went wrong."
+    destroyed: "Cart was successfully deleted."
   orders:
     title: "Orders"
     no_list_found: "No orders found"
