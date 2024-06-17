@@ -1,0 +1,3 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('carts.destroyed')
+= turbo_stream.remove "cart-#{@cart.uuid}"
