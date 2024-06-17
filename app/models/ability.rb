@@ -13,12 +13,17 @@ class Ability
       can(:sync_all, Cart)
     end
 
+    # OR
+    can(:index, Cart, user:, order: nil)
+    can(:index, Cart, guest_session:, order: nil) if guest_session.present?
+
     can(%i[update destroy], Cart, user:, order: nil)
   end
 
   private
 
   def guest(guest_session)
+    can(:index, Cart, guest_session:, user: nil, order: nil)
     can(%i[update destroy], Cart, guest_session:, order: nil, user: nil)
     can(%i[update], Order, guest_session:, user: nil)
   end
