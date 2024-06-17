@@ -5,7 +5,7 @@ class CartsController < BaseController
   load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def index
-    @carts = Cart.accessible_by(current_ability).detailed
+    @carts = Cart.detailed.accessible_by(current_ability)
   end
 
   def update
