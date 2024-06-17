@@ -13,7 +13,7 @@ class Ability
       can(:sync_all, Cart)
     end
 
-    # OR
+    # User OR guest cart
     can(:index, Cart, user:, order: nil)
     can(:index, Cart, guest_session:, order: nil) if guest_session.present?
 
