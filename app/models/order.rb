@@ -6,9 +6,6 @@ class Order < ApplicationRecord
   belongs_to :guest_session, optional: true
   belongs_to :order_status
 
-  has_one :order_status_tag, dependent: :destroy
-  has_one :order_tag, through: :order_status_tag
-
   has_many :order_items, dependent: :nullify
   has_many :carts, dependent: :destroy
 
@@ -22,6 +19,7 @@ end
 # Table name: orders
 #
 #  id               :bigint           not null, primary key
+#  tag              :string
 #  uuid             :uuid             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

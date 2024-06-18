@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_18_112350) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -105,15 +105,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_112350) do
     t.index ["variant_id"], name: "index_order_items_on_variant_id"
   end
 
-  create_table "order_status_tags", force: :cascade do |t|
-    t.bigint "order_id", null: false
-    t.bigint "order_tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_status_tags_on_order_id"
-    t.index ["order_tag_id"], name: "index_order_status_tags_on_order_tag_id"
-  end
-
   create_table "order_statuses", force: :cascade do |t|
     t.string "name", null: false
     t.integer "step", null: false
@@ -123,20 +114,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_112350) do
     t.index ["step"], name: "index_order_statuses_on_step", unique: true
   end
 
-  create_table "order_tags", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "order_status_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_order_tags_on_name", unique: true
-    t.index ["order_status_id"], name: "index_order_tags_on_order_status_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "user_id"
     t.bigint "order_status_id", null: false
     t.bigint "guest_session_id"
+    t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
@@ -267,9 +250,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_18_112350) do
   add_foreign_key "descriptions", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "variants"
-  add_foreign_key "order_status_tags", "order_tags"
-  add_foreign_key "order_status_tags", "orders"
-  add_foreign_key "order_tags", "order_statuses"
   add_foreign_key "orders", "guest_sessions"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
