@@ -9,12 +9,22 @@
         = f.phone_field  :phone_no, required: true, autocomplete: "phone_no",
         data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
         = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "hidden-field"
-      .field
+      .field.relative{data: {controller: "password-visibility"}}
         = f.label :password
-        = f.password_field :password, required: true, autocomplete: "new-password"
-      .field
+        = f.password_field :password, required: true, placeholder: "Enter password", autocomplete: "new-password", data: {"password-visibility-target": "input"}
+        %button.absolute.right-3.text-lg.text-gray-500{class: "top-[50%]", type: "button", data: {action: "password-visibility#toggle"}}
+          %span{data: { "password-visibility-target": "icon"}}
+            = icon("fa-solid", "eye", class: "w-6")
+          %span.hidden{data: { "password-visibility-target": "icon"}}
+            = icon("fa-solid", "eye-slash", class: "w-6")
+      .field.relative{data: {controller: "password-visibility"}}
         = f.label :password_confirmation
-        = f.password_field :password_confirmation, required: true, autocomplete: "new-password"
+        = f.password_field :password_confirmation, required: true, placeholder: "Enter password confirmation", autocomplete: "new-password", data: {"password-visibility-target": "input"}
+        %button.absolute.right-3.text-lg.text-gray-500{class: "top-[50%]", type: "button", data: {action: "password-visibility#toggle"}}
+          %span{data: { "password-visibility-target": "icon"}}
+            = icon("fa-solid", "eye", class: "w-6")
+          %span.hidden{data: { "password-visibility-target": "icon"}}
+            = icon("fa-solid", "eye-slash", class: "w-6")
       .mt-2
         = f.submit "Sign up", class: "btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
       = render "users/shared/sign_in"

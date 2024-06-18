@@ -20,3 +20,4 @@ pin "sortablejs", preload: false # @1.15.2
 pin "slim-select", preload: false # @2.8.2
 pin "@stimulus-components/checkbox-select-all", to: "@stimulus-components--checkbox-select-all.js" # @6.0.0
 pin "@stimulus-components/dropdown", to: "@stimulus-components--dropdown.js" # @3.0.0
+pin "@stimulus-components/password-visibility", to: "@stimulus-components--password-visibility.js" # @3.0.0
