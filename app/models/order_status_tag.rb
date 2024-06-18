@@ -13,7 +13,7 @@ class OrderStatusTag < ApplicationRecord
   def same_order_status
     return if order.order_status_id == order_tag.order_status_id
 
-    errors.add(:order_status, 'must be the same as the order status')
+    errors.add(:order_status, 'must be the same.')
   end
 end
 

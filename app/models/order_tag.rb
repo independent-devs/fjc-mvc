@@ -2,7 +2,7 @@
 
 class OrderTag < ApplicationRecord
   # Constants
-  UNFULFILLED_TAGS = %w[cancelled returned refund].freeze
+  UNFULFILLED_TAGS = %w[cancelled returned refunded].freeze
 
   # Relations
   belongs_to :order_status
@@ -15,9 +15,9 @@ class OrderTag < ApplicationRecord
   private
 
   def order_must_unfulfilled
-    return if name.in?(UNFULFILLED_TAGS) && order_status.name == 'unfulfilled'
+    return unless name.in?(UNFULFILLED_TAGS) && order_status.name != 'unfulfilled'
 
-    errors.add(:order_status, 'must be unfulfilled')
+    errors.add(:order_status, 'must be unfulfilled.')
   end
 end
 
