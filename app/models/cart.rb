@@ -44,6 +44,15 @@ class Cart < ApplicationRecord
   validates :qty, numericality: { greater_than: 0 }
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
+
+  # Generators
+  after_save :create_order_item, if: :order
+
+  private
+
+  def create_order_item
+    order.order_items.create!(variant:, qty:, price: variant.price)
+  end
 end
 
 # == Schema Information
