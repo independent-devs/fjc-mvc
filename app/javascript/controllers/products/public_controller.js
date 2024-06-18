@@ -48,6 +48,13 @@ export default class extends Controller {
       .then((html) => Turbo.renderStreamMessage(html));
   }
 
+  buyNow() {
+    if (!this.variantID) {
+      this.setError(true, "Please select product variation first");
+      return;
+    }
+  }
+
   setError(adding = true, message) {
     if (adding) {
       this.errorsTarget.classList.remove("hidden");

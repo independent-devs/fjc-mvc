@@ -50,7 +50,7 @@ class Products::VariantsController < BaseController
   end
 
   def create_cart(parent)
-    if (cart = parent.carts.find_by(variant: @variant)).present?
+    if (cart = parent.carts.find_by(variant: @variant, order: nil)).present?
       return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
     end
 

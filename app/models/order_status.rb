@@ -6,6 +6,7 @@ class OrderStatus < ApplicationRecord
 
   # Relations
   has_many :order, dependent: :destroy
+  has_many :order_tags, dependent: :destroy
 
   # Scopes
   scope :pending, -> { find_by!(name: :pending) }
