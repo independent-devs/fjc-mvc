@@ -119,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.bigint "user_id"
     t.bigint "order_status_id", null: false
     t.bigint "guest_session_id"
+    t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"

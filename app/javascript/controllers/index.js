@@ -3,6 +3,7 @@ import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading";
 import CheckboxSelectAll from "@stimulus-components/checkbox-select-all";
 import Dialog from "@stimulus-components/dialog";
 import Dropdown from "@stimulus-components/dropdown";
+import PasswordVisibility from "@stimulus-components/password-visibility";
 import Popover from "@stimulus-components/popover";
 import { application } from "controllers/application";
 import Notification from "stimulus-notification";
@@ -11,6 +12,7 @@ import Notification from "stimulus-notification";
 application.register("checkbox-select-all", CheckboxSelectAll);
 application.register("dialog", Dialog);
 application.register("dropdown", Dropdown);
+application.register("password-visibility", PasswordVisibility);
 application.register("popover", Popover);
 application.register("notification", Notification);
 

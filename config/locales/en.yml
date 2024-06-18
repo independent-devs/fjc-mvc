@@ -105,7 +105,7 @@ en:
     failed: "Failed to upload"
     validate:
       must_be_attached: "must be attached." 
-      max: "limit exceeded, max: %{max}"
+      max: "limit exceeded, max: %{max}."
     table:
       thead:
         image: "Image"

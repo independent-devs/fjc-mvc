@@ -58,8 +58,6 @@ end
 #                                          DELETE   /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#destroy
 #                                sync_cart POST     /carts/:uuid/sync(.:format)                                                                       carts#sync
 #                            sync_all_cart POST     /carts/:uuid/sync_all(.:format)                                                                   carts#sync_all
-#                        guest_update_cart PUT      /carts/:uuid/guest_update(.:format)                                                               carts#guest_update
-#                       guest_destroy_cart DELETE   /carts/:uuid/guest_destroy(.:format)                                                              carts#guest_destroy
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
 #                                     cart PATCH    /carts/:uuid(.:format)                                                                            carts#update
 #                                          PUT      /carts/:uuid(.:format)                                                                            carts#update

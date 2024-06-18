@@ -13,6 +13,7 @@ end
 # Table name: orders
 #
 #  id               :bigint           not null, primary key
+#  tag              :string
 #  uuid             :uuid             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
