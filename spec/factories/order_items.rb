@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :order_item do
     order { create(:order) }
     variant { create(:variant) }
-    qty { Faker::Number.non_zero_digit }
+    qty { 1 }
     price { Faker::Commerce.price }
   end
 end
