@@ -8,19 +8,6 @@ class Cart < ApplicationRecord
   belongs_to :guest_session, optional: true
 
   # Scopes
-  scope :not_owned, -> { where(user_id: nil) }
-  scope :not_ordered, -> { where(order_id: nil) }
-  scope :single_using_uuid, lambda { |uuid|
-    select('carts.*, variants.price, products.currency')
-      .joins(:variant)
-      .joins('INNER JOIN products ON variants.product_id = products.id')
-      .find_by!(uuid:)
-  }
-  scope :total_count, lambda {
-    joins(:variant)
-      .joins('INNER JOIN products ON products.id = variants.product_id AND products.deleted_at IS NULL')
-      .count
-  }
   scope :detailed,
         lambda {
           select('carts.*')

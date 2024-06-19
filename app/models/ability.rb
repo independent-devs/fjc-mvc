@@ -9,9 +9,9 @@ class Ability
     return if user.blank?
 
     # Cart
-    can(:index, Cart, user:, order: nil)
+    can(:index, Cart, user_id: user.id, order: nil)
     can(:index, Cart, guest_session:, order: nil) if guest_session.present?
-    can(%i[update destroy], Cart, user:, order: nil)
+    can(%i[update destroy], Cart, user_id: user.id, order: nil)
 
     if guest_session.present?
       can(:sync, Cart, guest_session:, order: nil, user: nil)
@@ -19,8 +19,8 @@ class Ability
     end
 
     # Order
-    can(:read, Order, user:)
-    can(:cancel, Order, user:, order_status: { name: 'pending' })
+    can(:read, Order, user: nil)
+    can(:cancel, Order, user: nil, order_status: { name: 'pending' })
   end
 
   private
