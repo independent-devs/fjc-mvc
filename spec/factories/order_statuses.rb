@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :order_status do
-    name { OrderStatus::STATUS.first }
+    name { OrderStatus::STATUSES.first }
     step { 1 }
   end
 end
