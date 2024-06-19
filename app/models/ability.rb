@@ -19,8 +19,8 @@ class Ability
     end
 
     # Order
-    can(:read, Order, user: nil)
-    can(:cancel, Order, user: nil, order_status: { name: 'pending' })
+    can(:read, Order, user_id: user.id)
+    can(:cancel, Order, user_id: user.id, order_status: { name: 'pending' })
   end
 
   private
