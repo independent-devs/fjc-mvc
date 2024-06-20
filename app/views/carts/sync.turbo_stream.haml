@@ -1,8 +1,13 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: t("carts.synced")
+
 = turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
   = render "item_checkbox", cart: @cart
 
 = turbo_stream.remove "cart-#{@cart.uuid}-guest-display"
 
-= turbo.replace "cart-#{cart.uuid}-update-url" do
-  = render "item_update_url", cart: @cart
+= turbo_stream.replace "cart-#{@cart.uuid}-actions" do
+  = render "item_actions", cart: @cart
 
+= turbo_stream.replace "cart-#{@cart.uuid}-qty" do
+  = render "item_quantity", cart: @cart

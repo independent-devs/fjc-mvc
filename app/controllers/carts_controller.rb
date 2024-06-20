@@ -24,10 +24,19 @@ class CartsController < BaseController
 
   def sync
     respond_to do |format|
-      if @cart.update(user: current_user)
+      if (@common_cart = current_user.carts.find_by(variant_id: @cart.variant_id, order: nil)).present?
+        ActiveRecord::Base.transaction do
+          @common_cart.update(qty: @cart.qty + @common_cart.qty)
+          @cart.destroy
+        rescue ActiveRecord::RecordInvalid
+          format.turbo_stream { render :error, :unprocessable_entity }
+        else
+          format.turbo_stream { render :sync_common }
+        end
+      elsif @cart.update(user: current_user)
         format.turbo_stream
       else
-        format.turbo_stream { render :unprocessable_entity }
+        format.turbo_stream { render :error, :unprocessable_entity }
       end
     end
   end

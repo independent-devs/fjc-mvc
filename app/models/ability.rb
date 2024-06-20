@@ -9,8 +9,8 @@ class Ability
     return if user.blank?
 
     # Cart
-    can(:index, Cart, user_id: user.id, order: nil)
-    can(:index, Cart, guest_session:, order: nil) if guest_session.present?
+    can(:read, Cart, user_id: user.id, order: nil)
+    can(:read, Cart, guest_session:, order: nil) if guest_session.present?
     can(%i[update destroy], Cart, user_id: user.id, order: nil)
 
     if guest_session.present?
@@ -27,7 +27,7 @@ class Ability
 
   def guest(guest_session)
     # Cart
-    can(:index, Cart, guest_session:, user: nil, order: nil)
+    can(:read, Cart, guest_session:, user: nil, order: nil)
     can(%i[update destroy], Cart, guest_session:, user: nil, order: nil)
 
     # Order
