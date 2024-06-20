@@ -1,5 +1,5 @@
 .flex.margin-max-screen.py-8
-  .flex.flex-col.gap-2
+  .flex.gap-3.items-center
     - if user_signed_in?
       %span{class: "text-[17px]"}
         = current_user.name || current_user.email || current_user.phone_no
