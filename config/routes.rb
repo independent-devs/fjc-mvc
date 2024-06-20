@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   draw :products
   draw :carts
   draw :orders
+  draw :checkout
   draw :admin
 
   ## error routes

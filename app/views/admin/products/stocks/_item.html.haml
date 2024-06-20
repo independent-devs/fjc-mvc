@@ -4,18 +4,21 @@
     .grid.grid-cols-5.gap-8
       .py-4
         - if f.object.is_master
-          = render TagComponent.new(name: "Master")
+          = render TagComponent.new do 
+            Master
         - else
           = f.object.grouped_name
       .py-4
         - if f.object.is_master
-          = render TagComponent.new(name: "Master")
+          = render TagComponent.new do
+            Master
         - else
           = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table",
           data: { "action": "change->autosave#save" }
       .flex.py-4.items-center
         - if f.object.is_master
-          = render TagComponent.new(name: "Master")
+          = render TagComponent.new do
+            Master
         - else
           = f.check_box :backorderable, id: dom_id(variant, "backorderable"), 
           data: { action: 'autosave#save' }, class: "checkbox-primary"

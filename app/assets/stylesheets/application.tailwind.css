@@ -262,4 +262,8 @@
   .pagy-info {
     @apply text-gray-800;
   }
+
+  .popover {
+    @apply max-w-sm rounded shadow-lg bg-white absolute mt-2 border;
+  }
 }

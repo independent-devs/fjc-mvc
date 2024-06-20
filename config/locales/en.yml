@@ -84,6 +84,7 @@ en:
     guest_added_cart: "Successfully added to guest cart."
     something_went_wrong: "Something went wrong."
     destroyed: "Cart was successfully deleted."
+    synced: "Cart was successfully synced and onwed."
   orders:
     title: "Orders"
     no_list_found: "No orders found"

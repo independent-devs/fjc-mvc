@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TagComponent < ViewComponent::Base
-  attr_reader :name, :variant
+  attr_reader :variant
 
   BG_COLOR = {
     primary: 'bg-primary',
@@ -10,8 +10,7 @@ class TagComponent < ViewComponent::Base
     error: 'bg-red-600'
   }.freeze
 
-  def initialize(name:, variant: :primary)
-    @name = name
+  def initialize(variant: :primary)
     @variant = variant
     super
   end
