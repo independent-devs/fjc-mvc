@@ -1,0 +1,7 @@
+= render layout: "account/layout" do
+  .grid.bg-white.rounded-md.shadow-sm
+    = render "order_status_tab"
+    .h-72.grid.place-items-center
+      .flex.flex-col.gap-1.items-center.text-gray-400
+        = icon("fa-solid", "box-open", class: "text-6xl")
+        %span.text-lg No orders yet
