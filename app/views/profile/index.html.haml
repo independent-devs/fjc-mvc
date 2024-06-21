@@ -1,8 +1,20 @@
-.flex.margin-max-screen.py-8
-  .flex.gap-3.items-center
-    - if user_signed_in?
-      %span{class: "text-[17px]"}
-        = current_user.name || current_user.email || current_user.phone_no
-      = button_to "Logout", destroy_user_session_path, method: :delete, class: "border px-6 py-2 rounded"
-    - else
-      = button_to "Sign In", user_session_path, method: :get,  class: "border px-6 py-2 rounded"
+.margin-max-screen.py-8.space-y-8
+  .flex.gap-3.items-center.justify-between
+    %span.font-medium.text-xl.text-primary 
+      My Orders
+    .flex.items-center.gap-3
+      - if user_signed_in?
+        %span.text-gray-800.text-lg
+          = current_user.name || current_user.email || current_user.phone_no
+        = button_to destroy_user_session_path, method: :delete, class: "transition-colors border px-6 py-2 rounded border-gray-300 hover:border-gray-600 text-gray-700 hover:text-gray-800 bg-white" do 
+          = icon("fa-solid", "right-from-bracket")
+          Logout
+      - else
+        = button_to "Sign In", user_session_path, method: :get,
+        class: "border px-6 py-2 rounded"
+  .grid.bg-white.rounded-md.shadow-sm
+    = render "order_status_tab"
+    .h-72.grid.place-items-center
+      .flex.flex-col.gap-1.items-center.text-gray-400
+        = icon("fa-solid", "box-open", class: "text-6xl")
+        %span.text-lg No orders yet

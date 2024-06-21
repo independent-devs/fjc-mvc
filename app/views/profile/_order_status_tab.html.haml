@@ -1,0 +1,30 @@
+%ul.flex.text-base.border-b-2.border-gray-100.grid.grid-cols-6
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(page: params[:page]) do
+      = t("orders.tabs.all")
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(status: :pending, page: params[:page]) do
+      .flex.gap-2.items-center.justify-center
+        = icon("fa-solid", "hourglass-half")
+        = t("orders.tabs.pending")
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(status: :to_ship, page: params[:page]) do
+      .flex.gap-2.items-center.justify-center
+        = icon("fa-solid", "cart-flatbed-suitcase")
+        = t("orders.tabs.to_ship")
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(status: :to_recieve, page: params[:page]) do
+      .flex.gap-2.items-center.justify-center
+        = icon("fa-solid", "truck-fast")
+        = t("orders.tabs.to_recieve")
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(status: :fulfilled, page: params[:page]) do
+      .flex.gap-2.items-center.justify-center
+        = icon("fa-solid", "square-check")
+        = t("orders.tabs.fulfilled")
+  %li
+    = render TabLinkComponent.new path: admin_orders_path(status: :unfulfilled, page: params[:page]) do 
+      .flex.gap-2.items-center.justify-center
+        = icon("fa-solid", "square-xmark")
+        = t("orders.tabs.unfulfilled")
+

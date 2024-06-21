@@ -1,14 +1,15 @@
-.margin-max-screen.py-7.flex.flex-col.gap-8{data: {controller: "admin--products--images--upload", upload_url: upload_admin_product_images_url(@product)}}
+.margin-max-screen.py-7.flex.flex-col.gap-5{data: {controller: "admin--products--images--upload", upload_url: upload_admin_product_images_url(@product)}}
   = render "admin/products/tabs"
-  .w-full.flex.flex-col.gap-10
+  .w-full.flex.flex-col.gap-5
     = render "drag_and_drop"
     = render "uploading"
-  .grid
+  .grid.gap-5
     = render "limit"
-    %ul.form-table-head.grid.grid-cols-2
-      %li.flex.items-center
-        = icon "fa-solid", "up-down", class: "ml-2 mr-6 text-lg text-zinc-400"
-        = t("images.table.thead.image")
-      %li
-        = t("images.table.thead.actions")
-    = render "data"
+    .grid.bg-white.rounded-md.shadow-sm
+      %ul.form-table-head.grid.grid-cols-2.px-4
+        %li.flex.items-center
+          = icon "fa-solid", "up-down", class: "ml-2 mr-6 text-lg text-zinc-400"
+          = t("images.table.thead.image")
+        %li.pl-6
+          = t("images.table.thead.actions")
+      = render "data"
