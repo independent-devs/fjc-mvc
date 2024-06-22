@@ -1,0 +1,9 @@
+.flex.flex-col.gap-2.w-full
+  - if @signed_in
+    %span.text-gray-800.text-base
+      = @user.name || @user.email || @user.phone_no
+    = button_to destroy_user_session_path, method: :delete, class: "transition-colors border px-4 py-1 rounded border-gray-300 hover:border-gray-600 text-gray-700 hover:text-gray-800 bg-white" do 
+      = icon("fa-solid", "right-from-bracket")
+      Logout
+  - else
+    = button_to "Sign In", user_session_path, method: :get, class: "transition-colors border px-4 py-1 rounded border-gray-300 hover:border-gray-600 text-gray-700 hover:text-gray-800 bg-white"
