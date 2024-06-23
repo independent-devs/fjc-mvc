@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   draw :account
   draw :products
   draw :carts
+  draw :variants
   draw :orders
   draw :checkout
   draw :admin

@@ -12,10 +12,10 @@
       - @carousel.each_with_index do |image, index|
         %label{class: "#{index >= 5 ? "hidden" : nil}"}
           = radio_button_tag :thumb, index, index.zero?, id: "thumb_#{index}", data: {"products--carousel-target": "thumb", action: "input->products--carousel#thumbSelect", position: index + 1}, class: "peer hidden"
-          .w-full.h-full.peer-checked:ring-2.ring-primary{for: "thumb_#{index}"}
-            = image_tag image.variant(:thumb), size: 100, class: "h-20 max-h-20 w-full object-center object-cover cursor-pointer"
+          .w-full.h-full.peer-checked:outline.outline-2.outline-primary.-outline-offset-2{for: "thumb_#{index}"}
+            = image_tag image.variant(:thumb), size: 100, data: {action: "mouseover->products--carousel#hoverInItem mouseout->products--carousel#hoverOutItem", position: index + 1}, class: "h-20 max-h-20 w-full object-center object-cover cursor-pointer"
       - if @carousel.size > 5
-        %button.py-2.px-1.absolute.items-center{class: "top-[25%] bg-black/30"}
+        %button.py-2.px-1.absolute.items-center{data: {action: "click->products--carousel#prevItem"}, class: "top-[25%] bg-black/30"}
           = icon("fa-solid", "angle-left", class: "text-xl text-white")
-        %button.py-2.px-1.absolute.items-center{class: "top-[25%] right-0 bg-black/30"}
+        %button.py-2.px-1.absolute.items-center{data: {action: "click->products--carousel#nextItem"}, class: "top-[25%] right-0 bg-black/30"}
           = icon("fa-solid", "angle-right", class: "text-xl text-white")
