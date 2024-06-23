@@ -1,7 +1,7 @@
 = render "seo", seo: @product.seo
 .w-full.margin-max-screen.py-5{data: {controller: "products--public", pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", data: {"products--public-target": "userSignedIn"}
-  .flex.gap-9.bg-white.pt-4.pb-9.rounded-sm.px-4
+  .flex.gap-8.bg-white.pt-3.pb-9.rounded-sm{class: "px-3.5"}
     = render "image_carousel"
     .flex.flex-col.w-full.gap-7
       .grid.gap-2
