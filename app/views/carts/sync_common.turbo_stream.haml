@@ -4,4 +4,4 @@
 = turbo_stream.remove "cart-#{@cart.uuid}"
 
 = turbo_stream.replace "cart-#{@common_cart.uuid}-qty" do
-  = render "item_quantity", cart: @common_cart
+  = render Carts::Item::QtyComponent.new cart: @common_cart
