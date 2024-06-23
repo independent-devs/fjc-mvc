@@ -4,9 +4,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, guest_session)
-    can(:info, Variant, product: { deleted_at: nil })
-
+    # Guest Session
     guest(guest_session) if guest_session.present? && user.blank?
+
+    # Variant
+    can(:info, Variant, product: { deleted_at: nil })
 
     return if user.blank?
 
