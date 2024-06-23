@@ -1,0 +1,4 @@
+.flex.gap-2{id: "cart-#{@cart.uuid}-actions"}
+  = button_to cart_path(@cart.uuid), disabled: cannot?(:destroy, @cart), class: "text-lg text-gray-500 hover:text-red-500 disabled:cursor-not-allowed disabled:text-gray-200", method: :delete, form: {data: {turbo_confirm: 'Are you sure to delete this cart?'}} do
+    = icon("fa-solid", "trash")
+

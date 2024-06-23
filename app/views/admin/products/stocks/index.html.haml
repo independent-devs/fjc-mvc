@@ -2,9 +2,9 @@
   = render "admin/products/tabs"
   %span.text-gray-500
     = @product.name
-  %div
+  .bg-white.rounded-md
     %ul.form-table-head.grid.grid-cols-5
-      %li
+      %li.pl-6
         = t("variants.table.thead.option_values")
       %li
         = t("variants.table.thead.sku")

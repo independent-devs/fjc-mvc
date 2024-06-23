@@ -1,28 +1,29 @@
 .margin-max-screen.py-7
-  .flex.flex-col.gap-5
+  .flex.flex-col.gap-1
     %h2.font-semibold.text-xl
       = t("orders.title")
-    = render "status_tab"
-    .flex.flex-col.gap-4
-      %table
-        %thead
-          %tr
-            %th= t("orders.table.thead.order_id")
-            %th= t("orders.table.thead.status")
-            %th= t("orders.table.thead.user")
-            %th= t("orders.table.thead.created_at")
-            %th= t("orders.table.thead.total")
-        - if @orders.present?
-          - @orders.each do |order|
-            = render "item", order:
-        - else
-          %tr
-            %td= t("orders.no_list_found")
-            %td
-            %td
-            %td
-            %td
-      - if @pagy.pages > 1          
-        .flex.gap-3.items-center.w-full.justify-between
-          != pagy_info(@pagy)
-          != pagy_nav(@pagy)
+    .grid.gap-5
+      = render "status_tab"
+      .flex.flex-col.gap-4
+        %table
+          %thead
+            %tr
+              %th= t("orders.table.thead.order_id")
+              %th= t("orders.table.thead.status")
+              %th= t("orders.table.thead.user")
+              %th= t("orders.table.thead.created_at")
+              %th= t("orders.table.thead.total")
+          - if @orders.present?
+            - @orders.each do |order|
+              = render "item", order:
+          - else
+            %tr
+              %td= t("orders.no_list_found")
+              %td
+              %td
+              %td
+              %td
+        - if @pagy.pages > 1          
+          .flex.gap-3.items-center.w-full.justify-between
+            != pagy_info(@pagy)
+            != pagy_nav(@pagy)

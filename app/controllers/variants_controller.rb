@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class Products::VariantsController < BaseController
-  before_action :authenticate_user!, only: %i[add_to_cart buy_now]
-  before_action :set_guest_session, only: %i[guest_add_to_cart guest_buy_now]
-  before_action :set_product_variant, only: %i[info add_to_cart guest_add_to_cart buy_now guest_buy_now]
+class VariantsController < BaseController
+  before_action :set_guest_session, only: [:guest_add_to_cart]
+  load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def info; end
 
@@ -35,18 +34,6 @@ class Products::VariantsController < BaseController
 
   def cart_params
     params.require(:cart).permit(:qty)
-  end
-
-  def set_product_variant
-    @product = Product.single_using_uuid(params[:product_uuid])
-    return if params[:variant_uuid].blank?
-
-    @variant = @product.variants.single_using_uuid(params[:variant_uuid])
-  rescue ActiveRecord::RecordNotFound
-    case action_name
-    when 'info'
-      render :error, status: :not_found
-    end
   end
 
   def create_cart(parent)

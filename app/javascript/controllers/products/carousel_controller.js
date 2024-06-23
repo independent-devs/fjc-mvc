@@ -8,6 +8,14 @@ export default class extends Controller {
     this.displayMain(event.target.dataset.position);
   }
 
+  hoverInItem(event) {
+    this.displayMain(event.target.dataset.position);
+  }
+
+  hoverOutItem() {
+    this.displayMain(this.currentThumbPos.toString());
+  }
+
   nextImg() {
     if (this.currentThumbPos === this.totalItems) return;
     const newPos = (this.currentThumbPos + 1).toString();

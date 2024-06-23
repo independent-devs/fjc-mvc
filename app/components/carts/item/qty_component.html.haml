@@ -1,0 +1,10 @@
+%div{id: "cart-#{@cart.uuid}-qty"}
+  #quantity-container
+    #quantity.small
+      = button_tag class: "decrement transition-colors duration-200", 
+      data: {action: "click->carts--item#decrement"} do
+        = icon("fa-solid", "minus")
+      = number_field_tag 'quantity', @cart.qty, disabled: cannot?(:update, @cart), data: {"carts--item-target": "quantity", action: "input->carts--item#quantityInput change->carts--item#quantityChange"}, min: 1, id: "cart-#{@cart.uuid}-qty-input", class: "number-input transition-colors duration-200"
+      = button_tag class: "increment transition-colors duration-200", 
+      data: {action: "click->carts--item#increment"} do
+        = icon("fa-solid", "plus")

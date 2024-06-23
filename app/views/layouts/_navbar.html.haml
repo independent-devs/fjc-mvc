@@ -1,4 +1,4 @@
-.w-full.border-b.flex.items-center.min-h-20.h-20
+.w-full.border-b.flex.items-center.min-h-20.h-20.bg-white
   .margin-max-screen.w-full.flex.justify-between.items-center
     .flex.gap-3.items-center
       = link_to "FJC Shop", root_path, class: "text-2xl font-extrabold"
@@ -13,7 +13,7 @@
     .flex.gap-5
       = link_to carts_path do
         = icon("fa-solid", "cart-shopping", class: "text-xl")
-      = link_to profile_index_path do
+      = link_to account_index_path do
         = icon("fa-regular", "heart", class: "text-xl")
-      = link_to profile_index_path do
+      = link_to account_index_path do
         = icon("fa-regular", "user", class: "text-xl")

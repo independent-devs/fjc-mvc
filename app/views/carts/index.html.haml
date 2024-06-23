@@ -1,10 +1,9 @@
 = render "seo"
-.w-full.margin-max-screen.py-8
-  .grid.divide-y{data: {controller: "carts--select-all"}}
-    .grid.gap-3.grid-cols-7.py-4.place-items-center
-      .col-span-3.w-full.flex.gap-4.items-center
-        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"},
-        class: "checkbox-primary mt-0.5"
+.w-full.margin-max-screen.py-7
+  .bg-white.rounded-md.shadow-sm{data: {controller: "carts--select-all"}}
+    .grid.gap-3.grid-cols-7.py-4.place-items-center.border-b
+      .col-span-3.w-full.flex.gap-4.items-center.pl-5
+        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
         %span.font-semibold.text-primary
           My Cart
       %div
@@ -16,8 +15,9 @@
       %div
         Actions
     - if @carts.present?
-      - @carts.each do |cart|
-        = render "item", cart:
+      .divide-y
+        - @carts.each do |cart|
+          = render Carts::Item::Component.new cart:
     - else
       .h-52.grid.place-items-center
         .flex.flex-col.gap-1.items-center.text-gray-400

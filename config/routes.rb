@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   draw :devise
 
   ## draw routes
-  draw :profile
+  draw :account
   draw :products
   draw :carts
+  draw :variants
   draw :orders
   draw :checkout
   draw :admin

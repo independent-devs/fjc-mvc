@@ -1,7 +1,7 @@
 - if @cart.qty_previously_changed?
   = turbo_stream.replace "cart-#{@cart.uuid}-total-price" do
-    = render "item_total_price", uuid: @cart.uuid, price: @cart.variant.price, 
+    = render Carts::Item::TotalpriceComponent.new uuid: @cart.uuid, price: @cart.variant.price, 
     qty: @cart.qty, currency: @cart.variant.product.currency
   = turbo_stream.replace "cart-#{@cart.uuid}-unit-price" do
-    = render "item_unit_price", uuid: @cart.uuid, price: @cart.variant.price, 
+    = render Carts::Item::UnitpriceComponent.new uuid: @cart.uuid, price: @cart.variant.price, 
     currency: @cart.variant.product.currency

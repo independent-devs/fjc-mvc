@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CheckoutController < ApplicationController
+class CheckoutController < BaseController
   def index; end
 
   def create; end

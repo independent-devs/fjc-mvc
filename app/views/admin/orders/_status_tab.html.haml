@@ -1,5 +1,5 @@
-.font-medium.text-center.text-gray-500.border-b.border-gray-200
-  %ul.flex.gap-2.text-sm
+.font-medium.text-center.border-b-2.border-gray-200
+  %ul.flex.text-sm.gap-1
     %li
       = render TabLinkComponent.new path: admin_orders_path(page: params[:page]) do
         = t("orders.tabs.all")
@@ -21,10 +21,10 @@
     %li
       = render TabLinkComponent.new path: admin_orders_path(status: :fulfilled, page: params[:page]) do
         .flex.gap-2.items-center
-          = icon("fa-solid", "square-check", class: "text-base")
+          = icon("fa-solid", "square-check")
           = t("orders.tabs.fulfilled")
     %li
       = render TabLinkComponent.new path: admin_orders_path(status: :unfulfilled, page: params[:page]) do 
         .flex.gap-2.items-center
-          = icon("fa-solid", "square-xmark", class: "text-base")
+          = icon("fa-solid", "square-xmark")
           = t("orders.tabs.unfulfilled")
