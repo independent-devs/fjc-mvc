@@ -18,7 +18,7 @@
     - if @carts.present?
       .bg-white.rounded-b-md
         - @carts.each do |cart|
-          = render "item", cart:
+          = render Carts::Item::Component.new cart:
     - else
       .h-52.grid.place-items-center
         .flex.flex-col.gap-1.items-center.text-gray-400
