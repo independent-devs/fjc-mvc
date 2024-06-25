@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VariantsController < BaseController
-  before_action :set_guest_session, only: [:guest_add_to_cart]
+  before_action :set_guest_session, only: %i[guest_add_to_cart guest_buy_now]
   load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def info; end
@@ -26,7 +26,15 @@ class VariantsController < BaseController
     end
   end
 
-  def buy_now; end
+  def buy_now
+    respond_to do |format|
+      if create_cart(current_user)
+        redirect_to carts_path(bn: @cart.uuid)
+      else
+        format.turbo_stream { render :error, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def guest_buy_now; end
 
@@ -37,16 +45,18 @@ class VariantsController < BaseController
   end
 
   def create_cart(parent)
+    return nil unless parent.instance_of?(User) || parent.instance_of?(GuestSession)
+
     if parent.instance_of?(User) &&
-       (cart = parent.carts.find_by(variant: @variant, order: nil)).present?
-      return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
+       (@cart = parent.carts.find_by(variant: @variant, order: nil)).present?
+      return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
     if parent.instance_of?(GuestSession) &&
-       (cart = parent.carts.find_by(variant: @variant, user: nil, order: nil)).present?
-      return cart.update(qty: cart.qty + cart_params[:qty].to_i.abs)
+       (@cart = parent.carts.find_by(variant: @variant, user: nil, order: nil)).present?
+      return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
-    parent.carts.new(qty: cart_params[:qty], variant: @variant).save
+    (@cart = parent.carts.new(qty: cart_params[:qty], variant: @variant)).save
   end
 end

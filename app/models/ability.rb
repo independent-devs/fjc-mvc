@@ -4,16 +4,17 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, guest_session)
-    # Guest Session
-    guest(guest_session) if guest_session.present? && user.blank?
-
     # Variant
     can(:info, Variant, product: { deleted_at: nil })
+
+    # Guest Session
+    guest(guest_session) if guest_session.present? && user.blank?
 
     return if user.blank?
 
     # Variant
     can(:add_to_cart, Variant, product: { deleted_at: nil })
+    can(:buy_now, Variant, product: { deleted_at: nil })
 
     # Cart
     can(:read, Cart, user_id: user.id, order: nil)
@@ -35,6 +36,7 @@ class Ability
   def guest(guest_session)
     # Variant
     can(:guest_add_to_cart, Variant, product: { deleted_at: nil })
+    can(:guest_buy_now, Variant, product: { deleted_at: nil })
 
     # Cart
     can(:read, Cart, guest_session:, user: nil, order: nil)

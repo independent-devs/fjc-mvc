@@ -15,7 +15,7 @@
   --ss-spacing-m: 6px;
   --ss-spacing-s: 6px;
   --ss-animation-timing: 0.2s;
-  --ss-border-radius: 5px
+  --ss-border-radius: 3px
 }
 
 @keyframes ss-valueIn {
