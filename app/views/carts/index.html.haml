@@ -1,6 +1,6 @@
 = render "seo"
 .w-full.margin-max-screen.py-7
-  .bg-white.rounded-md.shadow-sm{data: {controller: "carts--select-all"}}
+  .bg-white.rounded-sm.shadow-sm{data: {controller: "carts--select-all"}}
     .grid.gap-3.grid-cols-7.py-4.place-items-center.border-b
       .col-span-3.w-full.flex.gap-4.items-center.pl-5
         = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
