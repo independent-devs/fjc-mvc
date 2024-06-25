@@ -1,4 +1,4 @@
-= render "seo", seo: @product.seo
+= render "show_seo", seo: @product.seo
 .w-full.margin-max-screen.py-5{data: {controller: "products--public", pid: @product.uuid}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", data: {"products--public-target": "userSignedIn"}
   .flex.gap-8.bg-white.pt-3.pb-9.rounded-sm{class: "px-3.5"}
