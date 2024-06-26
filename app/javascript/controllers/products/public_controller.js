@@ -22,7 +22,14 @@ export default class extends Controller {
     this.initRadios();
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
-    this.setActionBtn(true, this.variantID);
+    this.setActionBtn(this.variantID);
+  }
+
+  buyNow() {
+    if (!this.variantID) {
+      this.setError(true, "Please select product variation first");
+      return;
+    }
   }
 
   /* Actions */
@@ -120,7 +127,8 @@ export default class extends Controller {
       return;
     }
 
-    this.setActionBtn(false);
+    this.buyNowBtnTarget.disabled = true;
+    this.addToCartBtnTarget.disabled = true;
 
     let variantID = this.isMultiOptions
       ? this.commonVariant
@@ -138,7 +146,9 @@ export default class extends Controller {
       .then((res) => res.text())
       .then((html) => {
         if (this.allRadioChecked) Turbo.renderStreamMessage(html);
-        this.setActionBtn(true, variantID);
+        this.setActionBtn(variantID);
+        this.buyNowBtnTarget.disabled = false;
+        this.addToCartBtnTarget.disabled = false;
       });
   }
 
@@ -147,13 +157,12 @@ export default class extends Controller {
     this.stocksTarget.outerHTML = this.initStocksHTML;
     this.quantityTarget.value = this.quantityTarget.min;
     this.vidTarget.dataset.vid = "";
-    this.setActionBtn(true);
+    this.setActionBtn(this.variantID);
   }
 
-  setActionBtn(enabled = true, variant = "") {
+  setActionBtn(variant = "") {
     this.buyNowFormTarget.action = this.buyNowPath(variant);
-    this.buyNowBtnTarget.disabled = !variant;
-    this.addToCartBtnTarget.disabled = !enabled;
+    this.buyNowBtnTarget.type = variant ? "submit" : "button";
   }
 
   setRadios(groupName, includeId, excludeId) {
