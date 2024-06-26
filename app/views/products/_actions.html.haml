@@ -1,5 +1,5 @@
 #actions.flex.gap-4
-  = button_tag disabled: true, data: {"products--public-target": "addToCartBtn", action: "click->products--public#addToCart"}, class: "text-[15px] btn-primary-lite flex items-center gap-2 disabled:border-gray-300 disabled:text-gray-300 disabled:bg-gray-200/10 disabled:cursor-not-allowed" do
+  = button_tag disabled: adDisabled, type: :button, data: {"products--public-target": "addToCartBtn", action: "click->products--public#addToCart"}, class: "text-[15px] btn-primary-lite flex items-center gap-2 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-gray-200/10 disabled:cursor-not-allowed" do
     = icon("fa-solid", "cart-plus", class: "text-lg")
     Add to cart
-  = button_tag "Buy now", disabled: true, data: {"products--public-target": "buyNowBtn", action: "click->products--public#buyNow"}, class: "text-[15px] btn-primary disabled:bg-gray-200 disabled:cursor-not-allowed"
+  = button_tag "Buy now", type: :button, disabled: bnDisabled, data: {"products--public-target": "buyNowBtn", action: "click->products--public#buyNow"}, class: "text-[15px] btn-primary disabled:bg-gray-300 disabled:cursor-not-allowed"

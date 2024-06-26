@@ -29,14 +29,22 @@ class VariantsController < BaseController
   def buy_now
     respond_to do |format|
       if create_cart(current_user)
-        redirect_to carts_path(bn: @cart.uuid)
+        format.html { redirect_to carts_url(bn: @cart.uuid) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
       end
     end
   end
 
-  def guest_buy_now; end
+  def guest_buy_now
+    respond_to do |format|
+      if create_cart(@guest_session)
+        format.html { redirect_to carts_url(bn: @cart.uuid) }
+      else
+        format.turbo_stream { render :error, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
 
@@ -57,6 +65,6 @@ class VariantsController < BaseController
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
-    (@cart = parent.carts.new(qty: cart_params[:qty], variant: @variant)).save
+    (@cart = parent.carts.new(qty: cart_params[:qty], variant: @variant)).save && @cart.reload
   end
 end
