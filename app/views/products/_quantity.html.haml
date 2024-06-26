@@ -1,9 +1,9 @@
 #quantity-container
   #quantity
-    = button_tag class: "decrement", data: {action: "click->products--public#decrement"} do
+    = button_tag type: :button, class: "decrement", data: {action: "click->products--public#decrement"} do
       = icon("fa-solid", "minus")
-    = number_field_tag 'quantity', '1', class: "number-input", min: 1, data: {"products--public-target": "quantity", action: "input->products--public#quantityInput change->products--public#quantityChange"}
-    = button_tag class: "increment", data: {action: "products--public#increment"} do
+    = number_field_tag 'cart[qty]', 1, class: "number-input", min: 1, data: {"products--public-target": "quantity", action: "input->products--public#quantityInput change->products--public#quantityChange"}
+    = button_tag type: :button, class: "increment", data: {action: "products--public#increment"} do
       = icon("fa-solid", "plus")
   #stocks{data: {"products--public-target": "stocks"}}
     = render StockCountComponent.new count: stock_num

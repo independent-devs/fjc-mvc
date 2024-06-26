@@ -15,52 +15,17 @@
   select option[value=""], select option:not([value]) {
     @apply text-gray-500
   }
+}
+
+@layer components {
+  .turbo-progress-bar {
+    @apply bg-primary;
+  }
 
   #notification-container {
     @apply absolute z-[9999] top-6 right-7;
   }
 
-  /* Stimulus Dialog */
-
-  /* Prevent scrolling while dialog is open */
-  body:has(dialog[data-dialog-target='dialog'][open]) {
-    overflow: hidden;
-  }
-
-  /* Customize the dialog backdrop */
-  dialog {
-    box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
-  }
-
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  /* Add animations */
-  dialog[data-dialog-target='dialog'][open] {
-    animation: fade-in 200ms forwards;
-  }
-
-  dialog[data-dialog-target='dialog'][closing] {
-    animation: fade-out 200ms forwards;
-  }
-}
-
-@layer components {
   .btn-primary {
     @apply bg-primary py-3 px-6 rounded-sm text-white w-fit transition-all ease-in-out duration-100 text-sm;
   }
@@ -266,4 +231,43 @@
   .popover {
     @apply max-w-sm rounded shadow-lg bg-white absolute mt-2 border;
   }
+}
+
+/* Stimulus Dialog */
+
+/* Prevent scrolling while dialog is open */
+body:has(dialog[data-dialog-target='dialog'][open]) {
+  overflow: hidden;
+}
+
+/* Customize the dialog backdrop */
+dialog {
+  box-shadow: 0 0 0 100vw rgb(0 0 0 / 0.5);
+}
+
+@keyframes dialog-fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Add animations */
+dialog[data-dialog-target='dialog'][open] {
+  animation: dialog-fadein 200ms forwards;
+}
+
+dialog[data-dialog-target='dialog'][closing] {
+  animation: dialog-fadeout 200ms forwards;
 }

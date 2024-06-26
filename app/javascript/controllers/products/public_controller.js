@@ -12,6 +12,7 @@ export default class extends Controller {
     "options",
     "quantity",
     "buyNowBtn",
+    "buyNowForm",
     "userSignedIn",
     "addToCartBtn",
     "optionInstance",
@@ -21,7 +22,7 @@ export default class extends Controller {
     this.initRadios();
     this.initPriceHTML = this.priceTarget.outerHTML;
     this.initStocksHTML = this.stocksTarget.outerHTML;
-    this.setActionBtn(true);
+    this.setActionBtn(true, this.variantID);
   }
 
   /* Actions */
@@ -43,13 +44,6 @@ export default class extends Controller {
     })
       .then((res) => res.text())
       .then((html) => Turbo.renderStreamMessage(html));
-  }
-
-  buyNow() {
-    if (!this.variantID) {
-      this.setError(true, "Please select product variation first");
-      return;
-    }
   }
 
   setError(adding = true, message) {
@@ -144,7 +138,7 @@ export default class extends Controller {
       .then((res) => res.text())
       .then((html) => {
         if (this.allRadioChecked) Turbo.renderStreamMessage(html);
-        this.setActionBtn(true);
+        this.setActionBtn(true, variantID);
       });
   }
 
@@ -156,8 +150,9 @@ export default class extends Controller {
     this.setActionBtn(true);
   }
 
-  setActionBtn(enabled = true) {
-    this.buyNowBtnTarget.disabled = !enabled;
+  setActionBtn(enabled = true, variant = "") {
+    this.buyNowFormTarget.action = this.buyNowPath(variant);
+    this.buyNowBtnTarget.disabled = !variant;
     this.addToCartBtnTarget.disabled = !enabled;
   }
 
@@ -219,6 +214,12 @@ export default class extends Controller {
 
   get addToCartPath() {
     return this.isUserSignedIn ? "add_to_cart" : "guest_add_to_cart";
+  }
+
+  buyNowPath(variant) {
+    return this.isUserSignedIn
+      ? `/variants/${variant || ":uuid"}/buy_now`
+      : `/variants/${variant || ":uuid"}/guest_buy_now`;
   }
 
   get cartFormData() {
