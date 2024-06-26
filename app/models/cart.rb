@@ -23,7 +23,7 @@ class Cart < ApplicationRecord
             .select('products.name AS product_name, products.currency, ' \
                     'products.thumbnail_url AS product_thumbnail, ' \
                     'products.slug AS product_slug, products.uuid AS product_uuid')
-            .joins('INNER JOIN products ON products.id = variants.product_id AND products.deleted_at IS NULL')
+            .joins('INNER JOIN products ON products.id = variants.product_id')
             .order(id: :desc)
         }
 

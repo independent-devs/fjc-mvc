@@ -12,7 +12,7 @@ class Variant < ApplicationRecord
   # Relations
   belongs_to :product
   has_many :variant_option_values, dependent: :destroy
-  has_many :carts, dependent: :nullify
+  has_many :carts, dependent: :destroy
   has_many :order_items, dependent: :nullify
 
   # Nested form

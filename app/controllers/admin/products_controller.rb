@@ -5,7 +5,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /admin/products
   def index
-    @pagy, @products = pagy(Product.not_deleted.sort_by_latest)
+    @pagy, @products = pagy(Product.sort_by_latest)
   end
 
   # GET /admin/products/1
@@ -42,15 +42,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # DELETE /admin/products/1
   def destroy
-    respond_to do |format|
-      if @product.update(deleted_at: DateTime.now)
-        format.html { redirect_to admin_products_url, error: I18n.t('products.destroyed') }
-        format.turbo_stream
-      else
-        format.html { redirect_to admin_products_url, notice: I18n.t('products.unexpected') }
-        format.turbo_stream { render status: :unprocessable_entity }
-      end
-    end
+    @product.destroy
   end
 
   private

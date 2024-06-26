@@ -16,7 +16,7 @@ class ProductsController < BaseController
   private
 
   def set_product
-    @product = Product.single_using_uuid(params[:pid])
+    @product = Product.single_public(params[:slug], params[:pid])
   rescue ActiveRecord::RecordNotFound
     case action_name
     when 'show'

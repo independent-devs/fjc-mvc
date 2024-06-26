@@ -15,8 +15,8 @@ end
 #  qty        :integer          default(1), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  order_id   :bigint           not null
-#  variant_id :bigint           not null
+#  order_id   :bigint
+#  variant_id :bigint
 #
 # Indexes
 #

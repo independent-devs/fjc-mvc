@@ -2,8 +2,8 @@
 
 class OrderItem < ApplicationRecord
   # Relations
-  belongs_to :order
-  belongs_to :variant
+  belongs_to :order, optional: true
+  belongs_to :variant, optional: true
 
   # Validations
   validates :qty, numericality: { greater_than: 0 }
@@ -13,7 +13,7 @@ class OrderItem < ApplicationRecord
   private
 
   def check_variant_quantity
-    return if variant.backorderable || variant.count_on_hand > qty
+    return if variant&.backorderable || (variant&.count_on_hand&.> qty)
 
     errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
   end
@@ -28,8 +28,8 @@ end
 #  qty        :integer          default(1), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  order_id   :bigint           not null
-#  variant_id :bigint           not null
+#  order_id   :bigint
+#  variant_id :bigint
 #
 # Indexes
 #
