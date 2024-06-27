@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class Category < ApplicationRecord
   # Constants
@@ -12,17 +13,14 @@ class Category < ApplicationRecord
   scope :base_root, -> { find_by(ancestry: nil) }
 
   # Validations
-  validates :name,
-            presence: true,
-            uniqueness: {
-              message: I18n.t('categories.validate.unique_name_with_ancestry'),
-              scope: :ancestry
-            }
+  validates :name, presence: true, uniqueness: {
+    scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry')
+  }
   validates :ancestry_depth,
             inclusion: {
-              message: I18n.t('categories.validate.ancestry_depth'),
-              in: 1..MAX_DEPTH
-            }, if: -> { ancestry.present? }
+              in: 1..MAX_DEPTH,
+              message: I18n.t('categories.validate.ancestry_depth')
+            }, if: :ancestry
 end
 
 # == Schema Information

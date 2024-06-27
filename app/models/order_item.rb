@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class OrderItem < ApplicationRecord
   # Relations
@@ -13,7 +14,7 @@ class OrderItem < ApplicationRecord
   private
 
   def check_variant_quantity
-    return if variant.backorderable || (variant.count_on_hand > qty)
+    return if T.must(variant).backorderable || (T.must(T.must(variant).count_on_hand) > qty)
 
     errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
   end

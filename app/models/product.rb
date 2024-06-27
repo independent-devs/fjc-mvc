@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+# typed: true
 
 class Product < ApplicationRecord
-  include Rails.application.routes.url_helpers
+  T.unsafe(self).include Rails.application.routes.url_helpers
+  include ActiveStorage::Attached::Model
 
   # Constants
   MAX_IMAGES = 15
@@ -84,7 +86,7 @@ class Product < ApplicationRecord
 
   def generate_thumbnail_url
     # rubocop:disable Rails::SkipsModelValidations
-    update_column(:thumbnail_url, url_for(thumbnail.variant(:card)))
+    update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
     # rubocop:enable Rails::SkipsModelValidations
   end
 

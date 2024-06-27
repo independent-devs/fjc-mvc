@@ -1,6 +1,9 @@
 # frozen_string_literal: true
+# typed: true
 
 class Variant < ApplicationRecord
+  T.unsafe(self).include Rails.application.routes.url_helpers
+  include ActiveStorage::Attached::Model
   include RankedModel
 
   # Attachments
@@ -50,11 +53,11 @@ class Variant < ApplicationRecord
 
   # For generators
   def capture_price
-    variants = product.variants
+    variants = T.must(product).variants
     no_variant_records = variants.not_master.count.zero?
     captured = variants.where(is_master: no_variant_records)
 
-    product.update!(
+    T.must(product).update!(
       lowest_price: captured.minimum(:price),
       highest_price: captured.maximum(:price)
     )
@@ -62,7 +65,7 @@ class Variant < ApplicationRecord
 
   # For validations
   def only_one_master
-    return unless product.variants.exists?(is_master: true)
+    return unless T.must(product).variants.exists?(is_master: true)
 
     errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
@@ -72,14 +75,14 @@ class Variant < ApplicationRecord
   end
 
   def product_supports_variant
-    return if product.has_variant
+    return if T.must(product).has_variant
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
   end
 
   def generate_thumbnail_url
     # rubocop:disable Rails::SkipsModelValidations
-    update_column(:thumbnail_url, url_for(thumbnail.variant(:card)))
+    update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
     # rubocop:enable Rails::SkipsModelValidations
   end
 

@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module FjcShop
   class Application < Rails::Application
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     config.time_zone = 'Singapore'
     config.active_record.default_timezone = :local
