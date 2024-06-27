@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class Seo < ApplicationRecord
   belongs_to :product, touch: true

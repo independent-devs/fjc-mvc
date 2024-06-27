@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class Description < ApplicationRecord
   belongs_to :product, touch: true

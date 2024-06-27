@@ -134,3 +134,8 @@ gem 'rack-tracker', '~> 1.13'
 
 # Attachment validations
 gem 'active_storage_validations', '~> 1.1'
+
+# Type Checker
+gem 'sorbet', group: :development
+gem 'sorbet-runtime'
+gem 'tapioca', require: false, group: %i[development test]

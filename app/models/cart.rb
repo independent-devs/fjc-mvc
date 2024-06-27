@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class Cart < ApplicationRecord
   # Relations
@@ -38,7 +39,7 @@ class Cart < ApplicationRecord
   private
 
   def create_order_item
-    order.order_items.create!(variant:, qty:, price: variant.price)
+    T.must(order).order_items.create!(variant:, qty:, price: T.must(variant).price)
   end
 end
 

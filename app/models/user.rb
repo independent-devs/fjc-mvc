@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: false
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -21,11 +22,12 @@ class User < ApplicationRecord
   }
   validates :email, uniqueness: { allow_nil: true }
   validates :phone_no, uniqueness: { allow_nil: true }
-  validates :phone_no, presence: true, if: -> { provider == 'phone_no' }
+  validates :phone_no, presence: true, if: :provider_phone?
   validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') },
-                       if: -> { phone_no.present? }
+                       if: :phone_no
 
   def remember_me
+    T.bind(self, T.untyped)
     super.nil? ? true : super
   end
 
@@ -49,6 +51,12 @@ class User < ApplicationRecord
       user.email = provider_data.info.email
       user.password = Devise.friendly_token[0, 20]
     end
+  end
+
+  private
+
+  def provider_phone?
+    provider == 'phone_no'
   end
 end
 

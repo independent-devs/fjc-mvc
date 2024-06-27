@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class GuestSession < ApplicationRecord
   has_many :carts, dependent: :destroy
