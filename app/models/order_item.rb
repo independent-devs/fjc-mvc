@@ -8,12 +8,12 @@ class OrderItem < ApplicationRecord
   # Validations
   validates :qty, numericality: { greater_than: 0 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
-  validate :check_variant_quantity
+  validate :check_variant_quantity, if: :variant
 
   private
 
   def check_variant_quantity
-    return if variant&.backorderable || (variant&.count_on_hand&.> qty)
+    return if variant.backorderable || (variant.count_on_hand > qty)
 
     errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
   end
