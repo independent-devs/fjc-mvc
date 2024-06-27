@@ -5,7 +5,7 @@ class ProductsController < BaseController
 
   # GET /products
   def index
-    @products = Product.base_on_date.not_deleted.sort_by_latest
+    @products = Product.base_on_date.sort_by_latest
   end
 
   # GET /products/:slug?pid=:uuid
