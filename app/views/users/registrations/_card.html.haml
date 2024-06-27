@@ -5,7 +5,8 @@
       - if resource.errors.present?
         = render ErrorMessageComponent.new(errors: resource.errors.full_messages, label: nil)
       .field{"data-controller": "phone"}
-        = f.label "Phone No."
+        = f.label :phone_no do
+          Phone number
         = f.phone_field  :phone_no, required: true, autocomplete: "phone_no",
         data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
         = f.hidden_field :phone_no, "data-phone-target": "hidden", id: "hidden-field"
