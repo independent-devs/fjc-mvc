@@ -46,16 +46,15 @@ class Product < ApplicationRecord
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
-  scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:, deleted_at: nil) }
-  scope :single_using_uuid, ->(uuid) { find_by!(uuid:, deleted_at: nil) }
+  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:) }
+  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
   scope :base_on_date, lambda { |now = DateTime.now|
     where(available_on: now..)
       .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
   }
 
   # Validations
-  validates :name, :currency, :master_variant, :slug, presence: true
+  validates :name, :currency, :slug, presence: true
   validates :options, presence: true, if: :has_variant
   validates :review_avg_rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
@@ -101,7 +100,6 @@ end
 #  id                :bigint           not null, primary key
 #  available_on      :datetime
 #  currency          :string           not null
-#  deleted_at        :datetime
 #  discontinue_on    :datetime
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
@@ -120,7 +118,6 @@ end
 # Indexes
 #
 #  index_products_on_available_on    (available_on)
-#  index_products_on_deleted_at      (deleted_at)
 #  index_products_on_discontinue_on  (discontinue_on)
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)

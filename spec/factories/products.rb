@@ -43,7 +43,6 @@ end
 #  id                :bigint           not null, primary key
 #  available_on      :datetime
 #  currency          :string           not null
-#  deleted_at        :datetime
 #  discontinue_on    :datetime
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
@@ -62,7 +61,6 @@ end
 # Indexes
 #
 #  index_products_on_available_on    (available_on)
-#  index_products_on_deleted_at      (deleted_at)
 #  index_products_on_discontinue_on  (discontinue_on)
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)

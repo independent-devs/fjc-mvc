@@ -95,8 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.bigint "order_id", null: false
-    t.bigint "variant_id", null: false
+    t.bigint "order_id"
+    t.bigint "variant_id"
     t.integer "qty", default: 1, null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
@@ -154,7 +154,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.string "name", null: false
     t.datetime "available_on", precision: nil
     t.datetime "discontinue_on", precision: nil
-    t.datetime "deleted_at", precision: nil
     t.string "slug", null: false
     t.boolean "promotable", default: true, null: false
     t.boolean "order_must_login", default: false, null: false
@@ -168,7 +167,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_165915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"
-    t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_products_on_discontinue_on"
     t.index ["highest_price"], name: "index_products_on_highest_price"
     t.index ["lowest_price"], name: "index_products_on_lowest_price"

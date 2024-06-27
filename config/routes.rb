@@ -43,28 +43,26 @@ end
 #                                          PUT      /auth(.:format)                                                                                   registrations#update
 #                                          DELETE   /auth(.:format)                                                                                   registrations#destroy
 #                                          POST     /auth(.:format)                                                                                   registrations#create
-#                            profile_index GET      /profile(.:format)                                                                                profile#index
+#                                   orders GET      /account/orders(.:format)                                                                         orders#index
+#                            account_index GET      /account(.:format)                                                                                account#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                     info_product_variant GET      /products/:product_uuid/variants/:variant_uuid/info(.:format)                                     products/variants#info
-#              add_to_cart_product_variant POST     /products/:product_uuid/variants/:variant_uuid/add_to_cart(.:format)                              products/variants#add_to_cart
-#        guest_add_to_cart_product_variant POST     /products/:product_uuid/variants/:variant_uuid/guest_add_to_cart(.:format)                        products/variants#guest_add_to_cart
-#                  buy_now_product_variant POST     /products/:product_uuid/variants/:variant_uuid/buy_now(.:format)                                  products/variants#buy_now
-#            guest_buy_now_product_variant POST     /products/:product_uuid/variants/:variant_uuid/guest_buy_now(.:format)                            products/variants#guest_buy_now
-#                         product_variants GET      /products/:product_uuid/variants(.:format)                                                        products/variants#index
-#                                          POST     /products/:product_uuid/variants(.:format)                                                        products/variants#create
-#                      new_product_variant GET      /products/:product_uuid/variants/new(.:format)                                                    products/variants#new
-#                     edit_product_variant GET      /products/:product_uuid/variants/:variant_uuid/edit(.:format)                                     products/variants#edit
-#                          product_variant GET      /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#show
-#                                          PATCH    /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#update
-#                                          PUT      /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#update
-#                                          DELETE   /products/:product_uuid/variants/:variant_uuid(.:format)                                          products/variants#destroy
 #                                sync_cart POST     /carts/:uuid/sync(.:format)                                                                       carts#sync
 #                            sync_all_cart POST     /carts/:uuid/sync_all(.:format)                                                                   carts#sync_all
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
 #                                     cart PATCH    /carts/:uuid(.:format)                                                                            carts#update
 #                                          PUT      /carts/:uuid(.:format)                                                                            carts#update
 #                                          DELETE   /carts/:uuid(.:format)                                                                            carts#destroy
+#                             info_variant GET      /variants/:uuid/info(.:format)                                                                    variants#info
+#                      add_to_cart_variant POST     /variants/:uuid/add_to_cart(.:format)                                                             variants#add_to_cart
+#                guest_add_to_cart_variant POST     /variants/:uuid/guest_add_to_cart(.:format)                                                       variants#guest_add_to_cart
+#                          buy_now_variant POST     /variants/:uuid/buy_now(.:format)                                                                 variants#buy_now
+#                    guest_buy_now_variant POST     /variants/:uuid/guest_buy_now(.:format)                                                           variants#guest_buy_now
+#                             cancel_order DELETE   /orders/:uuid/cancel(.:format)                                                                    orders#cancel
+#                                          POST     /orders(.:format)                                                                                 orders#create
+#                                    order GET      /orders/:uuid(.:format)                                                                           orders#show
+#                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
+#                                          POST     /checkout(.:format)                                                                               checkout#create
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
