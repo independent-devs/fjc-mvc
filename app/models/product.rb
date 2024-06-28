@@ -2,6 +2,9 @@
 # typed: true
 
 class Product < ApplicationRecord
+  extend T::Sig
+
+  # Helpers
   T.unsafe(self).include Rails.application.routes.url_helpers
   include ActiveStorage::Attached::Model
 
@@ -73,6 +76,7 @@ class Product < ApplicationRecord
   private
 
   # For generators
+  sig { void }
   def sanitize_slug
     keys = Regexp.union(SLUG_REGEX.keys)
     to_sanitize = new_record? ? name : slug
@@ -80,16 +84,19 @@ class Product < ApplicationRecord
     self.slug = to_sanitize.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
   end
 
+  sig { returns(T::Boolean) }
   def generate_thumbnail_url_condition
     attachment_changes['thumbnail'].present?
   end
 
+  sig { void }
   def generate_thumbnail_url
     # rubocop:disable Rails::SkipsModelValidations
     update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
     # rubocop:enable Rails::SkipsModelValidations
   end
 
+  sig { returns(T::Boolean) }
   def sanitize_slug_condition
     new_record? || slug_changed?
   end

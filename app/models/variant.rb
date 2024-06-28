@@ -2,6 +2,9 @@
 # typed: true
 
 class Variant < ApplicationRecord
+  extend T::Sig
+
+  # Helpers
   T.unsafe(self).include Rails.application.routes.url_helpers
   include ActiveStorage::Attached::Model
   include RankedModel
@@ -52,6 +55,7 @@ class Variant < ApplicationRecord
   private
 
   # For generators
+  sig { void }
   def capture_price
     variants = T.must(product).variants
     no_variant_records = variants.not_master.count.zero?
@@ -64,28 +68,33 @@ class Variant < ApplicationRecord
   end
 
   # For validations
+  sig { void }
   def only_one_master
     return unless T.must(product).variants.exists?(is_master: true)
 
     errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
 
+  sig { void }
   def only_one_master_condition
     (new_record? && is_master) || (is_master_changed? && is_master_was)
   end
 
+  sig { void }
   def product_supports_variant
     return if T.must(product).has_variant
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
   end
 
+  sig { void }
   def generate_thumbnail_url
     # rubocop:disable Rails::SkipsModelValidations
     update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
     # rubocop:enable Rails::SkipsModelValidations
   end
 
+  sig { returns(T::Boolean) }
   def generate_thumbnail_url_condition
     attachment_changes['thumbnail'].present?
   end

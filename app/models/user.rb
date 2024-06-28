@@ -2,6 +2,8 @@
 # typed: false
 
 class User < ApplicationRecord
+  extend T::Sig
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -26,25 +28,30 @@ class User < ApplicationRecord
   validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') },
                        if: :phone_no
 
+  sig { returns(T::Boolean) }
   def remember_me
     T.bind(self, T.untyped)
     super.nil? ? true : super
   end
 
+  sig { returns(T::Boolean) }
   def email_required?
     provider != 'phone_no'
   end
 
+  sig { returns(T::Boolean) }
   def email_changed?
     true
   end
 
-  def self.find_for_authentication(conditions = {})
+  sig { params(conditions: { phone_no: String }).returns(T.nilable(User)) }
+  def self.find_for_authentication(conditions)
     return nil if conditions[:phone_no].blank?
 
     find_by(phone_no: conditions[:phone_no])
   end
 
+  sig { params(provider_data: T.untyped).returns(User) }
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       user.name = provider_data.info.name
@@ -55,6 +62,7 @@ class User < ApplicationRecord
 
   private
 
+  sig { returns(T::Boolean) }
   def provider_phone?
     provider == 'phone_no'
   end

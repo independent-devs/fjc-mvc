@@ -1,8 +1,11 @@
 # frozen_string_literal: true
+# typed: true
 
 class Ability
+  extend T::Sig
   include CanCan::Ability
 
+  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession)).void }
   def initialize(user, guest_session)
     # Variant
     can(:info, Variant)
@@ -33,6 +36,7 @@ class Ability
 
   private
 
+  sig { params(guest_session: GuestSession).void }
   def guest(guest_session)
     # Variant
     can(:guest_add_to_cart, Variant)

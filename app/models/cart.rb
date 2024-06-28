@@ -2,6 +2,8 @@
 # typed: true
 
 class Cart < ApplicationRecord
+  extend T::Sig
+
   # Relations
   belongs_to :variant
   belongs_to :user, optional: true
@@ -38,6 +40,7 @@ class Cart < ApplicationRecord
 
   private
 
+  sig { void }
   def create_order_item
     T.must(order).order_items.create!(variant:, qty:, price: T.must(variant).price)
   end
