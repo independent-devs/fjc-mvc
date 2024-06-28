@@ -39,7 +39,7 @@ class User < ApplicationRecord
     provider != 'phone_no'
   end
 
-  sig { returns(T::Boolean) }
+  sig { returns(TrueClass) }
   def email_changed?
     true
   end
