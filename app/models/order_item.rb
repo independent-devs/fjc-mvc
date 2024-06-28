@@ -17,7 +17,7 @@ class OrderItem < ApplicationRecord
 
   sig { void }
   def check_variant_quantity
-    return if T.must(variant).backorderable || (T.must(T.must(variant).count_on_hand) > qty)
+    return if T.must(variant).backorderable || (T.must(T.must(variant).count_on_hand) >= qty)
 
     errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
   end
