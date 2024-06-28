@@ -22,5 +22,5 @@ jobs:
           bundle config path vendor/bundle
           bundle config set without 'default doc job cable storage ujs test db'
           bundle install --jobs 4 --retry 3
-      - name: Run Sorbet
+      - name: Run Sorbet Type Checking
         run: bundle exec srb tc

@@ -60,6 +60,7 @@ group :development, :test do
   gem 'faker'
   gem 'parallel_tests'
   gem 'rspec-rails'
+  gem 'rspec-sorbet'
 end
 
 group :development do

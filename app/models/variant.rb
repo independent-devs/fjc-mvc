@@ -75,9 +75,9 @@ class Variant < ApplicationRecord
     errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
 
-  sig { void }
+  sig { returns(T::Boolean) }
   def only_one_master_condition
-    (new_record? && is_master) || (is_master_changed? && is_master_was)
+    (new_record? && is_master) || (is_master_changed? && is_master_was) || false
   end
 
   sig { void }
