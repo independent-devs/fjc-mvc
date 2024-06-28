@@ -2,6 +2,8 @@
 # typed: true
 
 class OrderItem < ApplicationRecord
+  extend T::Sig
+
   # Relations
   belongs_to :order, optional: true
   belongs_to :variant, optional: true
@@ -13,6 +15,7 @@ class OrderItem < ApplicationRecord
 
   private
 
+  sig { void }
   def check_variant_quantity
     return if T.must(variant).backorderable || (T.must(T.must(variant).count_on_hand) > qty)
 
