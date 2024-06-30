@@ -1,6 +1,9 @@
 # frozen_string_literal: true
+# typed: true
 
 class TagComponent < ViewComponent::Base
+  extend T::Sig
+
   attr_reader :variant
 
   BG_COLOR = {
@@ -10,11 +13,13 @@ class TagComponent < ViewComponent::Base
     error: 'bg-red-600'
   }.freeze
 
+  sig { params(variant: T.any(Symbol, String)).void }
   def initialize(variant: :primary)
     @variant = variant
     super
   end
 
+  sig { returns(String) }
   def bg_color
     BG_COLOR[variant] || BG_COLOR[:primary]
   end
