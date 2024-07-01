@@ -15,11 +15,17 @@ class Ability
     ).void
   end
   def initialize(user, guest_session, is_admin_path: false)
+    # Admin permission
+    if is_admin_path && user.present?
+      admin_permission user
+      return
+    end
+
     # Variant
     can :info, Variant
 
     # Guest Session
-    guest guest_session if guest_session.present? && user.blank?
+    guest_permission guest_session if guest_session.present? && user.blank?
 
     return if user.blank?
 
@@ -40,16 +46,12 @@ class Ability
     # Order
     can :read, Order, user_id: user.id
     can :cancel, Order, user_id: user.id, order_status: { name: 'pending' }
-
-    return unless is_admin_path
-
-    admin_permission user
   end
 
   private
 
   sig { params(guest_session: GuestSession).void }
-  def guest(guest_session)
+  def guest_permission(guest_session)
     # Variant
     can :guest_add_to_cart, Variant
     can :guest_buy_now, Variant
