@@ -1,10 +1,10 @@
 %div{data: {controller: "dropdown"}, class: "relative"}
-  %button.flex.flex-col.text-zinc-500.items-center{id: "cart-#{@cart.uuid}-variant-pair", type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
+  .flex.flex-col.text-zinc-500.items-center.cursor-pointer{id: "cart-#{@cart.uuid}-variant-pair", data: {action: "click->dropdown#toggle click@window->dropdown#hide"}}
     .flex.gap-2.items-center
       Variations:
       = icon("fa-solid", "caret-down")
     #variant-pair
       = @cart.variant_pair
-  .point.bg-white.z-10.mt-3.hidden.transition.transform.origin-top-right.absolute.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200.px-4.py-3{class: "w-[20rem] max-w-[20rem]", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
+  .point.bg-white.z-10.mt-3.hidden.transition.transform.origin-top-left.absolute.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200.px-4.py-3{class: "w-[20rem] max-w-[20rem] left-1/2 -translate-x-1/2", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
     = tag.turbo_frame id: "variant-dropdown-#{@cart.uuid}", src: variant_dropdown_cart_path(uuid: @cart.uuid, format: :turbo_stream), loading: "lazy" do
       = icon "fa-solid", "spinner", class: "text-3xl animate-spin"
