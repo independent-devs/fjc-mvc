@@ -5,15 +5,25 @@
       .ml-24
         %ul.flex.gap-8.font-medium
           %li
-            = link_to t("home.title"), root_path,
-            class: "decoration-2 underline-offset-4 hover:underline"
+            = link_to t("home.title"), root_path, class: "decoration-2 underline-offset-4 hover:underline"
           %li
-            = link_to t("products.title"), products_path, 
+            = link_to t("products.title"), products_path,
             class: "decoration-2 underline-offset-4 hover:underline"
     .flex.gap-5
       = link_to carts_path do
         = icon("fa-solid", "cart-shopping", class: "text-xl")
       = link_to account_index_path do
         = icon("fa-regular", "heart", class: "text-xl")
-      = link_to account_index_path do
-        = icon("fa-regular", "user", class: "text-xl")
+      %div{data: {controller: "dropdown"}, class: "relative"}
+        %button{type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
+          = icon("fa-regular", "user", class: "text-xl")
+        .mt-2.hidden.transition.transform.origin-top-right.absolute.-right-2.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200{data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
+          = link_to account_index_path do
+            .flex.px-6.w-full.text-nowrap{class: "py-2 hover:bg-primary/5 hover:text-primary"}
+              My Account
+          = link_to orders_path do
+            .flex.px-6.w-full.text-nowrap{class: "py-2 hover:bg-primary/5 hover:text-primary"}
+              My Orders
+      - if current_user&.admin?
+        = link_to admin_path do
+          = icon("fa-solid", "user-tie", class: "text-xl")
