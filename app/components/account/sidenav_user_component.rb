@@ -4,10 +4,9 @@
 class Account::SidenavUserComponent < ViewComponent::Base
   extend T::Sig
 
-  sig { params(user: User, signed_in: T::Boolean).void }
-  def initialize(user:, signed_in: false)
+  sig { params(user: T.nilable(User)).void }
+  def initialize(user:)
     @user = user
-    @signed_in = signed_in
     super
   end
 end
