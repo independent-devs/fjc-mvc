@@ -16,9 +16,11 @@
               %template{data: {"popover-target": "content"}}
                 .popover{data: {"popover-target": "card"}}
                   .w-60.py-2.px-3.text-sm.text-gray-600
-                    This is a guest cart saved in this browser, 
-                    = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
-                    sync this card to own the cart.
+                    This is a guest cart saved in this browser.
+                    - if can?(:sync, cart)
+                      Sync
+                      = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
+                      this card to own the cart.
             - if can?(:sync, cart)
               = button_to sync_cart_path(cart.uuid), method: :post do
                 = icon("fa-solid", "arrows-rotate", class: "text-gray-400 text-lg hover:text-gray-600")
