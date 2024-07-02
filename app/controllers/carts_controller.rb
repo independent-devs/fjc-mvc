@@ -6,7 +6,7 @@ class CartsController < BaseController
 
   def index
     @bn = Cart.detailed.find_by(uuid: params[:bn]) if params[:bn].present?
-    authorize! :read, @bn if @bn.present?
+    authorize! :update, @bn if @bn.present?
 
     @carts =
       (if @bn.present?
