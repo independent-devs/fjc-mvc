@@ -5,7 +5,15 @@ class CartsController < BaseController
   load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def index
-    @carts = Cart.detailed.accessible_by(current_ability)
+    @bn = Cart.detailed.find_by(uuid: params[:bn]) if params[:bn].present?
+    authorize! :read, @bn if @bn.present?
+
+    @carts =
+      (if @bn.present?
+         Cart.detailed.where.not(id: @bn.id).accessible_by(current_ability)
+       else
+         Cart.detailed.accessible_by(current_ability)
+       end)
   end
 
   def update

@@ -1,5 +1,5 @@
 = turbo_frame_tag "variant-dropdown-#{@cart.uuid}" do
-  .flex.flex-col.gap-5.mb-3{data: {"controller": "carts--dropdown"}}
+  .flex.flex-col.gap-4.mb-1{data: {"controller": "carts--dropdown"}}
     #current-variant.hidden{data: {"carts--dropdown-target": "currentVariant", value: @cart.variant.uuid, cart: @cart.uuid}}
     - @cart.variant.product.product_options.with_option_columns.each do |po|
       .flex.flex-col.gap-3{data: {"carts--dropdown-target": "optionInstance"}}
@@ -13,5 +13,10 @@
               class: "peer hidden", disabled: true, data: {action: "click->carts--dropdown#radioToggle", 
               was_checked: is_active, variant_ids: arr.map { |a| a.variant_uuid }.join(','),
               "carts--dropdown-target": "radio"}
-              %label.variant-radio{for: "#{vname}-#{@cart.uuid}"}
+              %label.variant-radio.py-2{for: "#{vname}-#{@cart.uuid}"}
                 = vname
+    .flex.gap-2{class: "mt-2.5"}
+      %button.btn-plain.py-2{class: "w-1/2", data: {action: "dropdown#toggle"}}
+        Cancel
+      %button.btn-primary.py-2{class: "w-1/2"}
+        Update
