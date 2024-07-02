@@ -1,4 +1,4 @@
-= turbo_stream.replace "variant-dropdown-#{@cart.uuid}" do
+= turbo_frame_tag "variant-dropdown-#{@cart.uuid}" do
   .flex.flex-col.gap-5.mb-3{data: {"controller": "carts--dropdown"}}
     #current-variant.hidden{data: {"carts--dropdown-target": "currentVariant", value: @cart.variant.uuid, cart: @cart.uuid}}
     - @cart.variant.product.product_options.with_option_columns.each do |po|
