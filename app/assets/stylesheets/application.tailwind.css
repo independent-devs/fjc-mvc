@@ -134,7 +134,7 @@
     @apply text-3xl font-medium text-primary;
   }
 
-  label.variant-radio {
+  .variant-radio {
     @apply rounded-sm bg-white drop-shadow-sm ring-1 ring-gray-400 cursor-pointer peer-disabled:text-gray-300 peer-disabled:ring-gray-300 peer-checked:text-primary peer-checked:ring-primary px-4 py-2.5 text-[15px] peer-checked:bg-primary/[.04];
   }
 
@@ -230,6 +230,19 @@
 
   .popover {
     @apply max-w-sm rounded shadow-lg bg-white absolute mt-2 border;
+  }
+
+  .point:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -10px;
+    left: 50%;
+    margin-left: -10px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent gray transparent;  
   }
 }
 
