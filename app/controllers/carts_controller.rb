@@ -43,6 +43,8 @@ class CartsController < BaseController
 
   def sync_all; end
 
+  def variant_dropdown; end
+
   private
 
   def cart_params
