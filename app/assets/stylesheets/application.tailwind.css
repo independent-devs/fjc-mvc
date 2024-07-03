@@ -35,7 +35,7 @@
   }
 
   .btn-plain {
-    @apply border border-secondary bg-white py-3 px-6 rounded-sm w-fit transition-all ease-in-out duration-100 text-sm;
+    @apply border border-gray-500 bg-white py-3 px-6 rounded-sm w-fit transition-all ease-in-out duration-100 text-sm;
   }
 
   .input-primary {

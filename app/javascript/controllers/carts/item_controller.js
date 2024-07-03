@@ -2,7 +2,14 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="carts--item"
 export default class extends Controller {
-  static targets = ["quantity", "updateUrl"];
+  static targets = [
+    "quantity",
+    "url",
+    "dropdown",
+    "delete",
+    "checkbox",
+    "sync",
+  ];
 
   /* Quantity */
   increment() {
@@ -15,6 +22,35 @@ export default class extends Controller {
     if (this.quantityTarget.disabled) return;
     this.quantityTarget.stepDown();
     this.updateQuantity();
+  }
+
+  sync() {
+    if (!this.urlTarget.dataset.syncUrl) return;
+
+    this.syncTarget.disabled = true;
+
+    fetch(this.urlTarget.dataset.syncUrl, {
+      method: "POST",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+        "X-CSRF-Token": document
+          .querySelector('meta[name="csrf-token"]')
+          .getAttribute("content"),
+      },
+    })
+      .then((res) => {
+        if (res.status == 200) {
+          this.quantityTarget.disabled = false;
+          this.dropdownTarget.disabled = false;
+          this.deleteTarget.disabled = false;
+          this.checkboxTarget.disabled = false;
+          this.syncTarget.disabled = false;
+        }
+        return res.text();
+      })
+      .then((html) => {
+        Turbo.renderStreamMessage(html);
+      });
   }
 
   quantityInput(event) {
@@ -46,7 +82,7 @@ export default class extends Controller {
     const formData = new FormData();
     formData.append("cart[qty]", this.quantityTarget.value);
 
-    fetch(this.updateUrlTarget.dataset.url, {
+    fetch(this.urlTarget.dataset.updateUrl, {
       method: "PUT",
       body: formData,
       headers: {
@@ -56,10 +92,10 @@ export default class extends Controller {
           .getAttribute("content"),
       },
     })
-      .then((res) => res.text())
-      .then((html) => {
-        Turbo.renderStreamMessage(html);
+      .then((res) => {
         this.quantityTarget.disabled = false;
-      });
+        return res.text();
+      })
+      .then((html) => Turbo.renderStreamMessage(html));
   }
 }

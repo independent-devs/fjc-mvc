@@ -1,17 +1,24 @@
 = turbo_frame_tag "variant-dropdown-#{@cart.uuid}" do
-  .flex.flex-col.gap-5.mb-3{data: {"controller": "carts--dropdown"}}
-    #current-variant.hidden{data: {"carts--dropdown-target": "currentVariant", value: @cart.variant.uuid, cart: @cart.uuid}}
-    - @cart.variant.product.product_options.with_option_columns.each do |po|
-      .flex.flex-col.gap-3{data: {"carts--dropdown-target": "optionInstance"}}
-        %span.font-medium.text-sm.text-zinc-500
-          = po.display_name
-        %ul.flex-wrap.flex{class: "gap-2.5", data: {"carts--dropdown-target": "option"}}
-          - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |vname, arr|
-            - is_active = arr.any? { |a| a.variant_id == @cart.variant_id }
-            %li
-              = radio_button_tag po.name, vname, is_active, id: "#{vname}-#{@cart.uuid}",
-              class: "peer hidden", disabled: true, data: {action: "click->carts--dropdown#radioToggle", 
-              was_checked: is_active, variant_ids: arr.map { |a| a.variant_uuid }.join(','),
-              "carts--dropdown-target": "radio"}
-              %label.variant-radio{for: "#{vname}-#{@cart.uuid}"}
-                = vname
+  .grid.gap-4{data: {"controller": "carts--dropdown"}}
+    .flex.flex-col.gap-4
+      #current-variant.hidden{data: {"carts--dropdown-target": "currentVariant", value: @cart.variant.uuid, cart: @cart.uuid}}
+      - @cart.variant.product.product_options.with_option_columns.each do |po|
+        .flex.flex-col.gap-3{data: {"carts--dropdown-target": "optionInstance"}}
+          %span.font-medium.text-sm.text-zinc-500
+            = po.display_name
+          %ul.flex-wrap.flex{class: "gap-2.5", data: {"carts--dropdown-target": "option"}}
+            - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |vname, arr|
+              - is_active = arr.any? { |a| a.variant_id == @cart.variant_id }
+              %li
+                = radio_button_tag po.name, vname, is_active, id: "#{vname}-#{@cart.uuid}",
+                class: "peer hidden", disabled: true, data: {action: "click->carts--dropdown#radioToggle", 
+                was_checked: is_active, variant_ids: arr.map { |a| a.variant_uuid }.join(','),
+                "carts--dropdown-target": "radio"}
+                %label.variant-radio.py-2{for: "#{vname}-#{@cart.uuid}"}
+                  = vname
+    = render StockCountComponent.new count: @cart.variant.count_on_hand
+    .flex.gap-2.-mt-1
+      %button.btn-plain.py-2{class: "w-1/2", data: {action: "dropdown#toggle"}}
+        Cancel
+      %button.btn-primary.py-2{class: "w-1/2"}
+        Update

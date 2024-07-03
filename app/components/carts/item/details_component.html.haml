@@ -1,5 +1,5 @@
 .flex.w-full.gap-3.col-span-3.items-center.pl-5
-  .flex.gap-3.items-center{class: "w-[65%]"}
+  .flex.gap-3.items-center{class: "w-[70%]"}
     = render Carts::Item::CheckboxComponent.new cart:
     .flex.gap-2
       = link_to product_path(cart.product_slug, pid: cart.product_uuid) do
@@ -22,7 +22,10 @@
                       = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
                       this card to own the cart.
             - if can?(:sync, cart)
-              = button_to sync_cart_path(cart.uuid), method: :post do
-                = icon("fa-solid", "arrows-rotate", class: "text-gray-400 text-lg hover:text-gray-600")
+              %button.text-gray-400.text-lg.hover:text-gray-600.disabled:animate-spin.disabled:cursor-wait{type: "button", data: {action: "click->carts--item#sync", "carts--item-target": "sync"}}
+                = icon("fa-solid", "arrows-rotate")
   - unless cart.is_master
     = render Carts::Item::VariantDropdownComponent.new cart:
+  - else
+    #stock.text-sm.text-gray-500
+      = render StockCountComponent.new count: @cart.count_on_hand

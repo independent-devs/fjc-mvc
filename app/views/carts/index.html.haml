@@ -14,8 +14,10 @@
         Total Price
       %div
         Actions
-    - if @carts.present?
+    - if @carts.present? || @bn.present?
       .divide-y
+        - if @bn.present?
+          = render Carts::Item::Component.new cart: @bn
         - @carts.each do |cart|
           = render Carts::Item::Component.new cart:
     - else
