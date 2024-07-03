@@ -1,1 +1,1 @@
-.hidden{id: "cart-#{@cart.uuid}-update-url", data: {"carts--item-target": "updateUrl", url: cart_url(@cart.uuid)}}
+.hidden{id: "cart-#{@cart.uuid}-update-url", data: {"carts--item-target": "url", update_url: cart_url(@cart.uuid), sync_url: can?(:sync, @cart) && sync_cart_url(@cart.uuid)}}

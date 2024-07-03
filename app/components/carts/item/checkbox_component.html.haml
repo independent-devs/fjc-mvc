@@ -1,1 +1,1 @@
-= check_box_tag "cart_ids", @cart.uuid, params[:bn] == @cart.uuid, data: {"carts--select-all-target": "checkbox"}, id: "cart-#{@cart.uuid}-checkbox", disabled: cannot?(:update, @cart), class: "checkbox-primary"
+= check_box_tag "cart_ids", @cart.uuid, params[:bn] == @cart.uuid, data: {"carts--select-all-target": "checkbox", "carts--item-target": "checkbox"}, id: "cart-#{@cart.uuid}-checkbox", disabled: cannot?(:update, @cart), class: "checkbox-primary"

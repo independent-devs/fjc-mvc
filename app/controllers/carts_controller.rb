@@ -5,7 +5,8 @@ class CartsController < BaseController
   load_and_authorize_resource find_by: :uuid, id_param: :uuid
 
   def index
-    @bn = Cart.detailed.find_by(uuid: params[:bn]) if params[:bn].present?
+    # Buy now
+    @bn = Cart.detailed.find_by(uuid: params[:bn], order: nil) if params[:bn].present?
     authorize! :update, @bn if @bn.present?
 
     @carts =

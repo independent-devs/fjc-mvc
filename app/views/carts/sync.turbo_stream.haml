@@ -1,13 +1,4 @@
 = turbo_stream.prepend "notification-container" do
   = render NotificationComponent.new notif_type: "success", message: t("carts.synced")
 
-= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new cart: @cart
-
 = turbo_stream.remove "cart-#{@cart.uuid}-guest-display"
-
-= turbo_stream.replace "cart-#{@cart.uuid}-actions" do
-  = render Carts::Item::ActionsComponent.new cart: @cart
-
-= turbo_stream.replace "cart-#{@cart.uuid}-qty" do
-  = render Carts::Item::QtyComponent.new cart: @cart

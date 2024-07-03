@@ -23,7 +23,6 @@ export default class extends Controller {
       }
 
       this.disableGroupRadios(el);
-      this.setToBeUpdateVariant(el);
     }
   }
 
@@ -43,10 +42,10 @@ export default class extends Controller {
     }
 
     this.disableGroupRadios(event.target);
-    this.setToBeUpdateVariant(event.target);
+    this.variantInfo(event.target);
   }
 
-  setToBeUpdateVariant(target) {
+  variantInfo(target) {
     this.updateVariantID = this.isMultiOptions
       ? this.commonVariant
       : target.dataset.variantIds;
@@ -136,6 +135,10 @@ export default class extends Controller {
     }
 
     return variantId;
+  }
+
+  get allRadioChecked() {
+    return this.optionTargets.length == this.checkedRadioCount;
   }
 
   get radioCollections() {
