@@ -4,7 +4,7 @@
 = turbo_stream.remove "cart-#{@cart.uuid}"
 
 = turbo_stream.replace "cart-#{@common_cart.uuid}-qty" do
-  = render Carts::Item::QtyComponent.new cart: @common_cart
+  = render Carts::Item::QtyComponent.new cart: @common_cart, count_on_hand: @common_cart.variant.count_on_hand, backorderable: @common_cart.variant.backorderable
 
-= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new uuid: @cart.uuid, invalid: checkbok_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart)
+= turbo_stream.replace "cart-#{@common_cart.uuid}-checkbox" do
+  = render Carts::Item::CheckboxComponent.new uuid: @cart.uuid, invalid: checkbok_invalid?(@common_cart.variant.count_on_hand, @common_cart.qty, @common_cart.variant.backorderable) || cannot?(:update, @common_cart)
