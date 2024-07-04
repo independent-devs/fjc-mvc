@@ -14,7 +14,7 @@ export default class extends Controller {
 
   loadVariant() {
     for (let el of this.radioTargets) {
-      const variantIds = el.dataset.variantIds.split(",");
+      const variantIds = this.radioVariantList(el);
       const currentvariantID = this.variantID;
 
       if (variantIds.includes(currentvariantID)) {

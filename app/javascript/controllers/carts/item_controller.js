@@ -2,14 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="carts--item"
 export default class extends Controller {
-  static targets = [
-    "quantity",
-    "url",
-    "dropdown",
-    "delete",
-    "checkbox",
-    "sync",
-  ];
+  static targets = ["quantity", "url", "dropdown", "delete", "sync"];
 
   /* Quantity */
   increment() {
@@ -43,7 +36,6 @@ export default class extends Controller {
           this.quantityTarget.disabled = false;
           this.dropdownTarget.disabled = false;
           this.deleteTarget.disabled = false;
-          this.checkboxTarget.disabled = false;
           this.syncTarget.disabled = false;
         }
         return res.text();

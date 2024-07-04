@@ -1,0 +1,5 @@
+- if count_on_hand.positive? && quantity_invalid?(count_on_hand, qty, backorderable)
+  .text-sm.text-red-600{id: "cart-#{uuid}-stocks-warning"}
+    Exceed stocks
+- else
+  .hidden{id: "cart-#{uuid}-stocks-warning"}
