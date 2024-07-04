@@ -20,7 +20,8 @@ class Cart < ApplicationRecord
                     'WHERE vov.variant_id = carts.variant_id) AS variant_pair')
             # variants
             .select('variants.count_on_hand, variants.is_master, variants.price, ' \
-                    'variants.product_id, variants.thumbnail_url AS variant_thumbnail')
+                    'variants.backorderable, variants.product_id, ' \
+                    'variants.thumbnail_url AS variant_thumbnail')
             .joins(:variant)
             # products
             .select('products.name AS product_name, products.currency, ' \

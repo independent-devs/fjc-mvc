@@ -7,4 +7,10 @@
     = render Carts::Item::UnitpriceComponent.new uuid: @cart.uuid, price: @cart.variant.price, 
       currency: @cart.variant.product.currency
 
+= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
+  = render Carts::Item::CheckboxComponent.new uuid: @cart.uuid, invalid: checkbok_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart)
+
+= turbo_stream.replace "cart-#{@cart.uuid}-stocks-warning" do
+  = render Carts::Item::CartStockWarningComponent.new uuid: @cart.uuid, count_on_hand: @cart.variant.count_on_hand, qty: @cart.qty, backorderable: @cart.variant.backorderable
+
 -# - if @cart.variant_previously_changed?

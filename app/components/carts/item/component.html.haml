@@ -2,7 +2,6 @@
   = render Carts::Item::UpdateUrlComponent.new cart:
   = render Carts::Item::DetailsComponent.new cart:
   = render Carts::Item::UnitpriceComponent.new uuid: cart.uuid, price: cart.price, currency: cart.currency
-  = render Carts::Item::QtyComponent.new cart:
-  = render Carts::Item::TotalpriceComponent.new uuid: cart.uuid, price: cart.price, 
-  qty: cart.qty, currency: cart.currency
+  = render Carts::Item::QtyComponent.new cart:, count_on_hand: cart.count_on_hand, backorderable: cart.backorderable
+  = render Carts::Item::TotalpriceComponent.new uuid: cart.uuid, price: cart.price, qty: cart.qty, currency: cart.currency
   = render Carts::Item::ActionsComponent.new cart:
