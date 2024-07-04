@@ -3,7 +3,8 @@
   .bg-white.rounded-sm.shadow-sm{data: {controller: "carts--select-all"}}
     .grid.gap-3.grid-cols-7.py-4.place-items-center.border-b
       .col-span-3.w-full.flex.gap-4.items-center.pl-5
-        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
+        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, 
+        class: "checkbox-primary mt-0.5"
         %span.font-semibold.text-primary
           My Cart
       %div
@@ -17,9 +18,9 @@
     - if @carts.present? || @bn.present?
       .divide-y
         - if @bn.present?
-          = render Carts::Item::Component.new cart: @bn
+          = render Carts::Item::BaseComponent.new cart: @bn
         - @carts.each do |cart|
-          = render Carts::Item::Component.new cart:
+          = render Carts::Item::BaseComponent.new cart:
     - else
       .h-52.grid.place-items-center
         .flex.flex-col.gap-1.items-center.text-gray-400

@@ -2,7 +2,14 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="carts--item"
 export default class extends Controller {
-  static targets = ["quantity", "url", "dropdown", "delete", "sync"];
+  static targets = [
+    "quantity",
+    "url",
+    "dropdown",
+    "delete",
+    "sync",
+    "checkbox",
+  ];
 
   /* Quantity */
   increment() {
@@ -73,6 +80,7 @@ export default class extends Controller {
   updateItem() {
     const formData = new FormData();
     formData.append("cart[qty]", this.quantityTarget.value);
+    formData.append("checked", this.checkboxTarget.checked);
 
     fetch(this.urlTarget.dataset.updateUrl, {
       method: "PUT",

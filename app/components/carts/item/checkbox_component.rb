@@ -4,12 +4,11 @@
 class Carts::Item::CheckboxComponent < ViewComponent::Base
   extend T::Sig
 
-  attr_reader :uuid, :invalid
-
-  sig { params(uuid: String, invalid: T::Boolean).void }
-  def initialize(uuid:, invalid: false)
-    @uuid = uuid
+  sig { params(cart: Cart, invalid: T::Boolean, checked: T::Boolean).void }
+  def initialize(cart:, invalid: false, checked: false)
+    @cart = cart
     @invalid = invalid
+    @checked = checked
     super
   end
 end
