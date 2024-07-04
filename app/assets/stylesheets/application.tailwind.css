@@ -139,7 +139,7 @@
   }
 
   #quantity-container {
-    @apply grid place-items-center gap-1;
+    @apply flex items-center gap-4;
   }
 
   #quantity-container #stocks {

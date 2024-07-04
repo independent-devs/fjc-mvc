@@ -1,1 +1,1 @@
-= check_box_tag "cart_ids", uuid, invalid ? false : params[:bn] == uuid, class: "checkbox-primary", data: {"carts--select-all-target": "checkbox"}, id: "cart-#{uuid}-checkbox", disabled: invalid
+= check_box_tag "cart_ids", @cart.uuid, @invalid ? false : (@checked || params[:bn] == @cart.uuid), class: "checkbox-primary", data: {"carts--select-all-target": "checkbox", "carts--item-target": "checkbox"}, id: "cart-#{@cart.uuid}-checkbox", disabled: @invalid

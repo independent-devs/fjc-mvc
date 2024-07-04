@@ -1,2 +1,2 @@
-%div{id: "cart-#{@uuid}-unit-price"}
+%div{id: "cart-#{@cart.uuid}-unit-price"}
   = render PriceRangeComponent.new lowest: @price, currency: @currency

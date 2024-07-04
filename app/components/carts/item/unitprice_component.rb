@@ -4,9 +4,9 @@
 class Carts::Item::UnitpriceComponent < ViewComponent::Base
   extend T::Sig
 
-  sig { params(uuid: String, price: T.any(Integer, Float, BigDecimal), currency: String).void }
-  def initialize(uuid:, price:, currency:)
-    @uuid = uuid
+  sig { params(cart: Cart, price: T.any(Integer, Float, BigDecimal), currency: String).void }
+  def initialize(cart:, price:, currency:)
+    @cart = cart
     @price = price
     @currency = currency
     super

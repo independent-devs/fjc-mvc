@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # typed: true
 
-class Carts::Item::Component < ViewComponent::Base
+class Carts::Item::BaseComponent < ViewComponent::Base
   extend T::Sig
 
   attr_reader :cart

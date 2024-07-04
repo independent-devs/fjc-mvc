@@ -4,7 +4,7 @@
 class Carts::Item::DetailsComponent < ViewComponent::Base
   extend T::Sig
 
-  delegate :checkbok_invalid?, :cannot?, to: :helpers
+  delegate :checkbox_invalid?, :cannot?, :can?, to: :helpers
   attr_reader :cart
 
   sig { params(cart: Cart).void }
