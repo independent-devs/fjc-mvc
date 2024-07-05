@@ -1,12 +1,5 @@
 .relative{data: {controller: "dropdown"}}
-  %button.flex.flex-col.text-zinc-500.disabled:text-zinc-300.disabled:cursor-not-allowed.cursor-pointer.text-sm{id: "cart-#{@cart.uuid}-variant-pair", data: {"carts--item-target": "dropdown", action: "dropdown#toggle click@window->dropdown#hide"}, disabled: cannot?(:update, @cart)}
-    .flex.gap-2.items-center
-      Variations:
-      = icon("fa-solid", "caret-down")
-    #variant-pair
-      = @cart.variant_pair
-    #stock.text-sm
-    = render StockCountComponent.new count: @cart.count_on_hand
+  = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant_pair, count_on_hand: @cart.count_on_hand
   .point.bg-white.z-10.mt-3.hidden.transition.transform.origin-top-left.absolute.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200.px-4.py-3{class: "w-[20rem] max-w-[20rem] left-10 before:left-1/2 -translate-x-1/2", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
-    = tag.turbo_frame id: "variant-dropdown-#{@cart.uuid}", src: variant_dropdown_cart_path(uuid: @cart.uuid), loading: "lazy" do
+    = tag.turbo_frame id: "variant-#{@cart.uuid}-dropdown", src: variant_dropdown_cart_path(uuid: @cart.uuid), loading: "lazy" do
       = icon "fa-solid", "spinner", class: "text-3xl animate-spin"

@@ -27,5 +27,5 @@
   - unless cart.is_master
     = render Carts::Item::VariantDropdownComponent.new cart:
   - else
-    #stock.text-sm.text-gray-500
+    .text-sm.text-gray-500
       = render StockCountComponent.new count: @cart.count_on_hand

@@ -8,7 +8,7 @@ export default class extends Controller {
     this.loadVariant();
 
     document
-      .getElementById(`cart-${this.cartID}-variant-pair`)
+      .getElementById(`cart-${this.cartID}-dropdown-variant-pair`)
       .addEventListener("click", this.loadVariant.bind(this));
   }
 

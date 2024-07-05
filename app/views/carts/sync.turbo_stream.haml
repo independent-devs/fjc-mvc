@@ -7,4 +7,4 @@
   = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, backorderable: @cart.variant.backorderable
 
 = turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart), checked: ActiveModel::Type::Boolean.new.cast(params[:checked])
+  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart)
