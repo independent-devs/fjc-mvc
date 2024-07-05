@@ -1,10 +1,9 @@
 = render "seo"
 .w-full.margin-max-screen.py-7
-  .bg-white.rounded-sm.shadow-sm{data: {controller: "carts--select-all"}}
+  .bg-white.rounded-sm.shadow-sm{data: {controller: "carts--select-all items", empty: "items-empty", "item": "cart-item"}}
     .grid.gap-3.grid-cols-7.py-4.place-items-center.border-b
       .col-span-3.w-full.flex.gap-4.items-center.pl-5
-        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, 
-        class: "checkbox-primary mt-0.5"
+        = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
         %span.font-semibold.text-primary
           My Cart
       %div
@@ -21,8 +20,4 @@
           = render Carts::Item::BaseComponent.new cart: @bn
         - @carts.each do |cart|
           = render Carts::Item::BaseComponent.new cart:
-    - else
-      .h-52.grid.place-items-center
-        .flex.flex-col.gap-1.items-center.text-gray-400
-          = icon("fa-solid", "box-open", class: "text-6xl")
-          %span.text-lg No carts yet
+    = render EmptyItemComponent.new text: "No carts yet", hide: (@carts.present? || @bn.present?)

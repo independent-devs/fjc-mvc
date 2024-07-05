@@ -95,6 +95,11 @@
     @apply content-['*'] text-red-600
   }
 
+  /* items */
+  .items:has(.item) .items-empty {
+    @apply hidden;
+  }
+
   /* table */
   table {
     @apply w-full rounded-sm drop-shadow-sm bg-white;
