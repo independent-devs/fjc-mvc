@@ -5,14 +5,13 @@ class Carts::Item::CartStockWarningComponent < ViewComponent::Base
   extend T::Sig
 
   delegate :quantity_invalid?, to: :helpers
-  attr_reader :uuid, :count_on_hand, :qty, :backorderable
+  attr_reader :cart, :count_on_hand, :qty, :backorderable
 
-  sig { params(uuid: String, count_on_hand: Integer, qty: Integer, backorderable: T::Boolean).void }
-  def initialize(uuid:, count_on_hand:, qty:, backorderable:)
+  sig { params(cart: Cart, count_on_hand: Integer, backorderable: T::Boolean).void }
+  def initialize(cart:, count_on_hand:, backorderable:)
     @count_on_hand = count_on_hand
     @backorderable = backorderable
-    @qty = qty
-    @uuid = uuid
+    @cart = cart
     super
   end
 end

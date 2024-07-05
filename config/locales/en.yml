@@ -86,6 +86,8 @@ en:
     something_went_wrong: "Something went wrong."
     destroyed: "Cart was successfully deleted."
     synced: "Cart was successfully synced and onwed."
+    validate:
+      qty_exceeds_stocks: "qty exceeded current stock."
   orders:
     title: "Orders"
     no_list_found: "No orders found"

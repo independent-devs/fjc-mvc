@@ -1,4 +1,4 @@
-= turbo_frame_tag "variant-dropdown-#{@cart.uuid}" do
+= turbo_frame_tag "variant-#{@cart.uuid}-dropdown" do
   .grid.gap-4{data: {"controller": "carts--dropdown"}}
     .flex.flex-col.gap-4
       #current-variant.hidden{data: {"carts--dropdown-target": "currentVariant", value: @cart.variant.uuid, cart: @cart.uuid}}

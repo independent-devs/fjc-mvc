@@ -37,13 +37,18 @@ class Cart < ApplicationRecord
   validates :user, presence: true, unless: :guest_session
 
   # Generators
-  after_save :create_order_item, if: :order
+  after_save :create_order_item, if: :order_item_condition
 
   private
 
   sig { void }
   def create_order_item
     T.must(order).order_items.create!(variant:, qty:, price: T.must(variant).price)
+  end
+
+  sig { returns(T.nilable(T::Boolean)) }
+  def order_item_condition
+    (order.present? && new_record?) || (order.present? && order_id_was.nil?)
   end
 end
 

@@ -9,17 +9,24 @@ class OrderItem < ApplicationRecord
   belongs_to :variant, optional: true
 
   # Validations
-  validates :qty, numericality: { greater_than: 0 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
-  validate :check_variant_quantity, if: :variant
+  validates :qty, numericality: { greater_than: 0 }
+  validate :check_variant_stock, if: :variant
 
   private
 
   sig { void }
-  def check_variant_quantity
-    return if T.must(variant).backorderable || (T.must(T.must(variant).count_on_hand) >= qty)
+  def check_variant_stock
+    return if T.must(variant).backorderable
 
-    errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
+    if T.must(T.must(variant).count_on_hand).zero?
+      errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
+      return
+    end
+
+    return if T.must(T.must(variant).count_on_hand) >= qty
+
+    errors.add(:quantity, I18n.t('carts.validate.qty_exceeds_stocks'))
   end
 end
 
