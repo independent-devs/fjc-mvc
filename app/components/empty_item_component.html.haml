@@ -1,0 +1,5 @@
+.grid.w-full.h-64.place-items-center.item-empty{id: @id, class: @hide ? "hidden" : "" }
+  .flex.flex-col.gap-1.items-center.text-gray-400
+    = icon("fa-solid", "box-open", class: "text-6xl")
+    %span.text-lg 
+      = @text
