@@ -2,7 +2,7 @@
   = form_for(variant, as: "product_variant", url:  admin_product_variant_path(@product, variant), html: {method: :put}, data: {controller: "autosave admin--products--variants--item", delete_url: admin_product_variant_url(@product, variant)}) do |f|
     .grid.grid-cols-4.gap-8
       .flex.py-4.pl-6
-        .w-10= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
+        .w-9= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = f.object.grouped_name
       .flex.gap-2.py-4
         = currency_symbol(@product.currency)

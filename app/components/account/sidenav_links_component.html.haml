@@ -1,8 +1,8 @@
 %ul.w-full.pt-3
-  %lr
+  %li
     = render Account::SidenavLinkComponent.new path: account_index_path do
       = icon("fa-solid", "user", class: "w-4")
-      %span Account
+      %span My Account
   %li
     = render Account::SidenavLinkComponent.new path: orders_path do
       = icon("fa-solid", "list", class: "w-4")

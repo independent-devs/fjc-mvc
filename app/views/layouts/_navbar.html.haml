@@ -17,7 +17,7 @@
       %div{data: {controller: "dropdown"}, class: "relative"}
         %button{type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
           = icon("fa-regular", "user", class: "text-xl")
-        .mt-2.hidden.transition.transform.origin-top-right.absolute.-right-2.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200{data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
+        .point.z-10.mt-3.hidden.transition.transform.origin-top-right.absolute.-right-2.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200{class: "-right-3.5 before:right-3", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
           = link_to account_index_path do
             .flex.px-6.w-full.text-nowrap{class: "py-2 hover:bg-primary/5 hover:text-primary"}
               My Account
