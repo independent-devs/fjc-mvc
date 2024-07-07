@@ -6,7 +6,7 @@
       = button_to new_admin_product_path, class: "btn-primary flex gap-2.5 items-center", method: :get do
         = t("products.new")
         = icon("fa-solid", "plus")
-    .flex.flex-col.gap-4
+    .grid.gap-3
       %table
         %thead
           %tr
@@ -26,5 +26,5 @@
               %td
       - if @pagy.pages > 1          
         .flex.gap-3.items-center.w-full.justify-between
-          != pagy_info(@pagy)
           != pagy_nav(@pagy)
+          != pagy_info(@pagy)

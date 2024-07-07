@@ -2,7 +2,8 @@
 
 class CartsController < BaseController
   before_action :set_guest_session, only: %i[index sync sync_all update destroy]
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid
+  load_and_authorize_resource find_by: :uuid, id_param: :uuid, except: :selection
+  authorize_resource only: :selection
 
   def index
     # Buy now
@@ -53,6 +54,8 @@ class CartsController < BaseController
   def sync_all; end
 
   def variant_dropdown; end
+
+  def selection; end
 
   private
 
