@@ -1,10 +1,10 @@
 .flex.flex-col
-  = link_to path, class: "flex items-center gap-4 px-4 py-1 font-medium rounded-lg #{current_page?(path) ? 'bg-gray-100 text-primary' : 'hover:bg-gray-100'}" do
+  = link_to path, class: "flex items-center gap-4 px-4 py-1 font-medium rounded-sm #{current_page?(path) ? 'bg-gray-100 text-primary' : 'hover:bg-gray-100'}" do
     .w-3.flex.justify-center
       = icon if icon
     %span= label
   - if sub_paths.present? && path.in?(request.path)
     .flex.flex-col.font-medium{class: "mt-0.5"}
       - sub_paths.each do |sp|
-        = link_to sp[:path], class: "pl-11 pr-4 py-1 hover:bg-gray-50 rounded-lg #{current_page?(sp[:path]) ? "bg-gray-50 text-primary" : "hover:bg-gray-100"}" do
+        = link_to sp[:path], class: "pl-11 pr-4 py-1 hover:bg-gray-50 rounded-sm #{current_page?(sp[:path]) ? "bg-gray-50 text-primary" : "hover:bg-gray-100"}" do
           = sp[:label]
