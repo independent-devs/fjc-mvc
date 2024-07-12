@@ -4,7 +4,6 @@
     .grid
       .grid.gap-3.grid-cols-7.py-4.place-items-center.border-b
         .col-span-3.w-full.flex.gap-4.items-center.pl-5
-          = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
           %span.font-semibold.text-primary
             My Cart
         %div
@@ -22,5 +21,13 @@
           - @carts.each do |cart|
             = render Carts::Item::BaseComponent.new cart:
       = render EmptyItemComponent.new text: "No carts yet", hide: (@carts.present? || @bn.present?)
-    .flex.sticky.top-0.w-full.bg-white.py-4.px-5
-      hi
+    .grid.sticky.bottom-0.w-full.bg-white.divide-y
+      .flex.py-4.px-5
+      .flex.py-4.px-5
+        .flex.gap-3
+          = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
+          Select All
+          - if @bn.present?
+            = "(#{@carts.size + 1})"
+          - else
+            = "(#{@carts.size})"
