@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   draw :admin
 
   # Api only
-  draw :api_v1
+  # draw :api_v1
 
   ## error routes
   match "/404", to: "errors#not_found", via: :all
