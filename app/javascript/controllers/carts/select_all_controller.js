@@ -1,4 +1,18 @@
 import CheckboxSelectAll from "@stimulus-components/checkbox-select-all";
 
 // Connects to data-controller="carts--select-all"
-export default class extends CheckboxSelectAll {}
+export default class extends CheckboxSelectAll {
+  static targets = ["selected"];
+
+  refresh() {
+    super.refresh(), this.displaySelected();
+  }
+
+  toggle(e) {
+    super.toggle(e), this.displaySelected();
+  }
+
+  displaySelected() {
+    this.selectedTarget.innerHTML = `Selected (${this.checked.length})`;
+  }
+}
