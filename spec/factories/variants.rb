@@ -5,7 +5,7 @@ FactoryBot.define do
     product { create(:product, :with_variants) }
     is_master { false }
     cost { Faker::Commerce.price }
-    count_on_hand { Faker::Number.digit }
+    count_on_hand { 1000 }
     trackable { true }
     backorderable { false }
     price { Faker::Commerce.price }
