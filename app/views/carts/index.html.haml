@@ -6,15 +6,15 @@
         .col-span-3.w-full.flex.gap-4.items-center.pl-5
           = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
           %span.font-semibold.text-primary
-            My Cart
+            = t("carts.table.thead.my_cart")
         %div
-          Unit Price
+          = t("carts.table.thead.unit_price")
         %div
-          Quantity
+          = t("carts.table.thead.quantity")
         %div
-          Total Price
+          = t("carts.table.thead.total_price")
         %div
-          Actions
+          = t("carts.table.thead.actions")
       - if @carts.present? || @bn.present?
         .divide-y
           - if @bn.present?
@@ -25,6 +25,10 @@
     .grid.sticky.bottom-0.w-full.bg-white.divide-y
       .flex.py-4.px-5
       .flex.py-4.px-5.justify-between.gap-5.w-full
-        %span{data: {"carts--select-all-target": "selected"}}
-          Selected (0)
         .flex
+        .flex.gap-4
+          %div
+            %span{data: {"carts--select-all-target": "selected"}}
+              0
+            %span
+              Item

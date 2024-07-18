@@ -13,6 +13,6 @@ export default class extends CheckboxSelectAll {
   }
 
   displaySelected() {
-    this.selectedTarget.innerHTML = `Selected (${this.checked.length})`;
+    this.selectedTarget.innerHTML = this.checked.length;
   }
 }
