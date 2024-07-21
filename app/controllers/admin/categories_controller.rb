@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 class Admin::CategoriesController < Admin::BaseController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[edit update destroy]
 
   # GET /product/categories
   def index
     @base_category = Category.base_root
   end
-
-  # GET /product/categories/1
-  def show; end
 
   # GET /product/categories/new
   def new

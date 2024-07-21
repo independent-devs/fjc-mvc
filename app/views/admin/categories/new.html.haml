@@ -13,7 +13,7 @@
             = icon("fa-solid", "angle-right")
         %div
           %span.text-primary.font-medium= parent.name
-    = render 'form', parent:
+    = render 'form', parent:, path: admin_categories_path
   - else
     %span.text-red-500
       Ancestor Must Exist
