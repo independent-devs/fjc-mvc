@@ -1,9 +1,9 @@
 !!!
-%html{lang:"en"}
+%html.h-full{lang:"en"}
   %head
     = render "layouts/head"
     = stylesheet_link_tag "slimselect", "data-turbo-track": "reload"
-  %body.flex
+  %body.flex.h-full
     = render FlashComponent.new
     = render "layouts/sidebar"
     %main.flex-1.overflow-auto
