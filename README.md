@@ -37,7 +37,7 @@ phone: 09012345678
 pass: password
 ```
 
-RSpec Test
+RSpec Unit Test
 
 ```
 rspec
@@ -61,6 +61,12 @@ rubocop
 
 ```
 rubocop -A
+```
+
+Sorbet Type Checking
+
+```
+srb tc
 ```
 
 HTML to HAML
