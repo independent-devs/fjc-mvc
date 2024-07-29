@@ -1,8 +1,11 @@
 .flex.flex-col
   = link_to path, class: "flex items-center gap-4 px-4 py-1 font-medium rounded-sm #{current_page?(path) ? 'bg-gray-100 text-primary' : 'hover:bg-gray-100'}" do
     .w-3.flex.justify-center
-      = icon if icon
-    %span= label
+      = sn_icon if sn_icon
+    .flex.justify-between.gap-2.items-center.w-full
+      %span= label
+      - if sub_paths.present?
+        = icon("fa-solid", "ellipsis", class: "mt-1 text-gray-500")
   - if sub_paths.present? && path.in?(request.path)
     .flex.flex-col.font-medium{class: "mt-0.5"}
       - sub_paths.each do |sp|
