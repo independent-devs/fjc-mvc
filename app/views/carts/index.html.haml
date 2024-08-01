@@ -22,9 +22,8 @@
           - @carts.each do |cart|
             = render Carts::Item::BaseComponent.new cart:
       = render EmptyItemComponent.new text: "No carts yet", hide: (@carts.present? || @bn.present?)
-    .grid.sticky.bottom-0.w-full.bg-white.divide-y
-      .flex.py-4.px-5
-      .flex.py-4.px-5.justify-between.gap-5.w-full
+    .grid.sticky.bottom-0.w-full.bg-white
+      .flex.py-6.px-5.justify-between.gap-5.w-full
         .flex
         .flex.gap-4
           %div
