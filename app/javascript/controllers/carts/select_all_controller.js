@@ -5,14 +5,26 @@ export default class extends CheckboxSelectAll {
   static targets = ["selected"];
 
   refresh() {
-    super.refresh(), this.displaySelected();
+    super.refresh();
+    this.displaySelected();
   }
 
   toggle(e) {
-    super.toggle(e), this.displaySelected();
+    super.toggle(e);
+    this.displaySelected();
   }
 
   displaySelected() {
-    this.selectedTarget.innerHTML = this.checked.length;
+    clearTimeout(this.timeout);
+
+    if (this.checked.length) {
+      this.timeout = setTimeout(() => {
+        // fetch logic here
+      }, 1000);
+
+      return;
+    }
+
+    this.selectedTarget.innerHTML = `${this.checked.length} Item`;
   }
 }
