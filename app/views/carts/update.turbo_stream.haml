@@ -10,5 +10,3 @@
 
 = turbo_stream.replace "cart-#{@cart.uuid}-qty" do
   = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, backorderable: @cart.variant.backorderable
-
--# - if @cart.variant_previously_changed?
