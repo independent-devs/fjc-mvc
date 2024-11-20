@@ -7,13 +7,7 @@ class Ability
   # Helpers
   include CanCan::Ability
 
-  sig do
-    params(
-      user: T.nilable(User),
-      guest_session: T.nilable(GuestSession),
-      is_admin_path: T::Boolean
-    ).void
-  end
+  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), is_admin_path: T::Boolean).void }
   def initialize(user, guest_session, is_admin_path: false)
     # Admin permission
     if is_admin_path && user.present?
@@ -35,9 +29,9 @@ class Ability
     can :buy_now, Variant
 
     # Cart
-    can :read, Cart, user_id: user.id, order: nil
+    can :read, Cart, user:, order: nil
     can :read, Cart, guest_session:, order: nil if guest_session.present?
-    can %i[update destroy], Cart, user_id: user.id, order: nil
+    can %i[update destroy], Cart, user:, order: nil
 
     if guest_session.present?
       can :sync, Cart, guest_session:, order: nil, user: nil
@@ -45,8 +39,8 @@ class Ability
     end
 
     # Order
-    can :read, Order, user_id: user.id
-    can :cancel, Order, user_id: user.id, order_status: { name: 'pending' }
+    can(:read, Order, user:)
+    can :cancel, Order, user:, order_status: { name: 'pending' }
   end
 
   private
