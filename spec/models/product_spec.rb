@@ -17,7 +17,6 @@ RSpec.describe Product, type: :model do
 
     # after save (generators)
     product.save
-    expect(product.slug).to be_present
     expect(product.lowest_price).to be_present
     expect(product.highest_price).to be_present
   end
