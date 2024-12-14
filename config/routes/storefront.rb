@@ -23,7 +23,7 @@ resources :variants, only: [] do
   end
 end
 
-resources :orders, only: %i[show create] do
+resources :orders, only: %i[index show create] do
   member do
     delete :cancel
   end
