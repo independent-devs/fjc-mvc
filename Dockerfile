@@ -9,7 +9,7 @@ RUN apt-get update -qq && apt-get install -y \
   poppler-utils \
   postgresql-client \
   iputils-ping \
-  nano  \
+  nano \
   cron
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
@@ -40,8 +40,6 @@ COPY app                    app/
 COPY public                 public/
 COPY vendor                 vendor/
 COPY sorbet                 sorbet/
-COPY imports                imports/
-COPY log                    log/
 COPY Procfile.prod          Procfile.prod
 
 # Install Bundler
