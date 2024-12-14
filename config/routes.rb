@@ -1,19 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
-
-  ## Authentication
-  draw :devise
-
   ## draw routes
-  draw :account
-  draw :products
-  draw :carts
-  draw :variants
-  draw :orders
-  draw :checkout
+  draw :auth
   draw :admin
+  draw :storefront
 
   # Api only
   # draw :api_v1
