@@ -840,16 +840,16 @@ class ActiveStorage::Attachment
     sig { void }
     def position_will_change!; end
 
-    sig { returns(::Integer) }
+    sig { returns(::String) }
     def record_id; end
 
-    sig { params(value: ::Integer).returns(::Integer) }
+    sig { params(value: ::String).returns(::String) }
     def record_id=(value); end
 
     sig { returns(T::Boolean) }
     def record_id?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def record_id_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -858,28 +858,28 @@ class ActiveStorage::Attachment
     sig { returns(T::Boolean) }
     def record_id_came_from_user?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def record_id_change; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def record_id_change_to_be_saved; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def record_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def record_id_in_database; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def record_id_previous_change; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def record_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def record_id_previously_was; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def record_id_was; end
 
     sig { void }
@@ -990,7 +990,7 @@ class ActiveStorage::Attachment
     sig { returns(T::Boolean) }
     def saved_change_to_position?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_record_id; end
 
     sig { returns(T::Boolean) }

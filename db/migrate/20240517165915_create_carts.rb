@@ -2,17 +2,14 @@
 
 class CreateCarts < ActiveRecord::Migration[7.0]
   def change
-    create_table :carts do |t|
-      t.uuid :uuid, null: false, default: 'gen_random_uuid()'
+    create_table :carts, id: :uuid do |t|
       t.integer :qty, null: false, default: 1
-      t.references :variant, null: false, foreign_key: true
-      t.references :user, foreign_key: true
-      t.references :order, foreign_key: true
-      t.references :guest_session, foreign_key: true
+      t.references :variant, null: false, foreign_key: true, type: :uuid
+      t.references :user, foreign_key: true, type: :uuid
+      t.references :order, foreign_key: true, type: :uuid
+      t.references :guest_session, foreign_key: true, type: :uuid
 
       t.timestamps
     end
-
-    add_index :carts, :uuid, unique: true
   end
 end

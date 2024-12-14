@@ -4,15 +4,11 @@
 class Product < ApplicationRecord
   extend T::Sig
 
-  # Helpers
-  T.unsafe(self).include Rails.application.routes.url_helpers
   include ActiveStorage::Attached::Model
 
   # Constants
   MAX_IMAGES = 15
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
-  SLUG_REGEX = { ';' => ' ', '/' => ' ', '?' => ' ', ':' => ' ', '@' => ' ',
-                 '&' => ' ', '=' => ' ', '+' => ' ', ',' => ' ', '.' => '' }.freeze
 
   # Attachments
   has_many_attached :images do |attachable|
@@ -51,62 +47,27 @@ class Product < ApplicationRecord
 
   # Scopes
   scope :sort_by_latest, -> { order(id: :desc) }
-  scope :single_public, ->(slug, uuid) { find_by!(slug:, uuid:) }
-  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
   scope :base_on_date, lambda { |now = DateTime.now|
     where(available_on: now..)
       .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
   }
 
   # Validations
-  validates :name, :currency, :slug, presence: true
+  validates :name, :currency, presence: true
   validates :options, presence: true, if: :has_variant
   validates :review_avg_rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validates :slug, format: { without: Regexp.union(SLUG_REGEX.keys) }
   validates :thumbnail, content_type: ALLOWED_IMAGE_TYPES
   validates :images, content_type: ALLOWED_IMAGE_TYPES,
                      limit: { max: MAX_IMAGES, message: I18n.t('images.validate.max', max: MAX_IMAGES) }
-
-  # Generators
-  before_validation :sanitize_slug, if: :sanitize_slug_condition
-  after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
-
-  private
-
-  # For generators
-  sig { void }
-  def sanitize_slug
-    keys = Regexp.union(SLUG_REGEX.keys)
-    to_sanitize = new_record? ? name : slug
-
-    self.slug = to_sanitize.gsub(keys, SLUG_REGEX).rstrip.gsub(/\s+/, '-')
-  end
-
-  sig { returns(T::Boolean) }
-  def generate_thumbnail_url_condition
-    attachment_changes['thumbnail'].present?
-  end
-
-  sig { void }
-  def generate_thumbnail_url
-    # rubocop:disable Rails::SkipsModelValidations
-    update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
-    # rubocop:enable Rails::SkipsModelValidations
-  end
-
-  sig { returns(T::Boolean) }
-  def sanitize_slug_condition
-    new_record? || slug_changed?
-  end
 end
 
 # == Schema Information
 #
 # Table name: products
 #
-#  id                :bigint           not null, primary key
+#  id                :uuid             not null, primary key
 #  available_on      :datetime
 #  currency          :string           not null
 #  discontinue_on    :datetime
@@ -118,9 +79,7 @@ end
 #  promotable        :boolean          default(TRUE), not null
 #  review_avg_rating :decimal(1, 1)    default(0.0)
 #  review_count      :integer          default(0)
-#  slug              :string           not null
 #  thumbnail_url     :string
-#  uuid              :uuid             not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
@@ -131,6 +90,4 @@ end
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)
 #  index_products_on_name            (name)
-#  index_products_on_slug            (slug)
-#  index_products_on_uuid            (uuid) UNIQUE
 #

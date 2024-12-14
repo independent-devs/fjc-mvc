@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
+    t.string "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.integer "position"
@@ -45,23 +45,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "carts", force: :cascade do |t|
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+  create_table "carts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "qty", default: 1, null: false
-    t.bigint "variant_id", null: false
-    t.bigint "user_id"
-    t.bigint "order_id"
-    t.bigint "guest_session_id"
+    t.uuid "variant_id", null: false
+    t.uuid "user_id"
+    t.uuid "order_id"
+    t.uuid "guest_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_carts_on_guest_session_id"
     t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
-    t.index ["uuid"], name: "index_carts_on_uuid", unique: true
     t.index ["variant_id"], name: "index_carts_on_variant_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "ancestry"
     t.integer "ancestry_depth", default: 0
@@ -71,20 +69,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry", unique: true
   end
 
-  create_table "descriptions", force: :cascade do |t|
+  create_table "descriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "description"
-    t.bigint "product_id", null: false
+    t.uuid "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_descriptions_on_product_id"
   end
 
-  create_table "guest_sessions", force: :cascade do |t|
+  create_table "guest_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "options", force: :cascade do |t|
+  create_table "options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "display_name"
     t.string "placeholder"
@@ -94,9 +92,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["name"], name: "index_options_on_name", unique: true
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.bigint "order_id"
-    t.bigint "variant_id"
+  create_table "order_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "order_id"
+    t.uuid "variant_id"
     t.integer "qty", default: 1, null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
@@ -105,7 +103,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["variant_id"], name: "index_order_items_on_variant_id"
   end
 
-  create_table "order_statuses", force: :cascade do |t|
+  create_table "order_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.integer "step", null: false
     t.datetime "created_at", null: false
@@ -114,23 +112,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["step"], name: "index_order_statuses_on_step", unique: true
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
-    t.bigint "user_id"
-    t.bigint "order_status_id", null: false
-    t.bigint "guest_session_id"
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "order_status_id", null: false
+    t.uuid "guest_session_id"
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-    t.index ["uuid"], name: "index_orders_on_uuid", unique: true
   end
 
-  create_table "product_categories", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "category_id", null: false
+  create_table "product_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "category_id", null: false
     t.boolean "is_master", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -139,9 +135,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
-  create_table "product_options", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "option_id", null: false
+  create_table "product_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "option_id", null: false
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -149,12 +145,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["product_id"], name: "index_product_options_on_product_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "available_on", precision: nil
     t.datetime "discontinue_on", precision: nil
-    t.string "slug", null: false
     t.boolean "promotable", default: true, null: false
     t.boolean "order_must_login", default: false, null: false
     t.decimal "lowest_price", precision: 10, scale: 2
@@ -171,12 +165,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["highest_price"], name: "index_products_on_highest_price"
     t.index ["lowest_price"], name: "index_products_on_lowest_price"
     t.index ["name"], name: "index_products_on_name"
-    t.index ["slug"], name: "index_products_on_slug"
-    t.index ["uuid"], name: "index_products_on_uuid", unique: true
   end
 
-  create_table "seos", force: :cascade do |t|
-    t.bigint "product_id", null: false
+  create_table "seos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
     t.string "meta_title"
     t.string "meta_description"
     t.string "meta_keywords"
@@ -185,7 +177,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["product_id"], name: "index_seos_on_product_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "phone_no"
@@ -208,9 +200,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "variant_option_values", force: :cascade do |t|
-    t.bigint "variant_id", null: false
-    t.bigint "product_option_id", null: false
+  create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "variant_id", null: false
+    t.uuid "product_option_id", null: false
     t.integer "position"
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -219,24 +211,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["variant_id"], name: "index_variant_option_values_on_variant_id"
   end
 
-  create_table "variants", force: :cascade do |t|
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
-    t.bigint "product_id", null: false
+  create_table "variants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id", null: false
     t.string "sku"
     t.integer "position"
     t.decimal "cost", precision: 10, scale: 2
     t.decimal "price", precision: 10, scale: 2, null: false
-    t.integer "count_on_hand", default: 0
+    t.integer "count_on_hand", default: 0, null: false
     t.boolean "is_master", default: false, null: false
     t.boolean "trackable", default: true, null: false
     t.boolean "backorderable", default: false, null: false
-    t.string "thumbnail_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_variants_on_position"
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
-    t.index ["uuid"], name: "index_variants_on_uuid", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

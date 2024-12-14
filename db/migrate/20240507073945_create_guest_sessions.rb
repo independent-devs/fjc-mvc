@@ -2,6 +2,6 @@
 
 class CreateGuestSessions < ActiveRecord::Migration[7.0]
   def change
-    create_table :guest_sessions, &:timestamps
+    create_table :guest_sessions, id: :uuid, &:timestamps
   end
 end

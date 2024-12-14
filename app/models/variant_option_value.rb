@@ -11,7 +11,7 @@ class VariantOptionValue < ApplicationRecord
   scope :with_variant_position,
         lambda {
           select('variant_option_values.*')
-            .select('variants.position, variants.uuid as variant_uuid')
+            .select('variants.position, variants.id as variant_id')
             .joins(:variant)
             .order('variants.position ASC')
         }
@@ -24,13 +24,13 @@ end
 #
 # Table name: variant_option_values
 #
-#  id                :bigint           not null, primary key
+#  id                :uuid             not null, primary key
 #  name              :string           not null
 #  position          :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  product_option_id :bigint           not null
-#  variant_id        :bigint           not null
+#  product_option_id :uuid             not null
+#  variant_id        :uuid             not null
 #
 # Indexes
 #

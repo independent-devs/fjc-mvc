@@ -20,13 +20,11 @@ class Cart < ApplicationRecord
                     'WHERE vov.variant_id = carts.variant_id) AS variant_pair')
             # variants
             .select('variants.count_on_hand, variants.is_master, variants.price, ' \
-                    'variants.backorderable, variants.product_id, ' \
-                    'variants.thumbnail_url AS variant_thumbnail')
+                    'variants.backorderable, variants.product_id')
             .joins(:variant)
             # products
             .select('products.name AS product_name, products.currency, ' \
-                    'products.thumbnail_url AS product_thumbnail, ' \
-                    'products.slug AS product_slug, products.uuid AS product_uuid')
+                    'products.id AS product_id')
             .joins('INNER JOIN products ON products.id = variants.product_id')
             .order(id: :desc)
         }
@@ -46,9 +44,9 @@ class Cart < ApplicationRecord
     T.must(order).order_items.create!(variant:, qty:, price: T.must(variant).price)
   end
 
-  sig { returns(T.nilable(T::Boolean)) }
+  sig { returns(T::Boolean) }
   def order_item_condition
-    (order.present? && new_record?) || (order.present? && order_id_was.nil?)
+    (order.present? && new_record?) || (order.present? && order_id_was.nil?) || false
   end
 end
 
@@ -56,22 +54,20 @@ end
 #
 # Table name: carts
 #
-#  id               :bigint           not null, primary key
+#  id               :uuid             not null, primary key
 #  qty              :integer          default(1), not null
-#  uuid             :uuid             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  guest_session_id :bigint
-#  order_id         :bigint
-#  user_id          :bigint
-#  variant_id       :bigint           not null
+#  guest_session_id :uuid
+#  order_id         :uuid
+#  user_id          :uuid
+#  variant_id       :uuid             not null
 #
 # Indexes
 #
 #  index_carts_on_guest_session_id  (guest_session_id)
 #  index_carts_on_order_id          (order_id)
 #  index_carts_on_user_id           (user_id)
-#  index_carts_on_uuid              (uuid) UNIQUE
 #  index_carts_on_variant_id        (variant_id)
 #
 # Foreign Keys

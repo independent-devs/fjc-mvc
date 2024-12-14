@@ -2,7 +2,8 @@
 
 class VariantsController < BaseController
   before_action :set_guest_session, only: %i[guest_add_to_cart guest_buy_now]
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid
+
+  load_and_authorize_resource
 
   def info; end
 
@@ -29,7 +30,7 @@ class VariantsController < BaseController
   def buy_now
     respond_to do |format|
       if create_cart(current_user)
-        format.html { redirect_to carts_url(bn: @cart.uuid) }
+        format.html { redirect_to carts_url(bn: @cart.id) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
       end
@@ -39,7 +40,7 @@ class VariantsController < BaseController
   def guest_buy_now
     respond_to do |format|
       if create_cart(@guest_session)
-        format.html { redirect_to carts_url(bn: @cart.uuid) }
+        format.html { redirect_to carts_url(bn: @cart.id) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
       end

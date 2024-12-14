@@ -17,7 +17,6 @@ RSpec.describe Product, type: :model do
 
     # after save (generators)
     product.save
-    expect(product.slug).to be_present
     expect(product.lowest_price).to be_present
     expect(product.highest_price).to be_present
   end
@@ -27,7 +26,7 @@ end
 #
 # Table name: products
 #
-#  id                :bigint           not null, primary key
+#  id                :uuid             not null, primary key
 #  available_on      :datetime
 #  currency          :string           not null
 #  discontinue_on    :datetime
@@ -39,9 +38,7 @@ end
 #  promotable        :boolean          default(TRUE), not null
 #  review_avg_rating :decimal(1, 1)    default(0.0)
 #  review_count      :integer          default(0)
-#  slug              :string           not null
 #  thumbnail_url     :string
-#  uuid              :uuid             not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
@@ -52,6 +49,4 @@ end
 #  index_products_on_highest_price   (highest_price)
 #  index_products_on_lowest_price    (lowest_price)
 #  index_products_on_name            (name)
-#  index_products_on_slug            (slug)
-#  index_products_on_uuid            (uuid) UNIQUE
 #

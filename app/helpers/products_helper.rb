@@ -21,6 +21,6 @@ module ProductsHelper
   def pub_variant_uuid(product)
     return '' if product.has_variant
 
-    T.must(product.master_variant).uuid
+    T.must(product.master_variant).id
   end
 end

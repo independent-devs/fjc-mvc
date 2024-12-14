@@ -13,13 +13,13 @@ end
 #
 # Table name: seos
 #
-#  id               :bigint           not null, primary key
+#  id               :uuid             not null, primary key
 #  meta_description :string
 #  meta_keywords    :string
 #  meta_title       :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  product_id       :bigint           not null
+#  product_id       :uuid             not null
 #
 # Indexes
 #

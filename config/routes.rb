@@ -49,19 +49,19 @@ end
 #                                   orders GET      /account/orders(.:format)                                                                         orders#index
 #                            account_index GET      /account(.:format)                                                                                account#index
 #                                 products GET      /products(.:format)                                                                               products#index
-#                                  product GET      /products/:slug(.:format)                                                                         products#show
-#                    variant_dropdown_cart GET      /carts/:uuid/variant_dropdown(.:format)                                                           carts#variant_dropdown
-#                                sync_cart POST     /carts/:uuid/sync(.:format)                                                                       carts#sync
-#                            sync_all_cart POST     /carts/:uuid/sync_all(.:format)                                                                   carts#sync_all
+#                                  product GET      /products/:id(.:format)                                                                           products#show
+#                    variant_dropdown_cart GET      /carts/:id/variant_dropdown(.:format)                                                             carts#variant_dropdown
+#                                sync_cart POST     /carts/:id/sync(.:format)                                                                         carts#sync
+#                            sync_all_cart POST     /carts/:id/sync_all(.:format)                                                                     carts#sync_all
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
-#                                     cart PATCH    /carts/:uuid(.:format)                                                                            carts#update
-#                                          PUT      /carts/:uuid(.:format)                                                                            carts#update
-#                                          DELETE   /carts/:uuid(.:format)                                                                            carts#destroy
-#                             info_variant GET      /variants/:uuid/info(.:format)                                                                    variants#info
-#                      add_to_cart_variant POST     /variants/:uuid/add_to_cart(.:format)                                                             variants#add_to_cart
-#                guest_add_to_cart_variant POST     /variants/:uuid/guest_add_to_cart(.:format)                                                       variants#guest_add_to_cart
-#                          buy_now_variant POST     /variants/:uuid/buy_now(.:format)                                                                 variants#buy_now
-#                    guest_buy_now_variant POST     /variants/:uuid/guest_buy_now(.:format)                                                           variants#guest_buy_now
+#                                     cart PATCH    /carts/:id(.:format)                                                                              carts#update
+#                                          PUT      /carts/:id(.:format)                                                                              carts#update
+#                                          DELETE   /carts/:id(.:format)                                                                              carts#destroy
+#                             info_variant GET      /variants/:id/info(.:format)                                                                      variants#info
+#                      add_to_cart_variant POST     /variants/:id/add_to_cart(.:format)                                                               variants#add_to_cart
+#                guest_add_to_cart_variant POST     /variants/:id/guest_add_to_cart(.:format)                                                         variants#guest_add_to_cart
+#                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
+#                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
 #                             cancel_order DELETE   /orders/:uuid/cancel(.:format)                                                                    orders#cancel
 #                                          POST     /orders(.:format)                                                                                 orders#create
 #                                    order GET      /orders/:uuid(.:format)                                                                           orders#show

@@ -34,13 +34,13 @@ end
 #
 # Table name: order_items
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  price      :decimal(10, 2)   not null
 #  qty        :integer          default(1), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  order_id   :bigint
-#  variant_id :bigint
+#  order_id   :uuid
+#  variant_id :uuid
 #
 # Indexes
 #

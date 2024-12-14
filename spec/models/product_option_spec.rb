@@ -10,12 +10,12 @@ end
 #
 # Table name: product_options
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  position   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  option_id  :bigint           not null
-#  product_id :bigint           not null
+#  option_id  :uuid             not null
+#  product_id :uuid             not null
 #
 # Indexes
 #

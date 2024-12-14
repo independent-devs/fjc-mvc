@@ -14,12 +14,12 @@ end
 #
 # Table name: product_categories
 #
-#  id          :bigint           not null, primary key
+#  id          :uuid             not null, primary key
 #  is_master   :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint           not null
-#  product_id  :bigint           not null
+#  category_id :uuid             not null
+#  product_id  :uuid             not null
 #
 # Indexes
 #

@@ -1,4 +1,4 @@
-resources :variants, only: [], param: :uuid do
+resources :variants, only: [] do
   member do
     get :info
     post :add_to_cart

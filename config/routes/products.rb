@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-resources :products, param: :slug, only: %i[index show]
+resources :products, only: %i[index show]
