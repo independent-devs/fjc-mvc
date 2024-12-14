@@ -12,8 +12,8 @@
     .flex.gap-5
       = link_to carts_path do
         = icon("fa-solid", "cart-shopping", class: "text-xl")
-      = link_to account_index_path do
-        = icon("fa-regular", "heart", class: "text-xl")
+      -# = link_to account_index_path do
+      -#   = icon("fa-regular", "heart", class: "text-xl")
       %div{data: {controller: "dropdown"}, class: "relative"}
         %button{type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
           = icon("fa-regular", "user", class: "text-xl")
