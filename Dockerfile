@@ -9,7 +9,7 @@ RUN apt-get update -qq && apt-get install -y \
   poppler-utils \
   postgresql-client \
   iputils-ping \
-  nano  \
+  nano \
   cron
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
