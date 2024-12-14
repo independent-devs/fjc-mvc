@@ -40,8 +40,6 @@ COPY app                    app/
 COPY public                 public/
 COPY vendor                 vendor/
 COPY sorbet                 sorbet/
-COPY imports                imports/
-COPY log                    log/
 COPY Procfile.prod          Procfile.prod
 
 # Install Bundler
