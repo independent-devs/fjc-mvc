@@ -5,7 +5,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   # GET /product/categories
   def index
-    @base_category = Category.base_root
+    @base_category = Category.root
   end
 
   # GET /product/categories/new

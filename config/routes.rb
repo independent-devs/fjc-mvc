@@ -1,19 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
-
-  ## Authentication
-  draw :devise
-
   ## draw routes
-  draw :account
-  draw :products
-  draw :carts
-  draw :variants
-  draw :orders
-  draw :checkout
+  draw :auth
   draw :admin
+  draw :storefront
 
   # Api only
   # draw :api_v1
@@ -62,9 +53,9 @@ end
 #                guest_add_to_cart_variant POST     /variants/:id/guest_add_to_cart(.:format)                                                         variants#guest_add_to_cart
 #                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
 #                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
-#                             cancel_order DELETE   /orders/:uuid/cancel(.:format)                                                                    orders#cancel
+#                             cancel_order DELETE   /orders/:id/cancel(.:format)                                                                      orders#cancel
 #                                          POST     /orders(.:format)                                                                                 orders#create
-#                                    order GET      /orders/:uuid(.:format)                                                                           orders#show
+#                                    order GET      /orders/:id(.:format)                                                                             orders#show
 #                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
 #                                          POST     /checkout(.:format)                                                                               checkout#create
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
