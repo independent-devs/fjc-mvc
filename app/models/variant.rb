@@ -5,6 +5,7 @@ class Variant < ApplicationRecord
   extend T::Sig
 
   # Helpers
+  include ActiveStorage::Attached::Model
   include RankedModel
 
   # Attachments
@@ -25,7 +26,6 @@ class Variant < ApplicationRecord
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :not_master, -> { where(is_master: false) }
-  scope :single_using_uuid, ->(uuid) { find_by!(uuid:) }
   scope :stock_sum, -> { sum(:count_on_hand) }
   scope :grouped_option_name,
         lambda {

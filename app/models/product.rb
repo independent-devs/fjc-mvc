@@ -4,6 +4,8 @@
 class Product < ApplicationRecord
   extend T::Sig
 
+  include ActiveStorage::Attached::Model
+
   # Constants
   MAX_IMAGES = 15
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze

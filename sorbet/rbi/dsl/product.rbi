@@ -10,8 +10,6 @@ class Product
   include GeneratedAttributeMethods
   extend CommonRelationMethods
   extend GeneratedRelationMethods
-  include GeneratedUrlHelpersModule
-  include GeneratedPathHelpersModule
 
   sig { returns(ActiveStorage::Attached::Many) }
   def images; end
@@ -691,12 +689,6 @@ class Product
     def select(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
-    def single_public(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
-    def single_using_uuid(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def sort_by_latest(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -1036,16 +1028,16 @@ class Product
     sig { void }
     def highest_price_will_change!; end
 
-    sig { returns(::Integer) }
+    sig { returns(::String) }
     def id; end
 
-    sig { params(value: ::Integer).returns(::Integer) }
+    sig { params(value: ::String).returns(::String) }
     def id=(value); end
 
     sig { returns(T::Boolean) }
     def id?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -1054,37 +1046,37 @@ class Product
     sig { returns(T::Boolean) }
     def id_came_from_user?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_change; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_change_to_be_saved; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_in_database; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_previous_change; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_previously_was; end
 
-    sig { returns(::Integer) }
+    sig { returns(::String) }
     def id_value; end
 
-    sig { params(value: ::Integer).returns(::Integer) }
+    sig { params(value: ::String).returns(::String) }
     def id_value=(value); end
 
     sig { returns(T::Boolean) }
     def id_value?; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_value_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -1093,34 +1085,34 @@ class Product
     sig { returns(T::Boolean) }
     def id_value_came_from_user?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_value_change; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_value_change_to_be_saved; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def id_value_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_value_in_database; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def id_value_previous_change; end
 
-    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
     def id_value_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_value_previously_was; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_value_was; end
 
     sig { void }
     def id_value_will_change!; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(T.nilable(::String)) }
     def id_was; end
 
     sig { void }
@@ -1349,16 +1341,10 @@ class Product
     def restore_review_count!; end
 
     sig { void }
-    def restore_slug!; end
-
-    sig { void }
     def restore_thumbnail_url!; end
 
     sig { void }
     def restore_updated_at!; end
-
-    sig { void }
-    def restore_uuid!; end
 
     sig { returns(T.nilable(::BigDecimal)) }
     def review_avg_rating; end
@@ -1486,13 +1472,13 @@ class Product
     sig { returns(T::Boolean) }
     def saved_change_to_highest_price?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_id; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_id?; end
 
-    sig { returns(T.nilable([::Integer, ::Integer])) }
+    sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_id_value; end
 
     sig { returns(T::Boolean) }
@@ -1534,12 +1520,6 @@ class Product
     sig { returns(T::Boolean) }
     def saved_change_to_review_count?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_slug; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_slug?; end
-
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_thumbnail_url; end
 
@@ -1551,57 +1531,6 @@ class Product
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_uuid; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_uuid?; end
-
-    sig { returns(::String) }
-    def slug; end
-
-    sig { params(value: ::String).returns(::String) }
-    def slug=(value); end
-
-    sig { returns(T::Boolean) }
-    def slug?; end
-
-    sig { returns(T.nilable(::String)) }
-    def slug_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def slug_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def slug_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def slug_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def slug_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def slug_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def slug_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def slug_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def slug_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def slug_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def slug_was; end
-
-    sig { void }
-    def slug_will_change!; end
 
     sig { returns(T.nilable(::String)) }
     def thumbnail_url; end
@@ -1693,51 +1622,6 @@ class Product
     sig { void }
     def updated_at_will_change!; end
 
-    sig { returns(::String) }
-    def uuid; end
-
-    sig { params(value: ::String).returns(::String) }
-    def uuid=(value); end
-
-    sig { returns(T::Boolean) }
-    def uuid?; end
-
-    sig { returns(T.nilable(::String)) }
-    def uuid_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def uuid_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def uuid_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def uuid_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def uuid_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def uuid_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def uuid_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def uuid_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def uuid_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def uuid_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def uuid_was; end
-
-    sig { void }
-    def uuid_will_change!; end
-
     sig { returns(T::Boolean) }
     def will_save_change_to_available_on?; end
 
@@ -1781,16 +1665,10 @@ class Product
     def will_save_change_to_review_count?; end
 
     sig { returns(T::Boolean) }
-    def will_save_change_to_slug?; end
-
-    sig { returns(T::Boolean) }
     def will_save_change_to_thumbnail_url?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_uuid?; end
   end
 
   module GeneratedRelationMethods
@@ -1910,12 +1788,6 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def select(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
-    def single_public(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
-    def single_using_uuid(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def sort_by_latest(*args, &blk); end
