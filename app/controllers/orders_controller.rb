@@ -2,7 +2,7 @@
 
 class OrdersController < BaseController
   before_action :set_guest_session
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid
+  load_and_authorize_resource
 
   def index
     @orders = Order.accessible_by(current_ability)

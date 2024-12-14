@@ -1,10 +1,10 @@
 = turbo_stream.prepend "notification-container" do
   = render NotificationComponent.new notif_type: "success", message: t("carts.synced")
 
-= turbo_stream.remove "cart-#{@cart.uuid}-guest-display"
+= turbo_stream.remove "cart-#{@cart.id}-guest-display"
 
-= turbo_stream.replace "cart-#{@cart.uuid}-qty" do
+= turbo_stream.replace "cart-#{@cart.id}-qty" do
   = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, backorderable: @cart.variant.backorderable
 
-= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
+= turbo_stream.replace "cart-#{@cart.id}-checkbox" do
   = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart)

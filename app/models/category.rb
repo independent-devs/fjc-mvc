@@ -3,10 +3,10 @@
 
 class Category < ApplicationRecord
   # Constants
-  MAX_DEPTH = 4
+  MAX_DEPTH = 3
 
   # Relations
-  has_ancestry cache_depth: true
+  has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
   scope :not_deleted, -> { where(deleted_at: nil) }
@@ -27,7 +27,7 @@ end
 #
 # Table name: categories
 #
-#  id             :bigint           not null, primary key
+#  id             :uuid             not null, primary key
 #  ancestry       :string
 #  ancestry_depth :integer          default(0)
 #  name           :string           not null

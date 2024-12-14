@@ -5,8 +5,6 @@ class Variant < ApplicationRecord
   extend T::Sig
 
   # Helpers
-  T.unsafe(self).include Rails.application.routes.url_helpers
-  include ActiveStorage::Attached::Model
   include RankedModel
 
   # Attachments
@@ -42,7 +40,7 @@ class Variant < ApplicationRecord
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
-  validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }
+  validates :count_on_hand, presence: true
 
   validate :only_one_master, if: :only_one_master_condition
   validate :product_supports_variant, unless: :is_master
@@ -50,7 +48,6 @@ class Variant < ApplicationRecord
   # Generators
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
-  after_save :generate_thumbnail_url, if: :generate_thumbnail_url_condition
 
   private
 
@@ -75,9 +72,9 @@ class Variant < ApplicationRecord
     errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
 
-  sig { returns(T.nilable(T::Boolean)) }
+  sig { returns(T::Boolean) }
   def only_one_master_condition
-    (new_record? && is_master) || (is_master_changed? && is_master_was)
+    (new_record? && is_master) || (is_master_changed? && is_master_was) || false
   end
 
   sig { void }
@@ -86,45 +83,30 @@ class Variant < ApplicationRecord
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
   end
-
-  sig { void }
-  def generate_thumbnail_url
-    # rubocop:disable Rails::SkipsModelValidations
-    update_column(:thumbnail_url, url_for(T.unsafe(thumbnail).variant(:card)))
-    # rubocop:enable Rails::SkipsModelValidations
-  end
-
-  sig { returns(T::Boolean) }
-  def generate_thumbnail_url_condition
-    attachment_changes['thumbnail'].present?
-  end
 end
 
 # == Schema Information
 #
 # Table name: variants
 #
-#  id            :bigint           not null, primary key
+#  id            :uuid             not null, primary key
 #  backorderable :boolean          default(FALSE), not null
 #  cost          :decimal(10, 2)
-#  count_on_hand :integer          default(0)
+#  count_on_hand :integer          default(0), not null
 #  is_master     :boolean          default(FALSE), not null
 #  position      :integer
 #  price         :decimal(10, 2)   not null
 #  sku           :string
-#  thumbnail_url :string
 #  trackable     :boolean          default(TRUE), not null
-#  uuid          :uuid             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  product_id    :bigint           not null
+#  product_id    :uuid             not null
 #
 # Indexes
 #
 #  index_variants_on_position    (position)
 #  index_variants_on_product_id  (product_id)
 #  index_variants_on_sku         (sku)
-#  index_variants_on_uuid        (uuid) UNIQUE
 #
 # Foreign Keys
 #

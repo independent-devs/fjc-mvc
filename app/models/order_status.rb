@@ -18,7 +18,7 @@ end
 #
 # Table name: order_statuses
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  name       :string           not null
 #  step       :integer          not null
 #  created_at :datetime         not null

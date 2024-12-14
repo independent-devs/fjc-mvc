@@ -2,12 +2,13 @@
 
 class CartsController < BaseController
   before_action :set_guest_session, only: %i[index sync sync_all update destroy]
-  load_and_authorize_resource find_by: :uuid, id_param: :uuid, except: :selection
+
+  load_and_authorize_resource except: :selection
   authorize_resource only: :selection
 
   def index
     # Buy now
-    @bn = Cart.detailed.find_by(uuid: params[:bn], order: nil) if params[:bn].present?
+    @bn = Cart.detailed.find_by(id: params[:bn], order: nil) if params[:bn].present?
     authorize! :update, @bn if @bn.present?
 
     @carts =

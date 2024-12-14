@@ -5,10 +5,6 @@
     .field
       = f.label :name
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
-    .field
-      = f.label :slug, class: ("text-gray-300" if is_new)
-      = f.text_field :slug, disabled: is_new, value: is_new ? nil : f.object.slug, required: !is_new,
-      placeholder: "e.g. nike-shoe"
     = f.fields_for :description, @product.description || Description.new do |desc|
       .field
         = desc.label :description

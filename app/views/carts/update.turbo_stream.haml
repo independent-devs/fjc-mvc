@@ -1,12 +1,12 @@
 - if @cart.qty_previously_changed?
-  = turbo_stream.replace "cart-#{@cart.uuid}-total-price" do
+  = turbo_stream.replace "cart-#{@cart.id}-total-price" do
     = render Carts::Item::TotalpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency
 
-  = turbo_stream.replace "cart-#{@cart.uuid}-unit-price" do
+  = turbo_stream.replace "cart-#{@cart.id}-unit-price" do
     = render Carts::Item::UnitpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency
 
-= turbo_stream.replace "cart-#{@cart.uuid}-checkbox" do
+= turbo_stream.replace "cart-#{@cart.id}-checkbox" do
   = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart), checked: ActiveModel::Type::Boolean.new.cast(params[:checked])
 
-= turbo_stream.replace "cart-#{@cart.uuid}-qty" do
+= turbo_stream.replace "cart-#{@cart.id}-qty" do
   = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, backorderable: @cart.variant.backorderable

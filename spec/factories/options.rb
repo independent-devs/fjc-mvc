@@ -10,7 +10,7 @@ end
 #
 # Table name: options
 #
-#  id           :bigint           not null, primary key
+#  id           :uuid             not null, primary key
 #  display_name :string
 #  name         :string           not null
 #  placeholder  :string

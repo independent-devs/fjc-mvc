@@ -8,7 +8,7 @@ end
 #
 # Table name: guest_sessions
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

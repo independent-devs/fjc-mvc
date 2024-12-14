@@ -13,7 +13,7 @@ end
 #
 # Table name: categories
 #
-#  id             :bigint           not null, primary key
+#  id             :uuid             not null, primary key
 #  ancestry       :string
 #  ancestry_depth :integer          default(0)
 #  name           :string           not null

@@ -6,4 +6,4 @@
   = render "products/quantity", stock_num: @variant.count_on_hand
 
 = turbo_stream.replace "vid" do
-  = render "products/variant_uuid", uuid: @variant.uuid
+  = render "products/variant_uuid", uuid: @variant.id
