@@ -12,5 +12,12 @@ class CreateCategories < ActiveRecord::Migration[7.0]
 
     add_index :categories, :ancestry
     add_index :categories, %i[name ancestry], unique: true
+
+    reversible do |dir|
+      dir.up do
+        # root ancestry
+        Category.create(name: 'Categories')
+      end
+    end
   end
 end

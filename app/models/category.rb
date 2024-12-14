@@ -10,7 +10,7 @@ class Category < ApplicationRecord
 
   # Scopes
   scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :base_root, -> { find_by(ancestry: nil) }
+  scope :root, -> { find_by(ancestry: nil) }
 
   # Validations
   validates :name, presence: true, uniqueness: {
