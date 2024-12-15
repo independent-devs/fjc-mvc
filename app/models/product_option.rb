@@ -29,7 +29,7 @@ class ProductOption < ApplicationRecord
   private
 
   sig { void }
-  def remove_variants
+  def variant_cleanup
     T.must(product).variants.not_master.destroy_all
   end
 end
