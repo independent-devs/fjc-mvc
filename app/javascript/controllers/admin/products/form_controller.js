@@ -3,7 +3,7 @@ import SlimSelect from "slim-select";
 
 // Connects to data-controller="admin--products--form"
 export default class extends Controller {
-  static targets = ["optionInput", "thumbnail"];
+  static targets = ["optionInput", "optionContainer", "thumbnail"];
 
   connect() {
     this.slim = new SlimSelect({
@@ -20,15 +20,13 @@ export default class extends Controller {
   }
 
   hasVariantToogle() {
-    if (this.slim.settings.disabled) {
-      this.slim.enable();
+    if (!this.optionContainerTarget.classList.contains("hidden")) {
+      this.optionContainerTarget.classList.add("hidden");
       this.optionInputTarget.required = true;
       return;
     }
-
+    this.optionContainerTarget.classList.remove("hidden");
     this.optionInputTarget.required = false;
-    this.slim.disable();
-    this.slim.setSelected([]);
   }
 
   thumbnail(event) {

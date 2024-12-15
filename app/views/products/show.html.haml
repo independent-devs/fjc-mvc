@@ -9,10 +9,7 @@
           = @product.name
         = render "star_reviews" 
         #public-price{data: {"products--public-target": "price"}}
-          - if @product.has_variant
-            = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
-          - else
-            = render PriceRangeComponent.new lowest: @product.master_variant.price
+          = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       - if @product.has_variant
         = render "options"
       = form_with url: buy_now_variant_path(uuid: ":uuid"), class: "grid gap-6 w-full", 
