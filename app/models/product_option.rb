@@ -2,6 +2,8 @@
 # typed: true
 
 class ProductOption < ApplicationRecord
+  extend T::Sig
+
   include RankedModel
 
   # Relations
@@ -26,6 +28,7 @@ class ProductOption < ApplicationRecord
 
   private
 
+  sig { void }
   def remove_variants
     T.must(product).variants.not_master.destroy_all
   end
