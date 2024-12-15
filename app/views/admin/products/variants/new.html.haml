@@ -4,4 +4,4 @@
     %h1.text-2xl.font-semibold= t("variants.create_product_variant")
     %span.text-gray-500
       = @product.name
-  = render 'form', path: admin_product_variants_path, method: :post, is_new: true
+  = render 'form', path: admin_product_variants_path, method: :post
