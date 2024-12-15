@@ -18,6 +18,15 @@ class ProductOption < ApplicationRecord
 
   # Position
   ranks :sort_order, column: :position
+
+  # Generators
+  before_destroy :remove_variants, prepend: true
+
+  private
+
+  def remove_variants
+    product.variants.not_master.destroy_all
+  end
 end
 
 # == Schema Information

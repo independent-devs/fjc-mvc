@@ -157,7 +157,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.decimal "review_avg_rating", precision: 1, scale: 1, default: "0.0"
     t.integer "review_count", default: 0
     t.boolean "has_variant", default: false, null: false
-    t.string "thumbnail_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"

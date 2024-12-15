@@ -26,7 +26,7 @@ class Product < ApplicationRecord
   has_one :seo, dependent: :destroy
   has_many :variants, dependent: :destroy
   has_many :product_options, dependent: :destroy
-  has_many :options, through: :product_options
+  has_many :options, through: :product_options, dependent: :destroy
 
   # Scoped relations
   has_one :master_variant, -> { where(is_master: true) },
@@ -79,7 +79,6 @@ end
 #  promotable        :boolean          default(TRUE), not null
 #  review_avg_rating :decimal(1, 1)    default(0.0)
 #  review_count      :integer          default(0)
-#  thumbnail_url     :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

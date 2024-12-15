@@ -17,7 +17,6 @@ end
 # == Route Map
 #
 #                                   Prefix Verb     URI Pattern                                                                                       Controller#Action
-#                                     root GET      /                                                                                                 home#index
 #                         new_user_session GET      /auth/sign_in(.:format)                                                                           devise/sessions#new
 #                             user_session POST     /auth/sign_in(.:format)                                                                           devise/sessions#create
 #                     destroy_user_session DELETE   /auth/sign_out(.:format)                                                                          devise/sessions#destroy
@@ -37,27 +36,6 @@ end
 #                                          PUT      /auth(.:format)                                                                                   registrations#update
 #                                          DELETE   /auth(.:format)                                                                                   registrations#destroy
 #                                          POST     /auth(.:format)                                                                                   registrations#create
-#                                   orders GET      /account/orders(.:format)                                                                         orders#index
-#                            account_index GET      /account(.:format)                                                                                account#index
-#                                 products GET      /products(.:format)                                                                               products#index
-#                                  product GET      /products/:id(.:format)                                                                           products#show
-#                    variant_dropdown_cart GET      /carts/:id/variant_dropdown(.:format)                                                             carts#variant_dropdown
-#                                sync_cart POST     /carts/:id/sync(.:format)                                                                         carts#sync
-#                            sync_all_cart POST     /carts/:id/sync_all(.:format)                                                                     carts#sync_all
-#                                    carts GET      /carts(.:format)                                                                                  carts#index
-#                                     cart PATCH    /carts/:id(.:format)                                                                              carts#update
-#                                          PUT      /carts/:id(.:format)                                                                              carts#update
-#                                          DELETE   /carts/:id(.:format)                                                                              carts#destroy
-#                             info_variant GET      /variants/:id/info(.:format)                                                                      variants#info
-#                      add_to_cart_variant POST     /variants/:id/add_to_cart(.:format)                                                               variants#add_to_cart
-#                guest_add_to_cart_variant POST     /variants/:id/guest_add_to_cart(.:format)                                                         variants#guest_add_to_cart
-#                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
-#                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
-#                             cancel_order DELETE   /orders/:id/cancel(.:format)                                                                      orders#cancel
-#                                          POST     /orders(.:format)                                                                                 orders#create
-#                                    order GET      /orders/:id(.:format)                                                                             orders#show
-#                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
-#                                          POST     /checkout(.:format)                                                                               checkout#create
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
@@ -99,6 +77,29 @@ end
 #                                          PATCH    /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          PUT      /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          DELETE   /admin/products/:id(.:format)                                                                     admin/products#destroy
+#                                     root GET      /                                                                                                 home#index
+#                                 products GET      /products(.:format)                                                                               products#index
+#                                  product GET      /products/:id(.:format)                                                                           products#show
+#                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
+#                                          POST     /checkout(.:format)                                                                               checkout#create
+#                    variant_dropdown_cart GET      /carts/:id/variant_dropdown(.:format)                                                             carts#variant_dropdown
+#                                sync_cart POST     /carts/:id/sync(.:format)                                                                         carts#sync
+#                            sync_all_cart POST     /carts/:id/sync_all(.:format)                                                                     carts#sync_all
+#                                    carts GET      /carts(.:format)                                                                                  carts#index
+#                                     cart PATCH    /carts/:id(.:format)                                                                              carts#update
+#                                          PUT      /carts/:id(.:format)                                                                              carts#update
+#                                          DELETE   /carts/:id(.:format)                                                                              carts#destroy
+#                             info_variant GET      /variants/:id/info(.:format)                                                                      variants#info
+#                      add_to_cart_variant POST     /variants/:id/add_to_cart(.:format)                                                               variants#add_to_cart
+#                guest_add_to_cart_variant POST     /variants/:id/guest_add_to_cart(.:format)                                                         variants#guest_add_to_cart
+#                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
+#                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
+#                             cancel_order DELETE   /orders/:id/cancel(.:format)                                                                      orders#cancel
+#                                   orders GET      /orders(.:format)                                                                                 orders#index
+#                                          POST     /orders(.:format)                                                                                 orders#create
+#                                    order GET      /orders/:id(.:format)                                                                             orders#show
+#                                          GET      /account/orders(.:format)                                                                         orders#index
+#                            account_index GET      /account(.:format)                                                                                account#index
 #                                                   /404(.:format)                                                                                    errors#not_found
 #                                                   /500(.:format)                                                                                    errors#internal_server_error
 #         turbo_recede_historical_location GET      /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
