@@ -27,7 +27,7 @@ class ProductOption < ApplicationRecord
   private
 
   def remove_variants
-    product.variants.not_master.destroy_all
+    T.must(product).variants.not_master.destroy_all
   end
 end
 
