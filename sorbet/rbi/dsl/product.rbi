@@ -1341,9 +1341,6 @@ class Product
     def restore_review_count!; end
 
     sig { void }
-    def restore_thumbnail_url!; end
-
-    sig { void }
     def restore_updated_at!; end
 
     sig { returns(T.nilable(::BigDecimal)) }
@@ -1520,62 +1517,11 @@ class Product
     sig { returns(T::Boolean) }
     def saved_change_to_review_count?; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def saved_change_to_thumbnail_url; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_thumbnail_url?; end
-
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_updated_at; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
-
-    sig { returns(T.nilable(::String)) }
-    def thumbnail_url; end
-
-    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
-    def thumbnail_url=(value); end
-
-    sig { returns(T::Boolean) }
-    def thumbnail_url?; end
-
-    sig { returns(T.nilable(::String)) }
-    def thumbnail_url_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def thumbnail_url_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def thumbnail_url_came_from_user?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def thumbnail_url_change; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def thumbnail_url_change_to_be_saved; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def thumbnail_url_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def thumbnail_url_in_database; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def thumbnail_url_previous_change; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def thumbnail_url_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def thumbnail_url_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def thumbnail_url_was; end
-
-    sig { void }
-    def thumbnail_url_will_change!; end
 
     sig { returns(::ActiveSupport::TimeWithZone) }
     def updated_at; end
@@ -1663,9 +1609,6 @@ class Product
 
     sig { returns(T::Boolean) }
     def will_save_change_to_review_count?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_thumbnail_url?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
