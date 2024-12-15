@@ -52,7 +52,6 @@ end
 #  promotable        :boolean          default(TRUE), not null
 #  review_avg_rating :decimal(1, 1)    default(0.0)
 #  review_count      :integer          default(0)
-#  thumbnail_url     :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
