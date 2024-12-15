@@ -13,14 +13,16 @@ class ProductOption < ApplicationRecord
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :with_option_columns,
         lambda {
-          select('product_options.*, options.name, options.display_name, options.placeholder').joins(:option)
+          select('product_options.*, options.name, options.display_name, options.placeholder')
+            .joins(:option)
         }
 
   # Position
   ranks :sort_order, column: :position
 
   # Generators
-  before_destroy :remove_variants, prepend: true
+  before_create :variant_cleanup
+  before_destroy :variant_cleanup, prepend: true
 
   private
 

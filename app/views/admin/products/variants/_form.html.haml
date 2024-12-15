@@ -1,5 +1,5 @@
-- if is_new
-  - master = @product.master_variant
+- is_new = @variant.new_record?
+
 = form_for(@variant, as: "product_variant", url: path, html: {"data-turbo": false, class: "w-full flex flex-col gap-3", method:}) do |f|
   .flex.flex-col.w-full.divide-y
     - if @variant.errors.present?
@@ -10,22 +10,21 @@
         = f.label :price do
           Price
           = currency_symbol(@product.currency)
-        = f.text_field :price, value: is_new ? master&.price : f.object.price, required: true, placeholder: "0.00"
+        = f.text_field :price, value: is_new ? @product.master_variant.price : f.object.price, required: true, placeholder: "0.00"
       .field
         = f.label :cost do 
           Cost
           = currency_symbol(@product.currency)
-        = f.text_field :cost, value: is_new ? master&.cost : f.object.cost, placeholder: "0.00"
+        = f.text_field :cost, value: is_new ? @product.master_variant.cost : f.object.cost, placeholder: "0.00"
       .field
         = f.label :count_on_hand
         = f.number_field :count_on_hand, placeholder: "0"
       .field
         = f.label :sku
         = f.text_field :sku
-    .flex.gap-5.py-5
+    .flex.gap-5.pt-5
       .flex.gap-2.items-center
-        = f.check_box :backorderable, checked: is_new ? master&.backorderable : f.object.backorderable, 
-        class: "checkbox-primary"
+        = f.check_box :backorderable, checked: is_new ? @product.master_variant.backorderable : f.object.backorderable, class: "checkbox-primary"
         %span Backorderable
   = f.submit is_new ? "Create" : "Update", 
   class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
