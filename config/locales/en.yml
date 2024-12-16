@@ -129,3 +129,5 @@ en:
     no_list_found: "No images found"
     updated: "Image was successfully updated."
     destroyed: "Image was successfully deleted."
+  omniauth:
+    something_went_wrong: "Something went wrong while trying to register with %{provider}"
