@@ -45,6 +45,6 @@ class OmniauthController < Devise::OmniauthCallbacksController
     redirect_to new_user_registration_path
     return unless is_navigational_format?
 
-    flash[:error] = I18n.t('omniauth.something_went_wrong')
+    flash[:error] = I18n.t('omniauth.something_went_wrong', provider: @provider)
   end
 end
