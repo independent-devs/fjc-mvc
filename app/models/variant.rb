@@ -90,9 +90,11 @@ class Variant < ApplicationRecord
 
   sig { void }
   def unique_option_values_per_variant
-    existing_sets = VariantOptionValue
-                    .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
-                    .group(:variant_id)
+    existing_sets =
+      VariantOptionValue
+      .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
+      .where(product_option_id: product.product_options.pluck(:id))
+      .group(:variant_id)
 
     existing_sets = existing_sets.where.not(variant: self) unless new_record?
     existing_sets = existing_sets.map do |record|
