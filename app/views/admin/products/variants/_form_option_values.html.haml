@@ -1,7 +1,7 @@
 .space-y-3.pb-5
   %h2.font-medium.text-lg Options
   .grid.grid-cols-3.gap-3
-    - if is_new
+    - if is_new && @variant.errors.blank?
       - @product.product_options.with_option_columns.each do |po|
         = form.fields_for :variant_option_values, VariantOptionValue.new do |vov, pos|
           .field
