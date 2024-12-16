@@ -15,16 +15,14 @@ export default class extends CheckboxSelectAll {
   }
 
   displaySelected() {
+    this.selectedTarget.innerHTML = `${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}`;
+
+    if (!this.checked.length) return;
+
     clearTimeout(this.timeout);
 
-    if (this.checked.length) {
-      this.timeout = setTimeout(() => {
-        // fetch logic here
-      }, 1000);
-
-      return;
-    }
-
-    this.selectedTarget.innerHTML = `${this.checked.length} Item`;
+    this.timeout = setTimeout(() => {
+      // fetch logic here
+    }, 1000);
   }
 }
