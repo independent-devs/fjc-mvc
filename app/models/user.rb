@@ -6,10 +6,8 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :validatable, :trackable, :omniauthable,
-         omniauth_providers: %i[facebook google_oauth2],
-         authentication_keys: %i[phone_no]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
+         :trackable, :omniauthable, omniauth_providers: %i[facebook google_oauth2], authentication_keys: %i[phone_no]
 
   ALLOWED_PROVIDER = %w[phone_no google_oauth2 facebook].freeze
 
@@ -18,15 +16,11 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   # Validations
-  validates :provider, inclusion: {
-    in: ALLOWED_PROVIDER,
-    message: I18n.t('devise.failure.provider.not_allowed')
-  }
   validates :email, uniqueness: { allow_nil: true }
   validates :phone_no, uniqueness: { allow_nil: true }
   validates :phone_no, presence: true, if: :provider_phone?
-  validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') },
-                       if: :phone_no
+  validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') }, if: :phone_no
+  validates :provider, inclusion: { in: ALLOWED_PROVIDER, message: I18n.t('devise.failure.provider.not_allowed') }
 
   sig { returns(T::Boolean) }
   def remember_me
