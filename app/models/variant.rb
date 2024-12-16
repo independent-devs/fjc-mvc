@@ -31,8 +31,8 @@ class Variant < ApplicationRecord
   scope :grouped_option_name,
         lambda {
           select("variants.*, STRING_AGG(vov.name, ', ' ORDER BY po.position ASC) AS grouped_name")
-            .joins('INNER JOIN variant_option_values AS vov ON variants.id = vov.variant_id')
-            .joins('INNER JOIN product_options AS po ON po.id = vov.product_option_id')
+            .joins('LEFT JOIN variant_option_values AS vov ON variants.id = vov.variant_id')
+            .joins('LEFT JOIN product_options AS po ON po.id = vov.product_option_id')
             .group('variants.id, vov.variant_id')
         }
 
@@ -93,7 +93,7 @@ class Variant < ApplicationRecord
     existing_sets =
       VariantOptionValue
       .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
-      .where(product_option_id: product.product_options.pluck(:id))
+      .where(product_option_id: T.must(product).product_options.select(:id))
       .group(:variant_id)
 
     existing_sets = existing_sets.where.not(variant: self) unless new_record?
