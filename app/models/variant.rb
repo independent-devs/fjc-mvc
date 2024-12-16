@@ -40,6 +40,7 @@ class Variant < ApplicationRecord
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
+  validates :variant_option_values, presence: true, unless: :is_master
   validates :count_on_hand, presence: true
 
   validate :only_one_master, if: :only_one_master_condition
