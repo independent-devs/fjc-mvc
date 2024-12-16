@@ -15,9 +15,10 @@ class Cart < ApplicationRecord
         lambda {
           select('carts.*')
             # variant_option_values
-            .select("(SELECT STRING_AGG(vov.name, ', ' ORDER BY vov.position) " \
+            .select("(SELECT STRING_AGG(vov.name, ', ' ORDER BY po.position) " \
                     'FROM variant_option_values vov ' \
-                    'WHERE vov.variant_id = carts.variant_id) AS variant_pair')
+                    'INNER JOIN product_options AS po ON po.id = vov.product_option_id ' \
+                    'WHERE carts.variant_id = vov.variant_id) AS variant_pair')
             # variants
             .select('variants.count_on_hand, variants.is_master, variants.price, ' \
                     'variants.backorderable, variants.product_id')
