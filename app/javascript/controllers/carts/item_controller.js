@@ -68,7 +68,7 @@ export default class extends Controller {
     this.updateQuantity(0);
   }
 
-  updateQuantity(delay = 1000) {
+  updateQuantity(delay = 800) {
     clearTimeout(this.timeout);
 
     this.timeout = setTimeout(() => {
