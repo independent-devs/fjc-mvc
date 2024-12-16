@@ -16,7 +16,7 @@
         With variants
     .field.relative{class: !f.object.has_variant ? "hidden" : "", data: {"admin--products--form-target": "optionContainer"}}
       = f.label :options
-      = f.select :option_ids, Option.pluck(:name, :id), {}, {required: f.object.has_variant, multiple: true, data: { "admin--products--form-target": "optionInput" }}
+      = f.select :option_ids, Option.pluck(:name, :id), {}, {multiple: true, data: { "admin--products--form-target": "optionInput" }}
     %h2.font-medium.text-lg.mt-1 SEO
     = f.fields_for :seo, @product.seo || Seo.new do |seo|
       .field
