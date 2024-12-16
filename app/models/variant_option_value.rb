@@ -6,6 +6,8 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :variant
   belongs_to :product_option
 
+  normalizes :name, with: -> { _1.strip }
+
   # Scopes
   scope :grouped_names, -> { select('name').group(:name) }
   scope :with_variant_position,
