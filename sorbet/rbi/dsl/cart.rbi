@@ -269,9 +269,6 @@ class Cart
     sig { params(args: T.untyped, blk: T.untyped).returns(::GuestSession) }
     def build_guest_session(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Order) }
-    def build_order(*args, &blk); end
-
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def build_user(*args, &blk); end
 
@@ -283,12 +280,6 @@ class Cart
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::GuestSession) }
     def create_guest_session!(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Order) }
-    def create_order(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Order) }
-    def create_order!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def create_user(*args, &blk); end
@@ -308,17 +299,8 @@ class Cart
     sig { params(value: T.nilable(::GuestSession)).void }
     def guest_session=(value); end
 
-    sig { returns(T.nilable(::Order)) }
-    def order; end
-
-    sig { params(value: T.nilable(::Order)).void }
-    def order=(value); end
-
     sig { returns(T.nilable(::GuestSession)) }
     def reload_guest_session; end
-
-    sig { returns(T.nilable(::Order)) }
-    def reload_order; end
 
     sig { returns(T.nilable(::User)) }
     def reload_user; end
@@ -328,9 +310,6 @@ class Cart
 
     sig { void }
     def reset_guest_session; end
-
-    sig { void }
-    def reset_order; end
 
     sig { void }
     def reset_user; end
@@ -724,51 +703,6 @@ class Cart
     sig { void }
     def id_will_change!; end
 
-    sig { returns(T.nilable(::String)) }
-    def order_id; end
-
-    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
-    def order_id=(value); end
-
-    sig { returns(T::Boolean) }
-    def order_id?; end
-
-    sig { returns(T.nilable(::String)) }
-    def order_id_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def order_id_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def order_id_came_from_user?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def order_id_change; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def order_id_change_to_be_saved; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def order_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def order_id_in_database; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def order_id_previous_change; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def order_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def order_id_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def order_id_was; end
-
-    sig { void }
-    def order_id_will_change!; end
-
     sig { returns(::Integer) }
     def qty; end
 
@@ -827,9 +761,6 @@ class Cart
     def restore_id_value!; end
 
     sig { void }
-    def restore_order_id!; end
-
-    sig { void }
     def restore_qty!; end
 
     sig { void }
@@ -864,12 +795,6 @@ class Cart
 
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def saved_change_to_order_id; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_order_id?; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
     def saved_change_to_qty; end
@@ -1041,9 +966,6 @@ class Cart
 
     sig { returns(T::Boolean) }
     def will_save_change_to_id_value?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_order_id?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_qty?; end

@@ -6,7 +6,6 @@ class CreateCarts < ActiveRecord::Migration[7.0]
       t.integer :qty, null: false, default: 1
       t.references :variant, null: false, foreign_key: true, type: :uuid
       t.references :user, foreign_key: true, type: :uuid
-      t.references :order, foreign_key: true, type: :uuid
       t.references :guest_session, foreign_key: true, type: :uuid
 
       t.timestamps

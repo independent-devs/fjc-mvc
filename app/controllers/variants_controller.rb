@@ -57,12 +57,12 @@ class VariantsController < BaseController
     return nil unless parent.instance_of?(User) || parent.instance_of?(GuestSession)
 
     if parent.instance_of?(User) &&
-       (@cart = parent.carts.find_by(variant: @variant, order: nil)).present?
+       (@cart = parent.carts.find_by(variant: @variant)).present?
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
     if parent.instance_of?(GuestSession) &&
-       (@cart = parent.carts.find_by(variant: @variant, user: nil, order: nil)).present?
+       (@cart = parent.carts.find_by(variant: @variant, user: nil)).present?
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 

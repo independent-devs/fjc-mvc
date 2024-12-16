@@ -49,12 +49,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.integer "qty", default: 1, null: false
     t.uuid "variant_id", null: false
     t.uuid "user_id"
-    t.uuid "order_id"
     t.uuid "guest_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_carts_on_guest_session_id"
-    t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
     t.index ["variant_id"], name: "index_carts_on_variant_id"
   end
@@ -231,7 +229,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carts", "guest_sessions"
-  add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "carts", "variants"
   add_foreign_key "descriptions", "products"
