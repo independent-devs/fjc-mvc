@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :variant do
-    product { create(:product, :with_variants) }
+    product { build(:product) }
     is_master { false }
     cost { Faker::Commerce.price }
     count_on_hand { 1000 }
