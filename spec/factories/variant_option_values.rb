@@ -5,6 +5,7 @@ FactoryBot.define do
     product_option { ProductOption.last || create(:product_option) }
     name { Faker::Commerce.brand }
     variant { create(:variant) }
+    position { 0 }
   end
 end
 

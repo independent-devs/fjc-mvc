@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :product_option do
     product { Product.last || create(:product) }
     option { Option.last || create(:option) }
+    position { 0 }
   end
 end
 

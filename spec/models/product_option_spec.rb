@@ -3,7 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe ProductOption, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:product_option) { build(:product_option) }
+
+  it 'Create product option' do
+    expect(product_option).to be_valid
+    expect(product_option.product).to be_present
+    expect(product_option.option).to be_present
+    expect(product_option.position).to be_present
+  end
 end
 
 # == Schema Information
