@@ -1,22 +1,12 @@
 # frozen_string_literal: true
 
 class CartsController < BaseController
-  before_action :set_guest_session, only: %i[index sync sync_all update destroy]
+  before_action :set_guest_session, except: :variant_dropdown
 
-  load_and_authorize_resource except: :selection
-  authorize_resource only: :selection
+  load_and_authorize_resource
 
   def index
-    # Buy now
-    @bn = Cart.detailed.find_by(id: params[:bn]) if params[:bn].present?
-    authorize! :update, @bn if @bn.present?
-
-    @carts =
-      (if @bn.present?
-         Cart.detailed.where.not(id: @bn.id).accessible_by(current_ability)
-       else
-         Cart.detailed.accessible_by(current_ability)
-       end)
+    @carts = Cart.detailed.accessible_by(current_ability)
   end
 
   def update
@@ -55,8 +45,6 @@ class CartsController < BaseController
   def sync_all; end
 
   def variant_dropdown; end
-
-  def selection; end
 
   private
 
