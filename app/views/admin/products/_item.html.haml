@@ -6,8 +6,8 @@
   %td
     = render PriceRangeComponent.new lowest: product.lowest_price, highest: product.highest_price
   %td
-    = link_to product_path(product), target: "_blank", class: "text-lg text-gray-400 hover:text-primary transition-colors" do
-      = icon("fa-solid", "bag-shopping")
+    = link_to product_path(product), target: "_blank", class: "text-lg text-gray-400 hover:text-primary transition-colors px-2 py-1 hover:bg-gray-100 rounded-md transition-all duration-200" do
+      = icon("fa-solid", "arrow-right", class: "-rotate-45")
   %td
     .flex.gap-2.text-gray-400
       = link_to admin_product_path(product), class: "hover:text-primary transition-colors" do
