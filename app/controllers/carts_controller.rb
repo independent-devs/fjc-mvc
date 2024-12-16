@@ -8,7 +8,7 @@ class CartsController < BaseController
 
   def index
     # Buy now
-    @bn = Cart.detailed.find_by(id: params[:bn], order: nil) if params[:bn].present?
+    @bn = Cart.detailed.find_by(id: params[:bn]) if params[:bn].present?
     authorize! :update, @bn if @bn.present?
 
     @carts =
@@ -35,7 +35,7 @@ class CartsController < BaseController
 
   def sync
     respond_to do |format|
-      if (@common_cart = current_user.carts.find_by(variant_id: @cart.variant_id, order: nil)).present?
+      if (@common_cart = current_user.carts.find_by(variant_id: @cart.variant_id)).present?
         ActiveRecord::Base.transaction do
           @common_cart.update(qty: @cart.qty + @common_cart.qty)
           @cart.destroy
@@ -44,7 +44,7 @@ class CartsController < BaseController
         else
           format.turbo_stream { render :sync_common }
         end
-      elsif @cart.update(user: current_user)
+      elsif @cart.update(user: current_user, guest_session: nil)
         format.turbo_stream
       else
         format.turbo_stream { render :error, :unprocessable_entity }

@@ -30,12 +30,12 @@ class Ability
     can :buy_now, Variant
 
     # Cart
-    can :read, Cart, user:, order: nil
-    can :read, Cart, guest_session:, order: nil if guest_session.present?
-    can %i[update destroy], Cart, user:, order: nil
+    can(:read, Cart, user:, guest_session: nil)
+    can(:read, Cart, guest_session:) if guest_session.present?
+    can %i[update destroy], Cart, user:, guest_session: nil
 
     if guest_session.present?
-      can :sync, Cart, guest_session:, order: nil, user: nil
+      can :sync, Cart, guest_session:, user: nil
       can :sync_all, Cart
     end
 
@@ -53,8 +53,8 @@ class Ability
     can :guest_buy_now, Variant
 
     # Cart
-    can :read, Cart, guest_session:, user: nil, order: nil
-    can %i[update destroy], Cart, guest_session:, user: nil, order: nil
+    can :read, Cart, guest_session:, user: nil
+    can %i[update destroy], Cart, guest_session:, user: nil
 
     # Order
     can :read, Order, guest_session:, user: nil

@@ -6,6 +6,7 @@ class Admin::Products::StocksController < Admin::BaseController
   # GET /admin/product/:product_id/stocks
   def index
     @variants = @product.variants.sort_by_position.grouped_option_name
+    @variants = @variants.master unless @product.has_variant
   end
 
   # PATCH/PUT /admin/product/:product_id/stocks/:id
@@ -19,13 +20,12 @@ class Admin::Products::StocksController < Admin::BaseController
   def modify
     modify_amount = product_variant_params[:modify_amount].to_i
 
-    count_on_hand = (
-      if modify_amount.positive?
-        @variant.count_on_hand + modify_amount
-      else
-        @variant.count_on_hand - modify_amount.abs
-      end
-    )
+    count_on_hand =
+      (if modify_amount.positive?
+         @variant.count_on_hand + modify_amount
+       else
+         @variant.count_on_hand - modify_amount.abs
+       end)
 
     respond_to do |format|
       stock_update({ count_on_hand: }, format)

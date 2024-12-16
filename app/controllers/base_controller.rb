@@ -14,11 +14,11 @@ class BaseController < ApplicationController
   end
 
   def set_guest_session
-    if cookies.signed[:guest_session].blank?
-      cookies.signed.permanent[:guest_session] = (@guest_session = GuestSession.create).id
-    elsif (@guest_session = GuestSession.find_by(id: cookies.signed[:guest_session]) || GuestSession.create).new_record?
-      cookies.delete :guest_session
-      cookies.signed.permanent[:guest_session] = @guest_session.id
-    end
+    guest_session = cookies.signed[:guest_session]
+
+    return if guest_session.present? && (@guest_session = GuestSession.find_by(id: guest_session)).present?
+
+    @guest_session = GuestSession.create
+    cookies.signed.permanent[:guest_session] = @guest_session.id
   end
 end

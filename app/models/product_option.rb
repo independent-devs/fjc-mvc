@@ -20,7 +20,7 @@ class ProductOption < ApplicationRecord
         }
 
   # Position
-  ranks :sort_order, column: :position
+  ranks :sort_order, column: :position, with_same: :product_id
 
   # Generators
   before_create :variant_cleanup

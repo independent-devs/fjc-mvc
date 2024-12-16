@@ -6,7 +6,6 @@ class CreateVariantOptionValues < ActiveRecord::Migration[7.0]
       t.string :name, null: false
       t.references :variant, null: false, foreign_key: true, type: :uuid
       t.references :product_option, null: false, foreign_key: true, type: :uuid
-      t.integer :position, default: 0
 
       t.timestamps
     end
