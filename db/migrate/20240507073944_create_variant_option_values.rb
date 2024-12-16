@@ -3,12 +3,15 @@
 class CreateVariantOptionValues < ActiveRecord::Migration[7.0]
   def change
     create_table :variant_option_values, id: :uuid do |t|
+      t.string :name, null: false
       t.references :variant, null: false, foreign_key: true, type: :uuid
       t.references :product_option, null: false, foreign_key: true, type: :uuid
-      t.integer :position
-      t.string :name, null: false
+      t.integer :position, default: 0
 
       t.timestamps
     end
+
+    add_index :variant_option_values, :name
+    add_index :variant_option_values, %i[variant_id product_option_id], unique: true
   end
 end

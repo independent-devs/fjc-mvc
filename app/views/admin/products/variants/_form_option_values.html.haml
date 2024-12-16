@@ -3,7 +3,7 @@
   .grid.grid-cols-3.gap-3
     - if is_new
       - @product.product_options.with_option_columns.each do |po|
-        = form.fields_for :variant_option_values, VariantOptionValue.new do |vov|
+        = form.fields_for :variant_option_values, VariantOptionValue.new do |vov, pos|
           .field
             = vov.label po.name
             = vov.text_field :name, placeholder: po.placeholder, required: true, list: po.name
@@ -11,8 +11,9 @@
               - po.variant_option_values.grouped_names.each do |gn|
                 %option{value: gn.name}
           = vov.hidden_field :product_option_id, value: po.id
+          = vov.hidden_field :position, value: pos
     - else
-      = form.fields_for :variant_option_values do |vov|
+      = form.fields_for :variant_option_values do |vov, pos|
         .field
           - po = vov.object.product_option.option
           = vov.label po.name
@@ -20,3 +21,4 @@
           %datalist{id: po.name}
             - vov.object.product_option.variant_option_values.grouped_names.each do |gn|
               %option{value: gn.name}
+          = vov.hidden_field :position, value: pos

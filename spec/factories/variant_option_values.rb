@@ -14,7 +14,7 @@ end
 #
 #  id                :uuid             not null, primary key
 #  name              :string           not null
-#  position          :integer
+#  position          :integer          default(0)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_option_id :uuid             not null
@@ -22,8 +22,10 @@ end
 #
 # Indexes
 #
-#  index_variant_option_values_on_product_option_id  (product_option_id)
-#  index_variant_option_values_on_variant_id         (variant_id)
+#  index_variant_option_values_on_name                              (name)
+#  index_variant_option_values_on_product_option_id                 (product_option_id)
+#  index_variant_option_values_on_variant_id                        (variant_id)
+#  index_variant_option_values_on_variant_id_and_product_option_id  (variant_id,product_option_id) UNIQUE
 #
 # Foreign Keys
 #

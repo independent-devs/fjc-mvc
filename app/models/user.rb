@@ -30,8 +30,7 @@ class User < ApplicationRecord
 
   sig { returns(T::Boolean) }
   def remember_me
-    T.bind(self, T.untyped)
-    super.nil? ? true : super
+    super.nil? ? true : ActiveModel::Type::Boolean.new.cast(super)
   end
 
   sig { returns(T::Boolean) }
