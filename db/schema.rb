@@ -203,7 +203,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.string "name", null: false
     t.uuid "variant_id", null: false
     t.uuid "product_option_id", null: false
-    t.integer "position", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_variant_option_values_on_name"
