@@ -1,8 +1,8 @@
 .space-y-3.pb-5
   %h2.font-medium.text-lg Options
   .grid.grid-cols-3.gap-3
-    - @product.product_options.with_option_columns.each_with_index do |po, index|
-      - if is_new
+    - if is_new
+      - @product.product_options.with_option_columns.each do |po|
         = form.fields_for :variant_option_values, VariantOptionValue.new do |vov|
           .field
             = vov.label po.name
@@ -11,15 +11,12 @@
               - po.variant_option_values.grouped_names.each do |gn|
                 %option{value: gn.name}
           = vov.hidden_field :product_option_id, value: po.id
-          = vov.hidden_field :position, value: index
-      - else
-        - option_values = @variant.variant_option_values.find_by(product_option_id: po.id)
-        = form.fields_for :variant_option_values, option_values || VariantOtionValue.new do |vov|
-          .field
-            = vov.label po.name
-            = vov.text_field :name, required: true, list: po.name
-            %datalist{id: po.name}
-              - po.variant_option_values.grouped_names.each do |gn|
-                %option{value: gn.name}
-          = vov.hidden_field :position, value: index
-
+    - else
+      = form.fields_for :variant_option_values do |vov|
+        .field
+          - po = vov.object.product_option.option
+          = vov.label po.name
+          = vov.text_field :name, placeholder: po.placeholder, required: true, list: po.name
+          %datalist{id: po.name}
+            - vov.object.product_option.variant_option_values.grouped_names.each do |gn|
+              %option{value: gn.name}
