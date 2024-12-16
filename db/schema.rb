@@ -200,13 +200,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
   end
 
   create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
     t.uuid "variant_id", null: false
     t.uuid "product_option_id", null: false
-    t.integer "position"
-    t.string "name", null: false
+    t.integer "position", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_variant_option_values_on_name"
     t.index ["product_option_id"], name: "index_variant_option_values_on_product_option_id"
+    t.index ["variant_id", "product_option_id"], name: "index_variant_option_values_on_variant_id_and_product_option_id", unique: true
     t.index ["variant_id"], name: "index_variant_option_values_on_variant_id"
   end
 

@@ -44,6 +44,7 @@ class Variant < ApplicationRecord
 
   validate :only_one_master, if: :only_one_master_condition
   validate :product_supports_variant, unless: :is_master
+  validate :unique_option_values_per_variant
 
   # Generators
   after_destroy :capture_price
@@ -82,6 +83,25 @@ class Variant < ApplicationRecord
     return if T.must(product).has_variant
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
+  end
+
+  sig { void }
+  def unique_option_values_per_variant
+    existing_sets = VariantOptionValue
+                    .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
+                    .group(:variant_id)
+
+    existing_sets = existing_sets.where.not(variant: self) unless new_record?
+    existing_sets = existing_sets.map do |record|
+      rec = T.let(record, T.untyped)
+      T.must(rec.option_values)
+    end
+
+    current_set = variant_option_values.sort_by(&:product_option_id).map(&:name)
+
+    return unless existing_sets.include?(current_set)
+
+    errors.add(:variant_option_values, I18n.t('variants.validate.variant_option_values_unique'))
   end
 end
 

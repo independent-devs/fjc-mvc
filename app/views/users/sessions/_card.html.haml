@@ -3,7 +3,7 @@
     .grid{class: "gap-2.5"}
       %h2.font-semibold.text-2xl.mb-2 Login
       - if flash[:alert].present?
-        = render ErrorMessageComponent.new(errors: [flash[:alert]], label: nil)
+        = render ErrorMessageComponent.new(errors: [flash[:alert]], label: "")
       .field{"data-controller": "phone"}
         = f.label :phone_no do
           Phone number

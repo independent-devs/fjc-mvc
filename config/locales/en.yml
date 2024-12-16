@@ -55,7 +55,8 @@ en:
     destroyed: "Option was successfully deleted."
   variants:
     new: "New variant"
-    create_product_variant: "Create Product Variant"
+    create_product_variant: "Create product variant"
+    update_product_variant: "Update product variant"
     created: "Variant was successfully created."
     updated: "Variant was successfully updated."
     destroyed: "Variant was successfully deleted."
@@ -64,6 +65,7 @@ en:
       master_delete_attempt: "cannot delete a master variant."
       variant_not_supported: "does not support variant."
       variant_out_of_stock: "out of stock."
+      variant_option_values_unique: "must be unique per variant"
     table:
       thead:
         name: "Name"
