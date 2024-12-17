@@ -33,6 +33,15 @@ class Cart < ApplicationRecord
   validates :qty, numericality: { greater_than: 0 }
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
+  validate :validate_ownership
+
+  private
+
+  def validate_ownership
+    return unless user_id.present? && guest_session_id.present?
+
+    errors.add(:ownership, I18n.t('carts.validate.ownership_cant_be_both', max: MAX_IMAGES))
+  end
 end
 
 # == Schema Information

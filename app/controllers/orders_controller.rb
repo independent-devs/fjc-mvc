@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OrdersController < BaseController
-  before_action :set_guest_session
   load_and_authorize_resource
 
   def index
