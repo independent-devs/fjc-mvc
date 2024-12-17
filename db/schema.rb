@@ -104,11 +104,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
 
   create_table "order_statuses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.integer "step", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_order_statuses_on_name", unique: true
-    t.index ["step"], name: "index_order_statuses_on_step", unique: true
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

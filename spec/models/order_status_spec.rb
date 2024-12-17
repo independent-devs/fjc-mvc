@@ -18,12 +18,10 @@ end
 #
 #  id         :uuid             not null, primary key
 #  name       :string           not null
-#  step       :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
 #  index_order_statuses_on_name  (name) UNIQUE
-#  index_order_statuses_on_step  (step) UNIQUE
 #
