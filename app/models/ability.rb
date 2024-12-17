@@ -25,12 +25,7 @@ class Ability
 
     # Cart
     can(%i[read update destroy], Cart, user:)
-    can(:read, Cart, guest_session:) if guest_session.present?
-
-    if guest_session.present?
-      can(:sync, Cart, guest_session:)
-      can(:sync_all, Cart)
-    end
+    can(%i[read sync destroy sync_all], Cart, guest_session:) if guest_session.present?
 
     # Order
     can(:read, Order, user:)
