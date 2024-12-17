@@ -10,15 +10,21 @@ class BaseController < ApplicationController
   end
 
   def current_ability
-    @current_ability ||= Ability.new(current_user, @guest_session)
+    @current_ability ||= Ability.new(current_user, guest_session:)
   end
 
-  def set_guest_session
-    guest_session = cookies.signed[:guest_session]
+  def guest_session
+    return @guest_session unless @guest_session.nil?
 
-    return if guest_session.present? && (@guest_session = GuestSession.find_by(id: guest_session)).present?
+    signed_guest_id = cookies.signed[:guest_session]
+
+    if signed_guest_id.present? && (@guest_session = GuestSession.find_by(id: signed_guest_id)).present?
+      return @guest_session
+    end
 
     @guest_session = GuestSession.create
     cookies.signed.permanent[:guest_session] = @guest_session.id
+
+    @guest_session
   end
 end

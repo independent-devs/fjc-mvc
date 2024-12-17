@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class VariantsController < BaseController
-  before_action :set_guest_session, only: %i[guest_add_to_cart guest_buy_now]
-
   load_and_authorize_resource
 
   def info; end

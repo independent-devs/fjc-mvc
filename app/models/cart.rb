@@ -33,6 +33,15 @@ class Cart < ApplicationRecord
   validates :qty, numericality: { greater_than: 0 }
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
+  validate :validate_ownership
+
+  private
+
+  def validate_ownership
+    return unless user_id.present? && guest_session_id.present?
+
+    errors.add(:ownership, I18n.t('carts.validate.ownership_cant_be_both'))
+  end
 end
 
 # == Schema Information
@@ -49,9 +58,10 @@ end
 #
 # Indexes
 #
-#  index_carts_on_guest_session_id  (guest_session_id)
-#  index_carts_on_user_id           (user_id)
-#  index_carts_on_variant_id        (variant_id)
+#  index_carts_on_guest_session_id                             (guest_session_id)
+#  index_carts_on_user_id                                      (user_id)
+#  index_carts_on_variant_id                                   (variant_id)
+#  index_carts_on_variant_id_and_user_id_and_guest_session_id  (variant_id,user_id,guest_session_id) UNIQUE
 #
 # Foreign Keys
 #

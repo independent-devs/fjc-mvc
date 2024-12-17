@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CartsController < BaseController
-  before_action :set_guest_session, except: :variant_dropdown
-
   load_and_authorize_resource
 
   def index

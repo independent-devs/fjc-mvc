@@ -7,15 +7,9 @@ class Ability
   # Helpers
   include CanCan::Ability
 
-  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), is_admin_path: T::Boolean).void }
-  def initialize(user, guest_session, is_admin_path: false)
-    # Admin permission
-    if is_admin_path && user.present?
-      admin_permission user
-      return
-    end
-
-    # Variant
+  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession)).void }
+  def initialize(user, guest_session: nil)
+    # public
     can :info, Variant
     can :variant_dropdown, Cart
     can :read, Product
@@ -35,13 +29,13 @@ class Ability
     can %i[update destroy], Cart, user:, guest_session: nil
 
     if guest_session.present?
-      can :sync, Cart, guest_session:, user: nil
-      can :sync_all, Cart
+      can(:sync, Cart, guest_session:)
+      can(:sync_all, Cart)
     end
 
     # Order
     can(:read, Order, user:)
-    can :cancel, Order, user:, order_status: { name: 'pending' }
+    can(:cancel, Order, user:, order_status: { name: 'pending' })
   end
 
   private
@@ -53,19 +47,11 @@ class Ability
     can :guest_buy_now, Variant
 
     # Cart
-    can :read, Cart, guest_session:, user: nil
-    can %i[update destroy], Cart, guest_session:, user: nil
+    can(:read, Cart, guest_session:)
+    can(%i[update destroy], Cart, guest_session:)
 
     # Order
-    can :read, Order, guest_session:, user: nil
-    can :cancel, Order, guest_session:, user: nil, order_status: { name: 'pending' }
-  end
-
-  sig { params(user: User).void }
-  def admin_permission(user)
-    return unless user.admin?
-
-    # special permission here
-    Rails.logger.info user.to_json
+    can(:read, Order, guest_session:)
+    can(:cancel, Order, guest_session:, order_status: { name: 'pending' })
   end
 end

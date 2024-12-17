@@ -10,5 +10,7 @@ class CreateCarts < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :carts, %i[variant_id user_id guest_session_id], unique: true
   end
 end

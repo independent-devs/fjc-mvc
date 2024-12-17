@@ -90,6 +90,7 @@ en:
     synced: "Cart was successfully synced and onwed."
     validate:
       qty_exceeds_stocks: "qty exceeded current stock."
+      ownership_cant_be_both: "user and guest cannot be both exist on cart."
     table:
       thead:
         my_cart: "My Cart"

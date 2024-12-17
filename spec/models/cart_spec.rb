@@ -74,9 +74,10 @@
 #
 # Indexes
 #
-#  index_carts_on_guest_session_id  (guest_session_id)
-#  index_carts_on_user_id           (user_id)
-#  index_carts_on_variant_id        (variant_id)
+#  index_carts_on_guest_session_id                             (guest_session_id)
+#  index_carts_on_user_id                                      (user_id)
+#  index_carts_on_variant_id                                   (variant_id)
+#  index_carts_on_variant_id_and_user_id_and_guest_session_id  (variant_id,user_id,guest_session_id) UNIQUE
 #
 # Foreign Keys
 #

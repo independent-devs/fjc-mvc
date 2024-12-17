@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_carts_on_guest_session_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["variant_id", "user_id", "guest_session_id"], name: "index_carts_on_variant_id_and_user_id_and_guest_session_id", unique: true
     t.index ["variant_id"], name: "index_carts_on_variant_id"
   end
 
