@@ -10,32 +10,31 @@
           %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Navigate
           %ul.text-gray-500.grid.gap-2
             %li
-              %a.hover:underline{href: "https://flowbite.com/"} Products
+              .hover:underline.hover:text-primary Products
             %li
-              %a.hover:underline{href: "https://tailwindcss.com/"} My Account
+              .hover:underline.hover:text-primary My Account
             %li
-              %a.hover:underline{href: "https://tailwindcss.com/"} My Orders
+              .hover:underline.hover:text-primary My Orders
         %div
           %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Follow us
           %ul.text-gray-500.grid.gap-2
             %li
-              %a.hover:underline{href: "https://github.com/themesberg/flowbite"} Facebook
+              .hover:underline.hover:text-primary Facebook
             %li
-              %a.hover:underline{href: "https://discord.gg/4eeurUVvTy"} Instagram
+              .hover:underline.hover:text-primary Instagram
         %div
           %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Legal
           %ul.text-gray-500.grid.gap-2
             %li
-              %a.hover:underline{href: "#"} Privacy Policy
+              .hover:underline.hover:text-primary Privacy Policy
             %li
-              %a.hover:underline{href: "#"} Terms &amp; Conditions
+              .hover:underline.hover:text-primary Terms &amp; Conditions
     %hr.my-6.border-gray-200.sm:mx-auto.lg:my-8/
     .sm:flex.sm:items-center.sm:justify-between
       %span.text-sm.text-gray-500.sm:text-center
-        © 2023
+        = "© #{Date.current.year}"
         = succeed "." do
-          %a.hover:underline{href: "https://flowbite.com/"} 
-            = "#{t("storefront.name")}™"
+          = "#{t("storefront.name")}™"
       .flex.mt-4.sm:justify-center.sm:mt-0
         %a.text-gray-500.hover:text-gray-900{href: "#"}
           %svg.w-4.h-4{"aria-hidden" => "true", fill: "currentColor", viewbox: "0 0 8 19", xmlns: "http://www.w3.org/2000/svg"}
