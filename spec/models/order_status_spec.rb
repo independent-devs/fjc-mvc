@@ -8,7 +8,6 @@ RSpec.describe OrderStatus, type: :model do
   it 'Create order status' do
     expect(order_status).to be_valid
     expect(order_status.name).to be_present
-    expect(order_status.step).to be_present
   end
 end
 
@@ -18,12 +17,10 @@ end
 #
 #  id         :uuid             not null, primary key
 #  name       :string           not null
-#  step       :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 # Indexes
 #
 #  index_order_statuses_on_name  (name) UNIQUE
-#  index_order_statuses_on_step  (step) UNIQUE
 #

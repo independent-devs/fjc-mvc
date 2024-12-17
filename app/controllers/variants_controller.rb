@@ -37,7 +37,7 @@ class VariantsController < BaseController
 
   def guest_buy_now
     respond_to do |format|
-      if create_cart(@guest_session)
+      if create_cart(guest_session)
         format.html { redirect_to carts_url(bn: @cart.id) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -54,13 +54,11 @@ class VariantsController < BaseController
   def create_cart(parent)
     return nil unless parent.instance_of?(User) || parent.instance_of?(GuestSession)
 
-    if parent.instance_of?(User) &&
-       (@cart = parent.carts.find_by(variant: @variant)).present?
+    if parent.instance_of?(User) && (@cart = parent.carts.find_by(variant: @variant)).present?
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
-    if parent.instance_of?(GuestSession) &&
-       (@cart = parent.carts.find_by(variant: @variant, user: nil)).present?
+    if parent.instance_of?(GuestSession) && (@cart = parent.carts.find_by(variant: @variant)).present?
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 

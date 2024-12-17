@@ -232,7 +232,7 @@ module GeneratedUrlHelpersModule
   def root_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def sync_all_cart_url(*args); end
+  def sync_all_carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def sync_cart_url(*args); end

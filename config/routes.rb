@@ -82,9 +82,9 @@ end
 #                                  product GET      /products/:id(.:format)                                                                           products#show
 #                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
 #                                          POST     /checkout(.:format)                                                                               checkout#create
+#                           sync_all_carts POST     /carts/sync_all(.:format)                                                                         carts#sync_all
 #                    variant_dropdown_cart GET      /carts/:id/variant_dropdown(.:format)                                                             carts#variant_dropdown
 #                                sync_cart POST     /carts/:id/sync(.:format)                                                                         carts#sync
-#                            sync_all_cart POST     /carts/:id/sync_all(.:format)                                                                     carts#sync_all
 #                                    carts GET      /carts(.:format)                                                                                  carts#index
 #                                     cart PATCH    /carts/:id(.:format)                                                                              carts#update
 #                                          PUT      /carts/:id(.:format)                                                                              carts#update

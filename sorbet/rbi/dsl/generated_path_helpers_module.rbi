@@ -232,7 +232,7 @@ module GeneratedPathHelpersModule
   def root_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def sync_all_cart_path(*args); end
+  def sync_all_carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def sync_cart_path(*args); end
