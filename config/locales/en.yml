@@ -1,4 +1,8 @@
 en:
+  storefront: 
+    name: "Felmart"
+  admin:
+    name: "Felmart Admin"
   home:
     title: "Home"
   about:
