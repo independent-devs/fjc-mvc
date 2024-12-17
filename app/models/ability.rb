@@ -29,13 +29,13 @@ class Ability
     can %i[update destroy], Cart, user:, guest_session: nil
 
     if guest_session.present?
-      can :sync, Cart, guest_session:, user: nil
-      can :sync_all, Cart
+      can(:sync, Cart, guest_session:)
+      can(:sync_all, Cart)
     end
 
     # Order
     can(:read, Order, user:)
-    can :cancel, Order, user:, order_status: { name: 'pending' }
+    can(:cancel, Order, user:, order_status: { name: 'pending' })
   end
 
   private
@@ -48,10 +48,10 @@ class Ability
 
     # Cart
     can(:read, Cart, guest_session:)
-    can %i[update destroy], Cart, guest_session:
+    can(%i[update destroy], Cart, guest_session:)
 
     # Order
     can(:read, Order, guest_session:)
-    can :cancel, Order, guest_session:, order_status: { name: 'pending' }
+    can(:cancel, Order, guest_session:, order_status: { name: 'pending' })
   end
 end

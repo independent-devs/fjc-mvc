@@ -3,7 +3,7 @@
     = render Carts::Item::CheckboxComponent.new cart:, invalid: checkbox_invalid?(cart.count_on_hand, cart.qty, cart.backorderable) || cannot?(:update, cart)
     .flex.gap-2
       = link_to product_path(id: cart.product_id) do
-        -# = image_tag cart.variant_thumbnail || cart.product_thumbnail || "thumbnail.png", size: 320, class: "min-w-[75px] min-h-[75px] max-w-[75px] max-h-[75px] object-cover object-center border rounded-sm", id: "cart-#{cart.id}-thumbnail"
+        = image_tag cart.variant.product.thumbnail.variant(:product) || "thumbnail.png", size: 320, class: "min-w-[75px] min-h-[75px] max-w-[75px] max-h-[75px] object-cover object-center border rounded-sm", id: "cart-#{cart.id}-thumbnail"
       .flex.flex-col.gap-1
         = link_to product_path(id: cart.product_id), class: "leading-tight line-clamp-2 text-[15px]" do
           = cart.product_name
