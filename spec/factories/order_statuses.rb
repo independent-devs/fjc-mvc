@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :order_status do
     name { 'pending' }
-    step { 1 }
   end
 end
 

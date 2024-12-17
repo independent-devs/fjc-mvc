@@ -8,7 +8,6 @@ RSpec.describe OrderStatus, type: :model do
   it 'Create order status' do
     expect(order_status).to be_valid
     expect(order_status.name).to be_present
-    expect(order_status.step).to be_present
   end
 end
 
