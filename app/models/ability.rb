@@ -24,7 +24,7 @@ class Ability
     can :buy_now, Variant
 
     # Cart
-    can(:read, Cart, user:, guest_session: nil)
+    can(:read, Cart, user:)
     can(:read, Cart, guest_session:) if guest_session.present?
     can %i[update destroy], Cart, user:, guest_session: nil
 
