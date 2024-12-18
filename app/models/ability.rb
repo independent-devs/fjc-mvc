@@ -7,8 +7,16 @@ class Ability
   # Helpers
   include CanCan::Ability
 
-  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession)).void }
-  def initialize(user, guest_session: nil)
+  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
+  def initialize(user, guest_session: nil, portal: Portal::STORE_FRONT)
+    storefront_permission(guest_session, user) if storefront_portal?(portal)
+    admin_permission(user) if admin_portal?(portal)
+  end
+
+  private
+
+  sig { params(guest_session: T.nilable(GuestSession), user: T.nilable(User)).void }
+  def storefront_permission(guest_session, user)
     # public
     can :info, Variant
     can :variant_dropdown, Cart
@@ -32,7 +40,16 @@ class Ability
     can(:cancel, Order, user:, order_status: { name: 'pending' })
   end
 
-  private
+  sig { params(user: T.nilable(User)).void }
+  def admin_permission(user)
+    return unless user&.admin?
+
+    can :manage, Product
+    can :manage, Variant
+    can :manage, Order
+    can :manage, Category
+    can :manage, Option
+  end
 
   sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
@@ -47,5 +64,15 @@ class Ability
     # Order
     can(:read, Order, guest_session:)
     can(:cancel, Order, guest_session:, order_status: { name: 'pending' })
+  end
+
+  sig { params(portal: Integer).returns(T::Boolean) }
+  def storefront_portal?(portal)
+    portal == Portal::STORE_FRONT
+  end
+
+  sig { params(portal: Integer).returns(T::Boolean) }
+  def admin_portal?(portal)
+    portal == Portal::ADMIN
   end
 end
