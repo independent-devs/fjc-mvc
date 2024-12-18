@@ -5,15 +5,15 @@
 @layer base {
   html,
   body {
-    @apply bg-foreground;
   }
 
   .margin-max-screen {
     @apply mx-auto max-w-margin px-4 md:px-8 w-full;
   }
 
-  select option[value=""], select option:not([value]) {
-    @apply text-gray-500
+  select option[value=""],
+  select option:not([value]) {
+    @apply text-gray-500;
   }
 }
 
@@ -60,14 +60,16 @@
 
   /* form */
   .field {
-    @apply flex flex-col gap-1 w-full
+    @apply flex flex-col gap-1 w-full;
   }
 
   .field .field_with_errors label {
     @apply text-red-600;
   }
 
-  .field input, textarea, select {
+  .field input,
+  textarea,
+  select {
     @apply input-primary;
   }
 
@@ -84,15 +86,15 @@
   }
 
   .field:has(input[required]) label:after {
-    @apply content-['*'] text-red-600
+    @apply content-['*'] text-red-600;
   }
 
   .field:has(textarea[required]) label:after {
-    @apply content-['*'] text-red-600
+    @apply content-['*'] text-red-600;
   }
 
   .field:has(select[required]) label:after {
-    @apply content-['*'] text-red-600
+    @apply content-['*'] text-red-600;
   }
 
   /* items */
@@ -133,7 +135,7 @@
   ul.form-table-body {
     @apply divide-y;
   }
-  
+
   /* Public Product */
   #public-price {
     @apply text-3xl font-medium text-primary;
@@ -237,7 +239,7 @@
     @apply max-w-sm rounded shadow-lg bg-white absolute mt-2 border;
   }
 
-  .point:before, {
+  .point:before {
     @apply content-['_'] absolute w-0 h-0 -top-[11px] border-solid -ml-[10px] border-t-0 border-x-[10px] border-b-[10px] border-x-transparent border-t-transparent border-b-primary;
   }
 }
@@ -245,7 +247,7 @@
 /* Stimulus Dialog */
 
 /* Prevent scrolling while dialog is open */
-body:has(dialog[data-dialog-target='dialog'][open]) {
+body:has(dialog[data-dialog-target="dialog"][open]) {
   overflow: hidden;
 }
 
@@ -273,10 +275,10 @@ dialog {
 }
 
 /* Add animations */
-dialog[data-dialog-target='dialog'][open] {
+dialog[data-dialog-target="dialog"][open] {
   animation: dialog-fadein 200ms forwards;
 }
 
-dialog[data-dialog-target='dialog'][closing] {
+dialog[data-dialog-target="dialog"][closing] {
   animation: dialog-fadeout 200ms forwards;
 }

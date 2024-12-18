@@ -1,14 +1,14 @@
-%footer.bg-white
-  .margin-max-screen.w-full.py-8
+%footer.bg-black
+  .margin-max-screen.w-full.py-10
     .md:flex.md:justify-between
       .mb-6.md:mb-0
-        = link_to root_path, class: "text-xl font-bold whitespace-nowrap" do
+        = link_to root_path, class: "text-xl text-white font-bold whitespace-nowrap" do
           = t("storefront.name")
       .grid.grid-cols-2.gap-8.sm:gap-6.sm:grid-cols-3
         %div
-          %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase
+          %h2.mb-4.text-sm.font-semibold.text-white.uppercase
             = t("storefront.footer.navigate.title")
-          %ul.text-gray-500.grid.gap-2
+          %ul.text-white.grid.gap-2.text-sm
             %li
               = link_to t("storefront.footer.navigate.items.products"), products_path, class: "hover:underline hover:text-primary"
             %li
@@ -16,25 +16,24 @@
             %li
               = link_to t("storefront.footer.navigate.items.orders"), orders_path, class: "hover:underline hover:text-primary"
         %div
-          %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Follow us
-          %ul.text-gray-500.grid.gap-2
+          %h2.mb-4.text-sm.font-semibold.text-white.uppercase Follow us
+          %ul.text-white.grid.gap-2.text-sm
             %li
               .hover:underline.hover:text-primary Facebook
             %li
               .hover:underline.hover:text-primary Instagram
         %div
-          %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Legal
-          %ul.text-gray-500.grid.gap-2
+          %h2.mb-4.text-sm.font-semibold.text-white.uppercase Legal
+          %ul.grid.gap-2.text-white.text-sm
             %li
               .hover:underline.hover:text-primary Privacy Policy
             %li
               .hover:underline.hover:text-primary Terms &amp; Conditions
-    %hr.my-6.border-gray-200.sm:mx-auto.lg:my-8/
-    .sm:flex.sm:items-center.sm:justify-between
-      %span.text-sm.text-gray-500.sm:text-center
+    .sm:flex.sm:items-center.sm:justify-between.mt-7
+      %span.text-sm.text-white.sm:text-center
         = "© #{Date.current.year} #{t("storefront.name")}™"
       .flex.mt-4.sm:mt-0.gap-3
-        .text-gray-500.hover:text-primary
+        .text-white.hover:text-primary
           = icon("fa-brands", "facebook", class: "text-lg")
-        .text-gray-500.hover:text-primary
+        .text-white.hover:text-primary
           = icon("fa-brands", "instagram", class: "text-xl mt-0.5")
