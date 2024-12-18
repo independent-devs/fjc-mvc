@@ -1,30 +1,22 @@
-%ul.flex.text-base.border-b-2.border-gray-100.grid.grid-cols-6
+%ul.flex.text-base.border-b-2.border-gray-100.grid.grid-cols-7
   %li
     = render TabLinkComponent.new path: orders_path(page: params[:page]) do
       = t("orders.tabs.all")
   %li
     = render TabLinkComponent.new path: orders_path(status: :pending, page: params[:page]) do
-      .flex.gap-2.items-center.justify-center
-        = icon("fa-solid", "hourglass-half", class: "text-sm")
-        = t("orders.tabs.pending")
+      = t("orders.tabs.pending")
   %li
     = render TabLinkComponent.new path: orders_path(status: :to_ship, page: params[:page]) do
-      .flex.gap-2.items-center.justify-center
-        = icon("fa-solid", "cart-flatbed-suitcase", class: "text-sm")
-        = t("orders.tabs.to_ship")
+      = t("orders.tabs.to_ship")
   %li
     = render TabLinkComponent.new path: orders_path(status: :to_recieve, page: params[:page]) do
-      .flex.gap-2.items-center.justify-center
-        = icon("fa-solid", "truck-fast", class: "text-sm")
-        = t("orders.tabs.to_recieve")
+      = t("orders.tabs.to_recieve")
   %li
-    = render TabLinkComponent.new path: orders_path(status: :fulfilled, page: params[:page]) do
-      .flex.gap-2.items-center.justify-center
-        = icon("fa-solid", "square-check", class: "text-sm")
-        = t("orders.tabs.fulfilled")
+    = render TabLinkComponent.new path: orders_path(status: :completed, page: params[:page]) do
+      = t("orders.tabs.completed")
   %li
-    = render TabLinkComponent.new path: orders_path(status: :unfulfilled, page: params[:page]) do 
-      .flex.gap-2.items-center.justify-center
-        = icon("fa-solid", "square-xmark", class: "text-sm")
-        = t("orders.tabs.unfulfilled")
-
+    = render TabLinkComponent.new path: orders_path(status: :cancelled, page: params[:page]) do 
+      = t("orders.tabs.cancelled")
+  %li
+    = render TabLinkComponent.new path: orders_path(status: [:returned, :refunded], page: params[:page]) do 
+      = t("orders.tabs.return_refund")

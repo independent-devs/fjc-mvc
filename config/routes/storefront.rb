@@ -25,14 +25,9 @@ resources :variants, only: [] do
   end
 end
 
-resources :orders, only: %i[index show create] do
+resource :account, only: :show
+resources :orders, only: %i[index show] do
   member do
     delete :cancel
-  end
-end
-
-resources :account, only: :index do
-  collection do
-    resources :orders, only: :index
   end
 end

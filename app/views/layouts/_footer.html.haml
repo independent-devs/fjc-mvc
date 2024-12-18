@@ -10,11 +10,11 @@
           %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Navigate
           %ul.text-gray-500.grid.gap-2
             %li
-              .hover:underline.hover:text-primary Products
+              = link_to "Products", products_path, class: "hover:underline hover:text-primary"
             %li
-              .hover:underline.hover:text-primary My Account
+              = link_to "My Account", account_path, class: "hover:underline hover:text-primary"
             %li
-              .hover:underline.hover:text-primary My Orders
+              = link_to "My Orders", orders_path, class: "hover:underline hover:text-primary"
         %div
           %h2.mb-4.text-sm.font-semibold.text-gray-900.uppercase Follow us
           %ul.text-gray-500.grid.gap-2
