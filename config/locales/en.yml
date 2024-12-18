@@ -114,7 +114,7 @@ en:
         my_cart: "My Cart"
         unit_price: "Unit Price"
         quantity: "Quantity"
-        total_price: "Total Price"
+        subtotal: "Subtotal"
         actions: "Actions"
   orders:
     title: "Orders"
