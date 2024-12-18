@@ -7,13 +7,13 @@
           = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
           %span.font-semibold.text-primary
             = t("carts.table.thead.my_cart")
-        %div
+        .block
           = t("carts.table.thead.unit_price")
-        %div
+        .block
           = t("carts.table.thead.quantity")
-        %div
+        .block
           = t("carts.table.thead.subtotal")
-        %div
+        .block
           = t("carts.table.thead.actions")
       .border-x.divide-y
         - if @carts.present?
