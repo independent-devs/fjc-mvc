@@ -1,12 +1,26 @@
 en:
   storefront: 
     name: "Felmart"
+    header:
+      home:
+        title: "Home"
+      products:
+        title: "Products"
+      about:
+        title: "About Us"
+      user_icon:
+        dropdown:
+          account: "My Account"
+          orders: "My Orders"
+    footer:
+      navigate:
+        title: "Navigate"
+        items:
+          products: "Products"
+          account: "My Account"
+          orders: "My Orders"
   admin:
     name: "Felmart Admin"
-  home:
-    title: "Home"
-  about:
-    title: "About"
   error:
     something_went_wrong: "Something went wrong."
     unathorized_action: "Unauthorized action"
@@ -118,9 +132,9 @@ en:
       to_recieve: "To Recieve"
       completed: "Completed"
       cancelled: "Cancelled"
-      return_refund: "Return Refund"
       returned: "Returned" 
       refunded: "Refunded" 
+      return_refund: "Return Refund"
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"
