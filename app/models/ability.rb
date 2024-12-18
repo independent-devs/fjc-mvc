@@ -8,7 +8,7 @@ class Ability
   include CanCan::Ability
 
   sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
-  def initialize(user, guest_session: nil, portal: Portal::STORE_FRONT)
+  def initialize(user, guest_session: nil, portal: Portal::STOREFRONT)
     storefront_permission(guest_session, user) if storefront_portal?(portal)
     admin_permission(user) if admin_portal?(portal)
   end
@@ -68,7 +68,7 @@ class Ability
 
   sig { params(portal: Integer).returns(T::Boolean) }
   def storefront_portal?(portal)
-    portal == Portal::STORE_FRONT
+    portal == Portal::STOREFRONT
   end
 
   sig { params(portal: Integer).returns(T::Boolean) }
