@@ -19,7 +19,7 @@ module.exports = {
         foreground: "#f5f5f5",
       },
       maxWidth: {
-        margin: "1240px",
+        margin: "1280px",
       },
     },
   },

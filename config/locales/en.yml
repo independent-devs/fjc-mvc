@@ -116,8 +116,11 @@ en:
       pending: "Pending"
       to_ship: "To Ship"
       to_recieve: "To Recieve"
-      fulfilled: "Fulfilled"
-      unfulfilled: "Unfulfilled"
+      completed: "Completed"
+      cancelled: "Cancelled"
+      return_refund: "Return Refund"
+      returned: "Returned" 
+      refunded: "Refunded" 
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"
