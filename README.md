@@ -12,11 +12,22 @@ cp .env.dev .env
 
 Install Dependencies
 
+> Assuming that you have already installed rails in your machine.
+> Highly recommend to use any linux distros(Ubuntu, etc..) or use WSL(if you use windows)
+
 ```
 bundle
 ```
 
-Database
+Run Postgres docker instance
+
+> We are not running a rails dev environment as a container because foreman doesn't work well.
+
+```
+docker compose up -d
+```
+
+Initiate DB
 
 ```
 rails db:create
@@ -27,7 +38,7 @@ rails db:seed
 Run locally
 
 ```
-./bin/dev
+bin/dev
 ```
 
 Test Account
