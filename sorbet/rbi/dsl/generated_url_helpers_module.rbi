@@ -10,7 +10,7 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
-  def account_index_url(*args); end
+  def account_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def add_to_cart_variant_url(*args); end
