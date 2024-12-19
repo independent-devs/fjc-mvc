@@ -5,7 +5,7 @@ class OrdersController < BaseController
 
   def index
     @orders = Order.accessible_by(current_ability)
-    @orders = @orders.where(name: params[:status]) if params[:status].present?
+    @orders = @orders.where(order_status: { name: params[:status] }).joins(:order_status) if params[:status].present?
   end
 
   def show; end
