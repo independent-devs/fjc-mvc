@@ -4,6 +4,7 @@
 class ProductOption < ApplicationRecord
   extend T::Sig
 
+  # Concerns
   include RankedModel
 
   # Relations
@@ -14,10 +15,7 @@ class ProductOption < ApplicationRecord
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
   scope :with_option_columns,
-        lambda {
-          select('product_options.*, options.name, options.display_name, options.placeholder')
-            .joins(:option)
-        }
+        -> { select('product_options.*, options.name, options.display_name, options.placeholder').joins(:option) }
 
   # Position
   ranks :sort_order, column: :position, with_same: :product_id

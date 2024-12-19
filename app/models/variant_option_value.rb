@@ -6,6 +6,11 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :variant
   belongs_to :product_option
 
+  # Attachments
+  has_one_attached :image do |attachable|
+    attachable.variant :small, resize_to_limit: [150, 150]
+  end
+
   normalizes :name, with: -> { _1.strip }
 
   # Scopes

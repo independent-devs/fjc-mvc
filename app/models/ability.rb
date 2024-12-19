@@ -4,7 +4,7 @@
 class Ability
   extend T::Sig
 
-  # Helpers
+  # Concerns
   include CanCan::Ability
 
   sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
