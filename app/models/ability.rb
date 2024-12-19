@@ -28,8 +28,7 @@ class Ability
     return if user.blank?
 
     # Variant
-    can :add_to_cart, Variant
-    can :buy_now, Variant
+    can %i[add_to_cart buy_now], Variant
 
     # Cart
     can(%i[read update destroy], Cart, user:)
@@ -54,12 +53,10 @@ class Ability
   sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
     # Variant
-    can :guest_add_to_cart, Variant
-    can :guest_buy_now, Variant
+    can %i[guest_add_to_cart guest_buy_now], Variant
 
     # Cart
-    can(:read, Cart, guest_session:)
-    can(%i[update destroy], Cart, guest_session:)
+    can(%i[read update destroy], Cart, guest_session:)
 
     # Order
     can(:read, Order, guest_session:)
