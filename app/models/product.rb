@@ -25,6 +25,7 @@ class Product < ApplicationRecord
   has_one :product_category, dependent: :destroy
   has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
+
   has_many :variants, dependent: :destroy
   has_many :product_options, dependent: :destroy
   has_many :options, through: :product_options, dependent: :destroy

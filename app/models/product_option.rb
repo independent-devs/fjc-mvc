@@ -10,6 +10,7 @@ class ProductOption < ApplicationRecord
   # Relations
   belongs_to :product
   belongs_to :option
+
   has_many :variant_option_values, dependent: :destroy
 
   # Scopes
