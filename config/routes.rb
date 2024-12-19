@@ -94,12 +94,10 @@ end
 #                guest_add_to_cart_variant POST     /variants/:id/guest_add_to_cart(.:format)                                                         variants#guest_add_to_cart
 #                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
 #                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
+#                                  account GET      /account(.:format)                                                                                accounts#show
 #                             cancel_order DELETE   /orders/:id/cancel(.:format)                                                                      orders#cancel
 #                                   orders GET      /orders(.:format)                                                                                 orders#index
-#                                          POST     /orders(.:format)                                                                                 orders#create
 #                                    order GET      /orders/:id(.:format)                                                                             orders#show
-#                                          GET      /account/orders(.:format)                                                                         orders#index
-#                            account_index GET      /account(.:format)                                                                                account#index
 #                                                   /404(.:format)                                                                                    errors#not_found
 #                                                   /500(.:format)                                                                                    errors#internal_server_error
 #         turbo_recede_historical_location GET      /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
