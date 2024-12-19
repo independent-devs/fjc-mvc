@@ -22,7 +22,7 @@ bundle install
 
 Run Postgres docker instance
 
-> We are not running a rails dev environment as a container because foreman doesn't work well.
+> Not running rails dev environment as a container because foreman doesn't work well.
 
 ```
 docker compose up -d
