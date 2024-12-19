@@ -281,9 +281,6 @@ class Product
     sig { params(args: T.untyped, blk: T.untyped).returns(::Description) }
     def build_description(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def build_master_category(*args, &blk); end
-
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def build_master_variant(*args, &blk); end
 
@@ -304,12 +301,6 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Description) }
     def create_description!(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def create_master_category(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def create_master_category!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_master_variant(*args, &blk); end
@@ -378,12 +369,6 @@ class Product
     sig { params(value: T::Enumerable[::ActiveStorage::Blob]).void }
     def images_blobs=(value); end
 
-    sig { returns(T.nilable(::ProductCategory)) }
-    def master_category; end
-
-    sig { params(value: T.nilable(::ProductCategory)).void }
-    def master_category=(value); end
-
     sig { returns(T.nilable(::Variant)) }
     def master_variant; end
 
@@ -392,20 +377,6 @@ class Product
 
     sig { params(attributes: T.untyped).returns(T.untyped) }
     def master_variant_attributes=(attributes); end
-
-    # This method is created by ActiveRecord on the `Product` class because it declared `has_many :non_master_categories`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::ProductCategory::PrivateCollectionProxy) }
-    def non_master_categories; end
-
-    sig { params(value: T::Enumerable[::ProductCategory]).void }
-    def non_master_categories=(value); end
-
-    sig { returns(T::Array[T.untyped]) }
-    def non_master_category_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def non_master_category_ids=(ids); end
 
     sig { returns(T::Array[T.untyped]) }
     def non_master_variant_ids; end
@@ -461,9 +432,6 @@ class Product
     sig { returns(T.nilable(::Description)) }
     def reload_description; end
 
-    sig { returns(T.nilable(::ProductCategory)) }
-    def reload_master_category; end
-
     sig { returns(T.nilable(::Variant)) }
     def reload_master_variant; end
 
@@ -481,9 +449,6 @@ class Product
 
     sig { void }
     def reset_description; end
-
-    sig { void }
-    def reset_master_category; end
 
     sig { void }
     def reset_master_variant; end

@@ -11,6 +11,12 @@ class VariantOptionValue
   extend CommonRelationMethods
   extend GeneratedRelationMethods
 
+  sig { returns(ActiveStorage::Attached::One) }
+  def image; end
+
+  sig { params(attachable: T.untyped).returns(T.untyped) }
+  def image=(attachable); end
+
   private
 
   sig { returns(NilClass) }
@@ -332,11 +338,29 @@ class VariantOptionValue
   end
 
   module GeneratedAssociationMethods
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
+    def build_image_attachment(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
+    def build_image_blob(*args, &blk); end
+
     sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOption) }
     def build_product_option(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def build_variant(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
+    def create_image_attachment(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
+    def create_image_attachment!(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
+    def create_image_blob(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
+    def create_image_blob!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOption) }
     def create_product_option(*args, &blk); end
@@ -350,17 +374,41 @@ class VariantOptionValue
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_variant!(*args, &blk); end
 
+    sig { returns(T.nilable(::ActiveStorage::Attachment)) }
+    def image_attachment; end
+
+    sig { params(value: T.nilable(::ActiveStorage::Attachment)).void }
+    def image_attachment=(value); end
+
+    sig { returns(T.nilable(::ActiveStorage::Blob)) }
+    def image_blob; end
+
+    sig { params(value: T.nilable(::ActiveStorage::Blob)).void }
+    def image_blob=(value); end
+
     sig { returns(T.nilable(::ProductOption)) }
     def product_option; end
 
     sig { params(value: T.nilable(::ProductOption)).void }
     def product_option=(value); end
 
+    sig { returns(T.nilable(::ActiveStorage::Attachment)) }
+    def reload_image_attachment; end
+
+    sig { returns(T.nilable(::ActiveStorage::Blob)) }
+    def reload_image_blob; end
+
     sig { returns(T.nilable(::ProductOption)) }
     def reload_product_option; end
 
     sig { returns(T.nilable(::Variant)) }
     def reload_variant; end
+
+    sig { void }
+    def reset_image_attachment; end
+
+    sig { void }
+    def reset_image_blob; end
 
     sig { void }
     def reset_product_option; end
@@ -562,6 +610,9 @@ class VariantOptionValue
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_attached_image(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with_variant_position(*args, &blk); end
@@ -815,6 +866,9 @@ class VariantOptionValue
     def restore_updated_at!; end
 
     sig { void }
+    def restore_value!; end
+
+    sig { void }
     def restore_variant_id!; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
@@ -852,6 +906,12 @@ class VariantOptionValue
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_value; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_value?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_variant_id; end
@@ -903,6 +963,51 @@ class VariantOptionValue
 
     sig { void }
     def updated_at_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def value; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def value=(value); end
+
+    sig { returns(T::Boolean) }
+    def value?; end
+
+    sig { returns(T.nilable(::String)) }
+    def value_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def value_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def value_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def value_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def value_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def value_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def value_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def value_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def value_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def value_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def value_was; end
+
+    sig { void }
+    def value_will_change!; end
 
     sig { returns(::String) }
     def variant_id; end
@@ -966,6 +1071,9 @@ class VariantOptionValue
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_value?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_variant_id?; end
@@ -1106,6 +1214,9 @@ class VariantOptionValue
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_attached_image(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with_variant_position(*args, &blk); end

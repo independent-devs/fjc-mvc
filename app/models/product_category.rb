@@ -15,7 +15,6 @@ end
 # Table name: product_categories
 #
 #  id          :uuid             not null, primary key
-#  is_master   :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  category_id :uuid             not null

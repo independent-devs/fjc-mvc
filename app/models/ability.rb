@@ -4,7 +4,7 @@
 class Ability
   extend T::Sig
 
-  # Helpers
+  # Concerns
   include CanCan::Ability
 
   sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
@@ -18,9 +18,9 @@ class Ability
   sig { params(guest_session: T.nilable(GuestSession), user: T.nilable(User)).void }
   def storefront_permission(guest_session, user)
     # public
+    can :read, Product
     can :info, Variant
     can :variant_dropdown, Cart
-    can :read, Product
 
     # Guest permission
     guest_permission(guest_session) if guest_session.present? && user.blank?
@@ -28,8 +28,7 @@ class Ability
     return if user.blank?
 
     # Variant
-    can :add_to_cart, Variant
-    can :buy_now, Variant
+    can %i[add_to_cart buy_now], Variant
 
     # Cart
     can(%i[read update destroy], Cart, user:)
@@ -54,12 +53,10 @@ class Ability
   sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
     # Variant
-    can :guest_add_to_cart, Variant
-    can :guest_buy_now, Variant
+    can %i[guest_add_to_cart guest_buy_now], Variant
 
     # Cart
-    can(:read, Cart, guest_session:)
-    can(%i[update destroy], Cart, guest_session:)
+    can(%i[read update destroy], Cart, guest_session:)
 
     # Order
     can(:read, Order, guest_session:)

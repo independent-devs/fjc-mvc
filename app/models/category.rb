@@ -9,7 +9,6 @@ class Category < ApplicationRecord
   has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
-  scope :not_deleted, -> { where(deleted_at: nil) }
   scope :root, -> { find_by(ancestry: nil) }
 
   # Validations
@@ -17,10 +16,7 @@ class Category < ApplicationRecord
     scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry')
   }
   validates :ancestry_depth,
-            inclusion: {
-              in: 1..MAX_DEPTH,
-              message: I18n.t('categories.validate.ancestry_depth')
-            }, if: :ancestry
+            inclusion: { in: 1..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }, if: :ancestry
 end
 
 # == Schema Information
