@@ -22,7 +22,7 @@ bundle install
 
 Run Postgres docker instance
 
-> Not running rails dev environment as a container because foreman doesn't work well.
+> Not running rails dev environment as a docker container due to tailwind's watcher doesn't work well.
 
 ```
 docker compose up -d
