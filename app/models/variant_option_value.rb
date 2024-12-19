@@ -2,6 +2,9 @@
 # typed: true
 
 class VariantOptionValue < ApplicationRecord
+  # Concerns
+  include ActiveStorage::Attached::Model
+
   # Relations
   belongs_to :variant
   belongs_to :product_option

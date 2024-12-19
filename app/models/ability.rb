@@ -18,9 +18,9 @@ class Ability
   sig { params(guest_session: T.nilable(GuestSession), user: T.nilable(User)).void }
   def storefront_permission(guest_session, user)
     # public
+    can :read, Product
     can :info, Variant
     can :variant_dropdown, Cart
-    can :read, Product
 
     # Guest permission
     guest_permission(guest_session) if guest_session.present? && user.blank?
