@@ -10,6 +10,6 @@ class ProductsController < BaseController
 
   # GET /products/:id
   def show
-    @carousel = @product.images.all
+    @carousel = @product.images.sort_by_position
   end
 end
