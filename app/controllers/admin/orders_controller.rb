@@ -2,12 +2,9 @@
 
 class Admin::OrdersController < Admin::BaseController
   def index
-    order = Order.all
+    @orders = Order.all
+    @orders = @orders.where(order_status: { name: params[:status] }).joins(:order_status) if params[:status].present?
 
-    if params[:status].present? && (status = OrderStatus.find_by(name: params[:status])).present?
-      order = order.where(order_status: status)
-    end
-
-    @pagy, @orders = pagy(order)
+    @pagy, @orders = pagy(@orders)
   end
 end

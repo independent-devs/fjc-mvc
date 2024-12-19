@@ -3,3 +3,6 @@
   .grid.bg-white
     = render "status_tab"
     = render EmptyItemComponent.new text: "No orders yet", hide: false
+    - @orders.each do |order|
+      = order
+
