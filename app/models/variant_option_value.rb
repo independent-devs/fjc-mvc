@@ -28,6 +28,7 @@ end
 #
 #  id                :uuid             not null, primary key
 #  name              :string           not null
+#  value             :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_option_id :uuid             not null

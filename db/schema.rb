@@ -198,6 +198,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
 
   create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "value"
     t.uuid "variant_id", null: false
     t.uuid "product_option_id", null: false
     t.datetime "created_at", null: false
