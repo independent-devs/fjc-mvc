@@ -7,16 +7,17 @@
 Copy ENV
 
 ```
-cp .env.dev .env
+cp .env.template .env
 ```
 
 Install Dependencies
 
 > Assuming that you have already installed rails in your machine.
+
 > Highly recommend to use any linux distros(Ubuntu, etc..) or use WSL(if you use windows)
 
 ```
-bundle
+bundle install
 ```
 
 Run Postgres docker instance
