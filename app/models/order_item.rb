@@ -11,6 +11,7 @@ class OrderItem < ApplicationRecord
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :qty, numericality: { greater_than: 0 }
+
   validate :check_variant_stock, if: :variant
 
   private

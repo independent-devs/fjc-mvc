@@ -2,6 +2,7 @@
 # typed: true
 
 class Option < ApplicationRecord
+  # Concerns
   include RankedModel
 
   # Relations

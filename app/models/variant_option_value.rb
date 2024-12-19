@@ -14,6 +14,7 @@ class VariantOptionValue < ApplicationRecord
     attachable.variant :small, resize_to_limit: [150, 150]
   end
 
+  # Filter
   normalizes :name, with: -> { _1.strip }
 
   # Scopes
