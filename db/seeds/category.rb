@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-base_category = Category.root
-
-clothes = Category.create(name: 'Clothes', parent: base_category)
+clothes = Category.create(name: 'Clothes')
 Category.create(name: 'Polo Shirt', parent: clothes)
-Category.create(name: 'T-Shirt', parent: clothes)
+
+tshirt = Category.create(name: 'T-Shirt', parent: clothes)
+Category.create(name: 'Shirt', parent: tshirt)

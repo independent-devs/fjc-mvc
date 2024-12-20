@@ -1,13 +1,11 @@
 .margin-max-screen.h-full.py-7
-  - if @base_category.present?
-    .flex.gap-2.items-center
-      %h1.font-semibold.text-xl
-        = @base_category.name
-      = link_to new_admin_category_path(ancestor: @base_category.id), 
-      class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
-        = icon("fa-solid", "plus", class: "text-xs")
-    .flex.flex-col.gap-1.mt-6
-      - @base_category.subtree.arrange(order: :name).each do |category|
-        = render "subtree", category:
+  .flex.gap-2.items-center.mb-6
+    %h1.font-semibold.text-xl
+      Categories
+    = link_to new_admin_category_path, class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
+      = icon("fa-solid", "plus", class: "text-xs")
+  - if @root_categories.present?
+    = render "tree", categories: @root_categories, parent: nil
   - else
-    %span.text-red-500.text-xl.font-bold= t("error.something_went_wrong")
+    %span.text-red-500.text-xl.font-bold
+      No category

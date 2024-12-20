@@ -25,7 +25,7 @@ class BaseController < ApplicationController
     end
 
     guest_session = GuestSession.create
-    cookies.signed.permanent[:guest_session] = @guest_session.id
+    cookies.signed.permanent[:guest_session] = guest_session.id
 
     guest_session
   end

@@ -1,5 +1,0 @@
-- if category[1].present?
-  .flex.flex-col.gap-1{id: dom_id(category[0], "subtree"), class: category[0].ancestry_depth > 0 ? "ml-9" : "ml-0"}
-    - category[1].each do |child|
-      = render 'item', category: child[0] 
-      = render "subtree", category: child

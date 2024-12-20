@@ -8,6 +8,7 @@
   .field.w-fit
     = f.label :name
     = f.text_field :name
-  = f.hidden_field :parent_id, value: parent.id
+  - if parent.present?
+    = f.hidden_field :parent_id, value: parent.id
   .actions
     = f.submit 'Save', class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
