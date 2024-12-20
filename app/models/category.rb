@@ -13,7 +13,7 @@ class Category < ApplicationRecord
   has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
-  scope :roots, -> { where(ancestry: nil) }
+  scope :roots, -> { where(ancestry: nil).order(name: :asc) }
 
   # Validations
   validates :name, presence: true, uniqueness: {
