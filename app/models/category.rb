@@ -13,14 +13,13 @@ class Category < ApplicationRecord
   has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
-  scope :roots, -> { where(ancestry: nil).order(name: :asc) }
+  scope :roots, -> { where(ancestry: nil) }
 
   # Validations
+  validates :ancestry_depth, inclusion: { in: 0..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }
   validates :name, presence: true, uniqueness: {
     scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry')
   }
-  validates :ancestry_depth,
-            inclusion: { in: 1..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }, if: :ancestry
 end
 
 # == Schema Information
