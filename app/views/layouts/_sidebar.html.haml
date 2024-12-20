@@ -2,7 +2,7 @@
   .text-xl.font-bold.px-4.py-3.mt-3
     = t("admin.name")
   .flex.flex-col.mt-2.px-4
-    = link_to root_path, class: "bg-primary/5 flex items-center gap-3 px-4 py-1 border rounded-3xl mb-3.5 font-semibold text-primary border-primary" do
+    = link_to root_path, target: :_blank, class: "bg-primary/5 flex items-center gap-3 px-4 py-1 border rounded-3xl mb-3.5 font-semibold text-primary border-primary" do
       = icon("fa-solid", "arrow-right", class: "-rotate-[35deg]")
       %span{class: "text-[15px]"}
         = t("storefront.name")
