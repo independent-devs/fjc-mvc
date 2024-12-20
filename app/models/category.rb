@@ -2,14 +2,19 @@
 # typed: true
 
 class Category < ApplicationRecord
+  # Concerns
+  include ActiveStorage::Attached::Model
+
   # Constants
   MAX_DEPTH = 3
 
   # Relations
+  has_many :product_categories, dependent: :destroy
   has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
   scope :root, -> { find_by(ancestry: nil) }
+  scope :roots, -> { where(ancestry: nil) }
 
   # Validations
   validates :name, presence: true, uniqueness: {

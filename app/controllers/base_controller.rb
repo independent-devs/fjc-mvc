@@ -14,17 +14,19 @@ class BaseController < ApplicationController
   end
 
   def guest_session
-    return @guest_session unless @guest_session.nil?
+    @guest_session ||= find_or_create_guest
+  end
 
-    signed_guest_id = cookies.signed[:guest_session]
+  def find_or_create_guest
+    guest_id = cookies.signed[:guest_session]
 
-    if signed_guest_id.present? && (@guest_session = GuestSession.find_by(id: signed_guest_id)).present?
-      return @guest_session
+    if guest_id.present? && (guest_session = GuestSession.find_by(id: guest_id)).present?
+      return guest_session
     end
 
-    @guest_session = GuestSession.create
+    guest_session = GuestSession.create
     cookies.signed.permanent[:guest_session] = @guest_session.id
 
-    @guest_session
+    guest_session
   end
 end
