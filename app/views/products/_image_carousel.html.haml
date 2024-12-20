@@ -4,13 +4,13 @@
       - @carousel.each_with_index do |image, index|
         = image_tag image, size: 420, data: {"products--carousel-target": "main", position: index + 1}, class: "#{index >= 1 ? "hidden" : nil} w-full h-full object-center object-cover border border-gray-100"
       - if @carousel.size > 1
-        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#prevImg"}, class: "top-[40%] bg-black/5 hover:bg-black/30 transition-colors duration-200 text-white/50 hover:text-white"}
+        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#prevImg"}, class: "top-[40%] bg-black/10 hover:bg-black/30 transition-colors duration-200 text-white/50 hover:text-white"}
           = icon("fa-solid", "angle-left", class: "text-2xl")
-        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#nextImg"}, class: "top-[40%] right-0 bg-black/5 hover:bg-black/30 transition-colors duration-200 text-white/50 hover:text-white"}
+        %button.py-3.px-1.absolute.items-center{data: {action: "click->products--carousel#nextImg"}, class: "top-[40%] right-0 bg-black/10 hover:bg-black/30 transition-colors duration-200 text-white/50 hover:text-white"}
           = icon("fa-solid", "angle-right", class: "text-2xl")
     .grid.grid-cols-5.relative{data: {"products--carousel-target": "items", total_items: @carousel.size}, class: "gap-2.5"}
       - @carousel.each_with_index do |image, index|
-        %label{class: "#{index >= 5 ? "hidden" : ""}"}
+        %label{class: index >= 5 ? "hidden" : ""}
           = radio_button_tag :thumb, index, index.zero?, id: "thumb_#{index}", data: {"products--carousel-target": "thumb", action: "input->products--carousel#thumbSelect", position: index + 1}, class: "peer hidden"
           .w-full.h-full.peer-checked:outline.outline-2.outline-primary.-outline-offset-2.border{for: "thumb_#{index}"}
             = image_tag image.variant(:thumb), size: 100, data: {action: "mouseover->products--carousel#hoverInItem mouseout->products--carousel#hoverOutItem", position: index + 1}, class: "h-20 max-h-20 w-full object-center object-cover cursor-pointer"

@@ -1,0 +1,4 @@
+.block{class: !parent.nil? ? "ml-9" : ""}
+  - categories.each do |category|
+    = render "item", category:
+    = render "tree", categories: category.children, parent: category
