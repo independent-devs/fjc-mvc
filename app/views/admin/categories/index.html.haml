@@ -1,7 +1,6 @@
 .margin-max-screen.h-full.py-7
-  .flex.gap-2.items-center.mb-6
-    %h1.font-semibold.text-xl
-      Categories
+  .flex.gap-2.items-center.mb-5
+    %h1.font-semibold.text-xl Categories
     = link_to new_admin_category_path, class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
       = icon("fa-solid", "plus", class: "text-xs")
   - if @root_categories.present?

@@ -1,6 +1,5 @@
 .flex.bg-white.items-center.gap-2.w-full.border.px-4.py-2.rounded.mb-1{id: dom_id(category, "item")}
-  = button_to admin_category_path(category), method: :delete, class: "text-zinc-400 hover:text-red-500 transition-colors",
-  form: {data: {turbo_confirm: "Are you sure you want to delete category? All child of this category will be deleted also."}} do  
+  = button_to admin_category_path(category), method: :delete, class: "text-zinc-400 hover:text-red-500 transition-colors", form: {data: {turbo_confirm: "Are you sure you want to delete category? All child of this category will be deleted also."}} do  
     = icon "fa-solid", "trash-can"
   = link_to edit_admin_category_path(category), class: "text-zinc-400 hover:text-primary transition-colors" do                       
     = icon("fa-solid", "edit")
