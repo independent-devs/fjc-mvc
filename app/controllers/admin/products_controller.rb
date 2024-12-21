@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 class Admin::ProductsController < Admin::BaseController
-  before_action :set_product, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /admin/products
   def index
-    @pagy, @products = pagy(Product.sort_by_latest)
+    @pagy, @products = pagy(Product.sort_by_latest.accessible_by(current_ability))
   end
 
   # GET /admin/products/1
   def show; end
 
   # GET /admin/products/new
-  def new
-    @product = Product.new
-  end
+  def new; end
 
   # POST /admin/products
   def create
@@ -46,11 +44,6 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = Product.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def product_params

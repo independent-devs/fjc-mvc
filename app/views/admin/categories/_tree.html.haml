@@ -1,4 +1,5 @@
-.block{class: !parent.nil? ? "ml-9" : ""}
-  - categories.each do |category|
-    = render "item", category:
-    = render "tree", categories: category.children.order(name: :asc), parent: category
+- categories.each do |category|
+  = render "item", category:
+  - if (children = category.children.order_by_name).present?
+    .block{id: dom_id(category, "tree"), class: "ml-9"}
+      = render "tree", categories: children

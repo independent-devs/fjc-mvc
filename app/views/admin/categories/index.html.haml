@@ -4,7 +4,7 @@
     = link_to new_admin_category_path, class: "flex text-sm rounded-sm items-center p-1 bg-gray-50 ring-1 ring-gray-300" do
       = icon("fa-solid", "plus", class: "text-xs")
   - if @root_categories.present?
-    = render "tree", categories: @root_categories, parent: nil
+    = render "tree", categories: @root_categories
   - else
     %span.text-red-500.text-xl.font-bold
       No category

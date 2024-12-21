@@ -8,12 +8,19 @@ class Category < ApplicationRecord
   # Constants
   MAX_DEPTH = 3
 
+  # Attachments
+  has_one_attached :thumbnail do |attachable|
+    attachable.variant :small, resize_to_limit: [100, 100]
+    attachable.variant :card, resize_to_limit: [320, 320]
+  end
+
   # Relations
   has_many :product_categories, dependent: :destroy
   has_ancestry cache_depth: true, primary_key_format: '[-A-Fa-f0-9]{36}'
 
   # Scopes
   scope :roots, -> { where(ancestry: nil) }
+  scope :order_by_name, -> { order(name: :asc) }
 
   # Validations
   validates :ancestry_depth, inclusion: { in: 0..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }

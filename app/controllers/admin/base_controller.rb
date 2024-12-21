@@ -2,4 +2,16 @@
 
 class Admin::BaseController < ApplicationController
   layout 'admin'
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :unauthorized }
+      format.html { redirect_to root_path, alert: exception.message }
+      format.turbo_stream { render 'errors/unauthorized', status: :unauthorized }
+    end
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, portal: Portal::ADMIN)
+  end
 end
