@@ -20,6 +20,7 @@ class Category < ApplicationRecord
 
   # Scopes
   scope :roots, -> { where(ancestry: nil) }
+  scope :order_by_name, -> { order(name: :asc) }
 
   # Validations
   validates :ancestry_depth, inclusion: { in: 0..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }

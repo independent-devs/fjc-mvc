@@ -1,0 +1,5 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: 'success', message: t('categories.destroyed')
+
+= turbo_stream.remove dom_id(@category, "item")
+= turbo_stream.remove dom_id(@category, "tree")

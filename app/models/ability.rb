@@ -44,7 +44,7 @@ class Ability
     return unless user&.admin?
 
     can :manage, Product
-    can :manage, Variant
+    can :manage, Variant, is_master: false
     can :manage, Order
     can :manage, Category
     can :manage, Option

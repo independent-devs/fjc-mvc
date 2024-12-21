@@ -23,6 +23,7 @@
       .field
         = f.label :sku
         = f.text_field :sku
+      = f.hidden_field :product_id
     .flex.gap-5.pt-5
       .flex.gap-2.items-center
         = f.check_box :backorderable, checked: is_new ? @product.master_variant.backorderable : f.object.backorderable, class: "checkbox-primary"

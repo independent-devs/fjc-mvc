@@ -1,0 +1,9 @@
+- unless @category.errors.any?
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: 'success', message: t('categories.updated')
+
+  = turbo_stream.replace dom_id(@category, "item") do
+    = render "item", category: @category
+- else
+  = turbo_stream.prepend "notification-container" do
+    = render NotificationComponent.new notif_type: 'error', message: @category.errors.full_messages.first

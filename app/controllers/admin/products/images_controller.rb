@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Products::ImagesController < Admin::BaseController
-  before_action :set_product_image, only: %i[index show update destroy upload position]
+  load_and_authorize_resource :product
+  before_action :set_image, only: %i[show update destroy position]
 
   # GET /admin/product/:product_id/images
   def index; end
@@ -22,10 +23,6 @@ class Admin::Products::ImagesController < Admin::BaseController
   # DELETE /admin/product/:product_id/images/:id
   def destroy
     @image.purge
-
-    respond_to do |format|
-      format.turbo_stream
-    end
   end
 
   # POST /admin/product/:product_id/images/upload
@@ -41,17 +38,14 @@ class Admin::Products::ImagesController < Admin::BaseController
 
   # PATCH /admin/product/:product_id/images/:id/position
   def position
-    @image.update(sort_order_position: product_image_params[:position].to_i)
+    @image.update(sort_order_position: product_image_params[:position])
+
     head :ok
   end
 
   private
 
-  def set_product_image
-    @product = Product.find(params[:product_id])
-
-    return if params[:id].blank?
-
+  def set_image
     @image = @product.images.find(params[:id])
   end
 
