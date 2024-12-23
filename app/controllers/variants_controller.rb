@@ -7,7 +7,7 @@ class VariantsController < BaseController
 
   def add_to_cart
     respond_to do |format|
-      if create_cart(current_user)
+      if find_or_create_cart(current_user)
         format.turbo_stream { render locals: { message: I18n.t('carts.user_added_cart') } }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -17,7 +17,7 @@ class VariantsController < BaseController
 
   def guest_add_to_cart
     respond_to do |format|
-      if create_cart(@guest_session)
+      if find_or_create_cart(guest_session)
         format.turbo_stream { render :add_to_cart, locals: { message: I18n.t('carts.guest_added_cart') } }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -27,7 +27,7 @@ class VariantsController < BaseController
 
   def buy_now
     respond_to do |format|
-      if create_cart(current_user)
+      if find_or_create_cart(current_user)
         format.html { redirect_to carts_url(bn: @cart.id) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class VariantsController < BaseController
 
   def guest_buy_now
     respond_to do |format|
-      if create_cart(guest_session)
+      if find_or_create_cart(guest_session)
         format.html { redirect_to carts_url(bn: @cart.id) }
       else
         format.turbo_stream { render :error, status: :unprocessable_entity }
@@ -51,17 +51,13 @@ class VariantsController < BaseController
     params.require(:cart).permit(:qty)
   end
 
-  def create_cart(parent)
+  def find_or_create_cart(parent)
     return nil unless parent.instance_of?(User) || parent.instance_of?(GuestSession)
 
-    if parent.instance_of?(User) && (@cart = parent.carts.find_by(variant: @variant)).present?
+    if (@cart = parent.carts.find_by(variant: @variant)).present?
       return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
     end
 
-    if parent.instance_of?(GuestSession) && (@cart = parent.carts.find_by(variant: @variant)).present?
-      return @cart.update(qty: @cart.qty + cart_params[:qty].to_i.abs)
-    end
-
-    (@cart = parent.carts.new(qty: cart_params[:qty], variant: @variant)).save && @cart.reload
+    @cart = parent.carts.create(qty: cart_params[:qty].to_i.abs, variant: @variant)
   end
 end

@@ -22,9 +22,7 @@ class Admin::CategoriesController < Admin::BaseController
       if @category.save
         format.html { redirect_to admin_categories_url, notice: I18n.t('categories.created') }
       else
-        format.turbo_stream do
-          render :stream, status: :unprocessable_entity
-        end
+        format.turbo_stream { render :stream, status: :unprocessable_entity }
       end
     end
   end
@@ -36,7 +34,7 @@ class Admin::CategoriesController < Admin::BaseController
         format.html { redirect_to admin_categories_url, notice: I18n.t('categories.updated') }
       else
         format.html { redirect_to admin_categories_url }
-        format.turbo_stream status: :unprocessable_entity
+        format.turbo_stream { render status: :unprocessable_entity }
       end
     end
   end
