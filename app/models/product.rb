@@ -2,8 +2,6 @@
 # typed: true
 
 class Product < ApplicationRecord
-  extend T::Sig
-
   # Concerns
   include ActiveStorage::Attached::Model
 
