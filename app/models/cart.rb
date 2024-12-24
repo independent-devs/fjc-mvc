@@ -2,8 +2,6 @@
 # typed: true
 
 class Cart < ApplicationRecord
-  extend T::Sig
-
   # Relations
   belongs_to :variant
   belongs_to :user, optional: true

@@ -729,51 +729,6 @@ class ProductCategory
     sig { void }
     def id_will_change!; end
 
-    sig { returns(T::Boolean) }
-    def is_master; end
-
-    sig { params(value: T::Boolean).returns(T::Boolean) }
-    def is_master=(value); end
-
-    sig { returns(T::Boolean) }
-    def is_master?; end
-
-    sig { returns(T.nilable(T::Boolean)) }
-    def is_master_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def is_master_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def is_master_came_from_user?; end
-
-    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
-    def is_master_change; end
-
-    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
-    def is_master_change_to_be_saved; end
-
-    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
-    def is_master_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(T::Boolean)) }
-    def is_master_in_database; end
-
-    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
-    def is_master_previous_change; end
-
-    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
-    def is_master_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(T::Boolean)) }
-    def is_master_previously_was; end
-
-    sig { returns(T.nilable(T::Boolean)) }
-    def is_master_was; end
-
-    sig { void }
-    def is_master_will_change!; end
-
     sig { returns(::String) }
     def product_id; end
 
@@ -832,9 +787,6 @@ class ProductCategory
     def restore_id_value!; end
 
     sig { void }
-    def restore_is_master!; end
-
-    sig { void }
     def restore_product_id!; end
 
     sig { void }
@@ -863,12 +815,6 @@ class ProductCategory
 
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
-
-    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
-    def saved_change_to_is_master; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_is_master?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_product_id; end
@@ -938,9 +884,6 @@ class ProductCategory
 
     sig { returns(T::Boolean) }
     def will_save_change_to_id_value?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_is_master?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_product_id?; end
