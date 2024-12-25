@@ -11,7 +11,7 @@ class VariantOptionValue < ApplicationRecord
 
   # Attachments
   has_one_attached :image do |attachable|
-    attachable.variant :small, resize_to_limit: [150, 150]
+    attachable.variant :small, resize_to_limit: [250, 250]
   end
 
   # Filter
