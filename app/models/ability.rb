@@ -48,6 +48,7 @@ class Ability
     can :manage, Order
     can :manage, Category
     can :manage, Option
+    can :manage, User
   end
 
   sig { params(guest_session: GuestSession).void }

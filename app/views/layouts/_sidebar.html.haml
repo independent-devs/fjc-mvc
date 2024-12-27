@@ -9,6 +9,7 @@
     = render SidebarLinkComponent.new label: "Dashboard", path: admin_dashboard_index_path, icon: icon("fa-solid", "chart-simple")
     = render SidebarLinkComponent.new label: "Orders", path: admin_orders_path, icon: icon("fa-solid", "cart-shopping")
     = render SidebarLinkComponent.new label: t("products.title"), path: admin_products_path, icon: icon("fa-solid", "bag-shopping"), sub_paths: [{label: t("options.title"), path: admin_options_path}, {label: t("categories.title"), path: admin_categories_path}]     
+    = render SidebarLinkComponent.new label: "Users", path: admin_users_path, icon: icon("fa-solid", "user")
   .flex.gap-3.absolute.bottom-0.px-4.py-3.bg-white.border-t.w-full.justify-between.items-center
     .flex.gap-3
       = icon("fa-solid", "user", class: "text-lg")

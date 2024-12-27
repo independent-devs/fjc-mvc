@@ -6,6 +6,7 @@ authenticated :user, -> { _1.admin? } do
     get '/', to: redirect('/admin/dashboard')
     resources :dashboard, only: [:index]
     resources :orders, only: %i[index show]
+    resources :users, only: %i[index]
 
     ## product routes
     resources :products do
