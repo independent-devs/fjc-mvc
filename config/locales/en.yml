@@ -25,6 +25,16 @@ en:
     something_went_wrong: "Something went wrong."
     unathorized_action: "Unauthorized action"
     unathorized: "You are not authorized"
+  users:
+    title: "Users"
+    table:
+      thead:
+        name: "Name"
+        phone_no: "Phone No."
+        email: "Email"
+        role: "Role"
+        actions: "Actions"
+    no_list_found: "No users found"
   products:
     all: "All products"
     title: "Products"

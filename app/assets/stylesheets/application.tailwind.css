@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-  }
-
   .margin-max-screen {
     @apply mx-auto max-w-margin px-4 md:px-8 w-full;
   }
@@ -120,7 +116,11 @@
   }
 
   table tbody tr td {
-    @apply px-4 py-3;
+    @apply px-4 py-3 hover:bg-gray-50;
+  }
+
+  table tbody tr {
+    @apply hover:bg-gray-50;
   }
 
   /* form table */
@@ -206,42 +206,6 @@
   .errors {
     @apply py-2 px-3 rounded-sm border border-red-600 bg-red-600/10 text-red-600 text-[15px];
   }
-
-  .pagy-nav {
-    @apply flex gap-2;
-  }
-
-  .pagy-nav .page.active {
-    @apply bg-zinc-50 rounded-sm ring-1 ring-primary px-3 py-0.5 text-primary;
-  }
-
-  .pagy-nav .page {
-    @apply bg-zinc-50 flex items-center rounded-sm ring-1 ring-gray-300;
-  }
-
-  .pagy-nav .page a {
-    @apply px-3 py-0.5;
-  }
-
-  .pagy-nav .page.prev.disabled {
-    @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
-  }
-
-  .pagy-nav .page.next.disabled {
-    @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
-  }
-
-  .pagy-info {
-    @apply text-gray-800;
-  }
-
-  .popover {
-    @apply max-w-sm rounded shadow-lg bg-white absolute mt-2 border;
-  }
-
-  .point:before {
-    @apply content-['_'] absolute w-0 h-0 -top-[11px] border-solid -ml-[10px] border-t-0 border-x-[10px] border-b-[10px] border-x-transparent border-t-transparent border-b-primary;
-  }
 }
 
 /* Stimulus Dialog */
@@ -281,4 +245,32 @@ dialog[data-dialog-target="dialog"][open] {
 
 dialog[data-dialog-target="dialog"][closing] {
   animation: dialog-fadeout 200ms forwards;
+}
+
+.pagy-nav {
+  @apply flex gap-2;
+}
+
+.pagy-nav .page.active {
+  @apply bg-zinc-50 rounded-sm ring-1 ring-primary px-3 py-0.5 text-primary;
+}
+
+.pagy-nav .page {
+  @apply bg-zinc-50 flex items-center rounded-sm ring-1 ring-gray-300;
+}
+
+.pagy-nav .page a {
+  @apply px-3 py-0.5;
+}
+
+.pagy-nav .page.prev.disabled {
+  @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
+}
+
+.pagy-nav .page.next.disabled {
+  @apply bg-zinc-50 rounded-sm ring-1 ring-gray-200 text-gray-200 px-3 py-0.5 cursor-not-allowed;
+}
+
+.pagy-info {
+  @apply text-gray-800;
 }
