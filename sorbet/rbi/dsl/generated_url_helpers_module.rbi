@@ -61,6 +61,9 @@ module GeneratedUrlHelpersModule
   def admin_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def admin_users_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def buy_now_variant_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

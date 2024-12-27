@@ -379,20 +379,6 @@ class Product
     def master_variant_attributes=(attributes); end
 
     sig { returns(T::Array[T.untyped]) }
-    def non_master_variant_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def non_master_variant_ids=(ids); end
-
-    # This method is created by ActiveRecord on the `Product` class because it declared `has_many :non_master_variants`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::Variant::PrivateCollectionProxy) }
-    def non_master_variants; end
-
-    sig { params(value: T::Enumerable[::Variant]).void }
-    def non_master_variants=(value); end
-
-    sig { returns(T::Array[T.untyped]) }
     def option_ids; end
 
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
