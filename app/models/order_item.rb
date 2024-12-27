@@ -18,16 +18,16 @@ class OrderItem < ApplicationRecord
 
   sig { void }
   def check_variant_stock
-    return if T.must(variant).backorderable
+    return if !T.must(variant).trackable || (T.must(variant).trackable && T.must(variant).backorderable)
 
-    if T.must(T.must(variant).count_on_hand).zero?
+    if T.must(variant).count_on_hand.zero?
       errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
       return
     end
 
-    return if T.must(T.must(variant).count_on_hand) >= qty
+    return if T.must(variant).count_on_hand >= qty
 
-    errors.add(:quantity, I18n.t('carts.validate.qty_exceeds_stocks'))
+    errors.add(:qty, I18n.t('carts.validate.qty_exceeds_stocks'))
   end
 end
 
