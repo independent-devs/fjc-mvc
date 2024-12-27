@@ -34,6 +34,7 @@ class DeviseController
     include ::OrdersHelper
     include ::ProductsHelper
     include ::StocksHelper
+    include ::UsersHelper
     include ::VariantsHelper
     include ::PreviewHelper
     include ::DeviseHelper

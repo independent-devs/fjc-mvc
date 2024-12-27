@@ -61,6 +61,9 @@ module GeneratedPathHelpersModule
   def admin_products_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def admin_users_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def buy_now_variant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

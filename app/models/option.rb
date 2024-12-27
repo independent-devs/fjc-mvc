@@ -10,7 +10,6 @@ class Option < ApplicationRecord
 
   # Scopes
   scope :sort_by_position, -> { rank(:sort_order) }
-  scope :not_deleted, -> { where(deleted_at: nil) }
 
   # Position
   ranks :sort_order, column: :position
