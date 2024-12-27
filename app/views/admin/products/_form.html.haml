@@ -10,10 +10,8 @@
         = desc.label :description
         = desc.text_area :description, rows: 12
     .flex.gap-3.items-center.pt-2
-      = f.check_box :has_variant, class: "checkbox-primary", 
-      data: {action: "admin--products--form#hasVariantToogle"}
-      = f.label :has_variant do
-        With variants
+      = f.check_box :has_variant, class: "checkbox-primary", data: {action: "admin--products--form#hasVariantToogle"}
+      = f.label :has_variant, "With variants"
     .field.relative{class: !f.object.has_variant ? "hidden" : "", data: {"admin--products--form-target": "optionContainer"}}
       = f.label :options
       = f.select :option_ids, Option.pluck(:name, :id), {}, {multiple: true, data: { "admin--products--form-target": "optionInput" }}
@@ -40,25 +38,22 @@
       = f.datetime_local_field :discontinue_on
     .field
       = f.label :currency
-      = f.select :currency, currency_list,                                        
-        {selected: is_new ? MoneyRails.default_currency : @product.currency},
-        {required: true, disabled: true}
+      = f.select :currency, currency_list, {selected: is_new ? MoneyRails.default_currency : @product.currency}, {required: true, disabled: true}
     - if is_new
       = f.hidden_field :currency, value: MoneyRails.default_currency
     = f.fields_for :master_variant, @product.master_variant || Variant.new do |mv|
       .field
-        = mv.label :master_price
+        = mv.label :price, "Master price"
         = mv.number_field :price, required: true, step: :any, placeholder: "0.00"
       .field
-        = mv.label :master_cost
+        = mv.label :cost, "Master cost"
         = mv.number_field :cost, step: :any, placeholder: "0.00"
       .field
-        = mv.label :master_sku
+        = mv.label :sku, "Master SKU"
         = mv.text_field :sku
       .flex.gap-2.items-center.mt-1
         = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
         %span Backorderable
       - if is_new
         = mv.hidden_field :is_master, value: true
-    = f.submit is_new ? "Create" : "Update", 
-    class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
+    = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"

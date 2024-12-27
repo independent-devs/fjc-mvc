@@ -101,6 +101,7 @@ en:
         alternative_name: "Alternative name"
         price: "Price"
         cost: "Cost"
+        sku: "SKU"
         count_on_hand: "Count on hand"
         trackable: "Trackable"
         backorderable: "Backorderable"
