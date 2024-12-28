@@ -56,10 +56,7 @@ class Variant < ApplicationRecord
     no_variant_records = variants.not_master.count.zero?
     captured = variants.where(is_master: no_variant_records)
 
-    T.must(product).update!(
-      lowest_price: captured.minimum(:price),
-      highest_price: captured.maximum(:price)
-    )
+    T.must(product).update(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
   end
 
   # For validations
