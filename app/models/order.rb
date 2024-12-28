@@ -10,6 +10,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :nullify
   has_many :carts, dependent: :destroy
 
+  # Scopes
+  scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
+
   # Validations
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
