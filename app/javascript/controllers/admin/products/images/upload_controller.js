@@ -27,13 +27,13 @@ export default class extends Controller {
     switch (event.type) {
       case "dragenter":
       case "dragover":
-        event.target.classList.add("border-primary");
-        event.target.classList.add("text-primary");
+        this.dropAreaTarget.classList.add("border-primary");
+        this.dropAreaTarget.classList.add("text-primary");
         break;
       case "dragleave":
       case "drop":
-        event.target.classList.remove("border-primary");
-        event.target.classList.remove("text-primary");
+        this.dropAreaTarget.classList.remove("border-primary");
+        this.dropAreaTarget.classList.remove("text-primary");
         if (event.type != "drop") return;
         this.uploadTarget.disabled = true;
         this.displayImages(event.dataTransfer.files);
