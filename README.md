@@ -2,7 +2,7 @@
 
 [Design Link](<https://www.figma.com/file/608pfcvNtMT8wyOHPu5EKL/Full-E-Commerce-Website-UI-UX-Design-(Community)?type=design&node-id=1-3&mode=design&t=pMaFk7PRDGqftoS2-0>)
 
-## Setup Dev Environment
+## Development environment
 
 Copy ENV
 
@@ -10,7 +10,7 @@ Copy ENV
 cp ./cp/env/.env.template .env
 ```
 
-Install Dependencies
+Install dependencies
 
 > Assuming that you have already installed rails in your machine.
 
@@ -20,7 +20,7 @@ Install Dependencies
 bundle install
 ```
 
-Run Postgres docker instance
+Run postgres docker instance
 
 > Not running rails dev environment as a docker container due to tailwind's watcher doesn't work well.
 
@@ -42,14 +42,14 @@ Run locally
 bin/dev
 ```
 
-Test Account
+Test account
 
 ```
 phone: 09012345678
 pass: password
 ```
 
-RSpec Unit Test
+RSpec unit test
 
 ```
 rspec
@@ -75,7 +75,7 @@ rubocop
 rubocop -A
 ```
 
-Sorbet Type Checking
+Sorbet type checking
 
 ```
 srb tc
@@ -105,7 +105,7 @@ brew install vips
 
 ## Deployment
 
-Copy Brand Locale
+Copy brand locale
 
 ```
 cp ./cp/locale/default.en.yml ./config/locales/brand.en.yml
