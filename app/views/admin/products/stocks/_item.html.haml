@@ -1,6 +1,5 @@
 %li{id: dom_id(variant)}
-  = form_for(variant, as: "product_variant", url: admin_product_stock_path(@product, variant),             
-    html: {method: :put}, data: {controller: "autosave admin--products--stocks--item", modify_url: modify_admin_product_stock_path(@product, variant)}) do |f|
+  = form_for(variant, url: admin_product_stock_path(@product, variant), html: {method: :put}, data: {controller: "autosave admin--products--stocks--item", modify_url: modify_admin_product_stock_path(@product, variant)}) do |f|
     .grid.grid-cols-5.gap-8
       .py-4.pl-6
         - if f.object.is_master

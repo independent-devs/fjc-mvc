@@ -1,0 +1,7 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('stocks.updated')
+
+= form_for(@variant, url: admin_product_stock_path(@product, @variant)) do |form|
+  - if !form.object.is_master
+    = turbo_stream.replace dom_id(@variant, "sku") do
+      = render "item_sku", form:

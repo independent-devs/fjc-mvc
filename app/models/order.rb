@@ -3,12 +3,11 @@
 
 class Order < ApplicationRecord
   # Relations
+  belongs_to :order_status
   belongs_to :user, optional: true
   belongs_to :guest_session, optional: true
-  belongs_to :order_status
 
   has_many :order_items, dependent: :nullify
-  has_many :carts, dependent: :destroy
 
   # Scopes
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
@@ -16,6 +15,16 @@ class Order < ApplicationRecord
   # Validations
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
+
+  validate :validate_ownership
+
+  private
+
+  def validate_ownership
+    return unless user_id.present? && guest_session_id.present?
+
+    errors.add(:ownership, I18n.t('orders.validate.ownership_cant_be_both'))
+  end
 end
 
 # == Schema Information

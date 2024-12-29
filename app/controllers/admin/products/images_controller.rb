@@ -2,12 +2,12 @@
 
 class Admin::Products::ImagesController < Admin::BaseController
   load_and_authorize_resource :product
-  before_action :set_image, only: %i[show update destroy position]
+  authorize_resource class: false
+
+  before_action :set_image, only: %i[update destroy position]
 
   # GET /admin/product/:product_id/images
   def index; end
-
-  def show; end
 
   # PATCH/PUT /admin/product/:product_id/images/:id
   def update
