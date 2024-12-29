@@ -47,6 +47,7 @@ class Ability
     can :manage, Variant, is_master: false, product: { has_variant: true }
     can :manage, :image
     can :manage, :stock
+
     can :manage, Order
     can :manage, Category
     can :manage, Option
