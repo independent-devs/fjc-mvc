@@ -32,7 +32,7 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
 .env
 node_modules
-
-/config/credentials/production.key
+/config/locales/brand.en.yml
