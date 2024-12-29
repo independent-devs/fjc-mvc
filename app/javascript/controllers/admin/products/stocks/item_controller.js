@@ -6,7 +6,7 @@ export default class extends Controller {
 
   modify() {
     const formData = new FormData();
-    formData.append("product_variant[modify_amount]", this.inputTarget.value);
+    formData.append("variant[modify_amount]", this.inputTarget.value);
 
     fetch(this.element.dataset.modifyUrl, {
       method: "PUT",

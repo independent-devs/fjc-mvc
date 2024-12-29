@@ -1,0 +1,6 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('stocks.updated')
+
+= form_for(@variant, url: admin_product_stock_path(@product, @variant)) do |form|
+  = turbo_stream.replace dom_id(@variant, "count_on_hand") do
+    = render "item_count_on_hand", form:

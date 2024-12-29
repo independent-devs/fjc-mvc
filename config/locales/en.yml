@@ -97,7 +97,7 @@ en:
     table:
       thead:
         name: "Name"
-        option_values: "Option Values"
+        option_values: "Option values"
         alternative_name: "Alternative name"
         price: "Price"
         cost: "Cost"
@@ -137,6 +137,8 @@ en:
         status: "Status"
         created_at: "Created At"
         user: "User"
+    validate:
+      ownership_cant_be_both: "user and guest cannot be both exist on order."
     tabs:
       pending: "Pending"
       to_ship: "To Ship"
