@@ -1,6 +1,5 @@
 en:
   storefront: 
-    name: "Felmart"
     header:
       home:
         title: "Home"
@@ -19,8 +18,6 @@ en:
           products: "Products"
           account: "My Account"
           orders: "My Orders"
-  admin:
-    name: "Felmart Admin"
   error:
     something_went_wrong: "Something went wrong."
     unathorized_action: "Unauthorized action"

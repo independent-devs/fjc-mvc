@@ -7,7 +7,7 @@
 Copy ENV
 
 ```
-cp .env.template .env
+cp ./cp/env/.env.template .env
 ```
 
 Install Dependencies
@@ -101,4 +101,12 @@ sudo apt-get install -y libvips
 
 ```
 brew install vips
+```
+
+## Deployment
+
+Copy Brand Locale
+
+```
+cp ./cp/locale/default.en.yml ./config/locales/brand.en.yml
 ```

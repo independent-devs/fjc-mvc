@@ -1,11 +1,11 @@
 .h-screen.w-64.sticky.border.bg-white
   .text-xl.font-bold.px-4.py-3.mt-3
-    = t("admin.name")
+    = t("brand.admin")
   .flex.flex-col.mt-2.px-4
     = link_to root_path, target: :_blank, class: "bg-primary/5 flex items-center gap-3 px-4 py-1 border rounded-3xl mb-3.5 font-semibold text-primary border-primary" do
       = icon("fa-solid", "arrow-right", class: "-rotate-[35deg]")
       %span{class: "text-[15px]"}
-        = t("storefront.name")
+        = t("brand.shop")
     = render SidebarLinkComponent.new label: "Dashboard", path: admin_dashboard_index_path, icon: icon("fa-solid", "chart-simple")
     = render SidebarLinkComponent.new label: "Orders", path: admin_orders_path, icon: icon("fa-solid", "cart-shopping")
     = render SidebarLinkComponent.new label: t("products.title"), path: admin_products_path, icon: icon("fa-solid", "bag-shopping"), sub_paths: [{label: t("options.title"), path: admin_options_path}, {label: t("categories.title"), path: admin_categories_path}]     
