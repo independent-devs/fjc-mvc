@@ -2,7 +2,7 @@
 %html.h-full{lang:"en"}
   %head
     = render "layouts/head"
-    = stylesheet_link_tag "slimselect", "data-turbo-track": "reload"
+    = display_meta_tags site: t("brand.admin")
   %body.flex.h-full
     = render FlashComponent.new
     = render "layouts/sidebar"
