@@ -32,7 +32,7 @@ class Ability
 
     # Cart
     can(%i[read update destroy], Cart, user:)
-    can(%i[read sync destroy sync_all proceed_checkout], Cart, guest_session:) if guest_session.present?
+    can(%i[read sync destroy sync_all], Cart, guest_session:) if guest_session.present?
 
     # Order
     can(:read, Order, user:)
@@ -60,7 +60,7 @@ class Ability
     can %i[guest_add_to_cart guest_buy_now], Variant
 
     # Cart
-    can(%i[read update destroy proceed_checkout], Cart, guest_session:)
+    can(%i[read update destroy], Cart, guest_session:)
 
     # Order
     can(:read, Order, guest_session:)
