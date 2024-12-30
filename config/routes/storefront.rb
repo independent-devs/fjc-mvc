@@ -8,10 +8,17 @@ resources :checkout, only: %i[index create]
 resources :carts, only: %i[index update destroy] do
   collection do
     post :sync_all
+    post :checkout
   end
   member do
     get :variant_dropdown
     post :sync
+  end
+end
+
+resources :checkout, only: :show do
+  collection do
+    post :proceed_checkout
   end
 end
 
