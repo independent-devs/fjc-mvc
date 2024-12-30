@@ -2,13 +2,13 @@
 - description "Home page"
 - keywords "home, category, products"
 
-.w-full.margin-max-screen.flex.flex-col.gap-4.py-4
+.w-full.margin-max-screen.flex.flex-col.gap-6.py-6
   = render SectionComponent.new label: t("categories.section_label"), title: t("categories.section_title") do
     .grid.grid-cols-8.gap-4
       - @categories.each do |category|
         .block.space-y-2
           .h-30
-            = image_tag category.thumbnail.attached? ? category.thumbnail.variant(:card) : "thumbnail.png", class: "w-full h-full object-cover border"
+            = image_tag category.thumbnail.attached? ? category.thumbnail.variant(:card) : "thumbnail.png", class: "w-full h-full object-cover border rounded-sm"
           .text-gray-800.text-center
             = category.name
   = render SectionComponent.new label: t("products.section_label"), title: t("products.section_title"), action_link: products_path, action_text: t("products.all") do         
