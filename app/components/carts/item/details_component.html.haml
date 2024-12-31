@@ -14,13 +14,12 @@
                 = render TagComponent.new variant: :warning do
                   Guest
               %template{data: {"popover-target": "content"}}
-                .popover{data: {"popover-target": "card"}}
-                  .w-60.py-2.px-3.text-sm.text-gray-600
-                    This is a guest cart saved in this browser.
-                    - if can?(:sync, cart)
-                      Sync
-                      = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
-                      this card to own the cart.
+                .w-60.py-2.px-3.text-sm.text-gray-600.rounded-sm.shadow.mt-2.border.bg-white.z-10.transition-transform.origin-top-left.absolute{data: {"popover-target": "card"}}
+                  This is a guest cart saved in this browser.
+                  - if can?(:sync, cart)
+                    Sync
+                    = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
+                    this card to own the cart.
             - if can?(:sync, cart)
               %button.text-gray-400.text-lg.hover:text-gray-600.disabled:animate-spin.disabled:cursor-wait{type: "button", data: {action: "click->carts--item#sync", "carts--item-target": "sync"}}
                 = icon("fa-solid", "arrows-rotate")
