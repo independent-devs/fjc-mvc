@@ -12,5 +12,8 @@ class CreateCarts < ActiveRecord::Migration[7.0]
     end
 
     add_index :carts, %i[variant_id user_id guest_session_id], unique: true
+    add_check_constraint :carts, '(user_id IS NOT NULL AND guest_session_id IS NULL) OR ' \
+                                 '(user_id IS NULL AND guest_session_id IS NOT NULL)',
+                         name: 'cart_ownership_cant_be_both'
   end
 end

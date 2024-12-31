@@ -40,6 +40,7 @@ end
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
 #                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
 #                              admin_order GET      /admin/orders/:id(.:format)                                                                       admin/orders#show
+#                              admin_users GET      /admin/users(.:format)                                                                            admin/users#index
 #           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
 #                   admin_product_variants GET      /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#index
 #                                          POST     /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#create
@@ -80,8 +81,7 @@ end
 #                                     root GET      /                                                                                                 home#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:id(.:format)                                                                           products#show
-#                           checkout_index GET      /checkout(.:format)                                                                               checkout#index
-#                                          POST     /checkout(.:format)                                                                               checkout#create
+#                                 checkout GET      /checkout/:id(.:format)                                                                           checkout#show
 #                           sync_all_carts POST     /carts/sync_all(.:format)                                                                         carts#sync_all
 #                    variant_dropdown_cart GET      /carts/:id/variant_dropdown(.:format)                                                             carts#variant_dropdown
 #                                sync_cart POST     /carts/:id/sync(.:format)                                                                         carts#sync
