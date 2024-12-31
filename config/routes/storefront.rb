@@ -3,7 +3,7 @@
 root 'home#index'
 
 resources :products, only: %i[index show]
-resources :checkout, only: %i[index create]
+resources :checkout, only: %i[show]
 
 resources :carts, only: %i[index update destroy] do
   collection do
