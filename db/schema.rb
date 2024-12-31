@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["user_id"], name: "index_carts_on_user_id"
     t.index ["variant_id", "user_id", "guest_session_id"], name: "index_carts_on_variant_id_and_user_id_and_guest_session_id", unique: true
     t.index ["variant_id"], name: "index_carts_on_variant_id"
+    t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "cart_ownership_cant_be_both"
   end
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -119,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+    t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "cart_ownership_cant_be_both"
   end
 
   create_table "product_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
