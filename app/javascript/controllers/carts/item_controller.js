@@ -2,14 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="carts--item"
 export default class extends Controller {
-  static targets = [
-    "quantity",
-    "url",
-    "dropdown",
-    "delete",
-    "sync",
-    "checkbox",
-  ];
+  static targets = ["quantity", "url", "checkbox"];
 
   /* Quantity */
   increment() {
@@ -27,8 +20,6 @@ export default class extends Controller {
   sync() {
     if (!this.urlTarget.dataset.syncUrl) return;
 
-    this.syncTarget.disabled = true;
-
     fetch(this.urlTarget.dataset.syncUrl, {
       method: "POST",
       headers: {
@@ -38,18 +29,8 @@ export default class extends Controller {
           .getAttribute("content"),
       },
     })
-      .then((res) => {
-        if (res.status == 200) {
-          this.quantityTarget.disabled = false;
-          this.dropdownTarget.disabled = false;
-          this.deleteTarget.disabled = false;
-          this.syncTarget.disabled = false;
-        }
-        return res.text();
-      })
-      .then((html) => {
-        Turbo.renderStreamMessage(html);
-      });
+      .then((res) => res.text())
+      .then((html) => Turbo.renderStreamMessage(html));
   }
 
   quantityInput(event) {
