@@ -4,8 +4,7 @@
     %span.text-gray-500
       = @product.name
     - if @product.has_variant
-      = button_to new_admin_product_variant_path(@product),
-      class: "btn-plain flex gap-2.5 items-center", method: :get do
+      = link_to new_admin_product_variant_path(@product), class: "btn-plain flex gap-2.5 items-center" do
         = t("variants.new")
         = icon("fa-solid", "plus")
   .bg-white.rounded-sm

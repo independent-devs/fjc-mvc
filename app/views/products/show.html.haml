@@ -16,8 +16,7 @@
           = render PriceRangeComponent.new lowest: @product.lowest_price, highest: @product.highest_price
       - if @product.has_variant
         = render "options"
-      = form_with url: buy_now_variant_path(uuid: ":uuid"), class: "grid gap-6 w-full", 
-      data: {"products--public-target": "buyNowForm"} do |form|
+      = form_with url: buy_now_variant_path(uuid: ":uuid"), class: "grid gap-6 w-full", data: {"products--public-target": "buyNowForm"} do |form|
         .grid.gap-2
           %span.font-medium.text-sm.text-zinc-500
             Quantity
