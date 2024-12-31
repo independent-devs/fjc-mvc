@@ -11,7 +11,7 @@ module ActiveStorageAttachmentExtension
     scope :sort_by_position, -> { rank(:sort_order) }
 
     # Position
-    ranks :sort_order, column: :position, with_same: %i[record_id record_type]
+    ranks :sort_order, column: :position, with_same: %i[record_type record_id]
   end
 end
 
