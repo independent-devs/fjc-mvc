@@ -5,6 +5,7 @@ import Dialog from "@stimulus-components/dialog";
 import Dropdown from "@stimulus-components/dropdown";
 import PasswordVisibility from "@stimulus-components/password-visibility";
 import Popover from "@stimulus-components/popover";
+import Sortable from "@stimulus-components/sortable";
 import { application } from "controllers/application";
 import Notification from "stimulus-notification";
 
@@ -14,6 +15,7 @@ application.register("dialog", Dialog);
 application.register("dropdown", Dropdown);
 application.register("password-visibility", PasswordVisibility);
 application.register("popover", Popover);
+application.register("sortable", Sortable);
 application.register("notification", Notification);
 
 eagerLoadControllersFrom("controllers", application);

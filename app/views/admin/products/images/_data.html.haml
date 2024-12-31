@@ -1,6 +1,5 @@
 - images = @product.images.sort_by_position
-%ul.form-table-body{id: "data", data: {controller: "sortable", 
-"sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
+%ul.form-table-body{id: "data", data: {controller: "sortable", "sortable-animation-value": "500", "sortable-resource-name-value": "product_image", "sortable-handle-value": ".handle" }}
   - if images.present?
     - images.each do |image|
       = render "item", image:
