@@ -6,6 +6,9 @@ class ProductsController < BaseController
   # GET /products
   def index
     @products = Product.base_on_date.sort_by_latest
+    return if params[:category].blank?
+
+    @products = @products.where(product_category: { category: params[:category] }).joins(:product_category)
   end
 
   # GET /products/:id

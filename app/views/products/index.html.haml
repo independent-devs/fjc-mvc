@@ -3,3 +3,7 @@
 - keywords "cart, product, orders"
 
 .w-full.margin-max-screen.gap-10.py-8
+  .grid.grid-cols-5.gap-2.sm:gap-4.md:gap-5
+    - @products.each do |product|
+      = render ProductComponent.new product:
+

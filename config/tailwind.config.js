@@ -17,7 +17,7 @@ module.exports = {
         primary: "#FE4C12",
       },
       maxWidth: {
-        margin: "1240px",
+        margin: "1280px",
       },
     },
   },

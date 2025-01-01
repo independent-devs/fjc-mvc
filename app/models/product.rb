@@ -37,9 +37,9 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :master_variant, :description, :product_category, :seo
 
   # Scopes
-  scope :sort_by_latest, -> { order(id: :desc) }
-  scope :base_on_date, lambda { |now = DateTime.now|
-    where(available_on: now..)
+  scope :sort_by_latest, -> { order(created_at: :desc) }
+  scope :base_on_date, lambda { |now = Date.current|
+    where(available_on: ..now)
       .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
   }
 
@@ -58,9 +58,9 @@ end
 # Table name: products
 #
 #  id                :uuid             not null, primary key
-#  available_on      :datetime
+#  available_on      :date
 #  currency          :string           not null
-#  discontinue_on    :datetime
+#  discontinue_on    :date
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
 #  lowest_price      :decimal(10, 2)

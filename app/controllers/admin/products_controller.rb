@@ -5,7 +5,8 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /admin/products
   def index
-    @pagy, @products = pagy(Product.sort_by_latest.accessible_by(current_ability))
+    @products = Product.sort_by_latest.accessible_by(current_ability)
+    @pagy, @products = pagy(@products)
   end
 
   # GET /admin/products/1

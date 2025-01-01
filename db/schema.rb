@@ -95,8 +95,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
   create_table "order_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "order_id"
     t.uuid "variant_id"
-    t.integer "qty", default: 1, null: false
     t.decimal "price", precision: 10, scale: 2, null: false
+    t.integer "qty", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -120,7 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-    t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "cart_ownership_cant_be_both"
+    t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "order_ownership_cant_be_both"
   end
 
   create_table "product_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -145,8 +145,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "available_on", precision: nil
-    t.datetime "discontinue_on", precision: nil
+    t.date "available_on"
+    t.date "discontinue_on"
     t.boolean "promotable", default: true, null: false
     t.boolean "order_must_login", default: false, null: false
     t.decimal "lowest_price", precision: 10, scale: 2
