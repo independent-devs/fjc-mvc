@@ -26,16 +26,16 @@
       .field
         = seo.label :meta_keywords
         = seo.text_field :meta_keywords
-  .flex.flex-col.gap-2{class: "w-1/4 md:w-60"}
+  .flex.flex-col.gap-2{class: "w-1/4 md:w-56 md:min-w-56"}
     .field
       = f.label :thumbnail
       = render "upload_thumbnail", form: f
     .field
       = f.label :available_on
-      = f.datetime_local_field :available_on
+      = f.date_field :available_on
     .field
       = f.label :discontinue_on
-      = f.datetime_local_field :discontinue_on
+      = f.date_field :discontinue_on
     .field
       = f.label :currency
       = f.select :currency, currency_list, {selected: is_new ? MoneyRails.default_currency : @product.currency}, {required: true, disabled: true}

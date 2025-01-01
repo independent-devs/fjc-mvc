@@ -27,9 +27,9 @@ end
 # Table name: products
 #
 #  id                :uuid             not null, primary key
-#  available_on      :datetime
+#  available_on      :date
 #  currency          :string           not null
-#  discontinue_on    :datetime
+#  discontinue_on    :date
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
 #  lowest_price      :decimal(10, 2)

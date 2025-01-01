@@ -4,8 +4,8 @@ class CreateProducts < ActiveRecord::Migration[7.0]
   def change
     create_table :products, id: :uuid do |t|
       t.string :name, null: false
-      t.datetime :available_on, precision: nil
-      t.datetime :discontinue_on, precision: nil
+      t.date :available_on, precision: nil
+      t.date :discontinue_on, precision: nil
       t.boolean :promotable, null: false, default: true
       t.boolean :order_must_login, null: false, default: false
       t.decimal :lowest_price, precision: 10, scale: 2
