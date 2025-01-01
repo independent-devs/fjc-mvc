@@ -6,11 +6,13 @@
   .block
     - if user_signed_in?
       .flex.gap-1.flex-col
+        .flex.gap-3
+          - if current_user.name.present?
+            %span
+              = current_user.name
+          %span
+            = "(#{current_user.phone_no.gsub(/\d(?=\d{3})/, '*') || current_user.email.gsub(/(?<=.{2}).(?=[^@]*?.{3}@)/, '*')})"
         %span
-          = current_user.phone_no.gsub(/\d(?=\d{3})/, '*') || current_user.email.gsub(/(?<=.{2}).(?=[^@]*?.{3}@)/, '*')
-        %span
-          Joined:
-          = time_ago_in_words(current_user.created_at)
-          ago
+          = "Joined #{time_ago_in_words(current_user.created_at)} ago"
     - else
       Currently as Guest
