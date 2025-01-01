@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# typed: true
 
 class ProductComponent < ViewComponent::Base
   extend T::Sig
