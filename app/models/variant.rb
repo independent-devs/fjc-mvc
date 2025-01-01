@@ -47,6 +47,11 @@ class Variant < ApplicationRecord
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
 
+  sig { returns(String) }
+  def option_value_name
+    variant_option_values.joins(:product_option).order('product_options.position').pluck(:name).join(', ')
+  end
+
   private
 
   # For generators
