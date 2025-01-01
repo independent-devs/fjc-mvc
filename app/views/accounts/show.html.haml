@@ -3,5 +3,14 @@
 - keywords "profile, account, auth"
 
 = render Account::LayoutComponent.new do
-  .bg-white.rounded-sm.px-5.py-3
-    Account Info
+  .block
+    - if user_signed_in?
+      .flex.gap-1.flex-col
+        %span
+          = current_user.phone_no.gsub(/\d(?=\d{3})/, '*') || current_user.email.gsub(/(?<=.{2}).(?=[^@]*?.{3}@)/, '*')
+        %span
+          Joined:
+          = time_ago_in_words(current_user.created_at)
+          ago
+    - else
+      Currently as Guest
