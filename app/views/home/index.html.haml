@@ -7,7 +7,7 @@
     .grid.grid-cols-4.sm:grid-cols-6.md:grid-cols-8.gap-2.md:gap-4
       - @categories.each do |category|
         = link_to products_path(category: category.id), class: "space-y-2 group" do
-          = image_tag category.thumbnail.attached? ? category.thumbnail.variant(:card) : "thumbnail.png", class: "w-full object-cover rounded-sm border sm:group-hover:border-primary transition-colors duration-200", size: 100
+          = image_tag category.thumbnail.attached? ? category.thumbnail.variant(:card) : "thumbnail.png", class: "w-full object-cover rounded border sm:group-hover:border-primary transition-colors duration-200", size: 100
           .text-center.font-medium.text-xs.sm:text-sm.md:text-base.sm:group-hover:text-primary.transition-colors.duration-200
             = category.name
   = render SectionComponent.new label: t("products.section_label"), title: t("products.section_title"), action_link: products_path, action_text: t("products.all") do         
