@@ -689,16 +689,16 @@ class Product
   end
 
   module GeneratedAttributeMethods
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def available_on; end
 
-    sig { params(value: T.nilable(::ActiveSupport::TimeWithZone)).returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { params(value: T.nilable(::Date)).returns(T.nilable(::Date)) }
     def available_on=(value); end
 
     sig { returns(T::Boolean) }
     def available_on?; end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def available_on_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -707,38 +707,28 @@ class Product
     sig { returns(T::Boolean) }
     def available_on_came_from_user?; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def available_on_change; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def available_on_change_to_be_saved; end
 
-    sig do
-      params(
-        from: T.nilable(::ActiveSupport::TimeWithZone),
-        to: T.nilable(::ActiveSupport::TimeWithZone)
-      ).returns(T::Boolean)
-    end
+    sig { params(from: T.nilable(::Date), to: T.nilable(::Date)).returns(T::Boolean) }
     def available_on_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def available_on_in_database; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def available_on_previous_change; end
 
-    sig do
-      params(
-        from: T.nilable(::ActiveSupport::TimeWithZone),
-        to: T.nilable(::ActiveSupport::TimeWithZone)
-      ).returns(T::Boolean)
-    end
+    sig { params(from: T.nilable(::Date), to: T.nilable(::Date)).returns(T::Boolean) }
     def available_on_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def available_on_previously_was; end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def available_on_was; end
 
     sig { void }
@@ -834,16 +824,16 @@ class Product
     sig { void }
     def currency_will_change!; end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def discontinue_on; end
 
-    sig { params(value: T.nilable(::ActiveSupport::TimeWithZone)).returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { params(value: T.nilable(::Date)).returns(T.nilable(::Date)) }
     def discontinue_on=(value); end
 
     sig { returns(T::Boolean) }
     def discontinue_on?; end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def discontinue_on_before_last_save; end
 
     sig { returns(T.untyped) }
@@ -852,38 +842,28 @@ class Product
     sig { returns(T::Boolean) }
     def discontinue_on_came_from_user?; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def discontinue_on_change; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def discontinue_on_change_to_be_saved; end
 
-    sig do
-      params(
-        from: T.nilable(::ActiveSupport::TimeWithZone),
-        to: T.nilable(::ActiveSupport::TimeWithZone)
-      ).returns(T::Boolean)
-    end
+    sig { params(from: T.nilable(::Date), to: T.nilable(::Date)).returns(T::Boolean) }
     def discontinue_on_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def discontinue_on_in_database; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def discontinue_on_previous_change; end
 
-    sig do
-      params(
-        from: T.nilable(::ActiveSupport::TimeWithZone),
-        to: T.nilable(::ActiveSupport::TimeWithZone)
-      ).returns(T::Boolean)
-    end
+    sig { params(from: T.nilable(::Date), to: T.nilable(::Date)).returns(T::Boolean) }
     def discontinue_on_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def discontinue_on_previously_was; end
 
-    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    sig { returns(T.nilable(::Date)) }
     def discontinue_on_was; end
 
     sig { void }
@@ -1384,7 +1364,7 @@ class Product
     sig { void }
     def review_count_will_change!; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def saved_change_to_available_on; end
 
     sig { returns(T::Boolean) }
@@ -1402,7 +1382,7 @@ class Product
     sig { returns(T::Boolean) }
     def saved_change_to_currency?; end
 
-    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    sig { returns(T.nilable([T.nilable(::Date), T.nilable(::Date)])) }
     def saved_change_to_discontinue_on; end
 
     sig { returns(T::Boolean) }

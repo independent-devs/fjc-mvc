@@ -275,20 +275,6 @@ class Order
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def build_user(*args, &blk); end
 
-    sig { returns(T::Array[T.untyped]) }
-    def cart_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def cart_ids=(ids); end
-
-    # This method is created by ActiveRecord on the `Order` class because it declared `has_many :carts`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::Cart::PrivateCollectionProxy) }
-    def carts; end
-
-    sig { params(value: T::Enumerable[::Cart]).void }
-    def carts=(value); end
-
     sig { params(args: T.untyped, blk: T.untyped).returns(::GuestSession) }
     def create_guest_session(*args, &blk); end
 
@@ -542,6 +528,9 @@ class Order
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_status(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -1137,6 +1126,9 @@ class Order
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_status(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end

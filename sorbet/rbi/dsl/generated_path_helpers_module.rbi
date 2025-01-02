@@ -79,7 +79,7 @@ module GeneratedPathHelpersModule
   def carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def checkout_index_path(*args); end
+  def checkout_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def destroy_user_session_path(*args); end
