@@ -38,9 +38,9 @@ class Product < ApplicationRecord
 
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }
-  scope :base_on_date, lambda { |now = Date.current|
-    where(available_on: ..now)
-      .where('discontinue_on IS NULL OR discontinue_on <= ?', now)
+  scope :base_on_date, lambda { |today = Date.current|
+    where(available_on: ..today)
+      .where('discontinue_on IS NULL OR discontinue_on > ?', today)
   }
 
   # Validations
