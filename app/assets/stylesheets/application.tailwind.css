@@ -125,11 +125,12 @@
 
   /* form table */
   ul.form-table-head {
-    @apply border-b text-sm gap-8 font-semibold;
+    @apply border-b text-sm font-semibold;
   }
 
-  ul.form-table-head li {
-    @apply py-4;
+  ul.form-table-head li,
+  ul.form-table-body li {
+    @apply py-4 px-5;
   }
 
   ul.form-table-body {

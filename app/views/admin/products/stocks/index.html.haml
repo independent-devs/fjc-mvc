@@ -4,21 +4,16 @@
     = @product.name
   .bg-white.rounded-sm
     %ul.form-table-head.grid.grid-cols-5
-      %li.pl-6
+      %li
         = t("variants.table.thead.option_values")
       %li
         = t("variants.table.thead.sku")
       %li
-        = t("variants.table.thead.backorderable")
+        = t("variants.table.thead.track")
       %li
         = t("variants.table.thead.count_on_hand")
       %li
         = t("variants.table.thead.modify")
     %ul.form-table-body
-      - if @variants.present?
-        - @variants.each do |variant|                   
-          = render "item", variant:
-      - else
-        %li.flex.justify-center.w-full.py-4.text-gray-400 
-          No variants
-
+      - @variants.each do |variant|                   
+        = render "item", variant:

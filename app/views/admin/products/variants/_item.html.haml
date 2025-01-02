@@ -1,16 +1,16 @@
 %li{id: dom_id(variant), data: {"sortable-update-url": position_admin_product_variant_path(@product, variant)}}
   = form_for(variant, url: admin_product_variant_path(@product, variant), html: {method: :put}, data: {controller: "autosave admin--products--variants--item", delete_url: admin_product_variant_url(@product, variant)}) do |f|
-    .grid.grid-cols-4.gap-8
-      .flex.py-4.pl-6
+    .grid.grid-cols-4
+      .flex.py-4.px-5
         .w-9= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = f.object.grouped_name
-      .flex.gap-2.py-4
+      .flex.gap-2.py-4.px-5
         = currency_symbol(@product.currency)
         = render "item_price", form: f
-      .flex.gap-2.py-4
+      .flex.gap-2.py-4.px-5
         = currency_symbol(@product.currency)
         = render "item_cost", form: f
-      .py-4.flex.items-center.gap-3
+      .py-4.px-5.flex.items-center.gap-3
         = link_to admin_product_variant_path(@product, variant), class: "text-zinc-400 hover:text-red-500" do
           = icon "fa-solid", "pen-to-square"
         %button{type: "button", data: {action: "click->admin--products--variants--item#delete"}}

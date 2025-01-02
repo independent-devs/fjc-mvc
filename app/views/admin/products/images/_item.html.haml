@@ -1,11 +1,11 @@
-%li{id: dom_id(image, "item"), class: "grid grid-cols-2 px-4 gap-20", data: {"admin--products--images--upload-target":"signedImage", signed_id: image.signed_id, controller: "admin--products--images--item", "sortable-update-url": position_admin_product_image_path(@product, image), delete_url: admin_product_image_url(@product, image)}}
-  .py-3.flex.items-center.gap-5
+%li{id: dom_id(image, "item"), class: "grid grid-cols-2", data: {"admin--products--images--upload-target":"signedImage", signed_id: image.signed_id, controller: "admin--products--images--item", "sortable-update-url": position_admin_product_image_path(@product, image), delete_url: admin_product_image_url(@product, image)}}
+  .py-3.px-5.flex.items-center.gap-4
     .h-full.flex.items-center
-      = icon("fa-solid", "grip", class: "ml-1 handle cursor-move text-zinc-500 text-lg")
+      = icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
     .flex.gap-2.items-center
       = image_tag image.variant(:small), size: 100, class: "max-w-12 max-h-12 min-w-12 min-h-12 object-center object-cover rounded border"
       %p.line-clamp-1.text-gray-500
         = image.filename
-  .py-3.flex.items-center.gap-2 
+  .py-3.px-5.flex.items-center.gap-2 
     %button{type: "button", class: "text-zinc-400 hover:text-red-500", data: {action: "click->admin--products--images--item#delete"}}
       = icon "fa-solid", "trash"
