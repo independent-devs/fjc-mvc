@@ -79,7 +79,7 @@ module GeneratedUrlHelpersModule
   def carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def checkout_index_url(*args); end
+  def checkout_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def destroy_user_session_url(*args); end
