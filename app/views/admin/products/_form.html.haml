@@ -51,12 +51,13 @@
       .field
         = mv.label :sku, "Master SKU"
         = mv.text_field :sku
-      .flex.gap-2.items-center.mt-1
-        = mv.check_box :trackable, class: "checkbox-primary mt-0.5"
-        %span Trackable
-      .flex.gap-2.items-center.mt-1
-        = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
-        %span Backorderable
-      - if is_new
-        = mv.hidden_field :is_master, value: true
+      .space-y-1.mt-1
+        .flex.gap-2.items-center
+          = mv.check_box :trackable, class: "checkbox-primary mt-0.5"
+          = mv.label :trackable, class: "cursor-pointer"
+        .flex.gap-2.items-center
+          = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
+          = mv.label :backorderable, class: "cursor-pointer"
+        - if is_new
+          = mv.hidden_field :is_master, value: true
     = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
