@@ -18,11 +18,11 @@
           = render TagComponent.new do
             Master
         - else
-          .space-y-1
+          .space-y-1{data: {controller: "admin--products--track"}}
             .flex.gap-1.items-center
-              = f.check_box :trackable, id: dom_id(variant, "trackable"), data: {action: 'autosave#save'}, class: "checkbox-primary"
+              = f.check_box :trackable, id: dom_id(variant, "trackable"), class: "checkbox-primary", data: {action: "admin--products--track#trackableToggle autosave#save"}
               = f.label :trackable
-            .flex.gap-1.items-center
+            .flex.gap-1.items-center{data: {action: "autosave#save", "admin--products--track-target": "backorderable"}, class: !f.object.trackable ? "hidden" : ""}
               = f.check_box :backorderable, id: dom_id(variant, "backorderable"), data: {action: 'autosave#save'}, class: "checkbox-primary"
               = f.label :backorderable
       = render "item_count_on_hand", form: f

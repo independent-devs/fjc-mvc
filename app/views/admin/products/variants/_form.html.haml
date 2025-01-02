@@ -26,12 +26,12 @@
         .field
           = f.label :sku, "SKU"
           = f.text_field :sku
-      .space-y-1.mt-4
+      .space-y-1.mt-4{data: {controller: "admin--products--track"}}
         .flex.gap-2.items-center
-          = f.check_box :trackable, checked: is_new ? @product.master_variant.trackable : f.object.trackable, class: "checkbox-primary"
+          = f.check_box :trackable, checked: is_new ? @product.master_variant.trackable : f.object.trackable, class: "checkbox-primary mt-0.5", data: {action: "admin--products--track#trackableToggle"}
           = f.label :trackable, class: "cursor-pointer"
-        .flex.gap-2.items-center
-          = f.check_box :backorderable, checked: is_new ? @product.master_variant.backorderable : f.object.backorderable, class: "checkbox-primary"
+        .flex.gap-2.items-center{data: {"admin--products--track-target": "backorderable"}, class: (is_new ? !@product.master_variant.trackable : !f.object.trackable) ? "hidden" : ""}
+          = f.check_box :backorderable, checked: is_new ? @product.master_variant.backorderable : f.object.backorderable, class: "checkbox-primary mt-0.5"
           = f.label :backorderable, class: "cursor-pointer"
   = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait px-10"
 
