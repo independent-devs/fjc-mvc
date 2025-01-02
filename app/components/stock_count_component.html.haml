@@ -1,6 +1,10 @@
-%div
-  - if display_oos && count.zero?
-    .text-red-600 Out of stock
+.block
+  - if sale
+    .text-primary.font-medium
+      Sale
   - else
-    = count
-    = "stock".pluralize(count)
+    - if display_oos && count.zero?
+      .text-red-600 Out of stock
+    - else
+      = count
+      = "stock".pluralize(count)

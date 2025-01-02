@@ -12,14 +12,12 @@
           = render TagComponent.new do
             Master
         - else
-          = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table",
-          data: { "action": "change->autosave#save" }
+          = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: {"action": "change->autosave#save"}
       .flex.py-4.items-center
         - if f.object.is_master
           = render TagComponent.new do
             Master
         - else
-          = f.check_box :backorderable, id: dom_id(variant, "backorderable"), 
-          data: { action: 'autosave#save' }, class: "checkbox-primary"
+          = f.check_box :backorderable, id: dom_id(variant, "backorderable"), data: {action: 'autosave#save'}, class: "checkbox-primary"
       = render "item_count_on_hand", form: f
       = render "modify_stock", variant:

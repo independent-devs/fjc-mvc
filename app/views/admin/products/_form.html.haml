@@ -52,6 +52,9 @@
         = mv.label :sku, "Master SKU"
         = mv.text_field :sku
       .flex.gap-2.items-center.mt-1
+        = mv.check_box :trackable, class: "checkbox-primary mt-0.5"
+        %span Trackable
+      .flex.gap-2.items-center.mt-1
         = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
         %span Backorderable
       - if is_new

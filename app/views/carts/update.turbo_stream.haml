@@ -5,12 +5,14 @@
   = turbo_stream.replace "cart-#{@cart.id}-unit-price" do
     = render Carts::Item::UnitpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency
 
+- sale = !@cart.variant.trackable || (@cart.variant.trackable && @cart.variant.backorderable)
+
 - if !@cart.variant.is_master && @cart.variant_changed?
   = turbo_stream.replace "cart-#{@cart.id}-dropdown-variant-pair" do
-    = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant.option_value_name, count_on_hand: @cart.variant.count_on_hand
+    = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant.option_value_name, count_on_hand: @cart.variant.count_on_hand, sale:
 
 = turbo_stream.replace "cart-#{@cart.id}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, @cart.variant.backorderable) || cannot?(:update, @cart), checked: ActiveModel::Type::Boolean.new.cast(params[:checked])
+  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, sale) || cannot?(:update, @cart), checked: ActiveModel::Type::Boolean.new.cast(params[:checked])
 
 = turbo_stream.replace "cart-#{@cart.id}-qty" do
-  = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, backorderable: @cart.variant.backorderable
+  = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, sale:

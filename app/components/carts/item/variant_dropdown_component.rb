@@ -4,9 +4,10 @@
 class Carts::Item::VariantDropdownComponent < ViewComponent::Base
   extend T::Sig
 
-  sig { params(cart: Cart).void }
-  def initialize(cart:)
+  sig { params(cart: Cart, sale: T::Boolean).void }
+  def initialize(cart:, sale:)
     @cart = cart
+    @sale = sale
     super
   end
 end

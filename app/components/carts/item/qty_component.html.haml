@@ -6,4 +6,4 @@
       = number_field_tag 'quantity', cart.qty, disabled: cannot?(:update, cart), data: {"carts--item-target": "quantity", action: "input->carts--item#quantityInput change->carts--item#quantityChange"}, min: 1, id: "cart-#{@cart.id}-qty-input", class: "number-input transition-colors duration-200"
       = button_tag class: "increment transition-colors duration-200", data: {action: "click->carts--item#increment"} do
         = icon("fa-solid", "plus")
-  = render Carts::Item::CartStockWarningComponent.new cart:, count_on_hand:, backorderable:
+  = render Carts::Item::CartStockWarningComponent.new cart:, count_on_hand:, sale:
