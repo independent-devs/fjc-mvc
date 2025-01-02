@@ -1,5 +1,7 @@
 .margin-max-screen.py-7.flex.flex-col.gap-5{data: {controller: "admin--products--images--upload", upload_url: upload_admin_product_images_url(@product)}}
   = render "admin/products/tabs"
+  .text-gray-500
+    = @product.name
   .w-full.flex.flex-col.gap-5
     = render "drag_and_drop"
     = render "uploading"

@@ -1,7 +1,7 @@
 .margin-max-screen.py-7.flex.flex-col.gap-5
   = render "admin/products/tabs"
   .flex.gap-5.justify-between.items-start
-    %span.text-gray-500
+    .text-gray-500
       = @product.name
     - if @product.has_variant
       = link_to new_admin_product_variant_path(@product), class: "btn-plain flex gap-2.5 items-center" do
