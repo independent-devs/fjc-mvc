@@ -13,7 +13,8 @@
                 = radio_button_tag po.name, vname, is_active, id: "#{vname}-#{@cart.id}", class: "peer hidden", data: {action: "click->carts--dropdown#radioToggle", was_checked: is_active, variant_ids: arr.map { |a| a.variant_id }.join(','), "carts--dropdown-target": "radio"}
                 %label.variant-radio.py-2{for: "#{vname}-#{@cart.id}"}
                   = vname
-    = render StockCountComponent.new count: @cart.variant.count_on_hand
+    - sale = !@cart.variant.trackable || (@cart.variant.trackable && @cart.variant.backorderable)
+    = render StockCountComponent.new count: @cart.variant.count_on_hand, sale: 
     .flex.gap-2.-mt-1
       %button.btn-plain.py-2{class: "w-1/2", data: {action: "dropdown#toggle"}}
         Cancel

@@ -1,6 +1,8 @@
+- sale = !cart.trackable || (cart.trackable && cart.backorderable)
+
 .flex.w-full.gap-3.col-span-3.items-center.pl-5
   .flex.gap-3.items-center{class: "w-[70%]"}
-    = render Carts::Item::CheckboxComponent.new cart:, invalid: checkbox_invalid?(cart.count_on_hand, cart.qty, cart.backorderable) || cannot?(:update, cart)
+    = render Carts::Item::CheckboxComponent.new cart:, invalid: checkbox_invalid?(cart.count_on_hand, cart.qty, sale) || cannot?(:update, cart)
     .flex.gap-2
       = link_to product_path(id: cart.product_id) do
         = image_tag cart.variant.product.thumbnail.variant(:small) || "thumbnail.png", class: "min-w-[75px] min-h-[75px] max-w-[75px] max-h-[75px] object-cover object-center border rounded-sm", id: "cart-#{cart.id}-thumbnail"
@@ -24,7 +26,7 @@
               %button.text-gray-400.text-lg.hover:text-gray-600.disabled:animate-spin.disabled:cursor-wait{type: "button", data: {action: "click->carts--item#sync", "carts--item-target": "sync"}}
                 = icon("fa-solid", "arrows-rotate")
   - unless cart.is_master
-    = render Carts::Item::VariantDropdownComponent.new cart:
+    = render Carts::Item::VariantDropdownComponent.new cart:, sale:
   - else
-    .text-sm.text-gray-500
-      = render StockCountComponent.new count: @cart.count_on_hand
+    .text-sm
+      = render StockCountComponent.new count: cart.count_on_hand, sale:

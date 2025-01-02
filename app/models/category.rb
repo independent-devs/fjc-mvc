@@ -24,9 +24,8 @@ class Category < ApplicationRecord
 
   # Validations
   validates :ancestry_depth, inclusion: { in: 0..MAX_DEPTH, message: I18n.t('categories.validate.ancestry_depth') }
-  validates :name, presence: true, uniqueness: {
-    scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry')
-  }
+  validates :name, uniqueness: { scope: :ancestry, message: I18n.t('categories.validate.unique_name_with_ancestry') }
+  validates :name, presence: true
 end
 
 # == Schema Information

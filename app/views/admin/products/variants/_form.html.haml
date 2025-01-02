@@ -27,6 +27,9 @@
           = f.label :sku, "SKU"
           = f.text_field :sku
       .flex.gap-2.items-center.pt-4
+        = f.check_box :trackable, checked: is_new ? @product.master_variant.trackable : f.object.trackable, class: "checkbox-primary"
+        %span Trackable
+      .flex.gap-2.items-center.pt-4
         = f.check_box :backorderable, checked: is_new ? @product.master_variant.backorderable : f.object.backorderable, class: "checkbox-primary"
         %span Backorderable
   = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait px-10"

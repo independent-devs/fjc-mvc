@@ -1,7 +1,5 @@
 .py-4.flex.gap-3{id: dom_id(form.object, "count_on_hand")}
+  = render StockCountComponent.new count: form.object.count_on_hand, display_oos: false
   - if form.object.is_master && @product.has_variant 
-    = render StockCountComponent.new count: form.object.count_on_hand, display_oos: false
-    %span.text-zinc-400
-      (ignored)
-  - else
-    = render StockCountComponent.new count: form.object.count_on_hand
+    .text-zinc-400
+      (Ignored)
