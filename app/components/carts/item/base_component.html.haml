@@ -2,6 +2,6 @@
   = render Carts::Item::UpdateUrlComponent.new cart:
   = render Carts::Item::DetailsComponent.new cart:
   = render Carts::Item::UnitpriceComponent.new cart:, price: cart.price, currency: cart.currency
-  = render Carts::Item::QtyComponent.new cart:, count_on_hand: cart.count_on_hand, sale: !cart.trackable || (cart.trackable && cart.backorderable)
+  = render Carts::Item::QtyComponent.new cart:, count_on_hand: cart.count_on_hand, sale: sale?(cart.variant)   
   = render Carts::Item::TotalpriceComponent.new cart:, price: cart.price, currency: cart.currency
   = render Carts::Item::ActionsComponent.new cart:

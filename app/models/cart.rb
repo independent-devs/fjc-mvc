@@ -24,7 +24,13 @@ class Cart < ApplicationRecord
             .select('products.name AS product_name, products.currency, ' \
                     'products.id AS product_id')
             .joins('INNER JOIN products ON products.id = variants.product_id')
-            .order(id: :desc)
+            .order(created_at: :desc)
+        }
+  scope :checkout_condition,
+        lambda {
+          where('(variants.trackacle AND variants.count_on_hand > 0 AND carts.qty <= variants.count_on_hand) ' \
+                'OR (variants.trackacle = FALSE OR (variants.trackacle = TRUE AND variants.backorderable = TRUE))')
+            .joins(:variant)
         }
 
   # Validations

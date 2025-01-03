@@ -3,8 +3,9 @@
 
 class Carts::Item::BaseComponent < ViewComponent::Base
   extend T::Sig
-
   attr_reader :cart
+
+  delegate :sale?, to: :helpers
 
   sig { params(cart: Cart).void }
   def initialize(cart:)
