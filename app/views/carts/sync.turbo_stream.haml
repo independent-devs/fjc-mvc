@@ -3,14 +3,12 @@
 
 = turbo_stream.remove "cart-#{@cart.id}-guest-display"
 
-- sale = !@cart.variant.trackable || (@cart.variant.trackable && @cart.variant.backorderable)
-
 - unless @cart.variant.is_master
   = turbo_stream.replace "cart-#{@cart.id}-dropdown-variant-pair" do
-    = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant.option_value_name, count_on_hand: @cart.variant.count_on_hand, sale:
+    = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant.option_value_name, count_on_hand: @cart.variant.count_on_hand, sale: sale?(@cart.variant)
 
 = turbo_stream.replace "cart-#{@cart.id}-qty" do
-  = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, sale:
+  = render Carts::Item::QtyComponent.new cart: @cart, count_on_hand: @cart.variant.count_on_hand, sale: sale?(@cart.variant)
 
 = turbo_stream.replace "cart-#{@cart.id}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: checkbox_invalid?(@cart.variant.count_on_hand, @cart.qty, sale) || cannot?(:update, @cart)
+  = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: cannot?(:proceed_checkout, @cart)

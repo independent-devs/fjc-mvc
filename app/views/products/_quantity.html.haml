@@ -6,4 +6,4 @@
     = button_tag type: :button, class: "increment", data: {action: "products--public#increment"} do
       = icon("fa-solid", "plus")
   #stocks{class: hide ? "hidden" : "", data: {"products--public-target": "stocks"}}
-    = render StockCountComponent.new count: variant.count_on_hand, sale: !variant.trackable || (variant.trackable && variant.backorderable)
+    = render StockCountComponent.new count: variant.count_on_hand, sale: sale?(variant)

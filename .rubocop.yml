@@ -13,7 +13,7 @@ Style/Documentation:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 35
+  Max: 40
 
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -44,7 +44,7 @@ Metrics/BlockLength:
     - "spec/**/**"
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 15
   Exclude:
     - "bin/*"
 
@@ -58,6 +58,7 @@ Metrics/MethodLength:
     - "bin/bundle"
 
 Metrics/PerceivedComplexity:
+  Max: 15
   Exclude:
     - "bin/bundle"
 

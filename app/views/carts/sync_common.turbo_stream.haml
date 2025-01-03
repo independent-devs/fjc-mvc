@@ -9,10 +9,8 @@
 = turbo_stream.replace "cart-#{@common_cart.id}-unit-price" do
   = render Carts::Item::UnitpriceComponent.new cart: @common_cart, price: @common_cart.variant.price, currency: @common_cart.variant.product.currency
 
-- sale = !@common_cart.variant.trackable || (@common_cart.variant.trackable && @common_cart.variant.backorderable)
-
 = turbo_stream.replace "cart-#{@common_cart.id}-qty" do
-  = render Carts::Item::QtyComponent.new cart: @common_cart, count_on_hand: @common_cart.variant.count_on_hand, sale:
+  = render Carts::Item::QtyComponent.new cart: @common_cart, count_on_hand: @common_cart.variant.count_on_hand, sale: sale?(@common_cart.variant)
 
 = turbo_stream.replace "cart-#{@common_cart.id}-checkbox" do
-  = render Carts::Item::CheckboxComponent.new cart: @common_cart, invalid: checkbox_invalid?(@common_cart.variant.count_on_hand, @common_cart.qty, sale) || cannot?(:update, @common_cart)
+  = render Carts::Item::CheckboxComponent.new cart: @common_cart, invalid: cannot?(:proceed_checkout, @common_cart)
