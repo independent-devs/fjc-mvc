@@ -2,7 +2,8 @@
 
 [Design Link](<https://www.figma.com/file/608pfcvNtMT8wyOHPu5EKL/Full-E-Commerce-Website-UI-UX-Design-(Community)?type=design&node-id=1-3&mode=design&t=pMaFk7PRDGqftoS2-0>)
 
-## White Label Sites
+## Sites
+
 [Felmart Shop](https://felmart.shop)
 
 ## Development Environment
