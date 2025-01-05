@@ -29,6 +29,7 @@ COPY config.ru              config.ru
 COPY Rakefile               Rakefile
 COPY bin                    bin/
 COPY config                 config/
+COPY cp                     cp/
 COPY db                     db/
 COPY lib                    lib/
 COPY app                    app/
