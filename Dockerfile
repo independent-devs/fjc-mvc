@@ -8,18 +8,13 @@ RUN apt-get update -qq && apt-get install -y \
   libvips \
   poppler-utils \
   postgresql-client \
-  iputils-ping \
-  nano \
-  cron
-
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs && \
-    corepack enable && corepack prepare yarn@stable --activate
+  iputils-ping
 
 # Set working directory
 WORKDIR /app
 
 ARG SECRET_KEY_BASE
+ARG BRAND_LOCALE
 
 # Rails ENV
 ENV RAILS_ENV production
@@ -54,8 +49,12 @@ RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} bin/rake assets:precompile --trace
 # Install Foreman
 RUN gem install foreman
 
+# Copy Entrypoint
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
+
+# Brand locale
+RUN cp ./cp/locale/${BRAND_LOCALE}.en.yml ./config/locales/brand.en.yml
 
 # Expose port 3000
 EXPOSE 3000
