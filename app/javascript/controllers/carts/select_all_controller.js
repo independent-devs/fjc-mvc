@@ -21,6 +21,7 @@ export default class extends CheckboxSelectAll {
   }
 
   displaySelected() {
+    clearTimeout(this.timeout);
     this.selectedTarget.innerHTML = `Total (${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}):`;
 
     if (!this.checked.length) {
@@ -29,18 +30,20 @@ export default class extends CheckboxSelectAll {
       return;
     }
 
-    fetch(this.element.dataset.totalUrl + "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&"), {
-      method: "GET",
-      headers: {
-        Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-      },
-    })
-      .then((res) => res.text())
-      .then((html) => {
-        if (!this.checked.length) return;
-        return Turbo.renderStreamMessage(html);
-      });
+    this.timeout = setTimeout(() => {
+      fetch(this.element.dataset.totalUrl + "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&"), {
+        method: "GET",
+        headers: {
+          Accept: "text/vnd.turbo-stream.html",
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+        },
+      })
+        .then((res) => res.text())
+        .then((html) => {
+          if (!this.checked.length) return;
+          return Turbo.renderStreamMessage(html);
+        });
+    });
   }
 
   bulkDelete() {
