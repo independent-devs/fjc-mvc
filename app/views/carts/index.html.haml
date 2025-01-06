@@ -7,7 +7,7 @@
     .grid
       .grid.gap-3.grid-cols-7.py-4.place-items-center.border
         .col-span-3.w-full.flex.gap-3.items-center.pl-5
-          = check_box_tag "select-all", "yes", false, id: "checkbox-all", data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
+          = check_box_tag "select-all", "yes", false, id: "checkbox-all", data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary"
           %label.font-semibold.text-primary.cursor-pointer{for: "checkbox-all"}
             = t("carts.table.thead.product")
         .block
@@ -27,7 +27,7 @@
       .flex.py-4.px-5.justify-between.gap-5.w-full
         .flex.gap-3.items-center
           .flex.gap-3.items-center
-            = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary mt-0.5"
+            = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary"
             %label.cursor-pointer{for: "select-all", data: {"carts--select-all-target": "activeCount"}}
               = "Select All (#{@carts.size})"
         .flex.gap-3.items-center
