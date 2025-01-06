@@ -46,9 +46,7 @@ export default class extends Controller {
   }
 
   variantInfo(target) {
-    this.updateVariantID = this.isMultiOptions
-      ? this.commonVariant
-      : target.dataset.variantIds;
+    this.updateVariantID = this.isMultiOptions ? this.commonVariant : target.dataset.variantIds;
   }
 
   setRadios(groupName, includeId, excludeId) {
@@ -67,9 +65,7 @@ export default class extends Controller {
   }
 
   otherRadios(name) {
-    return this.element.querySelectorAll(
-      `input[type="radio"]:not([name="${name}"])`
-    );
+    return this.element.querySelectorAll(`input[type="radio"]:not([name="${name}"])`);
   }
 
   radioVariantList(elTarget) {
@@ -91,9 +87,7 @@ export default class extends Controller {
     // disable non related variant
     for (let el of elements) {
       const otherVariantIds = this.radioVariantList(el);
-      const hasVariant = variantIds.some((item) =>
-        otherVariantIds.includes(item)
-      );
+      const hasVariant = variantIds.some((item) => otherVariantIds.includes(item));
 
       if (!hasVariant) {
         el.disabled = true;
@@ -147,11 +141,7 @@ export default class extends Controller {
     this.optionTargets.forEach((el) => {
       const checkedEl = el.querySelector("input[type='radio']:checked");
 
-      if (checkedEl?.dataset.variantIds)
-        collection = [
-          ...collection,
-          ...checkedEl.dataset.variantIds.split(","),
-        ];
+      if (checkedEl?.dataset.variantIds) collection = [...collection, ...checkedEl.dataset.variantIds.split(",")];
     });
 
     return collection;

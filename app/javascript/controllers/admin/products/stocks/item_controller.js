@@ -13,9 +13,7 @@ export default class extends Controller {
       body: formData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => res.text())

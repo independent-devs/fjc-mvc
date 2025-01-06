@@ -24,9 +24,7 @@ export default class extends Controller {
       method: "POST",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => res.text())
@@ -34,12 +32,8 @@ export default class extends Controller {
   }
 
   quantityInput(event) {
-    if (Number(event.target.value) < 0)
-      event.target.value = Math.abs(event.target.value);
-    else if (
-      (event.target.value != "" || event.data == "e") &&
-      Number(event.target.value) == 0
-    )
+    if (Number(event.target.value) < 0) event.target.value = Math.abs(event.target.value);
+    else if ((event.target.value != "" || event.data == "e") && Number(event.target.value) == 0)
       event.target.value = this.quantityTarget.min;
   }
 
@@ -68,9 +62,7 @@ export default class extends Controller {
       body: formData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => {

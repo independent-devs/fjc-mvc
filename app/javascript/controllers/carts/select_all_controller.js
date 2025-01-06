@@ -4,6 +4,10 @@ import CheckboxSelectAll from "@stimulus-components/checkbox-select-all";
 export default class extends CheckboxSelectAll {
   static targets = ["selected", "total"];
 
+  connect() {
+    this.initTotalEl = this.totalTarget.innerHTML;
+  }
+
   refresh() {
     super.refresh();
     this.displaySelected();
@@ -15,26 +19,26 @@ export default class extends CheckboxSelectAll {
   }
 
   displaySelected() {
-    clearTimeout(this.timeout);
     this.selectedTarget.innerHTML = `Total (${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}):`;
 
-    if (!this.checked.length) return;
+    if (!this.checked.length) {
+      this.totalTarget.innerHTML = this.initTotalEl || this.totalTarget.innerHTML;
+      return;
+    }
 
-    const params =
-      "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&");
+    const params = "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&");
 
-    this.timeout = setTimeout(() => {
-      fetch(this.element.dataset.totalUrl + params, {
-        method: "GET",
-        headers: {
-          Accept: "text/vnd.turbo-stream.html",
-          "X-CSRF-Token": document
-            .querySelector('meta[name="csrf-token"]')
-            .getAttribute("content"),
-        },
-      })
-        .then((res) => res.text())
-        .then((html) => Turbo.renderStreamMessage(html));
-    }, 300);
+    fetch(this.element.dataset.totalUrl + params, {
+      method: "GET",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html",
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+      },
+    })
+      .then((res) => res.text())
+      .then((html) => {
+        if (!this.checked.length) return;
+        return Turbo.renderStreamMessage(html);
+      });
   }
 }
