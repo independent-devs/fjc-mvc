@@ -8,6 +8,7 @@ resources :checkout, only: %i[show]
 resources :carts, only: %i[index update destroy] do
   collection do
     post :sync_all
+    get :total
   end
   member do
     get :variant_dropdown

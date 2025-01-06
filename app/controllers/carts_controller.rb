@@ -47,6 +47,12 @@ class CartsController < BaseController
 
   def variant_dropdown; end
 
+  def total
+    @total = Cart.detailed.accessible_by(current_ability)
+    @total = @total.where(id: params[:ids]) if params[:ids].present?
+    @total = @total.sum('variants.price * carts.qty')
+  end
+
   private
 
   def cart_params
