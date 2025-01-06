@@ -119,7 +119,7 @@ en:
       ownership_cant_be_both: "user and guest cannot be both exist on cart."
     table:
       thead:
-        my_cart: "My Cart"
+        product: "Product"
         unit_price: "Unit Price"
         quantity: "Quantity"
         subtotal: "Subtotal"

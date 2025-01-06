@@ -2,8 +2,7 @@ import { Controller as e } from "@hotwired/stimulus";
 
 const t = class _CheckboxSelectAll extends e {
   initialize() {
-    (this.toggle = this.toggle.bind(this)),
-      (this.refresh = this.refresh.bind(this));
+    (this.toggle = this.toggle.bind(this)), (this.refresh = this.refresh.bind(this));
   }
   checkboxAllTargetConnected(e) {
     e.addEventListener("change", this.toggle), this.refresh();
@@ -20,15 +19,13 @@ const t = class _CheckboxSelectAll extends e {
   toggle(e) {
     e.preventDefault(),
       this.checkboxTargets.forEach((t) => {
-        (t.checked = !t.disabled && e.target.checked),
-          this.triggerInputEvent(t);
+        (t.checked = !t.disabled && e.target.checked), this.triggerInputEvent(t);
       });
   }
   refresh() {
     const e = this.activeCheckbox.length,
       t = this.checked.length;
-    (this.checkboxAllTarget.checked = t > 0),
-      (this.checkboxAllTarget.indeterminate = t > 0 && t < e);
+    (this.checkboxAllTarget.checked = t > 0), (this.checkboxAllTarget.indeterminate = t > 0 && t < e);
   }
   triggerInputEvent(e) {
     const t = new Event("input", { bubbles: !1, cancelable: !0 });
