@@ -45,9 +45,7 @@ export default class extends Controller {
       body: this.cartFormData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => res.text())
@@ -75,12 +73,8 @@ export default class extends Controller {
   }
 
   quantityInput(event) {
-    if (Number(event.target.value) < 0)
-      event.target.value = Math.abs(event.target.value);
-    else if (
-      (event.target.value != "" || event.data == "e") &&
-      Number(event.target.value) == 0
-    )
+    if (Number(event.target.value) < 0) event.target.value = Math.abs(event.target.value);
+    else if ((event.target.value != "" || event.data == "e") && Number(event.target.value) == 0)
       event.target.value = this.quantityTarget.min;
   }
 
@@ -121,19 +115,14 @@ export default class extends Controller {
   }
 
   variantInfo(event) {
-    if (
-      (this.isMultiOptions && !this.commonVariant) ||
-      (!this.isMultiOptions && !event.target.checked)
-    ) {
+    if ((this.isMultiOptions && !this.commonVariant) || (!this.isMultiOptions && !event.target.checked)) {
       this.resetPriceAndStocks();
       return;
     }
 
     this.disableActionBtn();
 
-    let variantID = this.isMultiOptions
-      ? this.commonVariant
-      : event.target.dataset.variantIds;
+    let variantID = this.isMultiOptions ? this.commonVariant : event.target.dataset.variantIds;
 
     this.setActionBtn(variantID);
 
@@ -141,9 +130,7 @@ export default class extends Controller {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => res.text())
@@ -202,9 +189,7 @@ export default class extends Controller {
     // disable non related variant
     for (let el of elements) {
       const otherVariantIds = this.radioVariantList(el);
-      const hasVariant = variantIds.some((item) =>
-        otherVariantIds.includes(item)
-      );
+      const hasVariant = variantIds.some((item) => otherVariantIds.includes(item));
 
       if (!hasVariant) {
         el.disabled = true;
@@ -215,9 +200,7 @@ export default class extends Controller {
   }
 
   otherRadios(name) {
-    return this.optionsTarget.querySelectorAll(
-      `input[type="radio"]:not([name="${name}"])`
-    );
+    return this.optionsTarget.querySelectorAll(`input[type="radio"]:not([name="${name}"])`);
   }
 
   radioVariantList(elTarget) {
@@ -265,8 +248,7 @@ export default class extends Controller {
   }
 
   get checkedRadioCount() {
-    return this.optionsTarget.querySelectorAll("input[type='radio']:checked")
-      .length;
+    return this.optionsTarget.querySelectorAll("input[type='radio']:checked").length;
   }
 
   get commonVariant() {
@@ -298,12 +280,7 @@ export default class extends Controller {
 
     this.optionTargets.forEach((el) => {
       const checkedEl = el.querySelector("input[type='radio']:checked");
-
-      if (checkedEl?.dataset.variantIds)
-        collection = [
-          ...collection,
-          ...checkedEl.dataset.variantIds.split(","),
-        ];
+      if (checkedEl?.dataset.variantIds) collection = [...collection, ...checkedEl.dataset.variantIds.split(",")];
     });
 
     return collection;

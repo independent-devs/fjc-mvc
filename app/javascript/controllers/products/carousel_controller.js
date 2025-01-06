@@ -49,9 +49,7 @@ export default class extends Controller {
   }
 
   get currentThumbPos() {
-    return this.strToNumber(
-      this.thumbTargets.find((el) => el.checked).dataset.position
-    );
+    return this.strToNumber(this.thumbTargets.find((el) => el.checked).dataset.position);
   }
 
   strToNumber(strNum) {

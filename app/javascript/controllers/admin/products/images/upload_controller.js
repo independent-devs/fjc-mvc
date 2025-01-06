@@ -2,13 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="admin--products--images--upload"
 export default class extends Controller {
-  static targets = [
-    "upload",
-    "dropArea",
-    "uploading",
-    "signedImage",
-    "uploadingContainer",
-  ];
+  static targets = ["upload", "dropArea", "uploading", "signedImage", "uploadingContainer"];
 
   connect() {
     this.uploadTarget.disabled = false;
@@ -65,17 +59,8 @@ export default class extends Controller {
       container.classList.add("grid", "place-items-center", "w-24");
       fileSize.innerHTML = (files[i].size / (1024 * 1024)).toFixed(2) + " MB";
       fileName.innerHTML = isFileAllowed ? files[i].name : "Invalid file";
-      fileSize.classList.add(
-        isFileAllowed ? "text-gray-800" : "text-red-600",
-        "text-sm",
-        "mt-1"
-      );
-      fileName.classList.add(
-        isFileAllowed ? "text-gray-800" : "text-red-600",
-        "text-sm",
-        "break-all",
-        "line-clamp-2"
-      );
+      fileSize.classList.add(isFileAllowed ? "text-gray-800" : "text-red-600", "text-sm", "mt-1");
+      fileName.classList.add(isFileAllowed ? "text-gray-800" : "text-red-600", "text-sm", "break-all", "line-clamp-2");
 
       reader.onload = (e) => {
         const img = new Image();
@@ -103,13 +88,10 @@ export default class extends Controller {
     const formData = new FormData();
     const formImageName = "product_image[images][]";
 
-    this.signedImageTargets.forEach((el) =>
-      formData.append(formImageName, el.dataset.signedId)
-    );
+    this.signedImageTargets.forEach((el) => formData.append(formImageName, el.dataset.signedId));
 
     for (let file of files) {
-      if (this.allowedFileTypes.includes(file.type))
-        formData.append(formImageName, file);
+      if (this.allowedFileTypes.includes(file.type)) formData.append(formImageName, file);
     }
 
     fetch(this.element.dataset.uploadUrl, {
@@ -117,9 +99,7 @@ export default class extends Controller {
       body: formData,
       headers: {
         Accept: "text/vnd.turbo-stream.html",
-        "X-CSRF-Token": document
-          .querySelector('meta[name="csrf-token"]')
-          .getAttribute("content"),
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       },
     })
       .then((res) => res.text())
