@@ -48,9 +48,15 @@ class CartsController < BaseController
   def variant_dropdown; end
 
   def total
-    @total = Cart.detailed.accessible_by(current_ability)
-    @total = @total.where(id: params[:ids]) if params[:ids].present?
-    @total = @total.sum('variants.price * carts.qty')
+    @carts = Cart.detailed.accessible_by(current_ability)
+    @carts = @carts.where(id: params[:ids]) if params[:ids].present?
+    @total = @carts.sum('variants.price * carts.qty')
+  end
+
+  def bulk_delete
+    @carts = Cart.detailed.accessible_by(current_ability)
+    @carts = @total.where(id: params[:ids]) if params[:ids].present?
+    @carts.destroy_all
   end
 
   private

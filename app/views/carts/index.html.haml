@@ -9,7 +9,7 @@
         .col-span-3.w-full.flex.gap-3.items-center.pl-5
           = check_box_tag "select-all", "yes", false, data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary mt-0.5"
           %span.font-semibold.text-primary
-            = t("carts.table.thead.my_cart")
+            = t("carts.table.thead.product")
         .block
           = t("carts.table.thead.unit_price")
         .block
@@ -26,9 +26,11 @@
     .grid.sticky.bottom-0.w-full.bg-white.border
       .flex.py-4.px-5.justify-between.gap-5.w-full
         .flex
-        .flex.gap-4.items-center
-          .block{data: {"carts--select-all-target": "selected"}}
-            0 item
-          #carts-total.hidden{data: {"carts--select-all-target": "total"}}
-          %button.btn-primary
+        .flex.gap-3.items-center
+          .flex.items-center.gap-2
+            .block{data: {"carts--select-all-target": "selected"}}
+              Total (0 item)
+            #carts-total{data: {"carts--select-all-target": "total"}}
+              = render PriceRangeComponent.new lowest: 0, currency: MoneyRails.default_currency.id.to_s
+          %button.btn-primary.px-14
             Checkout

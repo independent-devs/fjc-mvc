@@ -16,12 +16,9 @@ export default class extends CheckboxSelectAll {
 
   displaySelected() {
     clearTimeout(this.timeout);
-    this.selectedTarget.innerHTML = `${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}`;
+    this.selectedTarget.innerHTML = `Total (${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}):`;
 
-    if (!this.checked.length) {
-      this.totalTarget.classList.add("hidden");
-      return;
-    }
+    if (!this.checked.length) return;
 
     const params =
       "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&");

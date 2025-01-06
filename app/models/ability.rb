@@ -33,7 +33,7 @@ class Ability
     # Cart
     can(%i[read update destroy], Cart, user:)
     can(%i[read sync destroy sync_all], Cart, guest_session:) if guest_session.present?
-    can(%i[proceed_checkout total], Cart, Cart.checkout_condition.where(user:)) do |cart|
+    can(%i[proceed_checkout total bulk_delete], Cart, Cart.checkout_condition.where(user:)) do |cart|
       ((cart.variant.trackable && cart.variant.count_on_hand.positive? && cart.qty <= cart.variant.count_on_hand) ||
         (!cart.variant.trackable || (cart.variant.trackable && cart.variant.backorderable))) &&
         cart.user.present? && cart.user = user
@@ -66,7 +66,7 @@ class Ability
 
     # Cart
     can(%i[read update destroy], Cart, guest_session:)
-    can(%i[proceed_checkout total], Cart, Cart.checkout_condition.where(guest_session:)) do |cart|
+    can(%i[proceed_checkout total bulk_delete], Cart, Cart.checkout_condition.where(guest_session:)) do |cart|
       ((cart.variant.trackable && cart.variant.count_on_hand.positive? && cart.qty <= cart.variant.count_on_hand) ||
       (!cart.variant.trackable || (cart.variant.trackable && cart.variant.backorderable))) &&
         cart.guest_session.present? && cart.guest_session = guest_session
