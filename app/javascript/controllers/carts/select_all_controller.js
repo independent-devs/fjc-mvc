@@ -2,7 +2,7 @@ import CheckboxSelectAll from "@stimulus-components/checkbox-select-all";
 
 // Connects to data-controller="carts--select-all"
 export default class extends CheckboxSelectAll {
-  static targets = ["selected", "total", "bulkDeleteBtn", "selectAll", "activeCount"];
+  static targets = ["selected", "total", "bulkDeleteBtn", "selectAll", "activeCount", "checkoutBtn"];
 
   connect() {
     this.initTotalEl = this.totalTarget.innerHTML;
