@@ -3,7 +3,7 @@
 - keywords "cart, product, checkout, buy now"
 
 .w-full.margin-max-screen.py-7
-  .relative.grid{data: {controller: "carts--select-all items", total_url: total_carts_path, empty: "items-empty", "item": "cart-item"}}
+  .relative.grid{data: {controller: "carts--select-all items", total_url: total_carts_path, bulk_delete_url: bulk_delete_carts_path, empty: "items-empty", "item": "cart-item"}}
     .grid
       .grid.gap-3.grid-cols-7.py-4.place-items-center.border
         .col-span-3.w-full.flex.gap-3.items-center.pl-5
@@ -25,11 +25,13 @@
         = render EmptyItemComponent.new text: "No carts yet", hide: @carts.present?
     .grid.sticky.bottom-0.w-full.bg-white.border
       .flex.py-4.px-5.justify-between.gap-5.w-full
-        .flex.gap-3.items-center
+        .flex.gap-6.items-center
           .flex.gap-3.items-center
             = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary"
             %label.cursor-pointer{for: "select-all", data: {"carts--select-all-target": "activeCount"}}
               = "Select All (#{@carts.size})"
+          %button.disabled:text-gray-400.disabled:cursor-not-allowed{disabled: true, data: {action: "carts--select-all#bulkDelete", "carts--select-all-target": "bulkDeleteBtn"}}
+            Delete
         .flex.gap-3.items-center
           .flex.items-center.gap-2
             .block{data: {"carts--select-all-target": "selected"}}
