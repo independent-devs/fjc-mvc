@@ -8,6 +8,7 @@ resources :checkout, only: %i[show]
 resources :carts, only: %i[index update destroy] do
   collection do
     get :total
+    get :count
     post :sync_all
     delete :bulk_delete
   end

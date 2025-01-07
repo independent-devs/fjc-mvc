@@ -48,15 +48,21 @@ class CartsController < BaseController
   def variant_dropdown; end
 
   def total
-    @carts = Cart.detailed.accessible_by(current_ability)
+    @carts = Cart.accessible_by(current_ability, :total)
     @carts = @carts.where(id: params[:ids]) if params[:ids].present?
     @total = @carts.sum('variants.price * carts.qty')
   end
 
   def bulk_delete
-    @carts = Cart.detailed.accessible_by(current_ability)
+    @carts = Cart.accessible_by(current_ability, :bulk_delete)
     @carts = @carts.where(id: params[:ids]) if params[:ids].present?
     @carts = @carts.destroy_all
+  end
+
+  def count
+    @carts = Cart.joins(:variant).accessible_by(current_ability, :count)
+    @cart_count = @carts.count
+    cookies.signed[:cart_count] = @cart_count
   end
 
   private

@@ -64,6 +64,9 @@ module GeneratedUrlHelpersModule
   def admin_users_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def bulk_delete_carts_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def buy_now_variant_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -80,6 +83,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def checkout_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def count_carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def destroy_user_session_url(*args); end
@@ -239,6 +245,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def sync_cart_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def total_carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_url(*args); end

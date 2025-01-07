@@ -12,3 +12,6 @@
 
 = turbo_stream.replace "cart-#{@cart.id}-checkbox" do
   = render Carts::Item::CheckboxComponent.new cart: @cart, invalid: cannot?(:proceed_checkout, @cart)
+
+= turbo_stream.replace "cart-count" do
+  = render "layouts/cart_count_frame", count: cookies.signed[:cart_count] || 0

@@ -1,0 +1,2 @@
+= tag.turbo_frame id: "cart-count", src: count_carts_path do
+  = render "layouts/cart_count", count: cookies.signed[:cart_count] || 0
