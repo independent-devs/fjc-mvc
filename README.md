@@ -4,11 +4,9 @@
 
 ## Sites
 
-[Felmart Shop](https://felmart.shop) (Deployed but not yet operating)
-
-Erxil Shop (Upcoming)
-
-Gem Shop (Upcoming)
+- [x] [Felmart Shop](https://felmart.shop) (Deployed but not yet operating)
+- [ ] Erxil Shop (Upcoming)
+- [ ] Gem Shop (Upcoming)
 
 ## Development Environment
 
