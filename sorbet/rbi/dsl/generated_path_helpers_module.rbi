@@ -64,6 +64,9 @@ module GeneratedPathHelpersModule
   def admin_users_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def bulk_delete_carts_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def buy_now_variant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -80,6 +83,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def checkout_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def count_carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def destroy_user_session_path(*args); end
@@ -239,6 +245,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def sync_cart_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def total_carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_path(*args); end

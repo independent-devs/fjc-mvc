@@ -28,8 +28,8 @@ class Cart < ApplicationRecord
         }
   scope :checkout_condition,
         lambda {
-          where('(variants.trackacle AND variants.count_on_hand > 0 AND carts.qty <= variants.count_on_hand) ' \
-                'OR (variants.trackacle = FALSE OR (variants.trackacle = TRUE AND variants.backorderable = TRUE))')
+          where('(variants.trackable AND variants.count_on_hand > 0 AND carts.qty <= variants.count_on_hand) ' \
+                'OR (variants.trackable = FALSE OR (variants.trackable = TRUE AND variants.backorderable = TRUE))')
             .joins(:variant)
         }
 

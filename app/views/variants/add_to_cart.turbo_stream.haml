@@ -1,2 +1,6 @@
 = turbo_stream.prepend "notification-container" do
   = render NotificationComponent.new notif_type: "success", message:
+
+= turbo_stream.replace "cart-count" do
+  = tag.turbo_frame id: "cart-count", src: count_carts_path, loading: "lazy" do
+    = render "layouts/cart_count", count: cookies.signed[:cart_count] || 0

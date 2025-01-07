@@ -9,8 +9,9 @@
           %li
             = link_to t("storefront.header.products.title"), products_path, class: "decoration-2 underline-offset-4 hover:underline"
     .flex.gap-5
-      = link_to carts_path do
+      = link_to carts_path, class: "relative" do
         = icon("fa-solid", "cart-shopping", class: "text-xl")
+        = render "layouts/cart_count_frame", count: cookies.signed[:cart_count] || 0
       %div{data: {controller: "dropdown"}, class: "relative"}
         %button{type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
           = icon("fa-regular", "user", class: "text-xl")

@@ -1,2 +1,8 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: t("carts.synced")
+
 - @carts.each do |cart|
   = turbo_stream.remove "cart-#{cart.id}"
+
+= turbo_stream.replace "cart-count" do
+  = render "layouts/cart_count_frame", count: cookies.signed[:cart_count] || 0
