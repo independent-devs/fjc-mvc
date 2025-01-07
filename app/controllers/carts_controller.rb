@@ -55,8 +55,8 @@ class CartsController < BaseController
 
   def bulk_delete
     @carts = Cart.detailed.accessible_by(current_ability)
-    @carts = @total.where(id: params[:ids]) if params[:ids].present?
-    @carts.destroy_all
+    @carts = @carts.where(id: params[:ids]) if params[:ids].present?
+    @carts = @carts.destroy_all
   end
 
   private

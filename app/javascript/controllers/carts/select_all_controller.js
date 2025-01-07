@@ -31,7 +31,7 @@ export default class extends CheckboxSelectAll {
     }
 
     this.timeout = setTimeout(() => {
-      fetch(this.element.dataset.totalUrl + "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&"), {
+      fetch(this.element.dataset.totalUrl + "?" + this.cartIDSParam, {
         method: "GET",
         headers: {
           Accept: "text/vnd.turbo-stream.html",
@@ -47,10 +47,10 @@ export default class extends CheckboxSelectAll {
   }
 
   bulkDelete() {
-    if (!this.checked.length) return;
+    if (!this.checked.length || !confirm("Are you sure to delete selected items?")) return;
 
-    fetch(this.element.dataset.bulkDeleteUrl + "?" + this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&"), {
-      method: "GET",
+    fetch(this.element.dataset.bulkDeleteUrl + "?" + this.cartIDSParam, {
+      method: "DELETE",
       headers: {
         Accept: "text/vnd.turbo-stream.html",
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
@@ -63,10 +63,15 @@ export default class extends CheckboxSelectAll {
   selectAllRefresh() {
     this.activeCountTarget.innerHTML = `Select All (${this.activeCheckbox.length})`;
     this.selectAllTarget.checked = this.activeCheckbox.length == this.checked.length;
+    this.bulkDeleteBtnTarget.disabled = !this.checked.length;
   }
 
   selectAllToggle(event) {
     this.toggle(event);
     super.refresh();
+  }
+
+  get cartIDSParam() {
+    return this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&");
   }
 }
