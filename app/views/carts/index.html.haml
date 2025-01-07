@@ -38,5 +38,5 @@
               Total (0 item)
             #carts-total{data: {"carts--select-all-target": "total"}}
               = render PriceRangeComponent.new lowest: 0, currency: MoneyRails.default_currency.id.to_s
-          %button.btn-primary.px-14
+          %button.btn-primary.disabled:bg-gray-300.disabled:cursor-not-allowed.px-14{disabled: true, data: {"carts--select-all-target": "checkoutBtn"}}
             Checkout

@@ -23,6 +23,7 @@ export default class extends CheckboxSelectAll {
   displaySelected() {
     clearTimeout(this.timeout);
     this.selectedTarget.innerHTML = `Total (${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}):`;
+    this.checkoutBtnTarget.disabled = !this.checked.length;
 
     if (!this.checked.length) {
       this.totalTarget.innerHTML = this.initTotalEl || this.totalTarget.innerHTML;
