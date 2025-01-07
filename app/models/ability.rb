@@ -23,7 +23,7 @@ class Ability
     can :variant_dropdown, Cart
 
     # Guest permission
-    guest_permission(guest_session) if guest_session.present? && user.blank?
+    guest_permission(guest_session) if user.blank? && guest_session.present?
 
     return if user.blank?
 
