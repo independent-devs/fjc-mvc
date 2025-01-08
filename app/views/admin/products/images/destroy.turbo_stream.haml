@@ -2,3 +2,5 @@
   = render NotificationComponent.new notif_type: "success", message: I18n.t('images.destroyed')
 
 = turbo_stream.remove dom_id(@image, "item")
+= turbo_stream.replace dom_id(@product, "limit") do
+  = render "limit"

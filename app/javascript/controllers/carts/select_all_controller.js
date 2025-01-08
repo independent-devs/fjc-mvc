@@ -23,6 +23,7 @@ export default class extends CheckboxSelectAll {
   displaySelected() {
     clearTimeout(this.timeout);
     this.selectedTarget.innerHTML = `Total (${this.checked.length} ${this.checked.length > 1 ? "items" : "item"}):`;
+    this.checkoutBtnTarget.disabled = !this.checked.length;
 
     if (!this.checked.length) {
       this.totalTarget.innerHTML = this.initTotalEl || this.totalTarget.innerHTML;
@@ -47,7 +48,7 @@ export default class extends CheckboxSelectAll {
   }
 
   bulkDelete() {
-    if (!this.checked.length || !confirm("Are you sure to delete selected items?")) return;
+    if (!this.checked.length || !confirm("Are you sure to delete selected carts?")) return;
 
     fetch(this.element.dataset.bulkDeleteUrl + "?" + this.cartIDSParam, {
       method: "DELETE",

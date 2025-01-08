@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   include ActiveStorage::Attached::Model
 
   # Constants
-  MAX_IMAGES = 15
+  MAX_IMAGES = 10
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
 
   # Attachments

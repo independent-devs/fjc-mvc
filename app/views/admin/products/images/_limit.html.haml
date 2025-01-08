@@ -1,9 +1,3 @@
-.text-gray-400.flex.gap-1
-  %span
-    = "LIMIT:"
-  .flex
-    #img-count
-      = @product.images.count
-    %div
-      = "/#{Product::MAX_IMAGES}"
+.text-gray-400.flex.gap-1{id: dom_id(@product, "limit")}
+  = "Limit: #{@product.images.count}/#{Product::MAX_IMAGES}"
 
