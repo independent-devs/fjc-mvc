@@ -48,7 +48,7 @@ export default class extends CheckboxSelectAll {
   }
 
   bulkDelete() {
-    if (!this.checked.length || !confirm("Are you sure to delete selected items?")) return;
+    if (!this.checked.length || !confirm("Are you sure to delete selected carts?")) return;
 
     fetch(this.element.dataset.bulkDeleteUrl + "?" + this.cartIDSParam, {
       method: "DELETE",

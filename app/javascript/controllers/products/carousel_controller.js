@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="products--carousel"
 export default class extends Controller {
-  static targets = ["main", "thumb", "items"];
+  static targets = ["main", "thumb", "items", "next", "prev"];
 
   thumbSelect(event) {
     this.displayMain(event.target.dataset.position);
@@ -13,26 +13,36 @@ export default class extends Controller {
   }
 
   hoverOutItem() {
-    this.displayMain(this.currentThumbPos.toString());
+    this.displayMain(this.currentThumbPos);
   }
 
-  nextImg() {
-    if (this.currentThumbPos === this.totalItems) return;
-    const newPos = (this.currentThumbPos + 1).toString();
-    this.displayMain(newPos);
-    this.thumbSeleted(newPos);
+  nextItem() {
+    if (this.rightMostItem >= this.totalItems || this.rightMostItem == this.totalItems) return;
+    this.itemsTarget.dataset.leftMost = this.leftMostItem + 1;
+    this.itemsTarget.dataset.rightMost = this.rightMostItem + 1;
+    this.displayThumbs();
   }
 
-  prevImg() {
-    if (this.currentThumbPos === 1) return;
-    const newPos = (this.currentThumbPos - 1).toString();
-    this.displayMain(newPos);
-    this.thumbSeleted(newPos);
+  prevItem() {
+    if (this.leftMostItem <= 1) return;
+    this.itemsTarget.dataset.leftMost = this.leftMostItem - 1;
+    this.itemsTarget.dataset.rightMost = this.rightMostItem - 1;
+    this.displayThumbs();
   }
 
-  // nextItem(event) {}
-  //
-  // prevItem(event) {}
+  displayThumbs() {
+    for (let el of this.thumbTargets) {
+      const position = this.strToNumber(el.dataset.position);
+      if (position >= this.leftMostItem && position <= this.rightMostItem) el.parentElement.classList.remove("hidden");
+      else el.parentElement.classList.add("hidden");
+    }
+
+    if (this.rightMostItem == this.totalItems) this.nextTarget.disabled = true;
+    else this.nextTarget.disabled = false;
+
+    if (this.leftMostItem <= 1) this.prevTarget.disabled = true;
+    else this.prevTarget.disabled = false;
+  }
 
   displayMain(position) {
     for (let el of this.mainTargets) {
@@ -41,15 +51,8 @@ export default class extends Controller {
     }
   }
 
-  thumbSeleted(newPosition) {
-    for (let el of this.thumbTargets) {
-      if (el.dataset.position === newPosition) el.checked = true;
-      else el.checked = false;
-    }
-  }
-
   get currentThumbPos() {
-    return this.strToNumber(this.thumbTargets.find((el) => el.checked).dataset.position);
+    return this.thumbTargets.find((el) => el.checked).dataset.position;
   }
 
   strToNumber(strNum) {
@@ -58,5 +61,17 @@ export default class extends Controller {
 
   get totalItems() {
     return this.strToNumber(this.itemsTarget.dataset.totalItems);
+  }
+
+  get maxItems() {
+    return this.strToNumber(this.itemsTarget.dataset.max);
+  }
+
+  get leftMostItem() {
+    return this.strToNumber(this.itemsTarget.dataset.leftMost);
+  }
+
+  get rightMostItem() {
+    return this.strToNumber(this.itemsTarget.dataset.rightMost);
   }
 }
