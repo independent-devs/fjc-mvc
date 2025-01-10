@@ -53,7 +53,12 @@ class Ability
     can :manage, :image
     can :manage, :stock
 
-    can :manage, Order
+    can :read, Order
+    can %i[cancel ship], Order, order_status: { name: 'pending' }
+    can %i[complete refund return], Order, order_status: { name: 'to_recieve' }
+    can :recieve, Order, order_status: { name: 'to_ship' }
+    can :refund, Order, order_status: { name: 'completed' }
+
     can :manage, Category
     can :manage, Option
     can :manage, User

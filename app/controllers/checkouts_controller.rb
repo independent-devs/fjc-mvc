@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class CheckoutController < BaseController
+class CheckoutsController < BaseController
   def show; end
 end

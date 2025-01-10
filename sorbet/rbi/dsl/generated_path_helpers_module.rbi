@@ -157,6 +157,9 @@ module GeneratedPathHelpersModule
   def preview_view_components_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def proceed_checkout_carts_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def product_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

@@ -114,6 +114,7 @@ en:
     something_went_wrong: "Something went wrong."
     destroyed: "Cart was successfully deleted."
     synced: "Cart was successfully synced and onwed."
+    no_carts_found: "No carts found."
     validate:
       qty_exceeds_stocks: "qty exceeded current stock."
       ownership_cant_be_both: "user and guest cannot be both exist on cart."
@@ -161,5 +162,7 @@ en:
     no_list_found: "No images found"
     updated: "Image was successfully updated."
     destroyed: "Image was successfully deleted."
+  checkouts:
+    created: "Checkout was successfully created."
   omniauth:
     something_went_wrong: "Something went wrong while trying to register with %{provider}"
