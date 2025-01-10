@@ -30,7 +30,7 @@
             = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary"
             %label.cursor-pointer{for: "select-all", data: {"carts--select-all-target": "activeCount"}}
               = "Select All (#{@carts.size})"
-          %button.disabled:text-gray-400.disabled:cursor-not-allowed{disabled: true, data: {action: "carts--select-all#bulkDelete", "carts--select-all-target": "bulkDeleteBtn"}}
+          %button.hover:text-red-600.disabled:text-gray-400.disabled:cursor-not-allowed{disabled: true, data: {action: "carts--select-all#bulkDelete", "carts--select-all-target": "bulkDeleteBtn"}}
             Delete
         .flex.gap-3.items-center
           .flex.items-center.gap-2

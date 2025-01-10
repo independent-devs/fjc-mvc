@@ -1,5 +1,5 @@
 = turbo_stream.prepend "notification-container" do
-  = render NotificationComponent.new notif_type: "success", message: t("carts.synced")
+  = render NotificationComponent.new notif_type: "success", message: t("carts.destroyed")
 
 - @carts.each do |cart|
   = turbo_stream.remove "cart-#{cart.id}"

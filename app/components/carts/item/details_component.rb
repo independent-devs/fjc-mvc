@@ -3,13 +3,14 @@
 
 class Carts::Item::DetailsComponent < ViewComponent::Base
   extend T::Sig
+  attr_reader :cart, :sale
 
   delegate :cannot?, :can?, to: :helpers
-  attr_reader :cart
 
-  sig { params(cart: Cart).void }
-  def initialize(cart:)
+  sig { params(cart: Cart, sale: T::Boolean).void }
+  def initialize(cart:, sale:)
     @cart = cart
+    @sale = sale
     super
   end
 end
