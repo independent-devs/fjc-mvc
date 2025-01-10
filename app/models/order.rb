@@ -7,10 +7,14 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :guest_session, optional: true
 
+  has_one :shipping_detail, as: :shippable, dependent: :destroy
   has_many :order_items, dependent: :nullify
+
+  accepts_nested_attributes_for :shipping_detail
 
   # Scopes
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
+  scope :sort_by_latest, -> { order(created_at: :desc) }
 
   # Validations
   validates :guest_session, presence: true, unless: :user
@@ -76,7 +80,11 @@ end
 # Table name: orders
 #
 #  id               :uuid             not null, primary key
-#  tag              :string
+#  internal_note    :text
+#  logistic_ref     :string
+#  logistic_url     :string
+#  refund_reason    :text
+#  return_reason    :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  guest_session_id :uuid

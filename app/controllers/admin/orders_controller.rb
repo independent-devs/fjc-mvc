@@ -4,7 +4,7 @@ class Admin::OrdersController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @orders = Order.with_status.accessible_by(current_ability)
+    @orders = Order.with_status.sort_by_latest.accessible_by(current_ability)
     @orders = @orders.where(order_statuses: { name: params[:status] }) if params[:status].present?
 
     @pagy, @orders = pagy(@orders)
@@ -63,6 +63,6 @@ class Admin::OrdersController < Admin::BaseController
   private
 
   def order_params
-    params.require(:product).permit(logistic: %i[name url])
+    params.require(:product).permit(:logistic_url, :logistic_ref)
   end
 end

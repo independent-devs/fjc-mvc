@@ -6,7 +6,11 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.references :user, foreign_key: true, type: :uuid
       t.references :order_status, null: false, foreign_key: true, type: :uuid
       t.references :guest_session, foreign_key: true, type: :uuid
-      t.string :tag
+      t.string :logistic_url
+      t.string :logistic_ref
+      t.text :refund_reason
+      t.text :return_reason
+      t.text :internal_note
 
       t.timestamps
     end
