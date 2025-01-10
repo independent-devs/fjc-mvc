@@ -18,6 +18,26 @@ class Order < ApplicationRecord
 
   validate :validate_ownership
 
+  def self.checkout(carts, parent)
+    Order.transaction do
+      order = Order.build
+      order.guest_session = parent if parent.instance_of?(GuestSession)
+      order.user = parent if parent.instance_of?(User)
+      order.order_status = OrderStatus.find_by(name: 'pending')
+      order.save!
+
+      carts.each do |cart|
+        order.order_items.create!(variant: cart.variant, qty: cart.qty, price: cart.variant.price)
+        cart.destroy
+      end
+
+      order
+    rescue StandardError => e
+      logger.warn e
+      nil
+    end
+  end
+
   private
 
   def validate_ownership

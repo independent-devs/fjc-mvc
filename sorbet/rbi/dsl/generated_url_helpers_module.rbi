@@ -157,6 +157,9 @@ module GeneratedUrlHelpersModule
   def preview_view_components_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def proceed_checkout_carts_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def product_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

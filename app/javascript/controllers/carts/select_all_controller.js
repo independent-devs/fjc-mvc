@@ -61,6 +61,17 @@ export default class extends CheckboxSelectAll {
       .then((html) => Turbo.renderStreamMessage(html));
   }
 
+  proceedCheckout() {
+    if (!this.checked.length) return;
+
+    fetch(this.element.dataset.proceedCheckoutUrl + "?" + this.cartIDSParam, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+      },
+    }).then((res) => Turbo.visit(res.url));
+  }
+
   selectAllRefresh() {
     this.activeCountTarget.innerHTML = `Select All (${this.activeCheckbox.length})`;
     this.selectAllTarget.checked = this.activeCheckbox.length == this.checked.length;
