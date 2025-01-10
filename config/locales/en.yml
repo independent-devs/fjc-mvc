@@ -130,10 +130,11 @@ en:
     no_list_found: "No orders found"
     table: 
       thead:
-        order_id: "Order ID"
+        details: "Details"
         total: "Total"
         status: "Status"
         created_at: "Created At"
+        ordered_at: "Ordered At"
         user: "User"
     validate:
       ownership_cant_be_both: "user and guest cannot be both exist on order."
