@@ -14,14 +14,6 @@
 }
 
 @layer components {
-  .turbo-progress-bar {
-    @apply bg-primary;
-  }
-
-  #notification-container {
-    @apply absolute z-[9999] top-6 right-7;
-  }
-
   .btn-primary {
     @apply bg-primary py-3 px-6 rounded-sm text-white w-fit transition-all ease-in-out duration-100 text-sm;
   }
@@ -136,13 +128,29 @@
     @apply divide-y;
   }
 
+  .variant-radio {
+    @apply rounded-sm bg-white drop-shadow-sm ring-1 ring-gray-400 cursor-pointer peer-disabled:text-gray-300 peer-disabled:ring-gray-300 peer-checked:text-primary peer-checked:ring-primary px-4 py-2.5 text-[15px] peer-checked:bg-primary/[.04];
+  }
+
+  .errors {
+    @apply py-2 px-3 rounded-sm border border-red-600 bg-red-600/10 text-red-600 text-[15px];
+  }
+
+  .tab {
+    @apply -mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500 w-full;
+  }
+
+  .tab.active {
+    @apply border-primary text-primary;
+  }
+
   /* Public Product */
   #public-price {
     @apply text-3xl font-medium text-primary;
   }
 
-  .variant-radio {
-    @apply rounded-sm bg-white drop-shadow-sm ring-1 ring-gray-400 cursor-pointer peer-disabled:text-gray-300 peer-disabled:ring-gray-300 peer-checked:text-primary peer-checked:ring-primary px-4 py-2.5 text-[15px] peer-checked:bg-primary/[.04];
+  #notification-container {
+    @apply absolute z-[9999] top-6 right-7;
   }
 
   #quantity-container {
@@ -203,10 +211,6 @@
     @apply appearance-none;
   }
 
-  .errors {
-    @apply py-2 px-3 rounded-sm border border-red-600 bg-red-600/10 text-red-600 text-[15px];
-  }
-
   #carts-total {
     @apply text-primary text-xl;
   }
@@ -251,6 +255,12 @@ dialog[data-dialog-target="dialog"][closing] {
   animation: dialog-fadeout 200ms forwards;
 }
 
+/* Turbo */
+.turbo-progress-bar {
+  @apply bg-primary;
+}
+
+/* Pagy */
 .pagy-nav {
   @apply flex gap-2;
 }

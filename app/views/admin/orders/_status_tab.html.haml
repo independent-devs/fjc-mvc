@@ -1,18 +1,18 @@
 .font-medium.text-center.border-b-2.border-gray-200
   .flex.text-sm.gap-1
-    = link_to admin_orders_path, class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status].nil? ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path, class: "w-fit tab #{params[:status].nil? ? "active" : ""}" do
       = t("orders.tabs.all")
-    = link_to admin_orders_path(status: :pending), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "pending" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :pending), class: "w-fit tab #{"active" if params[:status] == "pending"}" do
       = t("orders.tabs.pending")
-    = link_to admin_orders_path(status: :to_ship), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "to_ship" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :to_ship), class: "w-fit tab #{"active" if params[:status] == "to_ship"}" do
       = t("orders.tabs.to_ship")
-    = link_to admin_orders_path(status: :to_recieve), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "to_recieve" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :to_recieve), class: "w-fit tab #{"active" if params[:status] == "to_recieve"}" do
       = t("orders.tabs.to_recieve")
-    = link_to admin_orders_path(status: :completed), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "completed" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :completed), class: "w-fit tab #{"active" if params[:status] == "completed"}" do
       = t("orders.tabs.completed")
-    = link_to admin_orders_path(status: :cancelled), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "cancelled" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :cancelled), class: "w-fit tab #{"active" if params[:status] == "cancelled"}" do
       = t("orders.tabs.cancelled")
-    = link_to admin_orders_path(status: :returned), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "returned" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :returned), class: "w-fit tab #{"active" if params[:status] == "returned"}" do
       = t("orders.tabs.returned")
-    = link_to admin_orders_path(status: :refunded), class: "-mb-0.5 transition-colors text-nowrap duration-150 text-center inline-block px-4 py-3 border-b-2 rounded-t-lg #{params[:status] == "refunded" ? "border-primary text-primary" : "text-gray-600 hover:text-gray-900 border-transparent hover:border-gray-500"}" do
+    = link_to admin_orders_path(status: :refunded), class: "w-fit tab #{"active" if params[:status] == "refunded"}" do
       = t("orders.tabs.refunded")

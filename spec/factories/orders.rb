@@ -13,7 +13,11 @@ end
 # Table name: orders
 #
 #  id               :uuid             not null, primary key
-#  tag              :string
+#  internal_note    :text
+#  logistic_ref     :string
+#  logistic_url     :string
+#  refund_reason    :text
+#  return_reason    :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  guest_session_id :uuid

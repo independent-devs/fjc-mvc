@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -114,7 +114,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.uuid "user_id"
     t.uuid "order_status_id", null: false
     t.uuid "guest_session_id"
-    t.string "tag"
+    t.string "logistic_url"
+    t.string "logistic_ref"
+    t.text "refund_reason"
+    t.text "return_reason"
+    t.text "internal_note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
@@ -172,6 +176,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_seos_on_product_id"
+  end
+
+  create_table "shipping_details", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "shippable_type", null: false
+    t.uuid "shippable_id", null: false
+    t.uuid "user_id"
+    t.string "fullname", null: false
+    t.string "contact_no", null: false
+    t.string "email"
+    t.string "house_no"
+    t.string "village", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "country", null: false
+    t.string "postal_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shippable_type", "shippable_id"], name: "index_shipping_details_on_shippable"
+    t.index ["user_id"], name: "index_shipping_details_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -243,6 +266,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_17_165915) do
   add_foreign_key "product_options", "options"
   add_foreign_key "product_options", "products"
   add_foreign_key "seos", "products"
+  add_foreign_key "shipping_details", "users"
   add_foreign_key "variant_option_values", "product_options"
   add_foreign_key "variant_option_values", "variants"
   add_foreign_key "variants", "products"
