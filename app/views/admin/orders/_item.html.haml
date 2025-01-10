@@ -2,5 +2,8 @@
   %td
   %td= order.status
   %td
-  %td= order.created_at
+  %td= "#{time_ago_in_words(order.created_at)} ago"
   %td
+    .flex.gap-3.text-gray-400
+      = link_to admin_order_path(order), class: "hover:text-primary transition-colors" do
+        = icon("fa-solid", "edit")
