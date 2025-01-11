@@ -5,7 +5,7 @@ class ShippingDetail < ApplicationRecord
   belongs_to :shippable, polymorphic: true
   belongs_to :user, optional: true
 
-  validates :fullname, :street, :contact_no, :barangay, :city, :state, :country, presence: true
+  validates :fullname, :street, :phone_no, :barangay, :city, :state, :country, presence: true
   validates :phone_no, phone: { possible: true, message: I18n.t('devise.failure.phone_no.invalid') }
 end
 

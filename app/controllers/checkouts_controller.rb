@@ -33,7 +33,7 @@ class CheckoutsController < BaseController
 
   def shipping_details_params
     params.require(:order)
-          .permit(shipping_detail_attributes: %i[id fullname contact_no street barangay city state country postal_code])
+          .permit(shipping_detail_attributes: %i[id fullname phone_no street barangay city state country postal_code])
   end
 
   def payment_method_params
