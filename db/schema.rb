@@ -183,10 +183,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.uuid "shippable_id", null: false
     t.uuid "user_id"
     t.string "fullname", null: false
-    t.string "contact_no", null: false
+    t.string "phone_no", null: false
     t.string "email"
-    t.string "house_no"
-    t.string "village", null: false
+    t.string "street", null: false
+    t.string "barangay", null: false
     t.string "city", null: false
     t.string "state", null: false
     t.string "country", null: false

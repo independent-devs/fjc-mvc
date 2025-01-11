@@ -3,7 +3,18 @@
 root 'home#index'
 
 resources :products, only: %i[index show]
-resources :checkouts, path: :checkout, only: :show
+resources :pilipinas, param: :name, only: %i[] do
+  member do
+    get :cities
+    get :barangays
+  end
+end
+resources :checkouts, path: :checkout, only: :show do
+  member do
+    patch :shipping_details
+    patch :payment_method
+  end
+end
 
 resources :carts, only: %i[index update destroy] do
   collection do

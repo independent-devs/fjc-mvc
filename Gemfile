@@ -119,7 +119,8 @@ gem 'pagy', '~> 6.4'
 gem 'phonelib', '~> 0.8.4'
 
 # Country, state/province and city for selection
-gem 'city-state', '~> 1.1'
+gem 'countries', '~> 7.1'
+gem 'pilipinas', '~> 0.1.2'
 
 # Currency
 gem 'money-rails', '~> 1.15'

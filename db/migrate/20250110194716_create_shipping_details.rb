@@ -6,10 +6,10 @@ class CreateShippingDetails < ActiveRecord::Migration[7.1]
       t.references :shippable, polymorphic: true, null: false, type: :uuid
       t.references :user, foreign_key: true, type: :uuid
       t.string :fullname, null: false
-      t.string :contact_no, null: false
+      t.string :phone_no, null: false
       t.string :email
-      t.string :house_no
-      t.string :village, null: false
+      t.string :street, null: false
+      t.string :barangay, null: false
       t.string :city, null: false
       t.string :state, null: false
       t.string :country, null: false

@@ -317,3 +317,7 @@ dialog[data-dialog-target="dialog"][closing] {
 .refunded-status {
   @apply w-fit bg-pink-600 px-3 py-0.5 rounded-lg text-sm text-white;
 }
+
+.ss-option.ss-selected:empty {
+  @apply !hidden;
+}
