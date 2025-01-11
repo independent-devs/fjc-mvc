@@ -142,14 +142,8 @@
   right: 0;
   left: auto;
 }
-.iti--allow-dropdown
-  input[disabled]
-  + .iti__flag-container:hover
-  .iti__selected-flag,
-.iti--allow-dropdown
-  input[readonly]
-  + .iti__flag-container:hover
-  .iti__selected-flag,
+.iti--allow-dropdown input[disabled] + .iti__flag-container:hover .iti__selected-flag,
+.iti--allow-dropdown input[readonly] + .iti__flag-container:hover .iti__selected-flag,
 .iti__flag.iti__np {
   background-color: transparent;
 }
