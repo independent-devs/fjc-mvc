@@ -27,7 +27,7 @@
             .field{"data-controller": "phone"}
               = sd.label :phone_no, "Phone No."
               = sd.phone_field  :phone_no, required: true, autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
-              = sd.hidden_field :phone_no, "data-phone-target": "hidden", id: "hidden-field"
+              = sd.hidden_field :phone_no, "data-phone-target": "hidden"
           .field
             = sd.label :street, "Street Name, Building, House No."
             = sd.text_field :street, required: true
