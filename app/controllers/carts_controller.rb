@@ -52,7 +52,7 @@ class CartsController < BaseController
     @carts = @carts.where(id: params[:ids]) if params[:ids].present?
 
     if @carts.count.positive? && (order = Order.checkout(@carts, current_user || guest_session)).present?
-      redirect_to checkout_path(order), notice: I18n.t('checkouts.created')
+      redirect_to checkout_url(order), notice: I18n.t('checkouts.created')
     else
       redirect_to carts_path, alert: I18n.t('error.something_went_wrong')
     end

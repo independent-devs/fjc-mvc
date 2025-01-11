@@ -128,12 +128,15 @@ en:
   orders:
     title: "Orders"
     no_list_found: "No orders found"
+    shipping_details_added: "Successfully added Shipping details"
+    payment_addded: "Successfully added payment method"
     table: 
       thead:
-        order_id: "Order ID"
+        customer: "Customer"
         total: "Total"
         status: "Status"
         created_at: "Created At"
+        ordered_at: "Ordered At"
         user: "User"
     validate:
       ownership_cant_be_both: "user and guest cannot be both exist on order."
