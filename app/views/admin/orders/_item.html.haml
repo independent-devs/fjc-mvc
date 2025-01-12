@@ -1,5 +1,10 @@
 %tr
   %td
+    - if order.shipping_detail.present?
+      = order.shipping_detail.fullname
+    - else
+      .text-red-600
+        Not yet placed
   %td
     .block{class: "#{order.status}-status"}
       = order.status

@@ -42,7 +42,7 @@ class Ability
     # Order
     can(:read, Order, user:)
     can(:cancel, Order, user:, order_status: { name: 'pending' })
-    can(:place_order, Order, user:)
+    can(:place_order, Order, user:, placed_at: nil, order_status: { name: 'pending' })
   end
 
   sig { params(user: T.nilable(User)).void }
@@ -81,7 +81,7 @@ class Ability
     # Order
     can(:read, Order, guest_session:)
     can(:cancel, Order, guest_session:, order_status: { name: 'pending' })
-    can(:place_order, Order, guest_session:)
+    can(:place_order, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
   end
 
   sig { params(portal: Integer).returns(T::Boolean) }

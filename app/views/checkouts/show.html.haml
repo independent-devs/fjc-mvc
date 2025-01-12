@@ -1,7 +1,7 @@
 - title "Checkout"
 
 .w-full.margin-max-screen.flex.flex-col.gap-6.py-6
-  - unless @order.shipping_detail&.persisted? && @order.payment_method&.persisted?
+  - if can?(:place_order, @order)
     = form_for(@order, url: place_order_checkout_path(@order), html: {method: "POST", data: {controller: "checkout--shipping-details"}}) do |f|
       = f.fields_for :shipping_detail, @order.shipping_detail || ShippingDetail.new do |sd|
         .grid.gap-2

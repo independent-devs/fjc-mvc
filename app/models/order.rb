@@ -14,8 +14,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :shipping_detail
 
   # Scopes
-  scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
   scope :sort_by_latest, -> { order(created_at: :desc) }
+  scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
 
   # Validations
   validates :guest_session, presence: true, unless: :user
