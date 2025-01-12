@@ -134,8 +134,8 @@ en:
         customer: "Customer"
         total: "Total"
         status: "Status"
+        placed_at: "Placed At"
         created_at: "Created At"
-        ordered_at: "Ordered At"
         user: "User"
     validate:
       ownership_cant_be_both: "user and guest cannot be both exist on order."

@@ -30,11 +30,12 @@ class Order < ApplicationRecord
       order = Order.build
       order.guest_session = parent if parent.instance_of?(GuestSession)
       order.user = parent if parent.instance_of?(User)
-      order.order_status = OrderStatus.find_by(name: 'pending')
+      order.order_status = OrderStatus.pending
       order.save!
 
       carts.each do |cart|
         order.order_items.create!(variant: cart.variant, qty: cart.qty, price: cart.variant.price)
+        cart.variant.update!(count_on_hand: cart.variant.count_on_hand - cart.qty) if cart.variant.trackable
         cart.destroy
       end
 

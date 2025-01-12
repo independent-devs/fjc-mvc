@@ -8,6 +8,10 @@ class OrderStatus < ApplicationRecord
   # Validations
   validates :name, presence: true, uniqueness: true
 
+  def self.pending
+    find_by(name: 'pending')
+  end
+
   def self.to_ship
     find_by(name: 'to_ship')
   end
