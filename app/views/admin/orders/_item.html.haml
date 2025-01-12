@@ -4,7 +4,12 @@
     .block{class: "#{order.status}-status"}
       = order.status
   %td
-  %td= "#{time_ago_in_words(order.created_at)} ago"
+  %td
+    - if order.placed_at.present? 
+      = "#{time_ago_in_words(order.placed_at)} ago"
+    - else
+      .text-red-600
+        Not yet placed
   %td
     .flex.gap-3.text-gray-400
       = link_to admin_order_path(order), class: "hover:text-primary transition-colors" do

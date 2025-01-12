@@ -115,6 +115,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.uuid "order_status_id", null: false
     t.uuid "guest_session_id"
     t.uuid "payment_method_id"
+    t.datetime "placed_at"
     t.string "logistic_url"
     t.string "logistic_ref"
     t.text "refund_reason"

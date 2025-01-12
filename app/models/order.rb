@@ -20,6 +20,8 @@ class Order < ApplicationRecord
   # Validations
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
+  validates :shipping_detail, presence: true, if: :placed_at
+  validates :payment_method, presence: true, if: :placed_at
 
   validate :validate_ownership
 
@@ -60,6 +62,7 @@ end
 #  internal_note     :text
 #  logistic_ref      :string
 #  logistic_url      :string
+#  placed_at         :datetime
 #  refund_reason     :text
 #  return_reason     :text
 #  created_at        :datetime         not null

@@ -291,31 +291,31 @@ dialog[data-dialog-target="dialog"][closing] {
 
 /* Order Status */
 .pending-status {
-  @apply w-fit bg-yellow-500 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-yellow-500 px-2 rounded-md text-sm text-white;
 }
 
 .to_ship-status {
-  @apply w-fit bg-purple-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-purple-600 px-2 rounded-md text-sm text-white;
 }
 
 .to_recieve-status {
-  @apply w-fit bg-sky-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-sky-600 px-2 rounded-md text-sm text-white;
 }
 
 .completed-status {
-  @apply w-fit bg-green-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-green-600 px-2 rounded-md text-sm text-white;
 }
 
 .cancelled-status {
-  @apply w-fit bg-red-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-red-600 px-2 rounded-md text-sm text-white;
 }
 
 .returned-status {
-  @apply w-fit bg-fuchsia-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-fuchsia-600 px-2 rounded-md text-sm text-white;
 }
 
 .refunded-status {
-  @apply w-fit bg-pink-600 px-3 py-0.5 rounded-lg text-sm text-white;
+  @apply w-fit h-fit bg-pink-600 px-2 rounded-md text-sm text-white;
 }
 
 .ss-option.ss-selected:empty {

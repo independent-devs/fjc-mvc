@@ -8,7 +8,7 @@ class CheckoutsController < BaseController
   def place_order
     authorize! :place_order, @order
 
-    if @order.update(checkout_params)
+    if @order.update(checkout_params.merge!({ placed_at: DateTime.now }))
       redirect_to orders_url, notice: I18n.t('orders.order_placed')
     else
       render :show, status: :unprocessable_entity
