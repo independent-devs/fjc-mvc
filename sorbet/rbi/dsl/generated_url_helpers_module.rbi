@@ -151,7 +151,7 @@ module GeneratedUrlHelpersModule
   def orders_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def payment_method_checkout_url(*args); end
+  def place_order_checkout_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def position_admin_product_image_url(*args); end
@@ -251,9 +251,6 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def shipping_details_checkout_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def sync_all_carts_url(*args); end
