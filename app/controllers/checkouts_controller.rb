@@ -37,6 +37,6 @@ class CheckoutsController < BaseController
   end
 
   def payment_method_params
-    params.require(:order).permit
+    params.require(:order).permit(:payment_method_id)
   end
 end

@@ -64,6 +64,9 @@ module GeneratedPathHelpersModule
   def admin_users_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def barangays_pilipina_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def bulk_delete_carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -83,6 +86,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def checkout_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def cities_pilipina_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def count_carts_path(*args); end
@@ -143,6 +149,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def orders_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def payment_method_checkout_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def position_admin_product_image_path(*args); end
@@ -242,6 +251,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def shipping_details_checkout_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def sync_all_carts_path(*args); end

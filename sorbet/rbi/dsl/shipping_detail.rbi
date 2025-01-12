@@ -541,6 +541,51 @@ class ShippingDetail
 
   module GeneratedAttributeMethods
     sig { returns(::String) }
+    def barangay; end
+
+    sig { params(value: ::String).returns(::String) }
+    def barangay=(value); end
+
+    sig { returns(T::Boolean) }
+    def barangay?; end
+
+    sig { returns(T.nilable(::String)) }
+    def barangay_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def barangay_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def barangay_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def barangay_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def barangay_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def barangay_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def barangay_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def barangay_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def barangay_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def barangay_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def barangay_was; end
+
+    sig { void }
+    def barangay_will_change!; end
+
+    sig { returns(::String) }
     def city; end
 
     sig { params(value: ::String).returns(::String) }
@@ -584,51 +629,6 @@ class ShippingDetail
 
     sig { void }
     def city_will_change!; end
-
-    sig { returns(::String) }
-    def contact_no; end
-
-    sig { params(value: ::String).returns(::String) }
-    def contact_no=(value); end
-
-    sig { returns(T::Boolean) }
-    def contact_no?; end
-
-    sig { returns(T.nilable(::String)) }
-    def contact_no_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def contact_no_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def contact_no_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def contact_no_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def contact_no_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def contact_no_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def contact_no_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def contact_no_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def contact_no_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def contact_no_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def contact_no_was; end
-
-    sig { void }
-    def contact_no_will_change!; end
 
     sig { returns(::String) }
     def country; end
@@ -810,51 +810,6 @@ class ShippingDetail
     sig { void }
     def fullname_will_change!; end
 
-    sig { returns(T.nilable(::String)) }
-    def house_no; end
-
-    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
-    def house_no=(value); end
-
-    sig { returns(T::Boolean) }
-    def house_no?; end
-
-    sig { returns(T.nilable(::String)) }
-    def house_no_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def house_no_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def house_no_came_from_user?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def house_no_change; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def house_no_change_to_be_saved; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def house_no_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def house_no_in_database; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def house_no_previous_change; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def house_no_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def house_no_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def house_no_was; end
-
-    sig { void }
-    def house_no_will_change!; end
-
     sig { returns(::String) }
     def id; end
 
@@ -945,6 +900,51 @@ class ShippingDetail
     sig { void }
     def id_will_change!; end
 
+    sig { returns(::String) }
+    def phone_no; end
+
+    sig { params(value: ::String).returns(::String) }
+    def phone_no=(value); end
+
+    sig { returns(T::Boolean) }
+    def phone_no?; end
+
+    sig { returns(T.nilable(::String)) }
+    def phone_no_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def phone_no_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def phone_no_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def phone_no_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def phone_no_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def phone_no_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def phone_no_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def phone_no_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def phone_no_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def phone_no_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def phone_no_was; end
+
+    sig { void }
+    def phone_no_will_change!; end
+
     sig { returns(T.nilable(::String)) }
     def postal_code; end
 
@@ -991,10 +991,10 @@ class ShippingDetail
     def postal_code_will_change!; end
 
     sig { void }
-    def restore_city!; end
+    def restore_barangay!; end
 
     sig { void }
-    def restore_contact_no!; end
+    def restore_city!; end
 
     sig { void }
     def restore_country!; end
@@ -1009,13 +1009,13 @@ class ShippingDetail
     def restore_fullname!; end
 
     sig { void }
-    def restore_house_no!; end
-
-    sig { void }
     def restore_id!; end
 
     sig { void }
     def restore_id_value!; end
+
+    sig { void }
+    def restore_phone_no!; end
 
     sig { void }
     def restore_postal_code!; end
@@ -1030,25 +1030,25 @@ class ShippingDetail
     def restore_state!; end
 
     sig { void }
+    def restore_street!; end
+
+    sig { void }
     def restore_updated_at!; end
 
     sig { void }
     def restore_user_id!; end
 
-    sig { void }
-    def restore_village!; end
+    sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_barangay; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_barangay?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_city; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_city?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_contact_no; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_contact_no?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_country; end
@@ -1074,12 +1074,6 @@ class ShippingDetail
     sig { returns(T::Boolean) }
     def saved_change_to_fullname?; end
 
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def saved_change_to_house_no; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_house_no?; end
-
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_id; end
 
@@ -1091,6 +1085,12 @@ class ShippingDetail
 
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_phone_no; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_phone_no?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_postal_code; end
@@ -1116,6 +1116,12 @@ class ShippingDetail
     sig { returns(T::Boolean) }
     def saved_change_to_state?; end
 
+    sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_street; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_street?; end
+
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_updated_at; end
 
@@ -1127,12 +1133,6 @@ class ShippingDetail
 
     sig { returns(T::Boolean) }
     def saved_change_to_user_id?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_village; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_village?; end
 
     sig { returns(::String) }
     def shippable_id; end
@@ -1269,6 +1269,51 @@ class ShippingDetail
     sig { void }
     def state_will_change!; end
 
+    sig { returns(::String) }
+    def street; end
+
+    sig { params(value: ::String).returns(::String) }
+    def street=(value); end
+
+    sig { returns(T::Boolean) }
+    def street?; end
+
+    sig { returns(T.nilable(::String)) }
+    def street_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def street_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def street_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def street_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def street_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def street_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def street_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def street_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def street_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def street_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def street_was; end
+
+    sig { void }
+    def street_will_change!; end
+
     sig { returns(::ActiveSupport::TimeWithZone) }
     def updated_at; end
 
@@ -1359,56 +1404,11 @@ class ShippingDetail
     sig { void }
     def user_id_will_change!; end
 
-    sig { returns(::String) }
-    def village; end
-
-    sig { params(value: ::String).returns(::String) }
-    def village=(value); end
-
     sig { returns(T::Boolean) }
-    def village?; end
-
-    sig { returns(T.nilable(::String)) }
-    def village_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def village_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def village_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def village_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def village_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def village_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def village_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def village_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def village_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def village_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def village_was; end
-
-    sig { void }
-    def village_will_change!; end
+    def will_save_change_to_barangay?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_city?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_contact_no?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_country?; end
@@ -1423,13 +1423,13 @@ class ShippingDetail
     def will_save_change_to_fullname?; end
 
     sig { returns(T::Boolean) }
-    def will_save_change_to_house_no?; end
-
-    sig { returns(T::Boolean) }
     def will_save_change_to_id?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_id_value?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_phone_no?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_postal_code?; end
@@ -1444,13 +1444,13 @@ class ShippingDetail
     def will_save_change_to_state?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_street?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_user_id?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_village?; end
   end
 
   module GeneratedRelationMethods
