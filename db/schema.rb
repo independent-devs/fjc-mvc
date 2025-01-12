@@ -114,6 +114,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.uuid "user_id"
     t.uuid "order_status_id", null: false
     t.uuid "guest_session_id"
+    t.uuid "payment_method_id"
     t.string "logistic_url"
     t.string "logistic_ref"
     t.text "refund_reason"
@@ -123,8 +124,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.datetime "updated_at", null: false
     t.index ["guest_session_id"], name: "index_orders_on_guest_session_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
+    t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
     t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "order_ownership_cant_be_both"
+  end
+
+  create_table "payment_methods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code", null: false
+    t.boolean "enable", default: false, null: false
+    t.json "credentials"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_payment_methods_on_code", unique: true
+    t.index ["name"], name: "index_payment_methods_on_name"
   end
 
   create_table "product_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -260,6 +273,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
   add_foreign_key "order_items", "variants"
   add_foreign_key "orders", "guest_sessions"
   add_foreign_key "orders", "order_statuses"
+  add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"

@@ -13,7 +13,7 @@ class Admin::OrdersController < Admin::BaseController
   def show; end
 
   def ship
-    if @order.update(order_status: Order.to_ship)
+    if @order.update(order_status: OrderStatus.to_ship)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity
@@ -21,7 +21,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def recieve
-    if @order.update(order_status: Order.to_recieve)
+    if @order.update(order_status: OrderStatus.to_recieve)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity
@@ -29,7 +29,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def complete
-    if @order.update(order_status: Order.completed)
+    if @order.update(order_status: OrderStatus.completed)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity
@@ -37,7 +37,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def cancel
-    if @order.update(order_status: Order.cancelled)
+    if @order.update(order_status: OrderStatus.cancelled)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity
@@ -45,7 +45,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def return
-    if @order.update(order_status: Order.returned)
+    if @order.update(order_status: OrderStatus.returned)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity
@@ -53,7 +53,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def refund
-    if @order.update(order_status: Order.refunded)
+    if @order.update(order_status: OrderStatus.refunded)
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity

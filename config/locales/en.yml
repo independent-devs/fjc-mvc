@@ -128,8 +128,7 @@ en:
   orders:
     title: "Orders"
     no_list_found: "No orders found"
-    shipping_details_added: "Successfully added Shipping details"
-    payment_addded: "Successfully added payment method"
+    order_placed: "Order has been placed succesfully"
     table: 
       thead:
         customer: "Customer"

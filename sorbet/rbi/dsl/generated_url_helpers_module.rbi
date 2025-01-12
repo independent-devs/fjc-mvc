@@ -64,6 +64,9 @@ module GeneratedUrlHelpersModule
   def admin_users_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def barangays_pilipina_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def bulk_delete_carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -83,6 +86,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def checkout_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def cities_pilipina_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def count_carts_url(*args); end
@@ -143,6 +149,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def orders_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def place_order_checkout_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def position_admin_product_image_url(*args); end

@@ -1,25 +1,14 @@
 - title "Checkout"
 
 .w-full.margin-max-screen.flex.flex-col.gap-6.py-6
-  %ol.items-center.w-full.flex.sm:gap-18.gap-10
-    %li.flex.items-center.text-primary{class: "space-x-2.5"}
-      %span.font-semibold.flex.items-center.justify-center.w-8.h-8.border.border-primary.rounded-full.shrink-0
-        1
-      %span
-        %h3.font-semibold.leading-tight Shipping Details
-        %p.text-sm Fill shipping details
-    %li.flex.items-center.text-gray-500{class: "space-x-2.5"}
-      %span.font-semibold.flex.items-center.justify-center.w-8.h-8.border.border-gray-500.rounded-full.shrink-0
-        2
-      %span
-        %h3.font-semibold.leading-tight Payment Method
-        %p.text-sm Select payment method
-  .w-full
-    = form_for(@order, url: shipping_details_checkout_path(@order), html: {data: {controller: "checkout--shipping-details"}}) do |f|
+  - unless @order.shipping_detail&.persisted? && @order.payment_method&.persisted?
+    = form_for(@order, url: place_order_checkout_path(@order), html: {method: "POST", data: {controller: "checkout--shipping-details"}}) do |f|
       = f.fields_for :shipping_detail, @order.shipping_detail || ShippingDetail.new do |sd|
         .grid.gap-2
           - if @order.errors.present?
             = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
+          .font-medium.mb-1
+            Shipping Details
           .grid.grid-cols-2.gap-3
             .field
               = sd.label :fullname, "Full Name"
@@ -45,4 +34,19 @@
             = sd.label :barangay
             = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
           = sd.hidden_field :country, value: "Philippines", readonly: true
-        = f.submit "Submit and Proceed", class: "mt-5 btn-primary cursor-pointer w-fit"
+          .grid.gap-2.mt-2
+            .font-medium.mb-1
+              Payment Method
+            - PaymentMethod.all.each do |pm|
+              .block
+                = f.radio_button :payment_method_id, pm.id, id: pm.id, disabled: !pm.enable, checked: pm.code == "COD", class: "hidden peer"
+                = f.label :payment_method_id, for: pm.id, class: "flex border rounded-md peer-checked:text-primary peer-checked:border-primary peer-disabled:text-gray-300 peer-disabled:cursor-not-allowed px-4 py-3 font-medium" do
+                  = pm.name
+                  - if !pm.enable
+                    = "(Not available)"
+          = f.submit "Place Order", class: "mt-5 btn-primary cursor-pointer w-fit px-10"
+  - else 
+    .grid.place-items-center.py-10
+      .text-2xl.text-primary.font-semib1old
+        Order already been placed.
+      = link_to "Go to my orders", orders_path, class: "mt-3 btn-primary w-fit"
