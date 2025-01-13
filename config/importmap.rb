@@ -21,3 +21,5 @@ pin "slim-select" # @2.8.2
 pin "@stimulus-components/checkbox-select-all", to: "@stimulus-components--checkbox-select-all.js" # @6.0.0
 pin "@stimulus-components/dropdown", to: "@stimulus-components--dropdown.js" # @3.0.0
 pin "@stimulus-components/password-visibility", to: "@stimulus-components--password-visibility.js" # @3.0.0
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.esm.js"

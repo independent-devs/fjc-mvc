@@ -73,6 +73,10 @@
   border: 1.2px solid var(--ss-disabled-border);
 }
 
+.ss-option.ss-selected:empty {
+  display: none !important;
+}
+
 .ss-main.ss-disabled .ss-values .ss-disabled {
   color: var(--ss-font-color);
 }

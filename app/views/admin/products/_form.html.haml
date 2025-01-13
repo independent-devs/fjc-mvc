@@ -5,10 +5,9 @@
     .field
       = f.label :name
       = f.text_field :name, required: true, placeholder: "e.g. Nike Shoe"
-    = f.fields_for :description, @product.description || Description.new do |desc|
-      .field
-        = desc.label :description
-        = desc.text_area :description, rows: 12
+    .field
+      = f.label :description
+      = f.rich_text_area :description, placeholder: "Write here..."
     .flex.gap-3.items-center.pt-2
       = f.check_box :has_variant, class: "checkbox-primary", data: {action: "admin--products--form#hasVariantToogle"}
       = f.label :has_variant, "With variants"

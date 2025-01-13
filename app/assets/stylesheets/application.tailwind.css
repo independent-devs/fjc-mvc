@@ -318,6 +318,3 @@ dialog[data-dialog-target="dialog"][closing] {
   @apply w-fit h-fit bg-pink-600 px-2 rounded-md text-sm text-white;
 }
 
-.ss-option.ss-selected:empty {
-  @apply !hidden;
-}
