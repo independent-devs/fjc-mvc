@@ -4,7 +4,7 @@
       - PaymentMethod.all.each do |pm|
         .block
           = f.radio_button :payment_method_id, pm.id, id: pm.id, disabled: !pm.enable, checked: pm.code == "COD", class: "hidden peer"
-          = f.label :payment_method_id, for: pm.id, class: "flex border rounded-md peer-checked:text-primary peer-checked:border-primary peer-disabled:text-gray-300 peer-disabled:cursor-not-allowed px-5 py-4 font-medium" do
+          = f.label :payment_method_id, for: pm.id, class: "flex border rounded-md peer-checked:text-primary peer-checked:border-primary peer-disabled:text-gray-300 peer-disabled:cursor-not-allowed px-5 py-4 font-medium cursor-pointer" do
             = pm.name
             - if !pm.enable
               = "(Not available)"

@@ -11,7 +11,6 @@ RSpec.describe Product, type: :model do
     expect(product.currency).to be_present
 
     # check nested attributes
-    expect(product.description).to be_present
     expect(product.seo).to be_present
     expect(product.master_variant).to be_present
 

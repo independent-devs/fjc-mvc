@@ -1,10 +1,19 @@
 %tr
   %td
-    - if order.shipping_detail.present?
-      = order.shipping_detail.fullname
-    - else
-      .text-red-600
-        Not yet placed
+    .flex.gap-2.items-center
+      - if order.shipping_detail.present?
+        .block
+          = order.shipping_detail.fullname
+        .bg-primary.px-2.rounded-md.text-white.w-fit.text-sm.h-fit
+          - if order.user_id.present?
+            user
+          - elsif order.guest_session_id.present?
+            guest
+          - else
+            not owned
+      - else
+        .text-red-600
+          Not yet placed
   %td
     .lowercase{class: "#{order.status}-status"}
       = order.status.humanize

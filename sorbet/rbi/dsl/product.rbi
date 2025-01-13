@@ -11,6 +11,15 @@ class Product
   extend CommonRelationMethods
   extend GeneratedRelationMethods
 
+  sig { returns(ActionText::RichText) }
+  def description; end
+
+  sig { params(value: T.nilable(T.any(ActionText::RichText, String))).returns(T.untyped) }
+  def description=(value); end
+
+  sig { returns(T::Boolean) }
+  def description?; end
+
   sig { returns(ActiveStorage::Attached::Many) }
   def images; end
 
@@ -278,14 +287,14 @@ class Product
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Description) }
-    def build_description(*args, &blk); end
-
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def build_master_variant(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
     def build_product_category(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def build_rich_text_description(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Seo) }
     def build_seo(*args, &blk); end
@@ -295,12 +304,6 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
     def build_thumbnail_blob(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Description) }
-    def create_description(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Description) }
-    def create_description!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_master_variant(*args, &blk); end
@@ -313,6 +316,12 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
     def create_product_category!(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def create_rich_text_description(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
+    def create_rich_text_description!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Seo) }
     def create_seo(*args, &blk); end
@@ -331,15 +340,6 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
     def create_thumbnail_blob!(*args, &blk); end
-
-    sig { returns(T.nilable(::Description)) }
-    def description; end
-
-    sig { params(value: T.nilable(::Description)).void }
-    def description=(value); end
-
-    sig { params(attributes: T.untyped).returns(T.untyped) }
-    def description_attributes=(attributes); end
 
     sig { returns(T::Array[T.untyped]) }
     def images_attachment_ids; end
@@ -415,14 +415,14 @@ class Product
     sig { params(value: T::Enumerable[::ProductOption]).void }
     def product_options=(value); end
 
-    sig { returns(T.nilable(::Description)) }
-    def reload_description; end
-
     sig { returns(T.nilable(::Variant)) }
     def reload_master_variant; end
 
     sig { returns(T.nilable(::ProductCategory)) }
     def reload_product_category; end
+
+    sig { returns(T.nilable(::ActionText::RichText)) }
+    def reload_rich_text_description; end
 
     sig { returns(T.nilable(::Seo)) }
     def reload_seo; end
@@ -434,13 +434,13 @@ class Product
     def reload_thumbnail_blob; end
 
     sig { void }
-    def reset_description; end
-
-    sig { void }
     def reset_master_variant; end
 
     sig { void }
     def reset_product_category; end
+
+    sig { void }
+    def reset_rich_text_description; end
 
     sig { void }
     def reset_seo; end
@@ -450,6 +450,12 @@ class Product
 
     sig { void }
     def reset_thumbnail_blob; end
+
+    sig { returns(T.nilable(::ActionText::RichText)) }
+    def rich_text_description; end
+
+    sig { params(value: T.nilable(::ActionText::RichText)).void }
+    def rich_text_description=(value); end
 
     sig { returns(T.nilable(::Seo)) }
     def seo; end
@@ -683,6 +689,12 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with_attached_thumbnail(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_rich_text_description(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_rich_text_description_and_embeds(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -1689,6 +1701,12 @@ class Product
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with_attached_thumbnail(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_rich_text_description(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_rich_text_description_and_embeds(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end

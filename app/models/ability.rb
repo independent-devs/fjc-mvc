@@ -42,7 +42,8 @@ class Ability
     # Order
     can(:read, Order, user:)
     can(:cancel, Order, user:, order_status: OrderStatus.pending)
-    can(%i[shipping_details payment_method], Order, user:, placed_at: nil, order_status: OrderStatus.pending)
+    can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: OrderStatus.pending)
+    can(:not_placed, Order, guest_session:, placed_at: nil, order_status: OrderStatus.pending) if guest_session.present?
   end
 
   sig { params(user: T.nilable(User)).void }
@@ -59,8 +60,8 @@ class Ability
     can :recieve, Order, order_status: OrderStatus.to_ship
     can :cancel, Order, order_status: OrderStatus.pending
     can :refund, Order, order_status: OrderStatus.completed
-    can :ship, Order, Order.not_placed do |order|
-      order.order_status == OrderStatus.pending && order.placed_at.nil?
+    can :ship, Order, Order.placed do |order|
+      order.order_status == OrderStatus.pending && order.placed_at.present?
     end
 
     can :manage, Category
@@ -84,7 +85,8 @@ class Ability
     # Order
     can(:read, Order, guest_session:)
     can(:cancel, Order, guest_session:, order_status: OrderStatus.pending)
-    can(%i[shipping_details payment_method], Order, guest_session:, placed_at: nil, order_status: OrderStatus.pending)
+    can(%i[shipping_details payment_method not_placed], Order,
+        guest_session:, placed_at: nil, order_status: OrderStatus.pending)
   end
 
   sig { params(portal: Integer).returns(T::Boolean) }

@@ -299,6 +299,20 @@ class User
 
     sig { params(value: T::Enumerable[::Order]).void }
     def orders=(value); end
+
+    # This method is created by ActiveRecord on the `User` class because it declared `has_many :shipping_detail`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::ShippingDetail::PrivateCollectionProxy) }
+    def shipping_detail; end
+
+    sig { params(value: T::Enumerable[::ShippingDetail]).void }
+    def shipping_detail=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def shipping_detail_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def shipping_detail_ids=(ids); end
   end
 
   module GeneratedAssociationRelationMethods

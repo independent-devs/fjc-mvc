@@ -9,7 +9,7 @@
     = render "payment_method_form"
   - else 
     .grid.place-items-center.py-10.h-full
-      .block.grid.place-items-center.gap-3
+      .grid.place-items-center.gap-3
         .text-3xl.text-primary.font-semibold
           Order has already been placed.
         = link_to "Go to my orders", orders_path, class: "btn-primary cursor-pointer w-fit"

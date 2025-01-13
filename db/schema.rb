@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.uuid "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -127,7 +137,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-    t.check_constraint "user_id IS NOT NULL AND guest_session_id IS NULL OR user_id IS NULL AND guest_session_id IS NOT NULL", name: "order_ownership_cant_be_both"
   end
 
   create_table "payment_methods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -195,7 +204,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
   create_table "shipping_details", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "shippable_type", null: false
     t.uuid "shippable_id", null: false
-    t.uuid "user_id"
     t.string "fullname", null: false
     t.string "phone_no", null: false
     t.string "email"
@@ -208,7 +216,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shippable_type", "shippable_id"], name: "index_shipping_details_on_shippable"
-    t.index ["user_id"], name: "index_shipping_details_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -281,7 +288,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_194716) do
   add_foreign_key "product_options", "options"
   add_foreign_key "product_options", "products"
   add_foreign_key "seos", "products"
-  add_foreign_key "shipping_details", "users"
   add_foreign_key "variant_option_values", "product_options"
   add_foreign_key "variant_option_values", "variants"
   add_foreign_key "variants", "products"

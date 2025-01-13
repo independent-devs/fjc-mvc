@@ -13,9 +13,6 @@ FactoryBot.define do
         is_master: true
       }
     end
-    description_attributes do
-      { description: Faker::Lorem.paragraph_by_chars }
-    end
     seo_attributes do
       {
         meta_title: Faker::Commerce.product_name,

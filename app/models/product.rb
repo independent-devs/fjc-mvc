@@ -9,7 +9,9 @@ class Product < ApplicationRecord
   MAX_IMAGES = 10
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze
 
-  # Attachments
+  # Attachments & Rich text
+  has_rich_text :description
+
   has_many_attached :images do |attachable|
     attachable.variant :small, resize_to_limit: [100, 100]
     attachable.variant :thumb, resize_to_limit: [320, 320]
@@ -21,7 +23,7 @@ class Product < ApplicationRecord
 
   # Relations
   has_one :product_category, dependent: :destroy
-  has_one :description, dependent: :destroy
+  # has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
 
   has_many :variants, dependent: :destroy
@@ -34,7 +36,7 @@ class Product < ApplicationRecord
           dependent: :destroy
 
   # Nested form
-  accepts_nested_attributes_for :master_variant, :description, :product_category, :seo
+  accepts_nested_attributes_for :master_variant, :product_category, :seo
 
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }

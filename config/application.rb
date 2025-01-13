@@ -12,6 +12,7 @@ module FjcShop
 
     config.time_zone = 'Singapore'
     config.active_record.default_timezone = :local
+    config.action_view.default_form_builder = "OverrideFormBuilder"
 
     config.generators do |g|
       g.template_engine = :haml
