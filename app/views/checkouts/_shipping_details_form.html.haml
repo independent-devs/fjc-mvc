@@ -1,0 +1,30 @@
+#shipping-details{data: {"checkout--step-target": "shipping"}, class: ("hidden" if @order.shipping_detail&.persisted?)}
+  = form_for(@order, url: shipping_details_checkout_path(@order), html: {method: :post, data: {controller: "checkout--shipping-details"}}) do |f|
+    = f.fields_for :shipping_detail, @order.shipping_detail || ShippingDetail.new do |sd|
+      .grid.gap-2
+        .grid.grid-cols-2.gap-3
+          .field
+            = sd.label :fullname, "Full Name"
+            = sd.text_field :fullname, required: true
+          .field{"data-controller": "phone"}
+            = sd.label :phone_no, "Phone No."
+            = sd.phone_field  :phone_no, required: true, autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
+            = sd.hidden_field :phone_no, "data-phone-target": "hidden"
+        .field
+          = sd.label :street, "Street Name, Building, House No."
+          = sd.text_field :street, required: true
+        .field
+          = sd.label :state, "Province"
+          = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
+        .grid.grid-cols-2.gap-3
+          .field
+            = sd.label :city, "City/Municipality"
+            = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
+          .field 
+            = sd.label :postal_code, "Postal/Zip Code"
+            = sd.text_field :postal_code
+        .field
+          = sd.label :barangay
+          = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
+        = sd.hidden_field :country, value: "Philippines", readonly: true
+      = f.submit "Submit and Proceed", class: "mt-5 btn-primary cursor-pointer w-fit"

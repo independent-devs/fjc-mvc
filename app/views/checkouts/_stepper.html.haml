@@ -1,0 +1,13 @@
+%ol.items-center.w-full.flex.gap-5.sm:gap-18
+  %li.flex.items-center{data: {"checkout--step-target": "shippingStepContainer"}, class: "space-x-2.5 #{@order.shipping_detail&.persisted? ? "text-gray-500" : "text-primary current"}"}
+    %span.font-semibold.flex.items-center.justify-center.w-8.h-8.border.rounded-full.shrink-0{data: {"checkout--step-target": "shippingStepCircle"}, class: @order.shipping_detail&.persisted? ? "border-gray-500" : "border-primary"}
+      1
+    %span
+      %h3.font-semibold.leading-tight Shipping Details
+      %p.text-sm Fill shipping details
+  %li.flex.items-center.text-gray-500{data: {"checkout--step-target": "paymentStepContainer"}, class: "space-x-2.5 #{!@order.shipping_detail&.persisted? ? "text-gray-500" : "text-primary"}"}
+    %span.font-semibold.flex.items-center.justify-center.w-8.h-8.border.rounded-full.shrink-0{data: {"checkout--step-target": "paymentStepCircle"}, class: !@order.shipping_detail&.persisted? ? "border-gray-500" : "border-primary"}
+      2
+    %span
+      %h3.font-semibold.leading-tight Payment Method
+      %p.text-sm Select payment method

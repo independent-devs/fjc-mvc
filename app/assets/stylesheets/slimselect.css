@@ -4,12 +4,13 @@
   --ss-font-color: #000;
   --ss-font-placeholder-color: #8d8d8d;
   --ss-disabled-color: #fff;
-  --ss-border-color: #9a9b9b;
+  --ss-disabled-border: #dae4ec;
+  --ss-border-color: #99a4b2;
   --ss-highlight-color: #fffb8c;
   --ss-success-color: #00b755;
   --ss-error-color: #dc3545;
   --ss-focus-color: var(--ss-primary-color);
-  --ss-main-height: 43px;
+  --ss-main-height: 41px;
   --ss-content-height: 300px;
   --ss-spacing-l: 6px;
   --ss-spacing-m: 6px;
@@ -56,7 +57,7 @@
   width: 100%;
   padding: var(--ss-spacing-s);
   cursor: pointer;
-  border: 1px solid var(--ss-border-color);
+  border: 1.2px solid var(--ss-border-color);
   border-radius: var(--ss-border-radius);
   background-color: var(--ss-bg-color);
   outline: 0;
@@ -65,13 +66,10 @@
   overflow: hidden;
 }
 
-.ss-main:focus {
-  box-shadow: 0 0 5px var(--ss-focus-color);
-}
-
 .ss-main.ss-disabled {
   background-color: var(--ss-disabled-color);
   cursor: not-allowed;
+  border: 1.2px solid var(--ss-disabled-border);
 }
 
 .ss-main.ss-disabled .ss-values .ss-disabled {

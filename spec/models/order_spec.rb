@@ -14,6 +14,7 @@ end
 #  internal_note     :text
 #  logistic_ref      :string
 #  logistic_url      :string
+#  placed_at         :datetime
 #  refund_reason     :text
 #  return_reason     :text
 #  created_at        :datetime         not null
