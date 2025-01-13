@@ -20,7 +20,7 @@ export default class extends Controller {
 
     this.paymentTarget.classList.add("hidden");
     this.paymentStepCircleTarget.classList.add("border-gray-500");
-    this.paymenttepCircleTarget.classList.remove("border-primary");
+    this.paymentStepCircleTarget.classList.remove("border-primary");
     this.paymentStepContainerTarget.classList.add("text-gray-500");
     this.paymentStepContainerTarget.classList.remove("text-primary");
   }

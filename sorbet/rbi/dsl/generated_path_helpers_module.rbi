@@ -151,7 +151,7 @@ module GeneratedPathHelpersModule
   def orders_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def place_order_checkout_path(*args); end
+  def payment_method_checkout_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def position_admin_product_image_path(*args); end
@@ -251,6 +251,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def shipping_details_checkout_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def sync_all_carts_path(*args); end

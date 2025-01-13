@@ -8,4 +8,7 @@
             = pm.name
             - if !pm.enable
               = "(Not available)"
-    = f.submit "Place Order", class: "mt-5 btn-primary cursor-pointer w-fit px-10"
+    .mt-5.flex.gap-4
+      %button.btn-plain{type: :button, data: {action: "click->checkout--step#backToShipping"}}
+        Back to shipping details
+      = f.submit "Place Order", class: "btn-primary cursor-pointer w-fit px-10 sm:px-16"
