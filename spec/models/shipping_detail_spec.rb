@@ -24,14 +24,8 @@ end
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  shippable_id   :uuid             not null
-#  user_id        :uuid
 #
 # Indexes
 #
 #  index_shipping_details_on_shippable  (shippable_type,shippable_id)
-#  index_shipping_details_on_user_id    (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
 #

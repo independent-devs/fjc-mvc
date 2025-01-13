@@ -16,42 +16,7 @@ class Order < ApplicationRecord
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
-  scope :not_placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
-
-  # Validations
-  validates :guest_session, presence: true, unless: :user
-  validates :user, presence: true, unless: :guest_session
-
-  validate :validate_ownership
-
-  def self.checkout(carts, parent)
-    Order.transaction do
-      order = Order.build
-      order.guest_session = parent if parent.instance_of?(GuestSession)
-      order.user = parent if parent.instance_of?(User)
-      order.order_status = OrderStatus.pending
-      order.save!
-
-      carts.each do |cart|
-        order.order_items.create!(variant: cart.variant, qty: cart.qty, price: cart.variant.price)
-        cart.variant.update!(count_on_hand: cart.variant.count_on_hand - cart.qty) if cart.variant.trackable
-        cart.destroy
-      end
-
-      order
-    rescue StandardError => e
-      logger.warn e
-      nil
-    end
-  end
-
-  private
-
-  def validate_ownership
-    return unless user_id.present? && guest_session_id.present?
-
-    errors.add(:ownership, I18n.t('orders.validate.ownership_cant_be_both'))
-  end
+  scope :placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
 end
 
 # == Schema Information

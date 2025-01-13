@@ -4,7 +4,6 @@ class CreateShippingDetails < ActiveRecord::Migration[7.1]
   def change
     create_table :shipping_details, id: :uuid do |t|
       t.references :shippable, polymorphic: true, null: false, type: :uuid
-      t.references :user, foreign_key: true, type: :uuid
       t.string :fullname, null: false
       t.string :phone_no, null: false
       t.string :email

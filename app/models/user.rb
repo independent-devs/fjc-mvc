@@ -14,6 +14,7 @@ class User < ApplicationRecord
   # Relations
   has_many :carts, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :shipping_detail, as: :shippable, dependent: :destroy
 
   # Validations
   validates :email, uniqueness: { allow_nil: true }

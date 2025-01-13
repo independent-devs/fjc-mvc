@@ -27,4 +27,4 @@
           = sd.label :barangay
           = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
         = sd.hidden_field :country, value: "Philippines", readonly: true
-      = f.submit "Submit and Proceed", class: "mt-5 btn-primary cursor-pointer w-fit"
+      = f.submit "Proceed to Payment", class: "mt-5 btn-primary cursor-pointer w-fit"
