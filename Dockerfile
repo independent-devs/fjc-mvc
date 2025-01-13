@@ -29,7 +29,6 @@ COPY config.ru              config.ru
 COPY Rakefile               Rakefile
 COPY bin                    bin/
 COPY config                 config/
-COPY cp                     cp/
 COPY db                     db/
 COPY lib                    lib/
 COPY app                    app/
@@ -53,9 +52,6 @@ RUN gem install foreman
 # Copy Entrypoint
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-
-# Brand locale
-RUN cp ./cp/locale/${BRAND_LOCALE}.en.yml ./config/locales/brand.en.yml
 
 # Expose port 3000
 EXPOSE 3000
