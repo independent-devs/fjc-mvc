@@ -4,25 +4,25 @@
       .py-4.px-5
         - if f.object.is_master
           = render TagComponent.new do 
-            Master
+            master
         - else
           = f.object.grouped_name
       .py-4.px-5
         - if f.object.is_master
           = render TagComponent.new do
-            Master
+            master
         - else
           = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: {"action": "change->autosave#save"}
       .py-4.px-5
         - if f.object.is_master
           = render TagComponent.new do
-            Master
+            master
         - else
           .space-y-1{data: {controller: "admin--products--track"}}
             .flex.gap-1.items-center
               = f.check_box :trackable, id: dom_id(variant, "trackable"), class: "checkbox-primary", data: {action: "admin--products--track#trackableToggle autosave#save"}
               = f.label :trackable
-            .flex.gap-1.items-center{data: {action: "autosave#save", "admin--products--track-target": "backorderable"}, class: !f.object.trackable ? "hidden" : ""}
+            .flex.gap-1.items-center{data: {action: "autosave#save", "admin--products--track-target": "backorderable"}, class: ("hidden" if !f.object.trackable)}
               = f.check_box :backorderable, id: dom_id(variant, "backorderable"), data: {action: 'autosave#save'}, class: "checkbox-primary"
               = f.label :backorderable
       = render "item_count_on_hand", form: f

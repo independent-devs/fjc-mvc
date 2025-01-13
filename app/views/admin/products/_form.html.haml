@@ -55,7 +55,7 @@
         .flex.gap-2.items-center
           = mv.check_box :trackable, class: "checkbox-primary mt-0.5", data: {action: "admin--products--track#trackableToggle"}
           = mv.label :trackable, class: "cursor-pointer"
-        .flex.gap-2.items-center{data: {"admin--products--track-target": "backorderable"}, class: !mv.object.trackable ? "hidden" : ""}
+        .flex.gap-2.items-center{data: {"admin--products--track-target": "backorderable"}, class: ("hidden" if !mv.object.trackable)}
           = mv.check_box :backorderable, class: "checkbox-primary mt-0.5"
           = mv.label :backorderable, class: "cursor-pointer"
         - if is_new
