@@ -11,7 +11,8 @@ resources :pilipinas, param: :name, only: %i[] do
 end
 resources :checkouts, path: :checkout, only: :show do
   member do
-    post :place_order
+    post :shipping_details
+    post :payment_method
   end
 end
 

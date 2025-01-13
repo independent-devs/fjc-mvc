@@ -16,12 +16,11 @@ class Order < ApplicationRecord
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
+  scope :not_placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
 
   # Validations
   validates :guest_session, presence: true, unless: :user
   validates :user, presence: true, unless: :guest_session
-  validates :shipping_detail, presence: true, if: :placed_at
-  validates :payment_method, presence: true, if: :placed_at
 
   validate :validate_ownership
 

@@ -1,53 +1,15 @@
 - title "Checkout"
 
-.w-full.margin-max-screen.flex.flex-col.gap-6.py-6
-  - if can?(:place_order, @order)
-    = form_for(@order, url: place_order_checkout_path(@order), html: {method: "POST", data: {controller: "checkout--shipping-details"}}) do |f|
-      = f.fields_for :shipping_detail, @order.shipping_detail || ShippingDetail.new do |sd|
-        .grid.gap-2
-          - if @order.errors.present?
-            = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
-          .font-medium.mb-1
-            Shipping Details
-          .grid.grid-cols-2.gap-3
-            .field
-              = sd.label :fullname, "Full Name"
-              = sd.text_field :fullname, required: true
-            .field{"data-controller": "phone"}
-              = sd.label :phone_no, "Phone No."
-              = sd.phone_field  :phone_no, required: true, autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
-              = sd.hidden_field :phone_no, "data-phone-target": "hidden"
-          .field
-            = sd.label :street, "Street Name, Building, House No."
-            = sd.text_field :street, required: true
-          .field
-            = sd.label :state, "Province"
-            = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
-          .grid.grid-cols-2.gap-3
-            .field
-              = sd.label :city, "City/Municipality"
-              = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
-            .field 
-              = sd.label :postal_code, "Postal/Zip Code"
-              = sd.text_field :postal_code
-          .field
-            = sd.label :barangay
-            = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
-          = sd.hidden_field :country, value: "Philippines", readonly: true
-          .grid.gap-2.mt-2
-            .font-medium.mb-1
-              Payment Method
-            - PaymentMethod.all.each do |pm|
-              .block
-                = f.radio_button :payment_method_id, pm.id, id: pm.id, disabled: !pm.enable, checked: pm.code == "COD", class: "hidden peer"
-                = f.label :payment_method_id, for: pm.id, class: "flex border rounded-md peer-checked:text-primary peer-checked:border-primary peer-disabled:text-gray-300 peer-disabled:cursor-not-allowed px-4 py-3 font-medium" do
-                  = pm.name
-                  - if !pm.enable
-                    = "(Not available)"
-          = f.submit "Place Order", class: "mt-5 btn-primary cursor-pointer w-fit px-10"
+.w-full.margin-max-screen.flex.flex-col.gap-6.py-6{data: {controller: "checkout--step"}}
+  - unless @order.shipping_detail&.persisted? && @order.payment_method&.persisted?
+    = render "stepper"
+    - if @order.errors.present?
+      = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
+    = render "shipping_details_form"
+    = render "payment_method_form"
   - else 
     .grid.place-items-center.py-10.h-full
-      .grid.place-items-center.gap-4
+      .block.grid.place-items-center.gap-3
         .text-3xl.text-primary.font-semibold
-          Order has already been placed
-        = link_to "Go to my orders", orders_path, class: "btn-primary w-fit"
+          Order has already been placed.
+        = link_to "Go to my orders", orders_path, class: "btn-primary cursor-pointer w-fit"

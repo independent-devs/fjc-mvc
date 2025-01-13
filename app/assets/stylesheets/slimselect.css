@@ -4,6 +4,7 @@
   --ss-font-color: #000;
   --ss-font-placeholder-color: #8d8d8d;
   --ss-disabled-color: #fff;
+  --ss-disabled-border: #dae4ec;
   --ss-border-color: #99a4b2;
   --ss-highlight-color: #fffb8c;
   --ss-success-color: #00b755;
@@ -65,13 +66,10 @@
   overflow: hidden;
 }
 
-.ss-main:focus {
-  box-shadow: 0 0 5px var(--ss-focus-color);
-}
-
 .ss-main.ss-disabled {
   background-color: var(--ss-disabled-color);
   cursor: not-allowed;
+  border: 1.2px solid var(--ss-disabled-border);
 }
 
 .ss-main.ss-disabled .ss-values .ss-disabled {
