@@ -1,9 +1,9 @@
 - if @cart.qty_previously_changed?
   = turbo_stream.replace "cart-#{@cart.id}-total-price" do
-    = render Carts::Item::TotalpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency
+    = render Carts::Item::TotalpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency, discount: @cart.variant.product.discount_percent
 
   = turbo_stream.replace "cart-#{@cart.id}-unit-price" do
-    = render Carts::Item::UnitpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency
+    = render Carts::Item::UnitpriceComponent.new cart: @cart, price: @cart.variant.price, currency: @cart.variant.product.currency, discount: @cart.variant.product.discount_percent
 
 - if !@cart.variant.is_master && @cart.variant_changed?
   = turbo_stream.replace "cart-#{@cart.id}-dropdown-variant-pair" do

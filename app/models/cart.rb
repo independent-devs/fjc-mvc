@@ -22,7 +22,7 @@ class Cart < ApplicationRecord
             .joins(:variant)
             # products
             .select('products.name AS product_name, products.currency, ' \
-                    'products.id AS product_id')
+                    'products.id AS product_id, products.discount_percent')
             .joins('INNER JOIN products ON products.id = variants.product_id')
             .order(created_at: :desc)
         }
@@ -31,6 +31,12 @@ class Cart < ApplicationRecord
           where('(variants.trackable AND variants.count_on_hand > 0 AND carts.qty <= variants.count_on_hand) ' \
                 'OR (variants.trackable = FALSE OR (variants.trackable = TRUE AND variants.backorderable = TRUE))')
             .joins(:variant)
+        }
+  scope :variants_total,
+        lambda {
+          joins('INNER JOIN products ON products.id = variants.product_id')
+            .sum('(variants.price * carts.qty) - ((variants.price * carts.qty) * ' \
+                 '(products.discount_percent / 100.0))')
         }
 
   # Validations
@@ -49,7 +55,13 @@ class Cart < ApplicationRecord
       order.save!
 
       carts.each do |cart|
-        order.order_items.create!(variant: cart.variant, qty: cart.qty, price: cart.variant.price)
+        order_item = order.order_items.build
+        order_item.variant = cart.variant
+        order_item.price = cart.variant.price
+        order_item.qty = cart.qty
+        order_item.discount_percent = cart.variant.product.discount_percent
+        order_item.save!
+
         cart.variant.update!(count_on_hand: cart.variant.count_on_hand - cart.qty) if cart.variant.trackable
         cart.destroy
       end

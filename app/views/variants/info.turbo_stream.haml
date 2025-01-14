@@ -1,6 +1,6 @@
 = turbo_stream.replace "public-price" do
   #public-price{data: {"products--public-target": "price"}}
-    = render PriceRangeComponent.new lowest: @variant.price, currency: @variant.product.currency
+    = render PriceRangeComponent.new lowest: @variant.price, currency: @variant.product.currency, discount: @variant.product.discount_percent
 
 = turbo_stream.replace "quantity-container" do
   = render "products/quantity", variant: @variant, hide: false

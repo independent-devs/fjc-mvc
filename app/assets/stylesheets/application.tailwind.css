@@ -146,7 +146,11 @@
 
   /* Public Product */
   #public-price {
-    @apply text-3xl font-medium text-primary;
+    @apply text-3xl text-primary font-medium;
+  }
+
+  #public-price #price #discounted {
+    @apply text-lg;
   }
 
   #notification-container {
@@ -317,4 +321,3 @@ dialog[data-dialog-target="dialog"][closing] {
 .refunded-status {
   @apply w-fit h-fit bg-pink-600 px-2 rounded-md text-sm text-white;
 }
-

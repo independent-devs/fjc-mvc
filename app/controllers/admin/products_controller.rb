@@ -50,7 +50,7 @@ class Admin::ProductsController < Admin::BaseController
   def product_params
     params.require(:product)
           .permit(:name, :description, :available_on, :discontinue_on, :currency, :has_variant,
-                  :meta_description, :meta_keywords, :promotionable, :meta_title, :thumbnail,
+                  :meta_description, :meta_keywords, :promotionable, :meta_title, :thumbnail, :discount_percent,
                   master_variant_attributes: %i[id price cost sku is_master trackable backorderable],
                   seo_attributes: %i[id meta_title meta_description meta_keywords], images: [], option_ids: [])
   end

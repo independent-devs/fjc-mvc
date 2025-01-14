@@ -1,2 +1,2 @@
 .text-primary{id: "cart-#{@cart.id}-total-price"}
-  = render PriceRangeComponent.new lowest: total_price_calc(price: @price, qty: @cart.qty), currency: @currency
+  = render PriceRangeComponent.new lowest: total_price_calc(price: @price, qty: @cart.qty), currency: @currency, discount: @discount, show_discount: false

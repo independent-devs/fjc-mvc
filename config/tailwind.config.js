@@ -18,6 +18,7 @@ module.exports = {
       },
       maxWidth: {
         margin: "1280px",
+        checkout: "700px",
       },
     },
   },

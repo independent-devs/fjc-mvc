@@ -7,6 +7,7 @@ class CreateOrderItems < ActiveRecord::Migration[7.0]
       t.references :variant, foreign_key: true, type: :uuid
       t.decimal :price, null: false, precision: 10, scale: 2
       t.integer :qty, null: false, default: 1
+      t.integer :discount_percent, null: false, default: 0
 
       t.timestamps
     end

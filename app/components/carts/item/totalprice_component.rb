@@ -7,12 +7,13 @@ class Carts::Item::TotalpriceComponent < ViewComponent::Base
   delegate :total_price_calc, to: :helpers
 
   sig do
-    params(cart: Cart, price: T.any(Integer, Float, BigDecimal), currency: String).void
+    params(cart: Cart, price: T.any(Integer, Float, BigDecimal), currency: String, discount: Integer).void
   end
-  def initialize(cart:, price:, currency:)
+  def initialize(cart:, price:, currency:, discount: 0)
     @cart = cart
     @price = price
     @currency = currency
+    @discount = discount
     super
   end
 end

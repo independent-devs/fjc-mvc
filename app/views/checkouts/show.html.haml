@@ -1,6 +1,6 @@
 - title "Checkout"
 
-.w-full.margin-max-screen.flex.flex-col.gap-6.py-6{data: {controller: "checkout--step"}}
+.w-full.max-w-checkout.mx-auto.px-4.flex.flex-col.gap-6.py-6{class: "", data: {controller: "checkout--step"}}
   - unless @order.shipping_detail&.persisted? && @order.payment_method&.persisted?
     = render "stepper"
     - if @order.errors.present?

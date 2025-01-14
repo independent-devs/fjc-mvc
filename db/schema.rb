@@ -107,6 +107,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
     t.uuid "variant_id"
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "qty", default: 1, null: false
+    t.integer "discount_percent", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -125,6 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
     t.uuid "order_status_id", null: false
     t.uuid "guest_session_id"
     t.uuid "payment_method_id"
+    t.decimal "shipping_fee", precision: 10, scale: 2, default: "0.0", null: false
     t.datetime "placed_at"
     t.string "logistic_url"
     t.string "logistic_ref"
@@ -172,16 +174,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.date "available_on"
-    t.date "discontinue_on"
+    t.string "currency", default: "PHP", null: false
+    t.boolean "has_variant", default: false, null: false
     t.boolean "promotable", default: true, null: false
     t.boolean "order_must_login", default: false, null: false
     t.decimal "lowest_price", precision: 10, scale: 2
     t.decimal "highest_price", precision: 10, scale: 2
-    t.string "currency", null: false
     t.decimal "review_avg_rating", precision: 1, scale: 1, default: "0.0"
+    t.integer "discount_percent", default: 0, null: false
     t.integer "review_count", default: 0
-    t.boolean "has_variant", default: false, null: false
+    t.date "available_on"
+    t.date "discontinue_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["available_on"], name: "index_products_on_available_on"

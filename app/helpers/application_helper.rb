@@ -17,4 +17,8 @@ module ApplicationHelper
   def total_price_calc(price:, qty: 1)
     price * qty
   end
+
+  def discounted_price(price, discount_percent)
+    price - (price * (discount_percent / 100.0))
+  end
 end

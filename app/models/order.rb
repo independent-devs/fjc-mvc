@@ -17,6 +17,18 @@ class Order < ApplicationRecord
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
   scope :placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
+
+  def subtotal
+    order_items.sum('order_items.qty * order_items.price')
+  end
+
+  def discounted_price
+    order_items.sum('(order_items.price * order_items.qty) * (order_items.discount_percent / 100.0)')
+  end
+
+  def total
+    order_items.sum('order_items.qty * order_items.price') + shipping_fee - discounted_price
+  end
 end
 
 # == Schema Information
@@ -30,6 +42,7 @@ end
 #  placed_at         :datetime
 #  refund_reason     :text
 #  return_reason     :text
+#  shipping_fee      :decimal(10, 2)   default(0.0), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  guest_session_id  :uuid
