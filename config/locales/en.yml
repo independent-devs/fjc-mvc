@@ -130,6 +130,8 @@ en:
     no_list_found: "No orders found"
     shipping_details_added: "Successfully added shipping details"
     payment_addded: "Successfully added payment method"
+    destroyed: "Order was successfully deleted."
+    updated: "Order was successfully updated."
     table: 
       thead:
         customer: "Customer"

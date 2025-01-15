@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   belongs_to :payment_method, optional: true
 
   has_one :shipping_detail, as: :shippable, dependent: :destroy
-  has_many :order_items, dependent: :nullify
+  has_many :order_items, dependent: :destroy
 
   accepts_nested_attributes_for :shipping_detail
 
@@ -17,6 +17,12 @@ class Order < ApplicationRecord
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
   scope :placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
+  scope :with_shipping_details,
+        lambda {
+          select('orders.*, shipping_details.fullname AS customer_name')
+            .joins("LEFT JOIN shipping_details ON shipping_details.shippable_type = 'Order' " \
+                   'AND shipping_details.shippable_id = orders.id')
+        }
 
   def subtotal
     order_items.sum('order_items.qty * order_items.price')
@@ -27,7 +33,8 @@ class Order < ApplicationRecord
   end
 
   def total
-    order_items.sum('order_items.qty * order_items.price') + shipping_fee - discounted_price
+    order_items.sum('(order_items.qty * order_items.price) - ((order_items.price * order_items.qty) * ' \
+                    '(order_items.discount_percent / 100.0))') - shipping_fee
   end
 end
 

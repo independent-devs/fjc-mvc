@@ -5,8 +5,18 @@ authenticated :user, -> { _1.admin? } do
   namespace :admin do
     get '/', to: redirect('/admin/dashboard')
     resources :dashboard, only: [:index]
-    resources :orders, only: %i[index show]
     resources :users, only: %i[index]
+    resources :orders, only: %i[index show destroy] do
+      member do
+        patch :update_shipping_detail
+        post :ship
+        post :recieve
+        post :complete
+        post :cancel
+        post :return
+        post :refund
+      end
+    end
 
     ## product routes
     resources :products do

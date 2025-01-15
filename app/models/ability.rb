@@ -56,12 +56,13 @@ class Ability
     can :manage, :stock
 
     can :read, Order
-    can %i[complete refund return], Order, order_status: OrderStatus.to_recieve
-    can :recieve, Order, order_status: OrderStatus.to_ship
-    can :cancel, Order, order_status: OrderStatus.pending
-    can :refund, Order, order_status: OrderStatus.completed
-    can :ship, Order, Order.placed do |order|
-      order.order_status == OrderStatus.pending && order.placed_at.present?
+    can :update_shipping_detail, Order, order_status: { name: %w[pending to_ship] }
+    can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
+    can %i[complete return], Order, order_status: { name: 'to_recieve' }
+    can :recieve, Order, order_status: { name: 'to_ship' }
+    can :refund, Order, order_status: { name: 'completed' }
+    can [:cancel, :ship], Order, Order.placed do |order|
+      order.order_status.name == 'pending' && order.placed_at.present?
     end
 
     can :manage, Category

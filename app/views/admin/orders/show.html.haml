@@ -1,3 +1,11 @@
-.margin-max-screen.py-7
-  %h2.font-semibold.text-xl
-    = "Order - #{@order.id}"
+.margin-max-screen.py-7.grid.gap-5
+  .flex.gap-2.items-center
+    = link_to admin_orders_path, class: "px-2 py-1 hover:bg-gray-200 rounded-md" do
+      = icon("fa-solid", "arrow-left")
+    %h2.font-semibold.text-xl
+      = "Order - #{@order.id}"
+  .grid.gap-3
+    = render "change_status"
+    = render "status_forms"
+    = render "shipping_details"
+    = render "payment_method"

@@ -1,23 +1,23 @@
-.grid.gap-2
-  %h2.font-semibold Order Summary
-  .divide-y-2
-    .flex.justify-between.py-3
+.grid.gap-2.p-3.rounded.border.border-gray-300
+  %h2.font-semibold.text-lg Order Summary
+  .block
+    .flex.justify-between.py-1
       .text-gray-600
         Subtotal
       .font-medium
         = price_with_currency(@order.subtotal, currency_symbol(MoneyRails.default_currency.id.to_s))
-    .flex.justify-between.py-3
+    .flex.justify-between.py-1
       .text-gray-600
         Discounted
       .font-medium.flex.text-green-600
         = "-"
         = price_with_currency(@order.discounted_price, currency_symbol(MoneyRails.default_currency.id.to_s))
-    .flex.justify-between.py-3
+    .flex.justify-between.py-1
       .text-gray-600
         Shipping Fee
       .font-medium
         = price_with_currency(@order.shipping_fee, currency_symbol(MoneyRails.default_currency.id.to_s))
-    .flex.justify-between.py-3.text-lg
+    .flex.justify-between.pt-3.text-lg.border-t.mt-2.border-gray-300
       .font-semibold
         Total
       .font-semibold

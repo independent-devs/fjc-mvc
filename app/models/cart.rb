@@ -35,6 +35,7 @@ class Cart < ApplicationRecord
   scope :variants_total,
         lambda {
           joins('INNER JOIN products ON products.id = variants.product_id')
+            .joins(:variant)
             .sum('(variants.price * carts.qty) - ((variants.price * carts.qty) * ' \
                  '(products.discount_percent / 100.0))')
         }
