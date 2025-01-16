@@ -133,8 +133,8 @@ en:
     destroyed: "Order was successfully deleted."
     updated: "Order was successfully updated."
     shipping_details_updated: "Shipping details successfullly updated."
-    return_reason_updated: "Return reason successfully updated."
-    refund_reason_updated: "Refund reason successfully updated."
+    return_details_updated: "Return details successfully updated."
+    refund_details_updated: "Refund details successfully updated."
     logistic_details_updated: "Logistic details succesfully updated."
     table: 
       thead:

@@ -7,10 +7,11 @@
     .lowercase{class: "#{@order.order_status.name}-status"}
       = @order.order_status.name.humanize
   .grid.gap-4
-    = render "single_buttons"
+    = render "safe_buttons"
     = render "recieve_form"
     = render "shipping_details"
     = render "payment_method"
     = render "logistic_details_form"
     = render "return_form"
     = render "refund_form"
+    = render "dangerous_buttons"

@@ -31,7 +31,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def update_return_reason
     if @order.update(return_reason: order_params[:return_reason])
-      redirect_to admin_order_url(@order), notice: I18n.t('orders.return_reason_updated')
+      redirect_to admin_order_url(@order), notice: I18n.t('orders.return_details_updated')
     else
       render :show, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def update_refund_reason
     if @order.update(refund_reason: order_params[:refund_reason], refund_amount: order_params[:refund_amount])
-      redirect_to admin_order_url(@order), notice: I18n.t('orders.refund_reason_updated')
+      redirect_to admin_order_url(@order), notice: I18n.t('orders.refund_details_updated')
     else
       render :show, status: :unprocessable_entity
     end
