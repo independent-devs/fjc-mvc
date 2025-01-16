@@ -4,7 +4,7 @@
       = image_tag(product.thumbnail.variant(:small), size: 100, class: "w-7 h-7 min-h-7 min-w-7 object-cover object-center rounded border")
     = product.name
   %td
-    = render PriceRangeComponent.new lowest: product.lowest_price, highest: product.highest_price
+    = render PriceRangeComponent.new lowest: product.lowest_price, highest: product.highest_price, discount: product.discount_percent
   %td
     = link_to product_path(product), target: "_blank", class: "text-lg text-gray-400 hover:text-primary transition-colors px-2 py-1 hover:bg-gray-100 rounded-md transition-all duration-200" do
       = icon("fa-solid", "arrow-right", class: "-rotate-45")
@@ -12,5 +12,5 @@
     .flex.gap-3.text-gray-400
       = link_to admin_product_path(product), class: "hover:text-primary transition-colors" do
         = icon("fa-solid", "eye")
-      = button_to admin_product_path(product), class: "hover:text-red-500 transition-colors", method: :delete, form: {data: {turbo_confirm: 'Are you sure to delete this product?'}} do
+      = button_to admin_product_path(product), class: "hover:text-red-600 transition-colors", method: :delete, form: {data: {turbo_confirm: 'Are you sure to delete this product?'}} do
         = icon("fa-solid", "trash")

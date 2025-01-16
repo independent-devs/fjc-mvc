@@ -881,6 +881,51 @@ class Product
     sig { void }
     def discontinue_on_will_change!; end
 
+    sig { returns(::Integer) }
+    def discount_percent; end
+
+    sig { params(value: ::Integer).returns(::Integer) }
+    def discount_percent=(value); end
+
+    sig { returns(T::Boolean) }
+    def discount_percent?; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def discount_percent_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def discount_percent_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def discount_percent_came_from_user?; end
+
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def discount_percent_change; end
+
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def discount_percent_change_to_be_saved; end
+
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def discount_percent_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def discount_percent_in_database; end
+
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def discount_percent_previous_change; end
+
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def discount_percent_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::Integer)) }
+    def discount_percent_previously_was; end
+
+    sig { returns(T.nilable(::Integer)) }
+    def discount_percent_was; end
+
+    sig { void }
+    def discount_percent_will_change!; end
+
     sig { returns(T::Boolean) }
     def has_variant; end
 
@@ -1254,6 +1299,9 @@ class Product
     def restore_discontinue_on!; end
 
     sig { void }
+    def restore_discount_percent!; end
+
+    sig { void }
     def restore_has_variant!; end
 
     sig { void }
@@ -1400,6 +1448,12 @@ class Product
     sig { returns(T::Boolean) }
     def saved_change_to_discontinue_on?; end
 
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def saved_change_to_discount_percent; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_discount_percent?; end
+
     sig { returns(T.nilable([T::Boolean, T::Boolean])) }
     def saved_change_to_has_variant; end
 
@@ -1522,6 +1576,9 @@ class Product
 
     sig { returns(T::Boolean) }
     def will_save_change_to_discontinue_on?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_discount_percent?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_has_variant?; end

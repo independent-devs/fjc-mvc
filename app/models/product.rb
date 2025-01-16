@@ -47,6 +47,7 @@ class Product < ApplicationRecord
 
   # Validations
   validates :name, :currency, presence: true
+  validates :discount_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
   validates :review_avg_rating, numericality: { in: 0..5 }
   validates :lowest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :highest_price, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
@@ -61,8 +62,9 @@ end
 #
 #  id                :uuid             not null, primary key
 #  available_on      :date
-#  currency          :string           not null
+#  currency          :string           default("PHP"), not null
 #  discontinue_on    :date
+#  discount_percent  :integer          default(0), not null
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
 #  lowest_price      :decimal(10, 2)

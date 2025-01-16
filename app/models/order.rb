@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   belongs_to :payment_method, optional: true
 
   has_one :shipping_detail, as: :shippable, dependent: :destroy
-  has_many :order_items, dependent: :nullify
+  has_many :order_items, dependent: :destroy
 
   accepts_nested_attributes_for :shipping_detail
 
@@ -17,6 +17,25 @@ class Order < ApplicationRecord
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
   scope :placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
+  scope :with_shipping_details,
+        lambda {
+          select('orders.*, shipping_details.fullname AS customer_name')
+            .joins("LEFT JOIN shipping_details ON shipping_details.shippable_type = 'Order' " \
+                   'AND shipping_details.shippable_id = orders.id')
+        }
+
+  def subtotal
+    order_items.sum('order_items.qty * order_items.price')
+  end
+
+  def discounted_price
+    order_items.sum('(order_items.price * order_items.qty) * (order_items.discount_percent / 100.0)')
+  end
+
+  def total
+    order_items.sum('(order_items.qty * order_items.price) - ((order_items.price * order_items.qty) * ' \
+                    '(order_items.discount_percent / 100.0))') - shipping_fee
+  end
 end
 
 # == Schema Information
@@ -25,11 +44,14 @@ end
 #
 #  id                :uuid             not null, primary key
 #  internal_note     :text
+#  logistic_name     :string
 #  logistic_ref      :string
 #  logistic_url      :string
 #  placed_at         :datetime
+#  refund_amount     :decimal(10, 2)
 #  refund_reason     :text
 #  return_reason     :text
+#  shipping_fee      :decimal(10, 2)   default(0.0), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  guest_session_id  :uuid

@@ -61,7 +61,7 @@ class CartsController < BaseController
   def total
     @carts = Cart.accessible_by(current_ability, :total)
     @carts = @carts.where(id: params[:ids]) if params[:ids].present?
-    @total = @carts.sum('variants.price * carts.qty')
+    @total = @carts.variants_total
   end
 
   def bulk_delete

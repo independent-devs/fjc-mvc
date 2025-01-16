@@ -12,11 +12,14 @@ end
 #
 #  id                :uuid             not null, primary key
 #  internal_note     :text
+#  logistic_name     :string
 #  logistic_ref      :string
 #  logistic_url      :string
 #  placed_at         :datetime
+#  refund_amount     :decimal(10, 2)
 #  refund_reason     :text
 #  return_reason     :text
+#  shipping_fee      :decimal(10, 2)   default(0.0), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  guest_session_id  :uuid

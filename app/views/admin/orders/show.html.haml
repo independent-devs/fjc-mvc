@@ -1,3 +1,16 @@
-.margin-max-screen.py-7
-  %h2.font-semibold.text-xl
-    = "Order - #{@order.id}"
+.margin-max-screen.py-7.grid.gap-5
+  .flex.gap-2.items-center
+    = link_to admin_orders_path, class: "px-2 py-1 hover:bg-gray-200 rounded-md" do
+      = icon("fa-solid", "arrow-left")
+    %h2.font-semibold.text-xl
+      = "Order - #{@order.id}"
+    .lowercase{class: "#{@order.order_status.name}-status"}
+      = @order.order_status.name.humanize
+  .grid.gap-4
+    = render "single_buttons"
+    = render "recieve_form"
+    = render "shipping_details"
+    = render "payment_method"
+    = render "logistic_details_form"
+    = render "return_form"
+    = render "refund_form"

@@ -19,4 +19,4 @@
           .mt-2.font-medium.text-xs.sm:text-sm.md:text-base
             .block= product.name
             .text-primary
-              = render PriceRangeComponent.new lowest: product.lowest_price, currency: product.currency
+              = render PriceRangeComponent.new lowest: product.lowest_price, currency: product.currency, discount: product.discount_percent

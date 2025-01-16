@@ -38,9 +38,20 @@ end
 #                                          POST     /auth(.:format)                                                                                   registrations#create
 #                                    admin GET      /admin(.:format)                                                                                  redirect(301, /admin/dashboard)
 #                    admin_dashboard_index GET      /admin/dashboard(.:format)                                                                        admin/dashboard#index
+#                              admin_users GET      /admin/users(.:format)                                                                            admin/users#index
+#                         ship_admin_order POST     /admin/orders/:id/ship(.:format)                                                                  admin/orders#ship
+#                      recieve_admin_order POST     /admin/orders/:id/recieve(.:format)                                                               admin/orders#recieve
+#                     complete_admin_order POST     /admin/orders/:id/complete(.:format)                                                              admin/orders#complete
+#                       return_admin_order POST     /admin/orders/:id/return(.:format)                                                                admin/orders#return
+#                       refund_admin_order POST     /admin/orders/:id/refund(.:format)                                                                admin/orders#refund
+#      update_shipping_details_admin_order PATCH    /admin/orders/:id/update_shipping_details(.:format)                                               admin/orders#update_shipping_details
+#      update_logistic_details_admin_order PATCH    /admin/orders/:id/update_logistic_details(.:format)                                               admin/orders#update_logistic_details
+#         update_return_reason_admin_order PATCH    /admin/orders/:id/update_return_reason(.:format)                                                  admin/orders#update_return_reason
+#         update_refund_reason_admin_order PATCH    /admin/orders/:id/update_refund_reason(.:format)                                                  admin/orders#update_refund_reason
+#                       cancel_admin_order DELETE   /admin/orders/:id/cancel(.:format)                                                                admin/orders#cancel
 #                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
 #                              admin_order GET      /admin/orders/:id(.:format)                                                                       admin/orders#show
-#                              admin_users GET      /admin/users(.:format)                                                                            admin/users#index
+#                                          DELETE   /admin/orders/:id(.:format)                                                                       admin/orders#destroy
 #           position_admin_product_variant PATCH    /admin/products/:product_id/variants/:id/position(.:format)                                       admin/products/variants#position
 #                   admin_product_variants GET      /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#index
 #                                          POST     /admin/products/:product_id/variants(.:format)                                                    admin/products/variants#create

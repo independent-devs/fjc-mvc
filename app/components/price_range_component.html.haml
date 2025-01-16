@@ -1,7 +1,19 @@
-%span
-  - if lowest == highest || highest.nil?
-    = price_with_currency(lowest, currency_symbol(currency))
-  - else
-    = price_with_currency(lowest, currency_symbol(currency))
-    = "-"
-    = price_with_currency(highest, currency_symbol(currency))
+%span.flex.gap-2.items-center{id: "price"}
+  - if discount.positive?
+    %span.text-primary
+      - if lowest == highest || highest.nil?
+        = price_with_currency(discounted_price(lowest, discount), currency_symbol(currency))
+      - else
+        = price_with_currency(discounted_price(lowest, discount), currency_symbol(currency))
+        = "-"
+        = price_with_currency(discounted_price(highest, discount), currency_symbol(currency))
+  %span{id: ("discounted" if discount.positive?), class: "#{"hidden" if discount.positive? && !show_discount} #{discount.positive? ? "line-through text-gray-400" : "text-primary"}"}
+    - if lowest == highest || highest.nil?
+      = price_with_currency(lowest, currency_symbol(currency))
+    - else
+      = price_with_currency(lowest, currency_symbol(currency))
+      = "-"
+      = price_with_currency(highest, currency_symbol(currency))
+  - if show_discount && discount.positive?
+    #discount.px-1.text-xs.text-primary.rounded.font-medium{class: "bg-primary/15 py-0.5"}
+      = "-#{discount}%"

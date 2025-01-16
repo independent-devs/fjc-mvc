@@ -39,8 +39,9 @@ end
 #
 #  id                :uuid             not null, primary key
 #  available_on      :date
-#  currency          :string           not null
+#  currency          :string           default("PHP"), not null
 #  discontinue_on    :date
+#  discount_percent  :integer          default(0), not null
 #  has_variant       :boolean          default(FALSE), not null
 #  highest_price     :decimal(10, 2)
 #  lowest_price      :decimal(10, 2)
