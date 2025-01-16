@@ -27,7 +27,6 @@ class Ability
 
     return if user.blank?
 
-    # Variant
     can %i[add_to_cart buy_now], Variant
 
     # Cart
@@ -52,17 +51,19 @@ class Ability
   def admin_permission(user)
     return unless user&.admin?
 
+    # Product
     can :manage, Product
     can :manage, Variant, is_master: false, product: { has_variant: true }
     can :manage, :image
     can :manage, :stock
 
+    # Order
     can %i[read update_internal_note], Order
+    can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
     can :update_shipping_details, Order, order_status: { name: %w[pending to_ship] }
     can :update_logistic_details, Order, order_status: { name: %w[to_recieve completed refunded returned] }
     can :update_return_reason, Order, order_status: { name: 'returned' }
     can :update_refund_reason, Order, order_status: { name: 'refunded' }
-    can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
     can %i[complete return], Order, order_status: { name: 'to_recieve' }
     can :recieve, Order, order_status: { name: 'to_ship' }
     can :refund, Order, order_status: { name: 'completed' }
@@ -77,7 +78,6 @@ class Ability
 
   sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
-    # Variant
     can %i[guest_add_to_cart guest_buy_now], Variant
 
     # Cart
