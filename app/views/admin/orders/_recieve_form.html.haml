@@ -1,7 +1,7 @@
 - if can?(:recieve, @order)
   .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
     %h2.font-medium Logistic Details
-    = form_for(@order, url: recieve_admin_order_path(@order), html: {data: {turbo_confirm: "Proceed ship order?"}, method: :post}) do |f|
+    = form_for(@order, url: recieve_admin_order_path(@order), html: {data: {turbo_confirm: "Proceed ship order (to recieve) status?"}, method: :post}) do |f|
       .flex.flex-col.gap-3
         .field
           = f.label :logistic_name, "Logistic Name"
