@@ -8,12 +8,15 @@ authenticated :user, -> { _1.admin? } do
     resources :users, only: %i[index]
     resources :orders, only: %i[index show destroy] do
       member do
-        patch :update_shipping_detail
         post :ship
         post :recieve
         post :complete
         post :return
         post :refund
+        patch :update_shipping_details
+        patch :update_logistic_details
+        patch :update_return_reason
+        patch :update_refund_reason
         delete :cancel
       end
     end

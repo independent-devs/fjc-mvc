@@ -1,11 +1,18 @@
-- if can?(:return, @order)
+- if can?(:return, @order) || can?(:update_return_reason, @order)
   .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
     %h2.font-medium Return Details
-    = form_for(@order, url: return_admin_order_path(@order), html: {method: :post}) do |f|
+
+    - url, method, confirm = (if can?(:return, @order) then [return_admin_order_path(@order), "post", "Proceed return?"] else [update_return_reason_admin_order_path(@order), "patch", nil] end )
+
+    = form_for(@order, url:, html: {data: {turbo_confirm: confirm}, method:}) do |f|
       .flex.flex-col.gap-3
         .field
           = f.label :return_reason, "Return Reason"
           = f.text_field :return_reason
-        %button.btn-primary.flex.gap-2.items-center
-          = icon("fa-solid", "backward")
-          Return Order
+        - if can?(:return, @order)
+          %button.btn-primary.flex.gap-2.items-center
+            = icon("fa-solid", "backward")
+            Return Order
+        - else
+          %button.btn-primary
+            Update Return Details

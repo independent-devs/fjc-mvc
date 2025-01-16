@@ -14,6 +14,7 @@ end
 #
 #  id                :uuid             not null, primary key
 #  internal_note     :text
+#  logistic_name     :string
 #  logistic_ref      :string
 #  logistic_url      :string
 #  placed_at         :datetime

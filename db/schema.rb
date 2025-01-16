@@ -131,6 +131,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
     t.text "refund_reason"
     t.text "return_reason"
     t.datetime "placed_at"
+    t.string "logistic_name"
     t.string "logistic_url"
     t.string "logistic_ref"
     t.text "internal_note"

@@ -1,14 +1,21 @@
-- if can?(:refund, @order)
+- if can?(:refund, @order) || can?(:update_refund_reason, @order)
   .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
     %h2.font-medium Refund Details
-    = form_for(@order, url: refund_admin_order_path(@order), html: {method: :post}) do |f|
+
+    - url, method, confirm = (if can?(:refund, @order) then [refund_admin_order_path(@order), "post", "Proceed refund?"] else [update_refund_reason_admin_order_path(@order), "patch", nil] end )
+
+    = form_for(@order, url:, html: {data: {turbo_confirm: confirm}, method:}) do |f|
       .flex.flex-col.gap-3
         .field
           = f.label :refund_reason, "Refund Reason"
           = f.text_field :refund_reason
         .field
           = f.label :refund_amount, "Refund Amount"
-          = f.text_field :refund_amount
-        %button.btn-primary.flex.gap-2.items-center
-          = icon("fa-solid", "dollar-sign")
-          Refund Order
+          = f.number_field :refund_amount
+        - if can?(:refund, @order)
+          %button.btn-primary.flex.gap-2.items-center
+            = icon("fa-solid", "dollar-sign")
+            Refund Order
+        - else
+          %button.btn-primary
+            Update Refund Details
