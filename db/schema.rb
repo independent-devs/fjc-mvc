@@ -127,11 +127,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
     t.uuid "guest_session_id"
     t.uuid "payment_method_id"
     t.decimal "shipping_fee", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "refund_amount", precision: 10, scale: 2
+    t.text "refund_reason"
+    t.text "return_reason"
     t.datetime "placed_at"
     t.string "logistic_url"
     t.string "logistic_ref"
-    t.text "refund_reason"
-    t.text "return_reason"
     t.text "internal_note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

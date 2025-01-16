@@ -9,31 +9,32 @@
           .grid.md:grid-cols-2.gap-3
             .field
               = sd.label :fullname, "Full Name"
-              = sd.text_field :fullname, required: true
+              = sd.text_field :fullname, required: true, readonly: cannot?(:update_shipping_detail, @order)
             .field{"data-controller": "phone"}
               = sd.label :phone_no, "Phone No."
-              = sd.phone_field  :phone_no, required: true, autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
+              = sd.phone_field  :phone_no, required: true, readonly: cannot?(:update_shipping_detail, @order), autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
               = sd.hidden_field :phone_no, "data-phone-target": "hidden"
           .field
             = sd.label :street, "Street Name, Building, House No."
-            = sd.text_field :street, required: true
+            = sd.text_field :street, required: true, readonly: cannot?(:update_shipping_detail, @order)
           .field
             = sd.label :country
             = sd.text_field :country, value: "Philippines", required: true, readonly: true
           .field
             = sd.label :state, "Province"
-            = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
+            = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, disabled: cannot?(:update_shipping_detail, @order), "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
           .field
             = sd.label :city, "City/Municipality"
-            = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
+            = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_detail, @order), "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
           .grid.md:grid-cols-2.gap-3
             .field
               = sd.label :barangay
-              = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
+              = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_detail, @order), "data-checkout--shipping-details-target": "barangay"}
             .field 
               = sd.label :postal_code, "Postal Code"
-              = sd.text_field :postal_code
-        .mt-5
-          = f.submit "Save Shipping Details", class: "btn-primary cursor-pointer w-full sm:w-fit px-10"
+              = sd.text_field :postal_code, readonly: cannot?(:update_shipping_details, @order)
+        - if can?(:update_shipping_detail, @order)
+          .mt-5
+            = f.submit "Save Shipping Details", class: "btn-primary cursor-pointer w-full sm:w-fit"
   - else
     No Shipping details provided

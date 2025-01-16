@@ -12,9 +12,9 @@ authenticated :user, -> { _1.admin? } do
         post :ship
         post :recieve
         post :complete
-        post :cancel
         post :return
         post :refund
+        delete :cancel
       end
     end
 

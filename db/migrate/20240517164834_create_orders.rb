@@ -8,11 +8,12 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.references :guest_session, foreign_key: true, type: :uuid
       t.references :payment_method, foreign_key: true, type: :uuid
       t.decimal :shipping_fee, precision: 10, scale: 2, null: false, default: 0
+      t.decimal :refund_amount, precision: 10, scale: 2
+      t.text :refund_reason
+      t.text :return_reason
       t.datetime :placed_at
       t.string :logistic_url
       t.string :logistic_ref
-      t.text :refund_reason
-      t.text :return_reason
       t.text :internal_note
 
       t.timestamps

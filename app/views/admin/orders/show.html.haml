@@ -4,8 +4,12 @@
       = icon("fa-solid", "arrow-left")
     %h2.font-semibold.text-xl
       = "Order - #{@order.id}"
-  .grid.gap-3
-    = render "change_status"
-    = render "status_forms"
+    .lowercase{class: "#{@order.order_status.name}-status"}
+      = @order.order_status.name.humanize
+  .grid.gap-4
+    = render "single_buttons"
+    = render "recieve_form"
     = render "shipping_details"
     = render "payment_method"
+    = render "return_form"
+    = render "refund_form"

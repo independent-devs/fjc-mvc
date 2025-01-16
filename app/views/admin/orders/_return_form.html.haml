@@ -1,0 +1,11 @@
+- if can?(:return, @order)
+  .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
+    %h2.font-medium Return Details
+    = form_for(@order, url: return_admin_order_path(@order), html: {method: :post}) do |f|
+      .flex.flex-col.gap-3
+        .field
+          = f.label :return_reason, "Return Reason"
+          = f.text_field :return_reason
+        %button.btn-primary.flex.gap-2.items-center
+          = icon("fa-solid", "backward")
+          Return Order

@@ -17,6 +17,7 @@ end
 #  logistic_ref      :string
 #  logistic_url      :string
 #  placed_at         :datetime
+#  refund_amount     :decimal(10, 2)
 #  refund_reason     :text
 #  return_reason     :text
 #  shipping_fee      :decimal(10, 2)   default(0.0), not null

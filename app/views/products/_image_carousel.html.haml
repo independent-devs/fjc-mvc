@@ -9,7 +9,7 @@
           = radio_button_tag :thumb, index, index.zero?, id: "thumb_#{index}", data: {"products--carousel-target": "thumb", action: "input->products--carousel#thumbSelect", position: index + 1}, class: "peer hidden"
           .w-full.h-full.peer-checked:outline.outline-2.outline-primary.-outline-offset-2.border{for: "thumb_#{index}"}
             = image_tag image.variant(:thumb), size: 100, data: {action: "mouseover->products--carousel#hoverInItem mouseout->products--carousel#hoverOutItem", position: index + 1}, class: "h-20 max-h-20 w-full object-center object-cover cursor-pointer"
-      - if @carousel.size >= 5
+      - if @carousel.size > 5
         %button.py-3.px-1.absolute.items-center{data: {"products--carousel-target": "prev", action: "click->products--carousel#prevItem"}, class: "top-[22%] bg-black/20 [not:(:disabled)]:hover:bg-black/60 transition-colors disabled:cursor-not-allowed", disabled: true}
           = icon("fa-solid", "angle-left", class: "text-xl text-white")
         %button.py-3.px-1.absolute.items-center{data: {"products--carousel-target": "next", action: "click->products--carousel#nextItem"}, class: "top-[22%] right-0 bg-black/20 [not:(:disabled)]:hover:bg-black/60 transition-colors disabled:cursor-not-allowed"}
