@@ -27,7 +27,6 @@ class Ability
 
     return if user.blank?
 
-    # Variant
     can %i[add_to_cart buy_now], Variant
 
     # Cart
@@ -41,30 +40,35 @@ class Ability
 
     # Order
     can(:read, Order, user:)
-    can(:cancel, Order, user:, order_status: OrderStatus.pending)
-    can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: OrderStatus.pending)
-    can(:not_placed, Order, guest_session:, placed_at: nil, order_status: OrderStatus.pending) if guest_session.present?
+    can(:read, Order, guest_session:) if guest_session.present?
+    can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: { name: 'pending' })
+    can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' }) if guest_session.present?
+    can(:cancel, Order, Order.placed.where(user:)) do |order|
+      order.order_status.name == 'pending' && order.placed_at.present? && order.user = user
+    end
   end
 
   sig { params(user: T.nilable(User)).void }
   def admin_permission(user)
     return unless user&.admin?
 
+    # Product
     can :manage, Product
     can :manage, Variant, is_master: false, product: { has_variant: true }
     can :manage, :image
     can :manage, :stock
 
-    can :read, Order
+    # Order
+    can %i[read update_internal_note], Order
+    can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
     can :update_shipping_details, Order, order_status: { name: %w[pending to_ship] }
     can :update_logistic_details, Order, order_status: { name: %w[to_recieve completed refunded returned] }
     can :update_return_reason, Order, order_status: { name: 'returned' }
     can :update_refund_reason, Order, order_status: { name: 'refunded' }
-    can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
-    can %i[complete return], Order, order_status: { name: 'to_recieve' }
     can :recieve, Order, order_status: { name: 'to_ship' }
     can :refund, Order, order_status: { name: 'completed' }
-    can [:cancel, :ship], Order, Order.placed do |order|
+    can %i[complete return], Order, order_status: { name: 'to_recieve' }
+    can %i[cancel ship], Order, Order.placed do |order|
       order.order_status.name == 'pending' && order.placed_at.present?
     end
 
@@ -75,7 +79,6 @@ class Ability
 
   sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
-    # Variant
     can %i[guest_add_to_cart guest_buy_now], Variant
 
     # Cart
@@ -88,9 +91,11 @@ class Ability
 
     # Order
     can(:read, Order, guest_session:)
-    can(:cancel, Order, guest_session:, order_status: OrderStatus.pending)
-    can(%i[shipping_details payment_method not_placed], Order,
-        guest_session:, placed_at: nil, order_status: OrderStatus.pending)
+    can(%i[shipping_details payment_method], Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
+    can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
+    can(:cancel, Order, Order.placed.where(guest_session:)) do |order|
+      order.order_status.name == 'pending' && order.placed_at.present? && order.guest_session = guest_session
+    end
   end
 
   sig { params(portal: Integer).returns(T::Boolean) }

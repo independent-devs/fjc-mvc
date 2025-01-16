@@ -73,6 +73,9 @@ module GeneratedUrlHelpersModule
   def buy_now_variant_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def cancel_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def cancel_order_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -89,6 +92,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def cities_pilipina_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def complete_admin_order_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def count_carts_url(*args); end
@@ -250,7 +256,19 @@ module GeneratedUrlHelpersModule
   def rails_storage_redirect_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def recieve_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def refund_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def return_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def root_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def ship_admin_order_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def shipping_details_checkout_url(*args); end
@@ -274,7 +292,22 @@ module GeneratedUrlHelpersModule
   def turbo_resume_historical_location_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def update_internal_note_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_logistic_details_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_refund_reason_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_return_reason_admin_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_shipping_details_admin_order_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def upload_admin_product_images_url(*args); end

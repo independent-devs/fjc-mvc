@@ -10,6 +10,8 @@ module FjcShop
   class Application < Rails::Application
     config.load_defaults 7.1
 
+    config.session_store :cookie_store, key: '_app_session'
+
     config.time_zone = 'Singapore'
     config.active_record.default_timezone = :local
     config.action_view.default_form_builder = "OverrideFormBuilder"

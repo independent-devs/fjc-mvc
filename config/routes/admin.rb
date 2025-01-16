@@ -17,6 +17,7 @@ authenticated :user, -> { _1.admin? } do
         patch :update_logistic_details
         patch :update_return_reason
         patch :update_refund_reason
+        patch :update_internal_note
         delete :cancel
       end
     end

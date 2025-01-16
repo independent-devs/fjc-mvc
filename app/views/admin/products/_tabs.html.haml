@@ -1,20 +1,19 @@
-.font-medium.text-center.text-gray-500.border-b-2
-  %ul.flex.text-sm.gap-1
+%ul.flex.text-sm.gap-1.text-center.font-medium.text-gray-500.border-b-2
+  %li
+    = render TabLinkComponent.new path: admin_product_path(@product) do
+      = t("products.tabs.details")
+  %li
+    = render TabLinkComponent.new path: admin_product_images_path(@product) do
+      = t("products.tabs.images")
+  - if @product.has_variant 
     %li
-      = render TabLinkComponent.new path: admin_product_path(@product) do
-        = t("products.tabs.details")
-    %li
-      = render TabLinkComponent.new path: admin_product_images_path(@product) do
-        = t("products.tabs.images")
-    - if @product.has_variant 
-      %li
-        = render TabLinkComponent.new path: admin_product_variants_path(@product) do
-          = t("products.tabs.variants")
-    %li
-      = render TabLinkComponent.new path: admin_product_stocks_path(@product) do 
-        = t("products.tabs.stocks")
-    %li
-      = render TabLinkComponent.new path: product_path(@product), target: "_blank" do 
-        .flex.gap-2.items-center
-          = icon("fa-solid", "arrow-right", class: "-rotate-45")
-          Visit
+      = render TabLinkComponent.new path: admin_product_variants_path(@product) do
+        = t("products.tabs.variants")
+  %li
+    = render TabLinkComponent.new path: admin_product_stocks_path(@product) do 
+      = t("products.tabs.stocks")
+  %li
+    = render TabLinkComponent.new path: product_path(@product), target: "_blank" do 
+      .flex.gap-2.items-center
+        = icon("fa-solid", "arrow-right", class: "-rotate-45")
+        Visit

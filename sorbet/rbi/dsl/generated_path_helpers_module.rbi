@@ -73,6 +73,9 @@ module GeneratedPathHelpersModule
   def buy_now_variant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def cancel_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def cancel_order_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -89,6 +92,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def cities_pilipina_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def complete_admin_order_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def count_carts_path(*args); end
@@ -250,7 +256,19 @@ module GeneratedPathHelpersModule
   def rails_storage_redirect_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def recieve_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def refund_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def return_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def root_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def ship_admin_order_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def shipping_details_checkout_path(*args); end
@@ -274,7 +292,22 @@ module GeneratedPathHelpersModule
   def turbo_resume_historical_location_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def update_internal_note_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_logistic_details_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def update_rails_disk_service_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_refund_reason_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_return_reason_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def update_shipping_details_admin_order_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def upload_admin_product_images_path(*args); end

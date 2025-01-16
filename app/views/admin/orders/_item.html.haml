@@ -1,16 +1,17 @@
 %tr{id: dom_id(order)}
   %td
     .flex.gap-2.items-center
-      - if order.customer_name.present?
-        .block
-          = order.customer_name
-      .bg-primary.px-2.rounded-md.text-white.w-fit.text-sm.h-fit
-        - if order.user_id.present?
+      - if order.user_id.present?
+        .tag-primary
           user
-        - elsif order.guest_session_id.present?
+      - elsif order.guest_session_id.present?
+        .tag-guest
           guest
-        - else
+      - else
+        .tag-primary
           custom
+      - if order.customer_name.present?
+        = order.customer_name
   %td
     .lowercase{class: "#{order.status}-status"}
       = order.status.humanize

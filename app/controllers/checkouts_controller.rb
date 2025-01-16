@@ -3,7 +3,9 @@
 class CheckoutsController < BaseController
   before_action :set_order
 
-  def show; end
+  def show
+    authorize! :read, @order
+  end
 
   def shipping_details
     authorize! :shipping_details, @order

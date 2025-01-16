@@ -581,6 +581,9 @@ class Order
     def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_shipping_details(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with_status(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -812,6 +815,51 @@ class Order
 
     sig { void }
     def internal_note_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def logistic_name; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def logistic_name=(value); end
+
+    sig { returns(T::Boolean) }
+    def logistic_name?; end
+
+    sig { returns(T.nilable(::String)) }
+    def logistic_name_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def logistic_name_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def logistic_name_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def logistic_name_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def logistic_name_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def logistic_name_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def logistic_name_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def logistic_name_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def logistic_name_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def logistic_name_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def logistic_name_was; end
+
+    sig { void }
+    def logistic_name_will_change!; end
 
     sig { returns(T.nilable(::String)) }
     def logistic_ref; end
@@ -1048,6 +1096,51 @@ class Order
     sig { void }
     def placed_at_will_change!; end
 
+    sig { returns(T.nilable(::BigDecimal)) }
+    def refund_amount; end
+
+    sig { params(value: T.nilable(::BigDecimal)).returns(T.nilable(::BigDecimal)) }
+    def refund_amount=(value); end
+
+    sig { returns(T::Boolean) }
+    def refund_amount?; end
+
+    sig { returns(T.nilable(::BigDecimal)) }
+    def refund_amount_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def refund_amount_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def refund_amount_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::BigDecimal), T.nilable(::BigDecimal)])) }
+    def refund_amount_change; end
+
+    sig { returns(T.nilable([T.nilable(::BigDecimal), T.nilable(::BigDecimal)])) }
+    def refund_amount_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::BigDecimal), to: T.nilable(::BigDecimal)).returns(T::Boolean) }
+    def refund_amount_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::BigDecimal)) }
+    def refund_amount_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::BigDecimal), T.nilable(::BigDecimal)])) }
+    def refund_amount_previous_change; end
+
+    sig { params(from: T.nilable(::BigDecimal), to: T.nilable(::BigDecimal)).returns(T::Boolean) }
+    def refund_amount_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::BigDecimal)) }
+    def refund_amount_previously_was; end
+
+    sig { returns(T.nilable(::BigDecimal)) }
+    def refund_amount_was; end
+
+    sig { void }
+    def refund_amount_will_change!; end
+
     sig { returns(T.nilable(::String)) }
     def refund_reason; end
 
@@ -1109,6 +1202,9 @@ class Order
     def restore_internal_note!; end
 
     sig { void }
+    def restore_logistic_name!; end
+
+    sig { void }
     def restore_logistic_ref!; end
 
     sig { void }
@@ -1122,6 +1218,9 @@ class Order
 
     sig { void }
     def restore_placed_at!; end
+
+    sig { void }
+    def restore_refund_amount!; end
 
     sig { void }
     def restore_refund_reason!; end
@@ -1214,6 +1313,12 @@ class Order
     def saved_change_to_internal_note?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_logistic_name; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_logistic_name?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_logistic_ref; end
 
     sig { returns(T::Boolean) }
@@ -1242,6 +1347,12 @@ class Order
 
     sig { returns(T::Boolean) }
     def saved_change_to_placed_at?; end
+
+    sig { returns(T.nilable([T.nilable(::BigDecimal), T.nilable(::BigDecimal)])) }
+    def saved_change_to_refund_amount; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_refund_amount?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_refund_reason; end
@@ -1424,6 +1535,9 @@ class Order
     def will_save_change_to_internal_note?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_logistic_name?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_logistic_ref?; end
 
     sig { returns(T::Boolean) }
@@ -1437,6 +1551,9 @@ class Order
 
     sig { returns(T::Boolean) }
     def will_save_change_to_placed_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_refund_amount?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_refund_reason?; end
@@ -1592,6 +1709,9 @@ class Order
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_shipping_details(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with_status(*args, &blk); end

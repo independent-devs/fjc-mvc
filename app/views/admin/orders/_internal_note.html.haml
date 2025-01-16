@@ -1,0 +1,6 @@
+.p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
+  %h2.font-medium Internal Note
+  = form_for(@order, url: update_internal_note_admin_order_path(@order)) do |f|
+    = f.text_area :internal_note
+    %button.btn-primary.mt-2
+      Update Internal Note

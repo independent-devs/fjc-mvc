@@ -14,7 +14,6 @@ RUN apt-get update -qq && apt-get install -y \
 WORKDIR /app
 
 ARG SECRET_KEY_BASE
-ARG BRAND_LOCALE
 
 # Rails ENV
 ENV RAILS_ENV production

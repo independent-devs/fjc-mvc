@@ -6,7 +6,7 @@ class Admin::BaseController < ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :unauthorized }
-      format.html { redirect_to root_path, alert: exception.message }
+      format.html { redirect_to admin_path, alert: exception.message }
       format.turbo_stream { render 'errors/unauthorized', status: :unauthorized }
     end
   end
