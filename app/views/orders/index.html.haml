@@ -5,4 +5,8 @@
 = render Account::LayoutComponent.new do
   .grid.bg-white
     = render "status_tab"
-    = render EmptyItemComponent.new text: "No orders yet", hide: false
+    .grid.gap-3.pt-3
+      - if @orders.present?
+        - @orders.each do |order|
+          = render "item", order:
+      = render EmptyItemComponent.new text: "No orders yet", hide: @orders.present?

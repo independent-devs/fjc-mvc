@@ -40,6 +40,7 @@ class Ability
 
     # Order
     can(:read, Order, user:)
+    can(:read, Order, guest_session:) if guest_session.present?
     can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' }) if guest_session.present?
     can(:cancel, Order, Order.placed.where(user:)) do |order|

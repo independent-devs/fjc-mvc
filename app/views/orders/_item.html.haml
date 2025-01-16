@@ -1,0 +1,48 @@
+.border.border-gray-300.rounded-sm.divide-y.shadow-sm.bg-white{id: dom_id(order)}
+  .px-5.divide-y
+    .flex.gap-3.justify-between.py-3
+      .text-sm.uppercase.text-gray-500
+        - if order.placed_at.present?
+          = "Order placed #{time_ago_in_words(order.placed_at)} ago"
+        - else
+          .text-red-600
+            Order not yet placed
+      .divide-x.divide-gray-400.flex.h-fit.w-fit
+        - if order.guest_session_id.present?
+          .pr-2
+            .tag-guest
+              guest
+        .uppercase.text-primary.text-sm.font-medium.pl-2
+          = order.status.humanize
+    .divide-y
+      - order.order_items.each do |order_item|
+        = link_to product_path(order_item.variant.product), class: "flex gap-3 py-4 w-full" do
+          = image_tag order_item.variant.product.thumbnail.attached? ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
+          .flex.flex-col.w-full
+            .text-base= order_item.variant.product.name
+            .flex.justify-between.gap-3.text-sm.w-full
+              .block
+                - unless order_item.variant.is_master
+                  .flex.justify-between.gap-3.text-gray-500
+                    = order_item.variant.option_value_name
+                %span
+                  = "x#{order_item.qty}"
+              .block
+                = render PriceRangeComponent.new lowest: (order_item.price * order_item.qty), discount: order_item.discount_percent
+  .px-5.py-4.flex.justify-between
+    .block
+      - if order.placed_at.blank?
+        .text-sm.text-gray-500
+          Non-placed orders will be removed within 24 hours
+    .grid.gap-4
+      .flex.items-center.gap-2.justify-end
+        .text-sm
+          Order Total:
+        .text-primary.text-xl
+          = price_with_currency(order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
+      .flex.justify-end.gap-3
+        - if can?(:cancel, order)
+          = button_to cancel_order_path(order), method: :delete, class: "bg-red-600 px-6 py-3 text-sm font-medium text-white flex gap-2 items-center rounded-sm", data: { turbo_confirm: "Are you sure to cancel order?"} do
+            Cancel order
+        - if order.placed_at.blank?
+          = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary px-6 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"

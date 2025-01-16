@@ -292,6 +292,9 @@ module GeneratedPathHelpersModule
   def turbo_resume_historical_location_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def update_internal_note_admin_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def update_logistic_details_admin_order_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
