@@ -2,7 +2,7 @@
   .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
     %h2.font-medium Logistic Details
     = form_for(@order, url: recieve_admin_order_path(@order), html: {data: {turbo_confirm: "Proceed ship order (to recieve) status?"}, method: :post}) do |f|
-      .flex.flex-col.gap-3
+      .grid.grid-cols-2.gap-3
         .field
           = f.label :logistic_name, "Logistic Name"
           = f.text_field :logistic_name
@@ -12,6 +12,6 @@
         .field
           = f.label :logistic_ref, "Logistic Ref No."
           = f.text_field :logistic_ref
-        %button.btn-primary.flex.gap-2.items-center
-          = icon("fa-solid", "truck-fast")
-          Ship Order (To recieve)
+      %button.btn-primary.flex.gap-2.items-center.mt-3
+        = icon("fa-solid", "truck-fast")
+        Ship Order (To recieve)

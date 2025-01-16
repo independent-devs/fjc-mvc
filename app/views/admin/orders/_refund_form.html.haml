@@ -5,17 +5,17 @@
     - url, method, confirm = (if can?(:refund, @order) then [refund_admin_order_path(@order), "post", "Proceed to refund status?"] else [update_refund_reason_admin_order_path(@order), "patch", nil] end )
 
     = form_for(@order, url:, html: {data: {turbo_confirm: confirm}, method:}) do |f|
-      .flex.flex-col.gap-3
+      .grid.grid-cols-2.gap-3
         .field
           = f.label :refund_reason, "Refund Reason"
           = f.text_field :refund_reason
         .field
           = f.label :refund_amount, "Refund Amount"
           = f.number_field :refund_amount
-        - if can?(:refund, @order)
-          %button.btn-primary.flex.gap-2.items-center
-            = icon("fa-solid", "dollar-sign")
-            Refund Order
-        - else
-          %button.btn-primary
-            Update Refund Details
+      - if can?(:refund, @order)
+        %button.btn-primary.flex.gap-2.items-center.mt-3
+          = icon("fa-solid", "dollar-sign")
+          Refund Order
+      - else
+        %button.btn-primary.mt-3
+          Update Refund Details

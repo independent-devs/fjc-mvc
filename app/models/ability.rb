@@ -41,7 +41,7 @@ class Ability
 
     # Order
     can(:read, Order, user:)
-    can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: 'pending')
+    can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' }) if guest_session.present?
     can(:cancel, Order, Order.placed.where(user:)) do |order|
       order.order_status.name == 'pending' && order.placed_at.present? && order.user = user
@@ -57,7 +57,7 @@ class Ability
     can :manage, :image
     can :manage, :stock
 
-    can :read, Order
+    can %i[read update_internal_note], Order
     can :update_shipping_details, Order, order_status: { name: %w[pending to_ship] }
     can :update_logistic_details, Order, order_status: { name: %w[to_recieve completed refunded returned] }
     can :update_return_reason, Order, order_status: { name: 'returned' }

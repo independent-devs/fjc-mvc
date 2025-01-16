@@ -136,6 +136,7 @@ en:
     return_details_updated: "Return details successfully updated."
     refund_details_updated: "Refund details successfully updated."
     logistic_details_updated: "Logistic details succesfully updated."
+    internal_note_updated: "Internal note succesfully updated."
     table: 
       thead:
         customer: "Customer"

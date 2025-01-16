@@ -29,6 +29,14 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def update_internal_note
+    if @order.update(internal_note: order_params[:internal_note])
+      redirect_to admin_order_url(@order), notice: I18n.t('orders.internal_note_updated')
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
   def update_return_reason
     if @order.update(return_reason: order_params[:return_reason])
       redirect_to admin_order_url(@order), notice: I18n.t('orders.return_details_updated')
@@ -103,7 +111,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def order_params
     params.require(:order)
-          .permit(:logistic_name, :logistic_url, :logistic_ref, :refund_reason, :return_reason, :refund_amount,
+          .permit(:logistic_name, :logistic_url, :logistic_ref,
+                  :refund_reason, :return_reason, :refund_amount, :internal_note,
                   shipping_detail_attributes: %i[id fullname phone_no street barangay city state country postal_code])
   end
 end
