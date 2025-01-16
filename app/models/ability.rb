@@ -64,10 +64,10 @@ class Ability
     can :update_logistic_details, Order, order_status: { name: %w[to_recieve completed refunded returned] }
     can :update_return_reason, Order, order_status: { name: 'returned' }
     can :update_refund_reason, Order, order_status: { name: 'refunded' }
-    can %i[complete return], Order, order_status: { name: 'to_recieve' }
     can :recieve, Order, order_status: { name: 'to_ship' }
     can :refund, Order, order_status: { name: 'completed' }
-    can [:cancel, :ship], Order, Order.placed do |order|
+    can %i[complete return], Order, order_status: { name: 'to_recieve' }
+    can %i[cancel ship], Order, Order.placed do |order|
       order.order_status.name == 'pending' && order.placed_at.present?
     end
 
