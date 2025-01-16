@@ -11,6 +11,8 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.decimal :refund_amount, precision: 10, scale: 2
       t.text :refund_reason
       t.text :return_reason
+      t.text :cancelled_by
+      t.datetime :cancelled_at
       t.datetime :placed_at
       t.string :logistic_name
       t.string :logistic_url

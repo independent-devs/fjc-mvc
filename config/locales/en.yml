@@ -132,6 +132,7 @@ en:
     payment_addded: "Successfully added payment method"
     destroyed: "Order was successfully deleted."
     updated: "Order was successfully updated."
+    cancelled: "Order was successfully cancelled"
     shipping_details_updated: "Shipping details successfullly updated."
     return_details_updated: "Return details successfully updated."
     refund_details_updated: "Refund details successfully updated."

@@ -83,8 +83,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def cancel
-    if @order.update(order_status: OrderStatus.cancelled)
-      redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
+    if @order.update(order_status: OrderStatus.cancelled, cancelled_at: Time.current, cancelled_by: 'seller')
+      redirect_to admin_order_url(@order), notice: I18n.t('orders.cancelled')
     else
       render :show, status: :unprocessable_entity
     end

@@ -12,7 +12,7 @@ class OrdersController < BaseController
 
   def cancel
     respond_to do |format|
-      if @order.update(order_status: OrderStatus.cancelled)
+      if @order.update(order_status: OrderStatus.cancelled, cancelled_at: Time.current, cancelled_by: 'buyer')
         format.turbo_stream
       else
         format.turbo_stream { render status: :unprocessable_entity }
