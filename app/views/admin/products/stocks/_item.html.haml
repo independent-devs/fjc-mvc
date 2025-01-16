@@ -3,19 +3,19 @@
     .grid.grid-cols-5
       .py-4.px-5
         - if f.object.is_master
-          = render TagComponent.new do 
+          .tag-primary
             master
         - else
           = f.object.grouped_name
       .py-4.px-5
         - if f.object.is_master
-          = render TagComponent.new do
+          .tag-primary
             master
         - else
           = f.text_field :sku, id: dom_id(variant, "sku"), class: "input-table", data: {"action": "change->autosave#save"}
       .py-4.px-5
         - if f.object.is_master
-          = render TagComponent.new do
+          .tag-primary
             master
         - else
           .space-y-1{data: {controller: "admin--products--track"}}

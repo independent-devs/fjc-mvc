@@ -42,6 +42,14 @@
     @apply w-[18px] h-[18px] rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed cursor-pointer;
   }
 
+  .tag-primary {
+    @apply bg-primary px-2 rounded-md text-white w-fit text-sm h-fit;
+  }
+
+  .tag-guest {
+    @apply bg-gray-600 px-2 rounded-md text-white w-fit text-sm h-fit;
+  }
+
   .carousel-img {
     @apply w-full object-center object-cover h-full border;
   }
@@ -323,4 +331,8 @@ dialog[data-dialog-target="dialog"][closing] {
 }
 
 .rich-text-container {
+}
+
+trix-toolbar .trix-button.trix-active {
+  @apply !bg-primary/20;
 }
