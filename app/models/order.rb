@@ -2,6 +2,8 @@
 # typed: true
 
 class Order < ApplicationRecord
+  extend T::Sig
+
   # Relations
   belongs_to :order_status
   belongs_to :user, optional: true
@@ -24,19 +26,23 @@ class Order < ApplicationRecord
                    'AND shipping_details.shippable_id = orders.id')
         }
 
+  sig { returns(T.any(Integer, Float, BigDecimal)) }
   def subtotal
     order_items.sum('order_items.qty * order_items.price')
   end
 
+  sig { returns(T.any(Integer, Float, BigDecimal)) }
   def discounted_price
     order_items.sum('(order_items.price * order_items.qty) * (order_items.discount_percent / 100.0)')
   end
 
+  sig { returns(T.any(Integer, Float, BigDecimal)) }
   def total
     order_items.sum('(order_items.qty * order_items.price) - ((order_items.price * order_items.qty) * ' \
                     '(order_items.discount_percent / 100.0))') - shipping_fee
   end
 
+  sig { params(cancelled_by: String).returns(T.nilable(Order)) }
   def cancel_variant_release(cancelled_by:)
     Order.transaction do
       update!(order_status: OrderStatus.cancelled, cancelled_at: Time.current, cancelled_by:)
@@ -45,6 +51,22 @@ class Order < ApplicationRecord
       items.each do |item|
         item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
       end
+
+      self
+    rescue StandardError => e
+      logger.warn e
+      nil
+    end
+  end
+
+  sig { returns(T.nilable(Order)) }
+  def destroy_variant_release
+    Order.transaction do
+      items = order_items.where(variant: { trackable: true }).joins(:variant)
+      items.each do |item|
+        item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
+      end
+      destroy
 
       self
     rescue StandardError => e

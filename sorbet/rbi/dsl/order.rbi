@@ -591,6 +591,106 @@ class Order
   end
 
   module GeneratedAttributeMethods
+    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at; end
+
+    sig { params(value: T.nilable(::ActiveSupport::TimeWithZone)).returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at=(value); end
+
+    sig { returns(T::Boolean) }
+    def cancelled_at?; end
+
+    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def cancelled_at_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def cancelled_at_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    def cancelled_at_change; end
+
+    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    def cancelled_at_change_to_be_saved; end
+
+    sig do
+      params(
+        from: T.nilable(::ActiveSupport::TimeWithZone),
+        to: T.nilable(::ActiveSupport::TimeWithZone)
+      ).returns(T::Boolean)
+    end
+    def cancelled_at_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    def cancelled_at_previous_change; end
+
+    sig do
+      params(
+        from: T.nilable(::ActiveSupport::TimeWithZone),
+        to: T.nilable(::ActiveSupport::TimeWithZone)
+      ).returns(T::Boolean)
+    end
+    def cancelled_at_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at_previously_was; end
+
+    sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
+    def cancelled_at_was; end
+
+    sig { void }
+    def cancelled_at_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def cancelled_by; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def cancelled_by=(value); end
+
+    sig { returns(T::Boolean) }
+    def cancelled_by?; end
+
+    sig { returns(T.nilable(::String)) }
+    def cancelled_by_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def cancelled_by_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def cancelled_by_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def cancelled_by_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def cancelled_by_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def cancelled_by_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def cancelled_by_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def cancelled_by_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def cancelled_by_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def cancelled_by_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def cancelled_by_was; end
+
+    sig { void }
+    def cancelled_by_will_change!; end
+
     sig { returns(::ActiveSupport::TimeWithZone) }
     def created_at; end
 
@@ -1187,6 +1287,12 @@ class Order
     def refund_reason_will_change!; end
 
     sig { void }
+    def restore_cancelled_at!; end
+
+    sig { void }
+    def restore_cancelled_by!; end
+
+    sig { void }
     def restore_created_at!; end
 
     sig { void }
@@ -1281,6 +1387,18 @@ class Order
 
     sig { void }
     def return_reason_will_change!; end
+
+    sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
+    def saved_change_to_cancelled_at; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_cancelled_at?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_cancelled_by; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_cancelled_by?; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_created_at; end
@@ -1518,6 +1636,12 @@ class Order
 
     sig { void }
     def user_id_will_change!; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_cancelled_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_cancelled_by?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_created_at?; end

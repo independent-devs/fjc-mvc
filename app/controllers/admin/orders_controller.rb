@@ -54,7 +54,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def destroy
-    @order.destroy
+    @order.destroy_variant_release
   end
 
   def ship

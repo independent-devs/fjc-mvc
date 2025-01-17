@@ -52,7 +52,7 @@
       .flex.justify-end.gap-3
         %button.btn-primary.px-9{class: "py-2.5"}
           Buy Again
-        - if (can?(:cancel, order) || order.guest_session_id.present?) && order.order_status.name == "pending" && order.placed_at.present?
+        - if can?(:cancel, order)
           = button_to "Cancel Order", cancel_order_path(order), method: :delete, disabled: cannot?(:cancel, order), class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
         - if can?(:shipping_details, order) && can?(:payment_method, order)
           = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary px-9 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"

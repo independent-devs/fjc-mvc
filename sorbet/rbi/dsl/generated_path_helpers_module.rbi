@@ -280,6 +280,9 @@ module GeneratedPathHelpersModule
   def sync_cart_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def sync_order_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def total_carts_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
