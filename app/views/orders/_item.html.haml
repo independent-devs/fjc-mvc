@@ -1,19 +1,28 @@
-.border.border-gray-300.rounded-sm.divide-y.shadow-sm.bg-white{id: dom_id(order)}
+.order-item.border.border-gray-300.rounded-sm.divide-y.shadow-sm.bg-white{id: dom_id(order, ("all" if params[:status].blank?))}
   .px-5.divide-y
     .flex.gap-3.justify-between.py-3
-      .text-sm.uppercase.text-gray-500
+      .text-sm.uppercase
         - if order.placed_at.present?
-          = "Order placed #{time_ago_in_words(order.placed_at)} ago"
+          .text-gray-500
+            = "Order placed #{time_ago_in_words(order.placed_at)} ago"
         - else
           .text-red-600
             Order not yet placed
       .divide-x.divide-gray-400.flex.h-fit.w-fit
         - if order.guest_session_id.present?
-          .pr-2
-            .tag-guest
-              guest
+          .pr-2{data: {controller: "popover"}}
+            .relative.cursor-help{data: {action: "mouseenter->popover#show mouseleave->popover#hide"}}
+              .tag-guest
+                Guest
+            %template{data: {"popover-target": "content"}}
+              .w-60.py-2.px-3.text-sm.text-gray-600.rounded-sm.shadow.mt-2.border.bg-white.z-10.transition-transform.absolute.right-0{data: {"popover-target": "card"}}
+                This is a guest order saved in this browser.
+                - if can?(:sync, order)
+                  Sync
+                  = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
+                  this item to own the order.
         .uppercase.text-primary.text-sm.font-medium.pl-2
-          = order.status.humanize
+          = order.order_status.name.humanize
     .divide-y
       - order.order_items.each do |order_item|
         = link_to product_path(order_item.variant.product), class: "flex gap-3 py-4 w-full" do
@@ -41,14 +50,16 @@
         .text-primary.text-xl
           = price_with_currency(order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
       .flex.justify-end.gap-3
-        - if order.placed_at.present?
-          %button.btn-primary.px-9{class: "py-2.5"}
-            Buy Again
-        - if can?(:cancel, order)
-          = button_to cancel_order_path(order), method: :delete, class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm", data: { turbo_confirm: "Are you sure to cancel order?"} do
-            Cancel order
-        - if order.placed_at.blank?
+        %button.btn-primary.px-9{class: "py-2.5"}
+          Buy Again
+        - if (can?(:cancel, order) || order.guest_session_id.present?) && order.order_status.name == "pending" && order.placed_at.present?
+          = button_to "Cancel Order", cancel_order_path(order), method: :delete, disabled: cannot?(:cancel, order), class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
+        - if can?(:shipping_details, order) && can?(:payment_method, order)
           = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary px-9 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
-        - if order.placed_at.present?
+        - if can?(:sync, order)
+          = button_to sync_order_path(order), method: :post, class: "flex gap-2 items-center px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
+            = icon("fa-solid", "arrows-rotate")
+            Sync Order
+        - if can?(:read, order)
           %button.px-9{class: "border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline"}
             Order Details

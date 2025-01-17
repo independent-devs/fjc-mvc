@@ -43,6 +43,7 @@ end
 resource :account, only: :show
 resources :orders, only: %i[index show] do
   member do
+    post :sync
     delete :cancel
   end
 end

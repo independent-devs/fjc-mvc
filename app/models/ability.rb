@@ -40,11 +40,12 @@ class Ability
 
     # Order
     can(:read, Order, user:)
-    can(:read, Order, guest_session:) if guest_session.present?
+    can(:show_checkout, Order, user:, placed_at: nil, order_status: { name: 'pending' })
+    can(%i[read sync], Order, guest_session:) if guest_session.present?
     can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' }) if guest_session.present?
     can(:cancel, Order, Order.placed.where(user:)) do |order|
-      order.order_status.name == 'pending' && order.placed_at.present? && order.user = user
+      order.order_status.name == 'pending' && order.placed_at.present? && order.user.present? && order.user = user
     end
   end
 
@@ -91,10 +92,12 @@ class Ability
 
     # Order
     can(:read, Order, guest_session:)
+    can(:show_checkout, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
     can(%i[shipping_details payment_method], Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
     can(:cancel, Order, Order.placed.where(guest_session:)) do |order|
-      order.order_status.name == 'pending' && order.placed_at.present? && order.guest_session = guest_session
+      order.order_status.name == 'pending' && order.placed_at.present? && order.guest_session.present? &&
+        order.guest_session = guest_session
     end
   end
 

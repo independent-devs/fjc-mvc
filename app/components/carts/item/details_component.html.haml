@@ -19,7 +19,7 @@
                   - if can?(:sync, cart)
                     Sync
                     = icon("fa-solid", "arrows-rotate", class: "text-gray-700")
-                    this card to own the cart.
+                    this item to own the cart.
             - if can?(:sync, cart)
               %button.text-gray-400.text-lg.hover:text-gray-600.disabled:animate-spin.disabled:cursor-wait{type: "button", data: {action: "click->carts--item#sync", "carts--item-target": "sync"}}
                 = icon("fa-solid", "arrows-rotate")

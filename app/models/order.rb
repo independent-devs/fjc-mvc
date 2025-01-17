@@ -36,6 +36,22 @@ class Order < ApplicationRecord
     order_items.sum('(order_items.qty * order_items.price) - ((order_items.price * order_items.qty) * ' \
                     '(order_items.discount_percent / 100.0))') - shipping_fee
   end
+
+  def cancel_variant_release(cancelled_by:)
+    Order.transaction do
+      update!(order_status: OrderStatus.cancelled, cancelled_at: Time.current, cancelled_by:)
+
+      items = order_items.where(variant: { trackable: true }).joins(:variant)
+      items.each do |item|
+        item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
+      end
+
+      self
+    rescue StandardError => e
+      logger.warn e
+      nil
+    end
+  end
 end
 
 # == Schema Information
