@@ -13,6 +13,8 @@ end
 # Table name: orders
 #
 #  id                :uuid             not null, primary key
+#  cancelled_at      :datetime
+#  cancelled_by      :text
 #  internal_note     :text
 #  logistic_name     :string
 #  logistic_ref      :string

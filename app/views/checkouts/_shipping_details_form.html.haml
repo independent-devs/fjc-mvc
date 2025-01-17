@@ -28,7 +28,7 @@
             = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: sd.object.new_record? && @order.errors.blank?, "data-checkout--shipping-details-target": "barangay"}
           .field 
             = sd.label :postal_code, "Postal Code"
-            = sd.text_field :postal_code
+            = sd.number_field :postal_code
       .mt-5
         = render "order_summary", is_tbd: true
       .w-full.flex.justify-end.mt-5

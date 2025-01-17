@@ -1,0 +1,8 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('orders.cancelled')
+
+= turbo_stream.remove dom_id(@order)
+
+= turbo_stream.replace dom_id(@order, "all") do
+  = render "item", order: @order
+

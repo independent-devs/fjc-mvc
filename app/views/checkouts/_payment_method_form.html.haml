@@ -1,6 +1,8 @@
 #payment-method{data: {"checkout--step-target": "payment"}, class: ("hidden" if !@order.shipping_detail&.persisted?)}
+  = render "shipping_details"
   = form_for(@order, url: payment_method_checkout_path(@order), html: {method: :post}) do |f|
-    .grid.gap-2
+    .grid.gap-2.p-3.rounded.border.border-gray-300.space-y-1.mb-5
+      %h2.font-medium Select Payment Method
       - PaymentMethod.all.each do |pm|
         .block
           = f.radio_button :payment_method_id, pm.id, id: pm.id, disabled: !pm.enable, checked: pm.code == "COD", class: "hidden peer"

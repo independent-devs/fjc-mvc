@@ -3,9 +3,9 @@
 - keywords "cart, product, orders"
 
 = render Account::LayoutComponent.new do
-  .grid.bg-white
+  .grid.bg-white.pb-3
     = render "status_tab"
-    .grid.gap-3.pt-3
+    .grid.gap-3.pt-3{data: {controller: "items", empty: "items-empty", "item": "order-item"}}
       - if @orders.present?
         - @orders.each do |order|
           = render "item", order:

@@ -1,0 +1,9 @@
+= turbo_stream.prepend "notification-container" do
+  = render NotificationComponent.new notif_type: "success", message: I18n.t('orders.synced')
+
+= turbo_stream.replace dom_id(@order) do
+  = render "item", order: @order
+
+= turbo_stream.replace dom_id(@order, "all") do
+  = render "item", order: @order
+

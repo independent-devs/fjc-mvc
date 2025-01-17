@@ -54,7 +54,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def destroy
-    @order.destroy
+    @order.destroy_variant_release
   end
 
   def ship
@@ -83,8 +83,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def cancel
-    if @order.update(order_status: OrderStatus.cancelled)
-      redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
+    if @order.cancel_variant_release(cancelled_by: 'seller')
+      redirect_to admin_order_url(@order), notice: I18n.t('orders.cancelled')
     else
       render :show, status: :unprocessable_entity
     end

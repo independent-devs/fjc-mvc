@@ -280,6 +280,9 @@ module GeneratedUrlHelpersModule
   def sync_cart_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def sync_order_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def total_carts_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

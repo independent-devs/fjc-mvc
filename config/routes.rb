@@ -48,6 +48,7 @@ end
 #      update_logistic_details_admin_order PATCH    /admin/orders/:id/update_logistic_details(.:format)                                               admin/orders#update_logistic_details
 #         update_return_reason_admin_order PATCH    /admin/orders/:id/update_return_reason(.:format)                                                  admin/orders#update_return_reason
 #         update_refund_reason_admin_order PATCH    /admin/orders/:id/update_refund_reason(.:format)                                                  admin/orders#update_refund_reason
+#         update_internal_note_admin_order PATCH    /admin/orders/:id/update_internal_note(.:format)                                                  admin/orders#update_internal_note
 #                       cancel_admin_order DELETE   /admin/orders/:id/cancel(.:format)                                                                admin/orders#cancel
 #                             admin_orders GET      /admin/orders(.:format)                                                                           admin/orders#index
 #                              admin_order GET      /admin/orders/:id(.:format)                                                                       admin/orders#show

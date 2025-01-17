@@ -2,6 +2,8 @@
 # typed: true
 
 class Cart < ApplicationRecord
+  extend T::Sig
+
   # Relations
   belongs_to :variant
   belongs_to :user, optional: true
@@ -47,12 +49,26 @@ class Cart < ApplicationRecord
 
   validate :validate_ownership
 
-  def self.checkout(carts, parent)
+  sig do
+    params(
+      carts: ActiveRecord::Relation,
+      guest_session: T.nilable(GuestSession),
+      user: T.nilable(User)
+    ).returns(T.nilable(Order))
+  end
+  def self.checkout(carts, guest_session:, user:)
     Order.transaction do
       order = Order.build
-      order.guest_session = parent if parent.instance_of?(GuestSession)
-      order.user = parent if parent.instance_of?(User)
       order.order_status = OrderStatus.pending
+
+      if user.present?
+        order.user = user
+      elsif guest_session.present?
+        order.guest_session = guest_session
+      else
+        raise ActiveRecord::Rollback
+      end
+
       order.save!
 
       carts.each do |cart|
@@ -76,6 +92,7 @@ class Cart < ApplicationRecord
 
   private
 
+  sig { void }
   def validate_ownership
     return unless user_id.present? && guest_session_id.present?
 
