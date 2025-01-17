@@ -96,7 +96,6 @@ gem 'view_component', '~> 2.82'
 
 # Haml support
 gem 'haml-rails', '~> 2.1'
-gem 'html2haml', '~> 2.3'
 
 # SEO
 gem 'meta-tags', '~> 2.20'
