@@ -10,13 +10,8 @@ export default class extends Controller {
 
   observe() {
     const emptyTarget = document.getElementById(this.element.dataset.empty);
-
-    if (this.itemCount > 0) {
-      emptyTarget.classList.add("hidden");
-      return;
-    }
-
-    emptyTarget.classList.remove("hidden");
+    if (this.itemCount > 0) emptyTarget.classList.add("hidden");
+    else emptyTarget.classList.remove("hidden");
   }
 
   get itemCount() {

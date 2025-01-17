@@ -27,10 +27,8 @@ export default class extends Controller {
   }
 
   buyNow() {
-    if (!this.variantID) {
-      this.setError(true, "Please select product variation first");
-      return;
-    }
+    if (this.variantID) return;
+    this.setError(true, "Please select product variation first");
   }
 
   /* Actions */
