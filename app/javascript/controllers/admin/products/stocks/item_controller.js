@@ -31,11 +31,7 @@ export default class extends Controller {
   }
 
   change(event) {
-    if (!Number(event.target.value)) {
-      this.actionTarget.classList.add("hidden");
-      return;
-    }
-
-    this.actionTarget.classList.remove("hidden");
+    if (!Number(event.target.value)) this.actionTarget.classList.add("hidden");
+    else this.actionTarget.classList.remove("hidden");
   }
 }

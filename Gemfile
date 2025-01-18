@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.3.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.3'
+gem 'rails', '~> 7.2.2'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -96,7 +96,6 @@ gem 'view_component', '~> 2.82'
 
 # Haml support
 gem 'haml-rails', '~> 2.1'
-gem 'html2haml', '~> 2.3'
 
 # SEO
 gem 'meta-tags', '~> 2.20'
