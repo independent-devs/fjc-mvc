@@ -13,7 +13,4 @@
             = render "item", option:
         - else
           %tr
-            %td= t("options.no_list_found")
-            %td
-            %td
-            %td
+            %td{colspan: 3}= t("options.no_list_found")

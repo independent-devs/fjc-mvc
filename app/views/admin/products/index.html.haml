@@ -20,10 +20,7 @@
               = render "item", product:
           - else
             %tr
-              %td= t("products.no_list_found")
-              %td
-              %td
-              %td
+              %td{colspan: 4}= t("products.no_list_found")
       - if @pagy.pages > 1          
         .flex.gap-3.items-center.w-full.justify-between
           != pagy_nav(@pagy)
