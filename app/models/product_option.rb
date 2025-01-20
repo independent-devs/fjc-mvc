@@ -1,9 +1,6 @@
 # frozen_string_literal: true
-# typed: true
 
 class ProductOption < ApplicationRecord
-  extend T::Sig
-
   # Concerns
   include RankedModel
 
@@ -27,9 +24,8 @@ class ProductOption < ApplicationRecord
 
   private
 
-  sig { void }
   def variant_cleanup
-    T.must(product).variants.not_master.destroy_all
+    product.variants.not_master.destroy_all
   end
 end
 

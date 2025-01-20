@@ -1,10 +1,6 @@
 # frozen_string_literal: true
-# typed: true
 
 class Category < ApplicationRecord
-  # Concerns
-  include ActiveStorage::Attached::Model
-
   # Constants
   MAX_DEPTH = 3
 

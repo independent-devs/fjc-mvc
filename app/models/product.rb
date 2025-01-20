@@ -1,10 +1,6 @@
 # frozen_string_literal: true
-# typed: true
 
 class Product < ApplicationRecord
-  # Concerns
-  include ActiveStorage::Attached::Model
-
   # Constants
   MAX_IMAGES = 10
   ALLOWED_IMAGE_TYPES = %w[image/png image/jpg image/jpeg].freeze

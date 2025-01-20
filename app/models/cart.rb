@@ -1,9 +1,6 @@
 # frozen_string_literal: true
-# typed: true
 
 class Cart < ApplicationRecord
-  extend T::Sig
-
   # Relations
   belongs_to :variant
   belongs_to :user, optional: true
@@ -49,13 +46,6 @@ class Cart < ApplicationRecord
 
   validate :validate_ownership
 
-  sig do
-    params(
-      carts: ActiveRecord::Relation,
-      guest_session: T.nilable(GuestSession),
-      user: T.nilable(User)
-    ).returns(T.nilable(Order))
-  end
   def self.checkout(carts, guest_session:, user:)
     Order.transaction do
       order = Order.build
@@ -92,7 +82,6 @@ class Cart < ApplicationRecord
 
   private
 
-  sig { void }
   def validate_ownership
     return unless user_id.present? && guest_session_id.present?
 

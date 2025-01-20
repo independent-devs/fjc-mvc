@@ -1,13 +1,9 @@
 # frozen_string_literal: true
-# typed: true
 
 class Ability
-  extend T::Sig
-
   # Concerns
   include CanCan::Ability
 
-  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
   def initialize(user, guest_session: nil, portal: Portal::STOREFRONT)
     storefront_permission(guest_session, user) if storefront_portal?(portal)
     admin_permission(user) if admin_portal?(portal)
@@ -15,7 +11,6 @@ class Ability
 
   private
 
-  sig { params(guest_session: T.nilable(GuestSession), user: T.nilable(User)).void }
   def storefront_permission(guest_session, user)
     # public
     can :read, Product
@@ -49,7 +44,6 @@ class Ability
     end
   end
 
-  sig { params(user: T.nilable(User)).void }
   def admin_permission(user)
     return unless user&.admin?
 
@@ -78,7 +72,6 @@ class Ability
     can :manage, User
   end
 
-  sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
     can %i[guest_add_to_cart guest_buy_now], Variant
 
@@ -101,12 +94,10 @@ class Ability
     end
   end
 
-  sig { params(portal: Integer).returns(T::Boolean) }
   def storefront_portal?(portal)
     portal == Portal::STOREFRONT
   end
 
-  sig { params(portal: Integer).returns(T::Boolean) }
   def admin_portal?(portal)
     portal == Portal::ADMIN
   end

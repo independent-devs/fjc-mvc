@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# typed: true
 
 class ShippingDetail < ApplicationRecord
   belongs_to :shippable, polymorphic: true
