@@ -32,13 +32,13 @@ class Money
   #   Money.new(100, "USD") #=> #<Money @fractional=100 @currency="USD">
   #   Money.new(100, "EUR") #=> #<Money @fractional=100 @currency="EUR">
   # @option [Money::Bank::*]
-  # @param currency [Currency, String, Symbol] The currency format.
-  # @param [Money::Bank::*] [Hash] a customizable set of options
-  # @param options [Hash] Optional settings for the new Money instance
   # @param obj [Object] Either the fractional value of the money,
   #   a Money object, or a currency. (If passed a currency as the first
   #   argument, a Money will be created in that currency with fractional value
   #   = 0.
+  # @param currency [Currency, String, Symbol] The currency format.
+  # @param options [Hash] Optional settings for the new Money instance
+  # @param [Money::Bank::*] [Hash] a customizable set of options
   # @raise [ArgumentError]
   # @return [Money]
   #
@@ -476,10 +476,10 @@ class Money
     #   Money.from_amount(23.45, "USD") # => #<Money fractional:2345 currency:USD>
     #   Money.from_amount(23.45, "JPY") # => #<Money fractional:23 currency:JPY>
     # @option [Money::Bank::*]
-    # @param currency [Currency, String, Symbol] The currency format.
-    # @param [Money::Bank::*] [Hash] a customizable set of options
-    # @param options [Hash] Optional settings for the new Money instance
     # @param amount [Numeric] The numerical value of the money.
+    # @param currency [Currency, String, Symbol] The currency format.
+    # @param options [Hash] Optional settings for the new Money instance
+    # @param [Money::Bank::*] [Hash] a customizable set of options
     # @raise [ArgumentError]
     # @return [Money]
     # @see #initialize
@@ -496,10 +496,10 @@ class Money
     #   Money.from_amount(23.45, "USD") # => #<Money fractional:2345 currency:USD>
     #   Money.from_amount(23.45, "JPY") # => #<Money fractional:23 currency:JPY>
     # @option [Money::Bank::*]
-    # @param currency [Currency, String, Symbol] The currency format.
-    # @param [Money::Bank::*] [Hash] a customizable set of options
-    # @param options [Hash] Optional settings for the new Money instance
     # @param amount [Numeric] The numerical value of the money.
+    # @param currency [Currency, String, Symbol] The currency format.
+    # @param options [Hash] Optional settings for the new Money instance
+    # @param [Money::Bank::*] [Hash] a customizable set of options
     # @raise [ArgumentError]
     # @return [Money]
     # @see #initialize
@@ -1677,16 +1677,14 @@ class Money::Currency
     # Register a new currency
     #
     # @option priority
+    # @option iso_code
+    # @option iso_numeric
     # @option name
     # @option symbol
     # @option subunit
     # @option subunit_to_unit
     # @option separator
     # @option delimiter
-    # @option iso_code
-    # @option iso_numeric
-    # @param separator [Hash] a customizable set of options
-    # @param delimiter [Hash] a customizable set of options
     # @param curr [Hash] information about the currency
     # @param priority [Hash] a customizable set of options
     # @param iso_code [Hash] a customizable set of options
@@ -1695,6 +1693,8 @@ class Money::Currency
     # @param symbol [Hash] a customizable set of options
     # @param subunit [Hash] a customizable set of options
     # @param subunit_to_unit [Hash] a customizable set of options
+    # @param separator [Hash] a customizable set of options
+    # @param delimiter [Hash] a customizable set of options
     #
     # source://money//lib/money/currency.rb#170
     def register(curr); end
@@ -1813,8 +1813,13 @@ class Money::Formatter
   # Note that the default rules can be defined through {Money.default_formatting_rules} hash.
   #
   # @example
-  #   Money.new(10000, "USD").format(format: '%u %n') #=> "$ 100.00"
-  #   Money.new(10000, "USD").format(format: '<span>%u%n</span>')  #=> "<span>$100.00</span>"
+  #   Money.us_dollar(0).format(display_free: true)     #=> "free"
+  #   Money.us_dollar(0).format(display_free: "gratis") #=> "gratis"
+  #   Money.us_dollar(0).format                            #=> "$0.00"
+  # @example
+  #   Money.ca_dollar(100).format #=> "$1.00"
+  #   Money.ca_dollar(100).format(with_currency: true) #=> "$1.00 CAD"
+  #   Money.us_dollar(85).format(with_currency: true)  #=> "$0.85 USD"
   # @example
   #   Money.us_dollar(100.1).format #=> "$1.001"
   #   Money.us_dollar(100.1).format(rounded_infinite_precision: true) #=> "$1"
@@ -1907,10 +1912,6 @@ class Money::Formatter
   #   Money.new(100, "GBP").format(sign_positive: false, sign_before_symbol: false) #=> "£1.00"
   #   Money.new(100, "GBP").format                               #=> "£+1.00"
   # @example
-  #   Money.us_dollar(0).format(display_free: true)     #=> "free"
-  #   Money.us_dollar(0).format(display_free: "gratis") #=> "gratis"
-  #   Money.us_dollar(0).format                            #=> "$0.00"
-  # @example
   #   Money.new(10000, "USD").format(disambiguate: false)   #=> "$100.00"
   #   Money.new(10000, "CAD").format(disambiguate: false)   #=> "$100.00"
   #   Money.new(10000, "USD").format(disambiguate: true)    #=> "$100.00"
@@ -1935,9 +1936,8 @@ class Money::Formatter
   # @example
   #   Money.new(89000, :btc).format(delimiter_pattern: /(\d)(?=\d)/) #=> B⃦8,9,0.00
   # @example
-  #   Money.ca_dollar(100).format #=> "$1.00"
-  #   Money.ca_dollar(100).format(with_currency: true) #=> "$1.00 CAD"
-  #   Money.us_dollar(85).format(with_currency: true)  #=> "$0.85 USD"
+  #   Money.new(10000, "USD").format(format: '%u %n') #=> "$ 100.00"
+  #   Money.new(10000, "USD").format(format: '<span>%u%n</span>')  #=> "<span>$100.00</span>"
   # @option rules
   # @option rules
   # @option rules

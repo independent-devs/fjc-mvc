@@ -121,51 +121,51 @@ class Pilipinas::Db::Barangay < ::ActiveRecord::Base
   include ::Pilipinas::Db::Barangay::GeneratedAttributeMethods
   include ::Pilipinas::Db::Barangay::GeneratedAssociationMethods
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_city(*args); end
 
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/reflection.rb#11
+    # source://activerecord/7.2.2.1/lib/active_record/reflection.rb#11
     def _reflections; end
 
-    # source://activemodel/7.1.3.4/lib/active_model/validations.rb#71
+    # source://activemodel/7.2.2.1/lib/active_model/validations.rb#71
     def _validators; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/enum.rb#167
+    # source://activerecord/7.2.2.1/lib/active_record/enum.rb#167
     def defined_enums; end
   end
 end
 
 # source://pilipinas//lib/pilipinas/db/barangay.rb#0
 module Pilipinas::Db::Barangay::GeneratedAssociationMethods
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#32
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#32
   def build_city(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def city; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def city=(value); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#145
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#146
   def city_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#149
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#150
   def city_previously_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#36
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#36
   def create_city(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#40
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#40
   def create_city!(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#19
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#19
   def reload_city; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#23
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#23
   def reset_city; end
 end
 
@@ -177,69 +177,69 @@ class Pilipinas::Db::City < ::ActiveRecord::Base
   include ::Pilipinas::Db::City::GeneratedAttributeMethods
   include ::Pilipinas::Db::City::GeneratedAssociationMethods
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_barangays(*args); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_province(*args); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def validate_associated_records_for_barangays(*args); end
 
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/reflection.rb#11
+    # source://activerecord/7.2.2.1/lib/active_record/reflection.rb#11
     def _reflections; end
 
-    # source://activemodel/7.1.3.4/lib/active_model/validations.rb#71
+    # source://activemodel/7.2.2.1/lib/active_model/validations.rb#71
     def _validators; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/enum.rb#167
+    # source://activerecord/7.2.2.1/lib/active_record/enum.rb#167
     def defined_enums; end
   end
 end
 
 # source://pilipinas//lib/pilipinas/db/city.rb#0
 module Pilipinas::Db::City::GeneratedAssociationMethods
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#62
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#62
   def barangay_ids; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#72
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#72
   def barangay_ids=(ids); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def barangays; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def barangays=(value); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#32
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#32
   def build_province(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#36
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#36
   def create_province(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#40
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#40
   def create_province!(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def province; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def province=(value); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#145
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#146
   def province_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#149
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#150
   def province_previously_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#19
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#19
   def reload_province; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#23
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#23
   def reset_province; end
 end
 
@@ -251,69 +251,69 @@ class Pilipinas::Db::Province < ::ActiveRecord::Base
   include ::Pilipinas::Db::Province::GeneratedAttributeMethods
   include ::Pilipinas::Db::Province::GeneratedAssociationMethods
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_cities(*args); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_region(*args); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def validate_associated_records_for_cities(*args); end
 
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/reflection.rb#11
+    # source://activerecord/7.2.2.1/lib/active_record/reflection.rb#11
     def _reflections; end
 
-    # source://activemodel/7.1.3.4/lib/active_model/validations.rb#71
+    # source://activemodel/7.2.2.1/lib/active_model/validations.rb#71
     def _validators; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/enum.rb#167
+    # source://activerecord/7.2.2.1/lib/active_record/enum.rb#167
     def defined_enums; end
   end
 end
 
 # source://pilipinas//lib/pilipinas/db/province.rb#0
 module Pilipinas::Db::Province::GeneratedAssociationMethods
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#32
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#32
   def build_region(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def cities; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def cities=(value); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#62
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#62
   def city_ids; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#72
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#72
   def city_ids=(ids); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#36
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#36
   def create_region(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#40
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#40
   def create_region!(*args, &block); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def region; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def region=(value); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#145
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#146
   def region_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/belongs_to.rb#149
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/belongs_to.rb#150
   def region_previously_changed?; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#19
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#19
   def reload_region; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/singular_association.rb#23
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/singular_association.rb#23
   def reset_region; end
 end
 
@@ -325,39 +325,39 @@ class Pilipinas::Db::Region < ::ActiveRecord::Base
   include ::Pilipinas::Db::Region::GeneratedAttributeMethods
   include ::Pilipinas::Db::Region::GeneratedAssociationMethods
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def autosave_associated_records_for_provinces(*args); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/autosave_association.rb#160
+  # source://activerecord/7.2.2.1/lib/active_record/autosave_association.rb#162
   def validate_associated_records_for_provinces(*args); end
 
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/reflection.rb#11
+    # source://activerecord/7.2.2.1/lib/active_record/reflection.rb#11
     def _reflections; end
 
-    # source://activemodel/7.1.3.4/lib/active_model/validations.rb#71
+    # source://activemodel/7.2.2.1/lib/active_model/validations.rb#71
     def _validators; end
 
-    # source://activerecord/7.1.3.4/lib/active_record/enum.rb#167
+    # source://activerecord/7.2.2.1/lib/active_record/enum.rb#167
     def defined_enums; end
   end
 end
 
 # source://pilipinas//lib/pilipinas/db/region.rb#0
 module Pilipinas::Db::Region::GeneratedAssociationMethods
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#62
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#62
   def province_ids; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/collection_association.rb#72
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/collection_association.rb#72
   def province_ids=(ids); end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#103
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#103
   def provinces; end
 
-  # source://activerecord/7.1.3.4/lib/active_record/associations/builder/association.rb#111
+  # source://activerecord/7.2.2.1/lib/active_record/associations/builder/association.rb#111
   def provinces=(value); end
 end
 

@@ -59,7 +59,7 @@ module FontAwesome::Sass::Rails; end
 # source://font-awesome-sass//lib/font_awesome/sass/rails/engine.rb#4
 class FontAwesome::Sass::Rails::Engine < ::Rails::Engine
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
   end
 end

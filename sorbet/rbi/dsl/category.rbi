@@ -22,6 +22,11 @@ class Category
   sig { returns(NilClass) }
   def to_ary; end
 
+  class << self
+    sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
+    def new(attributes = nil, &block); end
+  end
+
   module CommonRelationMethods
     sig { params(block: T.nilable(T.proc.params(record: ::Category).returns(T.untyped))).returns(T::Boolean) }
     def any?(&block); end
@@ -29,6 +34,13 @@ class Category
     sig { params(column_name: T.any(String, Symbol)).returns(T.any(Integer, Float, BigDecimal)) }
     def average(column_name); end
 
+    sig { params(block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def build(attributes = nil, &block); end
 
@@ -39,15 +51,41 @@ class Category
     sig { params(column_name: NilClass, block: T.proc.params(object: ::Category).void).returns(Integer) }
     def count(column_name = nil, &block); end
 
+    sig { params(block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def create(attributes = nil, &block); end
 
+    sig { params(block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def create!(attributes = nil, &block); end
 
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def create_or_find_by(attributes, &block); end
 
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def create_or_find_by!(attributes, &block); end
 
@@ -124,12 +162,30 @@ class Category
     end
     def find_in_batches(start: nil, finish: nil, batch_size: 1000, error_on_ignore: nil, order: :asc, &block); end
 
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def find_or_create_by(attributes, &block); end
 
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def find_or_create_by!(attributes, &block); end
 
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def find_or_initialize_by(attributes, &block); end
 
@@ -142,7 +198,7 @@ class Category
     sig { params(arg: T.untyped, args: T.untyped).returns(::Category) }
     def find_sole_by(arg, *args); end
 
-    sig { params(limit: NilClass).returns(T.nilable(::Category)) }
+    sig { returns(T.nilable(::Category)) }
     sig { params(limit: Integer).returns(T::Array[::Category]) }
     def first(limit = nil); end
 
@@ -192,7 +248,7 @@ class Category
     sig { params(record: T.untyped).returns(T::Boolean) }
     def include?(record); end
 
-    sig { params(limit: NilClass).returns(T.nilable(::Category)) }
+    sig { returns(T.nilable(::Category)) }
     sig { params(limit: Integer).returns(T::Array[::Category]) }
     def last(limit = nil); end
 
@@ -211,6 +267,13 @@ class Category
     sig { params(column_name: T.any(String, Symbol)).returns(T.untyped) }
     def minimum(column_name); end
 
+    sig { params(block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
+    sig do
+      params(
+        attributes: T::Array[T.untyped],
+        block: T.nilable(T.proc.params(object: ::Category).void)
+      ).returns(T::Array[::Category])
+    end
     sig { params(attributes: T.untyped, block: T.nilable(T.proc.params(object: ::Category).void)).returns(::Category) }
     def new(attributes = nil, &block); end
 
@@ -251,7 +314,7 @@ class Category
     end
     def sum(initial_value_or_column = nil, &block); end
 
-    sig { params(limit: NilClass).returns(T.nilable(::Category)) }
+    sig { returns(T.nilable(::Category)) }
     sig { params(limit: Integer).returns(T::Array[::Category]) }
     def take(limit = nil); end
 
@@ -343,6 +406,9 @@ class Category
     def annotate(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def arel_columns(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def at_depth(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -386,40 +452,6 @@ class Category
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def includes(*args, &blk); end
-
-    sig do
-      params(
-        attributes: Hash,
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass)),
-        unique_by: T.nilable(T.any(T::Array[Symbol], Symbol))
-      ).returns(ActiveRecord::Result)
-    end
-    def insert(attributes, returning: nil, unique_by: nil); end
-
-    sig do
-      params(
-        attributes: Hash,
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass))
-      ).returns(ActiveRecord::Result)
-    end
-    def insert!(attributes, returning: nil); end
-
-    sig do
-      params(
-        attributes: T::Array[Hash],
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass)),
-        unique_by: T.nilable(T.any(T::Array[Symbol], Symbol))
-      ).returns(ActiveRecord::Result)
-    end
-    def insert_all(attributes, returning: nil, unique_by: nil); end
-
-    sig do
-      params(
-        attributes: T::Array[Hash],
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass))
-      ).returns(ActiveRecord::Result)
-    end
-    def insert_all!(attributes, returning: nil); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def invert_where(*args, &blk); end
@@ -493,7 +525,8 @@ class Category
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def roots(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
+    sig { params(blk: T.proc.params(record: ::Category).returns(BasicObject)).returns(T::Array[::Category]) }
     def select(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -511,32 +544,18 @@ class Category
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def unscope(*args, &blk); end
 
-    sig do
-      params(
-        attributes: Hash,
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass)),
-        unique_by: T.nilable(T.any(T::Array[Symbol], Symbol))
-      ).returns(ActiveRecord::Result)
-    end
-    def upsert(attributes, returning: nil, unique_by: nil); end
-
-    sig do
-      params(
-        attributes: T::Array[Hash],
-        returning: T.nilable(T.any(T::Array[Symbol], FalseClass)),
-        unique_by: T.nilable(T.any(T::Array[Symbol], Symbol))
-      ).returns(ActiveRecord::Result)
-    end
-    def upsert_all(attributes, returning: nil, unique_by: nil); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelationWhereChain) }
-    def where(*args, &blk); end
+    sig { returns(PrivateAssociationRelationWhereChain) }
+    sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
+    def where(*args); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with_attached_thumbnail(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_recursive(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -957,6 +976,9 @@ class Category
     def annotate(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def arel_columns(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def at_depth(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
@@ -1073,7 +1095,8 @@ class Category
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def roots(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    sig { params(args: T.untyped).returns(PrivateRelation) }
+    sig { params(blk: T.proc.params(record: ::Category).returns(BasicObject)).returns(T::Array[::Category]) }
     def select(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
@@ -1091,14 +1114,18 @@ class Category
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def unscope(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelationWhereChain) }
-    def where(*args, &blk); end
+    sig { returns(PrivateRelationWhereChain) }
+    sig { params(args: T.untyped).returns(PrivateRelation) }
+    def where(*args); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with_attached_thumbnail(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_recursive(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end
@@ -1143,6 +1170,9 @@ class Category
     sig { params(column_name: T.any(String, Symbol)).returns(T::Hash[T.untyped, T.untyped]) }
     def minimum(column_name); end
 
+    sig { returns(Integer) }
+    def size; end
+
     sig do
       params(
         column_name: T.nilable(T.any(String, Symbol)),
@@ -1152,7 +1182,7 @@ class Category
     def sum(column_name = nil, &block); end
   end
 
-  class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
+  class PrivateAssociationRelationWhereChain
     Elem = type_member { { fixed: ::Category } }
 
     sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
@@ -1194,20 +1224,6 @@ class Category
       ).returns(PrivateCollectionProxy)
     end
     def concat(*records); end
-
-    sig do
-      params(
-        records: T.any(::Category, Integer, String, T::Enumerable[T.any(::Category, Integer, String, T::Enumerable[::Category])])
-      ).returns(T::Array[::Category])
-    end
-    def delete(*records); end
-
-    sig do
-      params(
-        records: T.any(::Category, Integer, String, T::Enumerable[T.any(::Category, Integer, String, T::Enumerable[::Category])])
-      ).returns(T::Array[::Category])
-    end
-    def destroy(*records); end
 
     sig { returns(T::Array[::Category]) }
     def load_target; end
@@ -1285,6 +1301,9 @@ class Category
     sig { params(column_name: T.any(String, Symbol)).returns(T::Hash[T.untyped, T.untyped]) }
     def minimum(column_name); end
 
+    sig { returns(Integer) }
+    def size; end
+
     sig do
       params(
         column_name: T.nilable(T.any(String, Symbol)),
@@ -1294,7 +1313,7 @@ class Category
     def sum(column_name = nil, &block); end
   end
 
-  class PrivateRelationWhereChain < PrivateRelation
+  class PrivateRelationWhereChain
     Elem = type_member { { fixed: ::Category } }
 
     sig { params(args: T.untyped).returns(PrivateRelation) }
