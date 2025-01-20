@@ -25,7 +25,7 @@ end
 # source://rack-tracker//lib/rack/tracker/version.rb#1
 module Rack
   class << self
-    # source://rack/3.1.4/lib/rack/version.rb#18
+    # source://rack/3.1.8/lib/rack/version.rb#18
     def release; end
   end
 end

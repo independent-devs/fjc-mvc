@@ -223,7 +223,7 @@ class ViewComponent::Base < ::ActionView::Base
   # @param variant [Symbol] The variant to be used by the component.
   # @return [self]
   #
-  # source://activesupport/7.1.3.4/lib/active_support/deprecation/method_wrappers.rb#46
+  # source://activesupport/7.2.2.1/lib/active_support/deprecation/method_wrappers.rb#46
   def with_variant(*args, **_arg1, &block); end
 
   private
@@ -777,8 +777,8 @@ class ViewComponent::Config
   # source://view_component//lib/view_component/config.rb#157
   def initialize; end
 
-  # source://activesupport/7.1.3.4/lib/active_support/core_ext/module/delegation.rb#331
-  def method_missing(method, *args, **_arg2, &block); end
+  # source://activesupport/7.2.2.1/lib/active_support/delegation.rb#187
+  def method_missing(method, *_arg1, **_arg2, &_arg3); end
 
   # source://view_component//lib/view_component/config.rb#161
   def preview_path; end
@@ -793,7 +793,7 @@ class ViewComponent::Config
   # source://view_component//lib/view_component/config.rb#174
   def config; end
 
-  # source://activesupport/7.1.3.4/lib/active_support/core_ext/module/delegation.rb#323
+  # source://activesupport/7.2.2.1/lib/active_support/delegation.rb#179
   def respond_to_missing?(name, include_private = T.unsafe(nil)); end
 
   class << self
@@ -848,7 +848,7 @@ ViewComponent::Deprecation = T.let(T.unsafe(nil), ActiveSupport::Deprecation)
 # source://view_component//lib/view_component/engine.rb#7
 class ViewComponent::Engine < ::Rails::Engine
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
   end
 end
@@ -1473,14 +1473,14 @@ class ViewComponentsController < ::Rails::ApplicationController
 
   private
 
-  # source://actionview/7.1.3.4/lib/action_view/layouts.rb#330
+  # source://actionview/7.2.2.1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
   class << self
-    # source://activesupport/7.1.3.4/lib/active_support/callbacks.rb#70
+    # source://activesupport/7.2.2.1/lib/active_support/callbacks.rb#70
     def __callbacks; end
 
-    # source://actionpack/7.1.3.4/lib/action_controller/metal.rb#262
+    # source://actionpack/7.2.2.1/lib/action_controller/metal.rb#288
     def middleware_stack; end
   end
 end
@@ -1490,13 +1490,11 @@ class ViewComponentsSystemTestController < ::ActionController::Base
 
   private
 
-  # source://actionview/7.1.3.4/lib/action_view/layouts.rb#330
+  # source://actionview/7.2.2.1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
-  def _layout_from_proc; end
-
   class << self
-    # source://actionpack/7.1.3.4/lib/action_controller/metal.rb#262
+    # source://actionpack/7.2.2.1/lib/action_controller/metal.rb#288
     def middleware_stack; end
   end
 end

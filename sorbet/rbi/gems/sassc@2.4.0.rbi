@@ -1505,8 +1505,8 @@ module SassC::Util
   #   #=> {"foo" => "bar", "baz" => "bang"}
   # @param hash [Hash] The hash to map
   # @return [Hash] The mapped hash
-  # @see #map_hash
   # @see #map_vals
+  # @see #map_hash
   # @yield [key] A block in which the keys are transformed
   # @yieldparam key [Object] The key that should be mapped
   # @yieldreturn [Object] The new value for the key
