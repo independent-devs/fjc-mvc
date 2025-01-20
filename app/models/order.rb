@@ -15,7 +15,8 @@ class Order < ApplicationRecord
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }
   scope :with_status, -> { select('orders.*, order_statuses.name AS status').joins(:order_status) }
-  scope :placed, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
+  scope :placed, -> { where.not(placed_at: nil) }
+  scope :placed_pending, -> { where(order_status: { name: 'pending' }).where.not(placed_at: nil).joins(:order_status) }
   scope :with_shipping_details,
         lambda {
           select('orders.*, shipping_details.fullname AS customer_name')
