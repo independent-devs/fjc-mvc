@@ -115,6 +115,7 @@ end
 #                          buy_now_variant POST     /variants/:id/buy_now(.:format)                                                                   variants#buy_now
 #                    guest_buy_now_variant POST     /variants/:id/guest_buy_now(.:format)                                                             variants#guest_buy_now
 #                                  account GET      /account(.:format)                                                                                accounts#show
+#                               sync_order POST     /orders/:id/sync(.:format)                                                                        orders#sync
 #                             cancel_order DELETE   /orders/:id/cancel(.:format)                                                                      orders#cancel
 #                                   orders GET      /orders(.:format)                                                                                 orders#index
 #                                    order GET      /orders/:id(.:format)                                                                             orders#show

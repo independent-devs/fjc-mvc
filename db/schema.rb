@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_13_163653) do
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "qty", default: 1, null: false
     t.integer "discount_percent", default: 0, null: false
+    t.json "variant_capture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"

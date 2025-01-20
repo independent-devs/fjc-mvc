@@ -920,6 +920,9 @@ class OrderItem
     def restore_updated_at!; end
 
     sig { void }
+    def restore_variant_capture!; end
+
+    sig { void }
     def restore_variant_id!; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
@@ -969,6 +972,12 @@ class OrderItem
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def saved_change_to_variant_capture; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_variant_capture?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_variant_id; end
@@ -1020,6 +1029,51 @@ class OrderItem
 
     sig { void }
     def updated_at_will_change!; end
+
+    sig { returns(T.untyped) }
+    def variant_capture; end
+
+    sig { params(value: T.untyped).returns(T.untyped) }
+    def variant_capture=(value); end
+
+    sig { returns(T::Boolean) }
+    def variant_capture?; end
+
+    sig { returns(T.untyped) }
+    def variant_capture_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def variant_capture_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def variant_capture_came_from_user?; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def variant_capture_change; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def variant_capture_change_to_be_saved; end
+
+    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
+    def variant_capture_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.untyped) }
+    def variant_capture_in_database; end
+
+    sig { returns(T.nilable([T.untyped, T.untyped])) }
+    def variant_capture_previous_change; end
+
+    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
+    def variant_capture_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.untyped) }
+    def variant_capture_previously_was; end
+
+    sig { returns(T.untyped) }
+    def variant_capture_was; end
+
+    sig { void }
+    def variant_capture_will_change!; end
 
     sig { returns(T.nilable(::String)) }
     def variant_id; end
@@ -1089,6 +1143,9 @@ class OrderItem
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_variant_capture?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_variant_id?; end

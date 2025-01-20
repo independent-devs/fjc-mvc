@@ -8,6 +8,7 @@ class CreateOrderItems < ActiveRecord::Migration[7.0]
       t.decimal :price, null: false, precision: 10, scale: 2
       t.integer :qty, null: false, default: 1
       t.integer :discount_percent, null: false, default: 0
+      t.json :variant_capture
 
       t.timestamps
     end

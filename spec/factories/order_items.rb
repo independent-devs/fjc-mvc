@@ -17,6 +17,7 @@ end
 #  discount_percent :integer          default(0), not null
 #  price            :decimal(10, 2)   not null
 #  qty              :integer          default(1), not null
+#  variant_capture  :json
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  order_id         :uuid

@@ -44,6 +44,8 @@ class Variant < ApplicationRecord
   validate :unique_option_values_per_variant
 
   # Generators
+  before_destroy :capture_order_item_variants, prepend: true
+
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
 
@@ -55,6 +57,22 @@ class Variant < ApplicationRecord
   private
 
   # For generators
+  sig { void }
+  def capture_order_item_variants
+    order_items.each do |order_item|
+      order_item.update(
+        {
+          variant_capture: {
+            product_name: T.must(product).name,
+            product_id: T.must(product).id,
+            variant_name: option_value_name,
+            variant_master: is_master
+          }.to_json
+        }
+      )
+    end
+  end
+
   sig { void }
   def capture_price
     variants = T.must(product).variants

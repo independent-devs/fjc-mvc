@@ -25,19 +25,7 @@
           = order.order_status.name.humanize
     .divide-y
       - order.order_items.each do |order_item|
-        = link_to product_path(order_item.variant.product), class: "flex gap-3 py-4 w-full" do
-          = image_tag order_item.variant.product.thumbnail.attached? ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
-          .flex.flex-col.w-full
-            .text-base= order_item.variant.product.name
-            .flex.justify-between.gap-3.text-sm.w-full
-              .block
-                - unless order_item.variant.is_master
-                  .flex.justify-between.gap-3.text-gray-500
-                    = "Varation: #{order_item.variant.option_value_name}"
-                %span
-                  = "x#{order_item.qty}"
-              .block
-                = render PriceRangeComponent.new lowest: (order_item.price * order_item.qty), discount: order_item.discount_percent
+        = render "order_item", order_item:
   .px-5.py-4.flex.justify-between
     .block
       - if order.placed_at.blank?

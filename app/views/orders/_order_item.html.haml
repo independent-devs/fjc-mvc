@@ -1,0 +1,29 @@
+- if order_item.variant.present?
+  = link_to product_path(order_item.variant.product), class: "flex gap-3 py-4 w-full" do
+    = image_tag order_item.variant.product.thumbnail&.attached? ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
+    .flex.flex-col.w-full
+      .block
+        = order_item.variant.product.name
+      .flex.justify-between.gap-3.text-sm.w-full
+        .block
+          .justify-between.gap-3.text-gray-500
+            = "Varation: #{order_item.variant.option_value_name}"
+          %span
+            = "x#{order_item.qty}"
+        .block
+          = render PriceRangeComponent.new lowest: (order_item.price * order_item.qty), discount: order_item.discount_percent
+- else
+  .flex.gap-3.py-4.w-full.cursor-not-allowed
+    = image_tag "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
+    - capture_variant = JSON.parse(order_item.variant_capture)
+    .flex.flex-col.w-full
+      .block
+        = capture_variant.dig("product_name")
+      .flex.justify-between.gap-3.text-sm.w-full
+        .block
+          .justify-between.gap-3.text-gray-500
+            = "Varation: #{capture_variant.dig("variant_name")}"
+          %span
+            = "x#{order_item.qty}"
+        .block
+          = render PriceRangeComponent.new lowest: (order_item.price * order_item.qty), discount: order_item.discount_percent
