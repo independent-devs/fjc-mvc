@@ -1,9 +1,6 @@
 # frozen_string_literal: true
-# typed: true
 
 class Variant < ApplicationRecord
-  extend T::Sig
-
   # Concerns
   include RankedModel
 
@@ -44,10 +41,11 @@ class Variant < ApplicationRecord
   validate :unique_option_values_per_variant
 
   # Generators
+  before_destroy :capture_order_item_variants, prepend: true
+
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
 
-  sig { returns(String) }
   def option_value_name
     variant_option_values.joins(:product_option).order('product_options.position').pluck(:name).join(', ')
   end
@@ -55,48 +53,55 @@ class Variant < ApplicationRecord
   private
 
   # For generators
-  sig { void }
+  def capture_order_item_variants
+    order_items.each do |order_item|
+      order_item.update(
+        {
+          variant_capture: {
+            product_name: product.name,
+            product_id: product.id,
+            variant_name: option_value_name,
+            variant_master: is_master
+          }.to_json
+        }
+      )
+    end
+  end
+
   def capture_price
-    variants = T.must(product).variants
+    variants = product.variants
     no_variant_records = variants.not_master.count.zero?
     captured = variants.where(is_master: no_variant_records)
 
-    T.must(product).update(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
+    product.update(lowest_price: captured.minimum(:price), highest_price: captured.maximum(:price))
   end
 
   # For validations
-  sig { void }
   def only_one_master
-    return unless T.must(product).variants.exists?(is_master: true)
+    return unless product.variants.exists?(is_master: true)
 
     errors.add(:master, I18n.t('variants.validate.only_one_master'))
   end
 
-  sig { returns(T::Boolean) }
   def only_one_master_condition
     (new_record? && is_master) || (is_master_changed? && is_master_was) || false
   end
 
-  sig { void }
   def product_supports_variant
-    return if T.must(product).has_variant
+    return if product.has_variant
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
   end
 
-  sig { void }
   def unique_option_values_per_variant
     existing_sets =
       VariantOptionValue
       .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
-      .where(product_option_id: T.must(product).product_options.select(:id))
+      .where(product_option_id: product.product_options.select(:id))
       .group(:variant_id)
 
     existing_sets = existing_sets.where.not(variant: self) unless new_record?
-    existing_sets = existing_sets.map do |record|
-      rec = T.let(record, T.untyped)
-      T.must(rec.option_values)
-    end
+    existing_sets = existing_sets.map(&:option_values)
 
     current_set = variant_option_values.sort_by(&:product_option_id).map(&:name)
 

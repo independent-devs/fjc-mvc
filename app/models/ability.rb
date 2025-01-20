@@ -1,13 +1,9 @@
 # frozen_string_literal: true
-# typed: true
 
 class Ability
-  extend T::Sig
-
   # Concerns
   include CanCan::Ability
 
-  sig { params(user: T.nilable(User), guest_session: T.nilable(GuestSession), portal: Integer).void }
   def initialize(user, guest_session: nil, portal: Portal::STOREFRONT)
     storefront_permission(guest_session, user) if storefront_portal?(portal)
     admin_permission(user) if admin_portal?(portal)
@@ -15,7 +11,6 @@ class Ability
 
   private
 
-  sig { params(guest_session: T.nilable(GuestSession), user: T.nilable(User)).void }
   def storefront_permission(guest_session, user)
     # public
     can :read, Product
@@ -44,12 +39,11 @@ class Ability
     can(%i[read sync], Order, guest_session:) if guest_session.present?
     can(%i[shipping_details payment_method not_placed], Order, user:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' }) if guest_session.present?
-    can(:cancel, Order, Order.placed.where(user:)) do |order|
+    can(:cancel, Order, Order.placed_pending.where(user:)) do |order|
       order.order_status.name == 'pending' && order.placed_at.present? && order.user.present? && order.user = user
     end
   end
 
-  sig { params(user: T.nilable(User)).void }
   def admin_permission(user)
     return unless user&.admin?
 
@@ -69,7 +63,7 @@ class Ability
     can :recieve, Order, order_status: { name: 'to_ship' }
     can :refund, Order, order_status: { name: 'completed' }
     can %i[complete return], Order, order_status: { name: 'to_recieve' }
-    can %i[cancel ship], Order, Order.placed do |order|
+    can %i[cancel ship], Order, Order.placed_pending do |order|
       order.order_status.name == 'pending' && order.placed_at.present?
     end
 
@@ -78,7 +72,6 @@ class Ability
     can :manage, User
   end
 
-  sig { params(guest_session: GuestSession).void }
   def guest_permission(guest_session)
     can %i[guest_add_to_cart guest_buy_now], Variant
 
@@ -95,18 +88,16 @@ class Ability
     can(:show_checkout, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
     can(%i[shipping_details payment_method], Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
     can(:not_placed, Order, guest_session:, placed_at: nil, order_status: { name: 'pending' })
-    can(:cancel, Order, Order.placed.where(guest_session:)) do |order|
+    can(:cancel, Order, Order.placed_pending.where(guest_session:)) do |order|
       order.order_status.name == 'pending' && order.placed_at.present? && order.guest_session.present? &&
         order.guest_session = guest_session
     end
   end
 
-  sig { params(portal: Integer).returns(T::Boolean) }
   def storefront_portal?(portal)
     portal == Portal::STOREFRONT
   end
 
-  sig { params(portal: Integer).returns(T::Boolean) }
   def admin_portal?(portal)
     portal == Portal::ADMIN
   end

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# typed: true
 
 class PaymentMethod < ApplicationRecord
   validates :name, :code, presence: true

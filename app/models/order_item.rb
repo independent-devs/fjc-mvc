@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# typed: true
 
 class OrderItem < ApplicationRecord
   extend T::Sig
@@ -16,16 +15,15 @@ class OrderItem < ApplicationRecord
 
   private
 
-  sig { void }
   def check_variant_stock
-    return if !T.must(variant).trackable || (T.must(variant).trackable && T.must(variant).backorderable)
+    return if !variant.trackable || (variant.trackable && variant.backorderable)
 
-    if T.must(variant).count_on_hand.zero?
+    if variant.count_on_hand.zero?
       errors.add(:variant, I18n.t('variants.validate.variant_out_of_stock'))
       return
     end
 
-    return if T.must(variant).count_on_hand >= qty
+    return if variant.count_on_hand >= qty
 
     errors.add(:qty, I18n.t('carts.validate.qty_exceeds_stocks'))
   end
@@ -39,6 +37,7 @@ end
 #  discount_percent :integer          default(0), not null
 #  price            :decimal(10, 2)   not null
 #  qty              :integer          default(1), not null
+#  variant_capture  :json
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  order_id         :uuid
