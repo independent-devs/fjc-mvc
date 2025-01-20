@@ -6,8 +6,9 @@
         = order_item.variant.product.name
       .flex.justify-between.gap-3.text-sm.w-full
         .block
-          .justify-between.gap-3.text-gray-500
-            = "Varation: #{order_item.variant.option_value_name}"
+          - unless order_item.variant.is_master
+            .justify-between.gap-3.text-gray-500
+              = "Varation: #{order_item.variant.option_value_name}"
           %span
             = "x#{order_item.qty}"
         .block
@@ -21,8 +22,9 @@
         = capture_variant.dig("product_name")
       .flex.justify-between.gap-3.text-sm.w-full
         .block
-          .justify-between.gap-3.text-gray-500
-            = "Varation: #{capture_variant.dig("variant_name")}"
+          - unless capture_variant.dig("variant_master")
+            .justify-between.gap-3.text-gray-500
+              = "Varation: #{capture_variant.dig("variant_name")}"
           %span
             = "x#{order_item.qty}"
         .block
