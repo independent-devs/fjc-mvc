@@ -1,9 +1,15 @@
 .rounded.bg-white.border.border-gray-300.divide-y.divide-gray-300.shadow-sm
   .px-5.divide-y.divide-gray-300
-    .font-medium.py-3 Order Items
+    .text-sm.uppercase.py-3
+      - if @order.placed_at.present?
+        .text-gray-500
+          = "Order placed #{time_ago_in_words(@order.placed_at)} ago"
+      - else
+        .text-red-600
+          Order not yet placed
     - @order.order_items.each do |order_item|
       = render "order_item", order_item:
-  .px-3.py-4.flex.justify-between
+  .px-5.py-4.flex.justify-between
     .block
       - if @order.placed_at.blank?
         .text-sm.text-gray-500

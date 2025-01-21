@@ -20,7 +20,7 @@
             = @order.shipping_detail.postal_code
     - if @order.errors.present?
       = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
-    .accordion-container.mt-1
+    .accordion-container.my-1
       .accordion.group{data: {controller: "accordion"}}
         .accordion-btn{data: {action: "click->accordion#toggle"}}
           Details Form
