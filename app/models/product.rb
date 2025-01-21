@@ -18,21 +18,21 @@ class Product < ApplicationRecord
   end
 
   # Relations
-  has_one :product_category, dependent: :destroy
-  # has_one :description, dependent: :destroy
   has_one :seo, dependent: :destroy
 
   has_many :variants, dependent: :destroy
   has_many :product_options, dependent: :destroy
   has_many :options, through: :product_options, dependent: :destroy
+  has_many :product_categories, dependent: :destroy
+  has_many :categories, through: :product_categories, dependent: :destroy
 
   # Scoped relations
-  has_one :master_variant, -> { where(is_master: true) },
-          class_name: 'Variant', inverse_of: :product,
-          dependent: :destroy
+  has_one :master_variant, lambda {
+    where(is_master: true)
+  }, class_name: 'Variant', inverse_of: :product, dependent: :destroy
 
   # Nested form
-  accepts_nested_attributes_for :master_variant, :product_category, :seo
+  accepts_nested_attributes_for :master_variant, :seo
 
   # Scopes
   scope :sort_by_latest, -> { order(created_at: :desc) }

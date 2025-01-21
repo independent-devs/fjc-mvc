@@ -3,20 +3,14 @@ import SlimSelect from "slim-select";
 
 // Connects to data-controller="admin--products--form"
 export default class extends Controller {
-  static targets = ["optionInput", "optionContainer", "thumbnail"];
+  static targets = ["optionInput", "optionContainer", "categoryInput", "thumbnail"];
 
   connect() {
-    this.slim = new SlimSelect({
-      select: this.optionInputTarget,
-      settings: {
-        hideSelected: true,
-        closeOnSelect: false,
-        maxSelected: 3,
-      },
-    });
+    const optionSettings = { hideSelected: true, closeOnSelect: false, maxSelected: 3 };
+    new SlimSelect({ select: this.optionInputTarget, settings: optionSettings });
 
-    this.optionInputTarget.style = "opacity: 0; height: 65px;";
-    this.optionInputTarget.classList.add("absolute", "top-0");
+    const categorySettings = { hideSelected: true, closeOnSelect: false };
+    new SlimSelect({ select: this.categoryInputTarget, settings: categorySettings });
   }
 
   hasVariantToogle() {
