@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class OrderItem < ApplicationRecord
-  extend T::Sig
-
   # Relations
   belongs_to :order, optional: true
   belongs_to :variant, optional: true

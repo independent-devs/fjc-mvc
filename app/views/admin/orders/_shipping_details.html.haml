@@ -1,40 +1,63 @@
-.p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
+.p-3.rounded.bg-white.grid.gap-2.border.border-gray-300.shadow-sm
   %h2.font-medium Shipping Details
   - if @order.shipping_detail.present?
+    .block
+      .text-primary.font-medium
+        = @order.shipping_detail.fullname
+      .flex.gap-1.flex-wrap.text-gray-600.text-sm.sm:text-base
+        .flex{class: "after:content-[',_']"}
+          = @order.shipping_detail.street
+        .flex{class: "after:content-[',_']"}
+          = @order.shipping_detail.barangay
+        .flex{class: "after:content-[',_']"}
+          = @order.shipping_detail.city
+        .flex{class: "after:content-[',_']"}
+          = @order.shipping_detail.state
+        .flex{class: ("after:content-[',_']" if @order.shipping_detail.postal_code.present?)} 
+          = @order.shipping_detail.country
+        - if @order.shipping_detail.postal_code.present?
+          .block
+            = @order.shipping_detail.postal_code
     - if @order.errors.present?
       = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
-    = form_for(@order, url: update_shipping_details_admin_order_path(@order), html: {data: {turbo_confirm: 'Confirm update shipping details?', controller: "checkout--shipping-details"}}) do |f|
-      = f.fields_for :shipping_detail do |sd|
-        .grid.gap-3
-          .grid.md:grid-cols-2.gap-3
-            .field
-              = sd.label :fullname, "Full Name"
-              = sd.text_field :fullname, required: true, readonly: cannot?(:update_shipping_details, @order)
-            .field{"data-controller": "phone"}
-              = sd.label :phone_no, "Phone No."
-              = sd.phone_field  :phone_no, required: true, readonly: cannot?(:update_shipping_details, @order), autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
-              = sd.hidden_field :phone_no, "data-phone-target": "hidden"
-          .field
-            = sd.label :street, "Street Name, Building, House No."
-            = sd.text_field :street, required: true, readonly: cannot?(:update_shipping_details, @order)
-          .field
-            = sd.label :country
-            = sd.text_field :country, value: "Philippines", required: true, readonly: true
-          .field
-            = sd.label :state, "Province"
-            = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, disabled: cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
-          .field
-            = sd.label :city, "City/Municipality"
-            = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
-          .grid.md:grid-cols-2.gap-3
-            .field
-              = sd.label :barangay
-              = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "barangay"}
-            .field 
-              = sd.label :postal_code, "Postal Code"
-              = sd.text_field :postal_code, readonly: cannot?(:update_shipping_details, @order)
-        - if can?(:update_shipping_details, @order)
-          .mt-5
-            = f.submit "Update Shipping Details", class: "btn-primary cursor-pointer w-full sm:w-fit"
+    .accordion-container.my-1
+      .accordion.group{data: {controller: "accordion"}}
+        .accordion-btn{data: {action: "click->accordion#toggle"}}
+          Details Form
+          = icon("fa-solid", "chevron-down", data: {"accordion-target": "iconDown"})
+        .accordion-content.hidden{data: {"accordion-target": "content"}}
+          = form_for(@order, url: update_shipping_details_admin_order_path(@order), html: {data: {turbo_confirm: 'Confirm update shipping details?', controller: "checkout--shipping-details"}}) do |f|
+            = f.fields_for :shipping_detail do |sd|
+              .grid.gap-3
+                .grid.md:grid-cols-2.gap-3
+                  .field
+                    = sd.label :fullname, "Full Name"
+                    = sd.text_field :fullname, required: true, readonly: cannot?(:update_shipping_details, @order)
+                  .field{"data-controller": "phone"}
+                    = sd.label :phone_no, "Phone No."
+                    = sd.phone_field  :phone_no, required: true, readonly: cannot?(:update_shipping_details, @order), autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
+                    = sd.hidden_field :phone_no, "data-phone-target": "hidden"
+                .field
+                  = sd.label :street, "Street Name, Building, House No."
+                  = sd.text_field :street, required: true, readonly: cannot?(:update_shipping_details, @order)
+                .field
+                  = sd.label :country
+                  = sd.text_field :country, value: "Philippines", required: true, readonly: true
+                .field
+                  = sd.label :state, "Province"
+                  = sd.select :state, Pilipinas::Province.all.sort_by(&:name).map {|p| [p.name, p.name]}, {}, {required: true, disabled: cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "province", "data-action": "change->checkout--shipping-details#provinceChange"}
+                .field
+                  = sd.label :city, "City/Municipality"
+                  = sd.select :city, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::Province.find_by_name(sd.object.state).cities.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "city","data-action": "change->checkout--shipping-details#cityChange"}
+                .grid.md:grid-cols-2.gap-3
+                  .field
+                    = sd.label :barangay
+                    = sd.select :barangay, sd.object.new_record? && @order.errors.blank? ? [] : Pilipinas::City.find_by_name(sd.object.city).barangays.map{|p| [p.name, p.name]}, {}, {required: true, disabled: (sd.object.new_record? && @order.errors.blank?) || cannot?(:update_shipping_details, @order), "data-checkout--shipping-details-target": "barangay"}
+                  .field 
+                    = sd.label :postal_code, "Postal Code"
+                    = sd.text_field :postal_code, readonly: cannot?(:update_shipping_details, @order)
+              - if can?(:update_shipping_details, @order)
+                .mt-5
+                  = f.submit "Update Shipping Details", class: "btn-primary cursor-pointer w-full sm:w-fit"
   - else
     No Shipping details provided

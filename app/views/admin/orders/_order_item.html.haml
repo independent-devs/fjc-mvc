@@ -20,7 +20,7 @@
     .flex.flex-col.w-full
       .block
         = capture_variant.dig("product_name")
-      .flex.justify-between.gap-3.text-sm.w-full
+      .flex.justify-between.gap-3.w-full
         .block
           - unless capture_variant.dig("variant_master")
             .justify-between.gap-3.text-gray-500

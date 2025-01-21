@@ -1,0 +1,22 @@
+.rounded.bg-white.border.border-gray-300.divide-y.divide-gray-300.shadow-sm
+  .px-5.divide-y.divide-gray-300
+    .text-sm.uppercase.py-3
+      - if @order.placed_at.present?
+        .text-gray-500
+          = "Order placed #{time_ago_in_words(@order.placed_at)} ago"
+      - else
+        .text-red-600
+          Order not yet placed
+    - @order.order_items.each do |order_item|
+      = render "order_item", order_item:
+  .px-5.py-4.flex.justify-between
+    .block
+      - if @order.placed_at.blank?
+        .text-sm.text-gray-500
+          Non-placed orders will be removed within 24 hours
+    .grid.gap-4
+      .flex.items-center.gap-2.justify-end
+        .text-sm
+          Order Total:
+        .text-primary.text-xl
+          = price_with_currency(@order.total, currency_symbol(MoneyRails.default_currency.id.to_s))

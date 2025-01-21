@@ -1,5 +1,5 @@
 - if can?(:update_logistic_details, @order)
-  .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
+  .p-3.rounded.bg-white.grid.gap-2.border.border-gray-300.shadow-sm
     %h2.font-medium Logistic Details
     = form_for(@order, url: update_logistic_details_admin_order_path(@order)) do |f|
       .grid.grid-cols-2.gap-3
