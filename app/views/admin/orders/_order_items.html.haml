@@ -1,5 +1,5 @@
 .rounded.bg-white.border.border-gray-300.divide-y.divide-gray-300.shadow-sm
-  .px-5.divide-y
+  .px-5.divide-y.divide-gray-300
     .font-medium.py-3 Order Items
     - @order.order_items.each do |order_item|
       = render "order_item", order_item:
