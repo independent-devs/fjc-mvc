@@ -1,5 +1,5 @@
 - if can?(:refund, @order) || can?(:update_refund_reason, @order)
-  .p-3.rounded.bg-white.grid.gap-2.border.border-gray-400
+  .p-3.rounded.bg-white.grid.gap-2.border.border-gray-300.shadow
     %h2.font-medium Refund Details
 
     - url, method, confirm = (if can?(:refund, @order) then [refund_admin_order_path(@order), "post", "Proceed to refund status?"] else [update_refund_reason_admin_order_path(@order), "patch", nil] end )
