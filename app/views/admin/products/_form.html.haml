@@ -10,13 +10,13 @@
       = f.rich_text_area :description, placeholder: "Write here..."
     .field
       = f.label :categories
-      = f.select :category_ids, Category.all.map {|cat| [cat.path.map {|p| p.name}.join(" -> "), cat.id]}, {}, {multiple: true, data: { "admin--products--form-target": "categoryInput" }}
+      = f.select :category_ids, Category.all.map {|cat| [cat.path.map {|p| p.name}.join(" -> "), cat.id]}, {}, {class: "h-[42px]", multiple: true, data: { "admin--products--form-target": "categoryInput" }}
     .flex.gap-3.items-center.pt-2
       = f.check_box :has_variant, class: "checkbox-primary", data: {action: "admin--products--form#hasVariantToogle"}
       = f.label :has_variant, "With variants"
-    .field.relative{class: !f.object.has_variant ? "hidden" : "", data: {"admin--products--form-target": "optionContainer"}}
+    .field{class: ("hidden" unless f.object.has_variant), data: {"admin--products--form-target": "optionContainer"}}
       = f.label :options
-      = f.select :option_ids, Option.all.pluck(:name, :id), {}, {multiple: true, data: { "admin--products--form-target": "optionInput" }}
+      = f.select :option_ids, Option.pluck(:name, :id), {}, {class: "h-[42px]", multiple: true, data: { "admin--products--form-target": "optionInput" }}
     %h2.font-medium.text-lg.mt-1 SEO
     = f.fields_for :seo, @product.seo || Seo.new do |seo|
       .field
