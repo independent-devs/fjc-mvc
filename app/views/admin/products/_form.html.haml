@@ -9,14 +9,14 @@
       = f.label :description
       = f.rich_text_area :description, placeholder: "Write here..."
     .field
-      = f.label :discount_percent, "Discount (%)"
-      = f.number_field :discount_percent, required: true
+      = f.label :categories
+      = f.select :category_ids, Category.all.map {|cat| [cat.path.map {|p| p.name}.join(" -> "), cat.id]}, {}, {multiple: true, data: { "admin--products--form-target": "categoryInput" }}
     .flex.gap-3.items-center.pt-2
       = f.check_box :has_variant, class: "checkbox-primary", data: {action: "admin--products--form#hasVariantToogle"}
       = f.label :has_variant, "With variants"
     .field.relative{class: !f.object.has_variant ? "hidden" : "", data: {"admin--products--form-target": "optionContainer"}}
       = f.label :options
-      = f.select :option_ids, Option.pluck(:name, :id), {}, {multiple: true, data: { "admin--products--form-target": "optionInput" }}
+      = f.select :option_ids, Option.all.pluck(:name, :id), {}, {multiple: true, data: { "admin--products--form-target": "optionInput" }}
     %h2.font-medium.text-lg.mt-1 SEO
     = f.fields_for :seo, @product.seo || Seo.new do |seo|
       .field
@@ -28,6 +28,8 @@
       .field
         = seo.label :meta_keywords
         = seo.text_field :meta_keywords
+    .flex.justify-end
+      = f.submit is_new ? "Create Product" : "Update Product", class: "mt-2 btn-primary w-fit cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"
   .flex.flex-col.gap-2{class: "w-1/4 md:w-56 md:min-w-56"}
     .field
       = f.label :thumbnail
@@ -41,6 +43,9 @@
     .field
       = f.label :currency
       = f.select :currency, currency_list, {selected: is_new ? MoneyRails.default_currency : @product.currency}, {required: true, disabled: true}
+    .field
+      = f.label :discount_percent, "Discount (%)"
+      = f.number_field :discount_percent, required: true
     - if is_new
       = f.hidden_field :currency, value: MoneyRails.default_currency
     = f.fields_for :master_variant, @product.master_variant || Variant.new do |mv|
@@ -62,4 +67,3 @@
           = mv.label :backorderable, class: "cursor-pointer"
         - if is_new
           = mv.hidden_field :is_master, value: true
-    = f.submit is_new ? "Create" : "Update", class: "mt-2 btn-primary w-full cursor-pointer disabled:bg-gray-300 disabled:cursor-wait"

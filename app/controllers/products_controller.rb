@@ -8,7 +8,7 @@ class ProductsController < BaseController
     @products = Product.base_on_date.sort_by_latest
     return if params[:category].blank?
 
-    @products = @products.where(product_category: { category: params[:category] }).joins(:product_category)
+    @products = @products.where(product_categories: { category: params[:category] }).joins(:product_categories)
   end
 
   # GET /products/:id
