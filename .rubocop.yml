@@ -43,6 +43,9 @@ Metrics/BlockLength:
     - "config/**/**"
     - "spec/**/**"
 
+Metrics/ClassLength:
+  Max: 120
+
 Metrics/CyclomaticComplexity:
   Max: 20
   Exclude:

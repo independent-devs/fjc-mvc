@@ -55,6 +55,11 @@ class Admin::OrdersController < Admin::BaseController
 
   def destroy
     @order.destroy_variant_release
+
+    respond_to do |format|
+      format.turbo_stream if params[:redirect].blank?
+      format.html { redirect_to admin_orders_url, notice: I18n.t('orders.destroyed') }
+    end
   end
 
   def ship
