@@ -83,7 +83,7 @@ class Cart < ApplicationRecord
   private
 
   def validate_ownership
-    return unless user_id.present? && guest_session_id.present?
+    return unless user.present? && guest_session.present?
 
     errors.add(:ownership, I18n.t('carts.validate.ownership_cant_be_both'))
   end

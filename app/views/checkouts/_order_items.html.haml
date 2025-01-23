@@ -1,0 +1,5 @@
+.rounded.border.border-gray-300
+  .font-medium.px-3.mt-2 Items
+  .divide-y.px-3
+    - @order.order_items.each do |order_item|
+      = render "order_item", order_item:

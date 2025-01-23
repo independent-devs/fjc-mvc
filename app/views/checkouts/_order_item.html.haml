@@ -4,8 +4,8 @@
 - is_master = (variant_exist ? order_item.variant.is_master : order_item.variant_capture["variant_master"])
 - option_value_name = (variant_exist ? order_item.variant.option_value_name : order_item.variant_capture["variant_name"])
 
-= link_to product_path(id: product_id), class: "flex gap-3 py-4 w-full" do
-  = image_tag (variant_exist && order_item.variant.product.thumbnail&.attached?) ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
+= link_to product_path(id: product_id), class: "flex gap-3 py-2 w-full" do
+  = image_tag variant_exist && order_item.variant.product.thumbnail&.attached? ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
   .flex.flex-col.w-full
     .block
       = product_name
