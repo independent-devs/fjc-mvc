@@ -62,7 +62,7 @@ class Variant < ApplicationRecord
             product_id: product.id,
             variant_name: option_value_name,
             variant_master: is_master
-          }.to_json
+          }
         }
       )
     end

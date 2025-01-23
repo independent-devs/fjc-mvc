@@ -24,6 +24,10 @@ class Order < ApplicationRecord
                    'AND shipping_details.shippable_id = orders.id')
         }
 
+  # validations
+  validates :payment_method, presence: true, if: :placed_at
+  validates :shipping_detail, presence: true, if: :placed_at
+
   def subtotal
     order_items.sum('order_items.qty * order_items.price')
   end
