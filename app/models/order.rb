@@ -28,6 +28,8 @@ class Order < ApplicationRecord
   validates :payment_method, presence: true, if: :placed_at
   validates :shipping_detail, presence: true, if: :placed_at
 
+  validate :validate_ownership
+
   def subtotal
     order_items.sum('order_items.qty * order_items.price')
   end
@@ -70,6 +72,12 @@ class Order < ApplicationRecord
       logger.warn e
       nil
     end
+  end
+
+  def validate_ownership
+    return unless user.present? && guest_session.present?
+
+    errors.add(:ownership, I18n.t('orders.validate.ownership_cant_be_both'))
   end
 end
 
