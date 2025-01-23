@@ -1,7 +1,7 @@
 - if can?(:destroy, @order) || can?(:cancel, @order)
   .flex.gap-3
     - if can?(:destroy, @order)
-      = button_to admin_order_path(@order), method: :delete, class: "bg-red-600/5 rounded-sm text-red-600 border border-red-600 px-8 py-2.5 text-sm flex gap-2 items-center font-medium", data: { turbo_confirm: "Are you sure to remove order?"} do
+      = button_to admin_order_path(@order, redirect: true), method: :delete, class: "bg-red-600/5 rounded-sm text-red-600 border border-red-600 px-8 py-2.5 text-sm flex gap-2 items-center font-medium", data: {turbo_confirm: "Are you sure to remove order?"} do
         = icon("fa-solid", "trash")
         Remove Order
     - if can?(:cancel, @order)
