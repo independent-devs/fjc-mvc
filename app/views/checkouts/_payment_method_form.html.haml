@@ -11,6 +11,8 @@
             - if !pm.enable
               = "(Not available)"
     .mt-5
+      = render "order_items"
+    .mt-5
       = render "order_summary", is_tbd: false
     .mt-5.flex.gap-4.sm:justify-end.flex-col.sm:flex-row
       %button.btn-plain.w-full.sm:w-fit{type: :button, data: {action: "click->checkout--step#backToShipping"}}

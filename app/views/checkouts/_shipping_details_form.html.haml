@@ -30,6 +30,8 @@
             = sd.label :postal_code, "Postal Code"
             = sd.number_field :postal_code
       .mt-5
+        = render "order_items"
+      .mt-5
         = render "order_summary", is_tbd: true
       .w-full.flex.justify-end.mt-5
         = f.submit "Proceed to Payment Method", class: "btn-primary cursor-pointer w-full sm:w-fit"

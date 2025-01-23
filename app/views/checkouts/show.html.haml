@@ -1,15 +1,8 @@
 - title "Checkout"
 
 .w-full.max-w-checkout.mx-auto.px-4.flex.flex-col.gap-6.py-6{class: "", data: {controller: "checkout--step"}}
-  - unless @order.shipping_detail&.persisted? && @order.payment_method&.persisted?
-    = render "stepper"
-    - if @order.errors.present?
-      = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
-    = render "shipping_details_form"
-    = render "payment_method_form"
-  - else 
-    .grid.place-items-center.py-10.h-full
-      .grid.place-items-center.gap-3
-        .text-3xl.text-primary.font-semibold
-          Order has already been placed.
-        = link_to "Go to my orders", orders_path, class: "btn-primary cursor-pointer w-fit"
+  = render "stepper"
+  - if @order.errors.present?
+    = render ErrorMessageComponent.new(errors: @order.errors.full_messages, label: "")
+  = render "shipping_details_form"
+  = render "payment_method_form"
