@@ -4,15 +4,19 @@
     .block
       .text-primary.font-medium
         = @order.shipping_detail.fullname
-      .flex.gap-1.flex-wrap.text-gray-600.text-sm.sm:text-base
+      .text-gray-600
+        = @order.shipping_detail.phone_no
+      .flex.gap-1.flex-wrap.text-gray-600.text-base
         .flex{class: "after:content-[',_']"}
           = @order.shipping_detail.street
-        .flex{class: "after:content-[',_']"}
+        .flex
           = @order.shipping_detail.barangay
+      .flex.gap-1.flex-wrap.text-gray-600.text-base
         .flex{class: "after:content-[',_']"}
           = @order.shipping_detail.city
-        .flex{class: "after:content-[',_']"}
+        .flex
           = @order.shipping_detail.state
+      .flex.gap-1.flex-wrap.text-gray-600.text-base
         .flex{class: ("after:content-[',_']" if @order.shipping_detail.postal_code.present?)} 
           = @order.shipping_detail.country
         - if @order.shipping_detail.postal_code.present?
