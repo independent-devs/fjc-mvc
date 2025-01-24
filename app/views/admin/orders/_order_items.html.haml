@@ -14,9 +14,25 @@
       - if @order.placed_at.blank?
         .text-sm.text-gray-500
           Non-placed orders will be removed within 24 hours
-    .grid.gap-4
-      .flex.items-center.gap-2.justify-end
-        .text-sm
-          Order Total:
-        .text-primary.text-xl
-          = price_with_currency(@order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
+    .w-96.gap-3
+      .flex.justify-between.pb-1
+        .text-gray-600
+          Subtotal
+        .font-medium
+          = price_with_currency(@order.subtotal, currency_symbol(MoneyRails.default_currency.id.to_s))
+      .flex.justify-between.py-1
+        .text-gray-600
+          Discounted
+        .font-medium.flex.text-green-600
+          = "-"
+          = price_with_currency(@order.discounted_price, currency_symbol(MoneyRails.default_currency.id.to_s))
+      .flex.justify-between.py-1
+        .text-gray-600
+          Shipping Fee
+        .font-medium
+          = price_with_currency(@order.shipping_fee, currency_symbol(MoneyRails.default_currency.id.to_s))
+      .flex.justify-between.pt-3.text-lg.border-t.mt-2.border-gray-300
+        .font-semibold
+          Total
+        .font-semibold
+          = render PriceRangeComponent.new lowest: @order.total, currency: MoneyRails.default_currency.id.to_s

@@ -6,6 +6,8 @@
       = "Order - #{@order.id}"
     .lowercase{class: "#{@order.order_status.name}-status"}
       = @order.order_status.name.humanize
+      - if @order.guest_session_id.present?
+        .tag-guest guest
   .grid.gap-4
     = render "safe_buttons"
     = render "recieve_form"
