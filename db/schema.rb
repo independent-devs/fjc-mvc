@@ -79,14 +79,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
     t.index ["name", "ancestry"], name: "index_categories_on_name_and_ancestry", unique: true
   end
 
-  create_table "descriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "description"
-    t.uuid "product_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_descriptions_on_product_id"
-  end
-
   create_table "guest_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -284,7 +276,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
   add_foreign_key "carts", "guest_sessions"
   add_foreign_key "carts", "users"
   add_foreign_key "carts", "variants"
-  add_foreign_key "descriptions", "products"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "variants"
   add_foreign_key "orders", "guest_sessions"
