@@ -13,6 +13,8 @@ class CreateShippingDetails < ActiveRecord::Migration[7.1]
       t.string :state, null: false
       t.string :country, null: false
       t.string :postal_code
+      t.boolean :default, null: false, default: false
+      t.boolean :save_information, null: false, default: false
 
       t.timestamps
     end
