@@ -2,6 +2,7 @@
 
 class Admin::DashboardController < Admin::BaseController
   def index
-    @placed_orders = Order.where.not(placed_at: nil).count
+    @completed_orders = Order.where(order_status: { name: 'completed' }).joins(:order_status).count
+    @completed_orders_prev_percent = 0.0
   end
 end
