@@ -213,6 +213,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
     t.string "state", null: false
     t.string "country", null: false
     t.string "postal_code"
+    t.boolean "default", default: false, null: false
+    t.boolean "save_information", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shippable_type", "shippable_id"], name: "index_shipping_details_on_shippable"
@@ -243,7 +245,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
 
   create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "value"
+    t.string "illustration", default: "", null: false
     t.uuid "variant_id", null: false
     t.uuid "product_option_id", null: false
     t.datetime "created_at", null: false
