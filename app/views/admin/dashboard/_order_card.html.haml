@@ -1,9 +1,9 @@
 .rounded.p-5.bg-white.shadow.hover:shadow-xl.cursor-help
-  %h2.font-semibold Placed Orders
+  %h2.font-semibold Completed Orders
   .text-3xl.font-medium.mt-2
-    = @placed_orders
+    = @completed_orders
   .mt-2.flex.gap-1.items-center
     .text-green-600.font-medium
-      = "#{@placed_orders_prev_percent}%"
+      = "#{@completed_orders_prev_percent}%"
     .text-sm.text-gray-500.font-medium
       more than the last month
