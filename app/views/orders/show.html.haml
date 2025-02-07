@@ -39,12 +39,12 @@
               .flex.justify-end.gap-3
       - else
         %h2.text-lg.text-gray-500 No Shipping Details Yet
-      .grid.gap-4
+      .grid.gap-3.h-fit
         - if can?(:cancel, @order)
-          = button_to "Cancel Order", cancel_order_path(@order, redirect: true), method: :delete, class: "bg-red-600 w-52 px-9 text-center py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
+          = button_to "Cancel Order", cancel_order_path(@order, redirect: true), method: :delete, class: "bg-red-600 w-52 py-2.5 text-sm text-center font-medium text-white rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
         - if can?(:shipping_details, @order) && can?(:payment_method, @order)
           = link_to "Resume Checkout", checkout_path(id: @order.id), class: "text-primary w-52 h-fit px-9 text-center py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
         - if can?(:sync, @order)
-          = button_to sync_order_path(@order, redirect: true), method: :post, class: "flex gap-2 items-center w-52 px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
+          = button_to sync_order_path(@order, redirect: true), method: :post, class: "w-52 text-center px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
             = icon("fa-solid", "arrows-rotate")
             Sync Order
