@@ -13,7 +13,8 @@ class OrdersController < BaseController
   def sync
     respond_to do |format|
       if @order.update(user: current_user, guest_session_id: nil)
-        format.turbo_stream
+        format.turbo_stream if params[:redirect].blank?
+        format.html { redirect_to orders_path }
       else
         format.turbo_stream { render status: :unprocessable_entity }
       end
@@ -23,7 +24,8 @@ class OrdersController < BaseController
   def cancel
     respond_to do |format|
       if @order.cancel_variant_release(cancelled_by: 'buyer')
-        format.turbo_stream
+        format.turbo_stream if params[:redirect].blank?
+        format.html { redirect_to orders_path }
       else
         format.turbo_stream { render status: :unprocessable_entity }
       end
