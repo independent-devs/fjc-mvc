@@ -38,10 +38,8 @@
         .text-primary.text-xl
           = price_with_currency(order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
       .flex.justify-end.gap-3
-        -# %button.btn-primary.px-9{class: "py-2.5"}
-        -#   Buy Again
         - if can?(:cancel, order)
-          = button_to "Cancel Order", cancel_order_path(order), method: :delete, disabled: cannot?(:cancel, order), class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
+          = button_to "Cancel Order", cancel_order_path(order), method: :delete, class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
         - if can?(:shipping_details, order) && can?(:payment_method, order)
           = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary px-9 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
         - if can?(:sync, order)
@@ -49,5 +47,4 @@
             = icon("fa-solid", "arrows-rotate")
             Sync Order
         - if can?(:read, order)
-          %button.px-9{class: "border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline"}
-            Order Details
+          = link_to "Order Details", order_path(order, from: params[:status]), class: "px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline"

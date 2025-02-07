@@ -1,0 +1,50 @@
+- title "Order"
+
+= render Account::LayoutComponent.new do
+  .divide-y.w-full
+    .flex.gap-4.justify-between.pb-4
+      = link_to orders_path(status: params[:from]), class: "text-gray-500" do
+        = icon("fa-solid", "chevron-left", class: "text-sm")
+        BACK
+      .divide-x.divide-gray-600.flex
+        .px-3
+          = "ORDER ID: #{@order.id}"
+        .text-primary.pl-3.uppercase
+          = @order.order_status.name
+    .flex.justify-between.gap-3.py-4
+      - if @order.shipping_detail.present?
+        .space-y-1
+          %h2.font-medium.text-lg.mb-2 Shipping Details
+          .block
+            .text-primary.font-medium.mb-1
+              = @order.shipping_detail.fullname
+            .text-gray-600
+              = @order.shipping_detail.phone_no
+            .flex.gap-1.flex-wrap.text-gray-600.text-base
+              .flex{class: "after:content-[',_']"}
+                = @order.shipping_detail.street
+              .flex
+                = @order.shipping_detail.barangay
+            .flex.gap-1.flex-wrap.text-gray-600.text-base
+              .flex{class: "after:content-[',_']"}
+                = @order.shipping_detail.city
+              .flex
+                = @order.shipping_detail.state
+            .flex.gap-1.flex-wrap.text-gray-600.text-base
+              .flex{class: ("after:content-[',_']" if @order.shipping_detail.postal_code.present?)} 
+                = @order.shipping_detail.country
+              - if @order.shipping_detail.postal_code.present?
+                .block
+                  = @order.shipping_detail.postal_code
+              .flex.justify-end.gap-3
+      - else
+        %h2.text-lg.text-gray-500 No Shipping Details Yet
+      .grid.gap-4
+        - if can?(:cancel, @order)
+          = button_to "Cancel Order", cancel_order_path(@order, redirect: true), method: :delete, class: "bg-red-600 w-52 px-9 text-center py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
+        - if can?(:shipping_details, @order) && can?(:payment_method, @order)
+          = link_to "Resume Checkout", checkout_path(id: @order.id), class: "text-primary w-52 h-fit px-9 text-center py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
+        - if can?(:sync, @order)
+          = button_to sync_order_path(@order, redirect: true), method: :post, class: "flex gap-2 items-center w-52 px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
+            = icon("fa-solid", "arrows-rotate")
+            Sync Order
