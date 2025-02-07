@@ -38,8 +38,8 @@
         .text-primary.text-xl
           = price_with_currency(order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
       .flex.justify-end.gap-3
-        %button.btn-primary.px-9{class: "py-2.5"}
-          Buy Again
+        -# %button.btn-primary.px-9{class: "py-2.5"}
+        -#   Buy Again
         - if can?(:cancel, order)
           = button_to "Cancel Order", cancel_order_path(order), method: :delete, disabled: cannot?(:cancel, order), class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
         - if can?(:shipping_details, order) && can?(:payment_method, order)
